@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ChatService} from "../../services/chat.service";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {FileUpload} from "../../models/FileUpload";
 
 @Component({
@@ -17,17 +17,24 @@ export class ChatFormUserComponent implements OnInit {
 
   /* Check img and url */
   isFile: boolean;
-  imageSrc: any;
+  uploadSrc: any;
+
+  /* Hidden after upload */
+  hidden: boolean = true;
 
   /* Form Chat */
   formChat: FormGroup;
 
-  constructor(private chatService: ChatService , private fb: FormBuilder) { }
+  /* To show error message */
+  showNotiError = false;
+
+  constructor(private chatService: ChatService, private fb: FormBuilder) {
+  }
 
   ngOnInit(): void {
     /* Form Chat */
     this.formChat = this.fb.group({
-      message: ['']
+      message: ['' , Validators.required]
     });
   }
 
@@ -36,39 +43,59 @@ export class ChatFormUserComponent implements OnInit {
     /* Send message */
     let message = this.formChat.get('message').value;
 
-    if (this.formChat.value && this.selectedFiles == null) {
-      this.chatService.sendMessage(message , null);
-    }
-    this.formChat.reset();
-    /* To send file */
-    if (this.selectedFiles) {
-      const file = this.selectedFiles.item(0);
-      this.selectedFiles = undefined;
-      this.currentFileUpload = new FileUpload(file);
-      this.checkFileAndImg(file);
-
-      if (message == null) {
-        message = null;
+    /* Check empty message */
+    if(message == null || this.selectedFiles == null) {
+      this.showNotiError = true;
+      console.log(this.showNotiError)
+      setTimeout(() => {
+        this.showNotiError = false;
+      }, 3000);
+    } else {
+      if (this.formChat.value && this.selectedFiles == null) {
+        this.chatService.sendMessage(message, null);
       }
 
-      this.chatService.pushFileToStorage(message , this.currentFileUpload).subscribe(
-        percentage => {
-          this.percentage = Math.round(percentage);
-        },
-        error => {
-          console.log(error);
+      this.formChat.reset();
+      /* To send file */
+      if (this.selectedFiles) {
+        const file = this.selectedFiles.item(0);
+        this.selectedFiles = undefined;
+        this.currentFileUpload = new FileUpload(file);
+        this.checkFileAndImg(file);
+
+        if (message == null) {
+          message = null;
         }
-      );
+
+        this.chatService.pushFileToStorage(message, this.currentFileUpload).subscribe(percentage => {
+            this.percentage = Math.round(percentage);
+          },
+          error => {
+            console.log(error);
+          }, () => {
+            setTimeout(() => {
+              this.uploadSrc = null;
+            }, 1000);
+          });
+      }
     }
   }
 
   selectFile(event: any) {
     this.selectedFiles = event.target.files;
+
+    /* Check file or img to show */
+    this.checkFileAndImg(this.selectedFiles.item(0));
+
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
 
       const reader = new FileReader();
-      reader.onload = e => this.imageSrc = reader.result;
+      if (!this.isFile) {
+        reader.onload = e => this.uploadSrc = reader.result;
+      } else {
+        this.uploadSrc = file;
+      }
 
       reader.readAsDataURL(file);
     }

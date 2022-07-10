@@ -1,9 +1,20 @@
 <!-- Show img when select -->
-<div *ngIf="imageSrc" class="show-img__select">
-  <img [src]="imageSrc" style="width: 100px" alt="">
+<div *ngIf="uploadSrc" class="show-upload__select">
+  <div *ngIf="!isFile" class="show-img__select">
+    <img [src]="uploadSrc" alt="">
+    <i class="fa-solid fa-xmark"></i>
+  </div>
+
+  <a href="{{uploadSrc.url}}" *ngIf="isFile" class="text-chat__file">
+    <div class="text-chat__file-group">
+      <i class="fa-solid fa-file"></i>
+      <p>{{uploadSrc.name}}</p>
+    </div>
+    <i class="close-icon fa-solid fa-xmark"></i>
+  </a>
 </div>
 
-<div *ngIf="currentFileUpload" style="padding: 0 4px;" class="progress mt-2">
+<div *ngIf="currentFileUpload && uploadSrc" style="padding: 0 4px;" class="progress mt-2">
   <div class="progress-bar progress-bar-info" role="progressbar" attr.aria-valuenow="{{ percentage }}"
        aria-valuemin="0"
        aria-valuemax="100"
@@ -13,6 +24,11 @@
 </div>
 
 <form [formGroup]="formChat" (ngSubmit)="send()" class="chat-bar">
+  <div [style.visibility]="showNotiError ? 'visible' : 'hidden'"
+       [style.opacity]="showNotiError?'1':'0'" id="notiError" class="alert__error-notification">
+    <span>Don't let it blank before sending a message</span>
+  </div>
+
   <input class="message" type="text" placeholder="Write a message" formControlName="message">
 
   <div class="chat-bar__function">

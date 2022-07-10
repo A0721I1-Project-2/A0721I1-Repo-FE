@@ -6,12 +6,12 @@
 
     <div class="info-user__group">
       <span>Name: </span>
-      <p>{{member.nameMember}}</p>
+      <p *ngIf="member">{{member.nameMember}}</p>
     </div>
 
     <div class="info-user__group">
       <span>E-mail: </span>
-      <p>{{member.emailMember}}</p>
+      <p *ngIf="member">{{member.emailMember}}</p>
     </div>
   </div>
 
