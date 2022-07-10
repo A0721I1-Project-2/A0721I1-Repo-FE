@@ -301,19 +301,13 @@ li {
 
 /* X-Large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
-  .screen-chat__middle-group .text-chat ,
-  .screen-chat__middle-group .info-chat .name ,
-  .screen-chat__middle-group .info-chat .time{
+  .screen-chat__middle-group .text-chat {
     font-size: 1rem;
   }
 
-  .screen-chat__middle-group .info-user__group span ,
-  .screen-chat__middle-group .info-user__group p ,
   .screen-chat__admin .info .position ,
   .screen-chat__footer-group p ,
-  .screen-chat .chat-bar .message ,
-  .chat-bar__function .attachment-group label i,
-  .chat-bar__function .send-group i {
+  .screen-chat .chat-bar .message {
     font-size: 1.2rem;
   }
 
@@ -330,19 +324,14 @@ li {
 
 /* XX-Large devices (larger desktops, 1400px and up) */
 @media (min-width: 1400px) {
-  .screen-chat__middle-group .text-chat ,
-  .screen-chat__middle-group .info-chat .name ,
-  .screen-chat__middle-group .info-chat .time{
+  .screen-chat__middle-group .text-chat {
     font-size: 0.8rem;
   }
 
   .screen-chat__middle-group .info-user__group span ,
   .screen-chat__middle-group .info-user__group p ,
   .screen-chat__admin .info .position ,
-  .screen-chat__footer-group p ,
-  .screen-chat .chat-bar .message ,
-  .chat-bar__function .attachment-group label i,
-  .chat-bar__function .send-group i {
+  .screen-chat__footer-group p {
     font-size: 1rem;
   }
 

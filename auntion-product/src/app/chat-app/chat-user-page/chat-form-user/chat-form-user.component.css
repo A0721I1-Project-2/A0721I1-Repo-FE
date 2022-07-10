@@ -61,3 +61,48 @@
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   border-radius: 3px;
 }
+
+/* Responsive */
+/* Mobile */
+@media (max-width: 739px) {
+
+}
+
+/* Mobile and Tablet */
+@media (max-width: 1023px) {
+}
+
+/* Tablet */
+@media (min-width: 740px) and (max-width: 1023px) {
+
+}
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+
+}
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .chat-bar .message {
+    font-size: 1.2rem;
+  }
+
+  .chat-bar__function .attachment-group label i,
+  .chat-bar__function .send-group i {
+    font-size: 1.4rem;
+  }
+}
+
+/* XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) {
+  .chat-bar .message {
+    font-size: 1.4rem;
+  }
+
+  .chat-bar__function .attachment-group label i,
+  .chat-bar__function .send-group i {
+    font-size: 1.4rem;
+  }
+}
+
