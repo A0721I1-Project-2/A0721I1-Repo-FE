@@ -1,0 +1,358 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 150vh;
+}
+
+html {
+  font-family: manrope, sans-serif;
+  font-size: 62.5%;
+}
+
+a {
+  text-decoration: none !important;
+  transition: all 0.3s;
+}
+
+a:hover {
+  color: var(--primary-color-blue) !important;
+}
+
+ul {
+  padding-left: 0;
+  margin: 0;
+}
+
+li {
+  list-style: none;
+}
+
+.home__container {
+  background-color: #fff;
+}
+
+/* Icon chat */
+.chat-icon {
+  position: fixed;
+  bottom: 20px;
+  right: 25px;
+  height: 65px;
+  width: 65px;
+  border-radius: 50%;
+  border: 1px solid #dadada;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--button-color);
+  color: #fff;
+  box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
+  transition: all 0.5s;
+  cursor: pointer;
+  z-index: 111;
+}
+
+.chat-icon.hidden-chat .chat-icon {
+  -webkit-animation: border-pulsate 2s linear infinite;
+  animation: border-pulsate 2s linear infinite;
+  display: flex;
+}
+
+.chat-icon.hidden-chat .close-icon {
+  display: none;
+}
+
+.chat-icon.show-chat .close-icon {
+  display: flex;
+}
+
+.chat-icon.show-chat .chat-icon {
+  display: none;
+}
+
+.chat-icon:hover i {
+  transform: scale(1.1);
+}
+
+.chat-icon:hover {
+  background-color: var(--active-color);
+}
+
+.chat-icon i {
+  transition: all 0.3s;
+  font-size: 2.2rem;
+}
+
+/* Screen chat */
+.screen-chat__header-group {
+  padding: 12px 20px 20px 20px;
+  box-shadow: 0 4px 2px -2px gray;
+  /* box-shadow: 0 4px 2px -2px rgba(100, 100, 111, 0.2); */
+  z-index: 12;
+}
+
+.screen-chat {
+  position: fixed;
+  bottom: 30px;
+  right: 95px;
+  width: 400px;
+  border-radius: 3px;
+  border: 1px solid #dadada;
+  background-color: #fff;
+  transition: all 0.3s;
+  animation: growth ease 0.3s, fadeIn linear 0.3s;
+  animation-duration: 0.3s;
+  transform-origin: bottom right;
+  z-index: 999;
+  /* display: none; */
+}
+
+.screen-chat.show {
+  display: block;
+}
+
+.screen-chat.hidden {
+  display: none;
+  animation: growthHidden linear 0.3s;
+}
+
+.screen-chat .title {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+.screen-chat .footer i {
+  transition: all 0.3s;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+.screen-chat .footer:hover i {
+  color: var(--button-color);
+}
+
+.screen-chat .screen-chat__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #dadada;
+}
+
+/* Screen admin */
+.screen-chat__admin {
+  display: flex;
+}
+
+.screen-chat__admin .avatar-group {
+  height: 60px;
+  width: 60px;
+  position: relative;
+}
+
+.screen-chat__admin .avatar-group img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.screen-chat__admin .avatar-group .active {
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  background-color: var(--active-color);
+  border-radius: 50%;
+  bottom: 0;
+  right: 9px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.screen-chat__admin .info {
+  margin-left: 8px;
+}
+
+.screen-chat__admin .info h3 {
+  font-size: 1.7rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.screen-chat__admin .info .position {
+  font-size: 1.3rem;
+  color: #888;
+  font-weight: 400;
+}
+
+/* Screen chat footer */
+.screen-chat__footer-group {
+  background-color: #eeeeee;
+}
+
+.screen-chat__footer-group p {
+  margin: 0;
+  padding: 8px 0;
+  font-size: 1.4rem;
+  text-align: center;
+  color: #888;
+  font-weight: 400;
+}
+
+.screen-chat__footer-group strong {
+  color: #000;
+  color: var(--button-color) !important;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes border-pulsate {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.3);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+
+@keyframes growth {
+  from {
+    transform: scale(0.3);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes growthHidden {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(0);
+  }
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Responsive */
+/* Mobile */
+@media (max-width: 739px) {
+  .screen-chat {
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+  }
+}
+
+/* Mobile and Tablet */
+@media (max-width: 1023px) {
+  .screen-chat__middle-group {
+    height: 40vh;
+  }
+}
+
+/* Tablet */
+@media (min-width: 740px) and (max-width: 1023px) {
+
+}
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .screen-chat__middle-group .text-chat ,
+  .screen-chat__middle-group .info-chat .name ,
+  .screen-chat__middle-group .info-chat .time{
+    font-size: 1rem;
+  }
+
+  .screen-chat__middle-group .info-user__group span ,
+  .screen-chat__middle-group .info-user__group p ,
+  .screen-chat__admin .info .position ,
+  .screen-chat__footer-group p ,
+  .screen-chat .chat-bar .message ,
+  .chat-bar__function .attachment-group label i,
+  .chat-bar__function .send-group i {
+    font-size: 1.2rem;
+  }
+
+  .screen-chat__admin .info h3 ,
+  .screen-chat__middle-group .info-user .icon-user i ,
+  .screen-chat .title {
+    font-size: 1.4rem;
+  }
+
+  .chat-icon i {
+    font-size: 1.6rem;
+  }
+}
+
+/* XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) {
+  .screen-chat__middle-group .text-chat ,
+  .screen-chat__middle-group .info-chat .name ,
+  .screen-chat__middle-group .info-chat .time{
+    font-size: 0.8rem;
+  }
+
+  .screen-chat__middle-group .info-user__group span ,
+  .screen-chat__middle-group .info-user__group p ,
+  .screen-chat__admin .info .position ,
+  .screen-chat__footer-group p ,
+  .screen-chat .chat-bar .message ,
+  .chat-bar__function .attachment-group label i,
+  .chat-bar__function .send-group i {
+    font-size: 1rem;
+  }
+
+  .screen-chat__admin .info h3 ,
+  .screen-chat__middle-group .info-user .icon-user i ,
+  .screen-chat .title {
+    font-size: 1.2rem;
+  }
+
+  .chat-icon i {
+    font-size: 1.4rem;
+  }
+}

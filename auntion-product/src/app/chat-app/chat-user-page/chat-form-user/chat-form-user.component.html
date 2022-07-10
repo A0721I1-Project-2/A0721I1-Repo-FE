@@ -1,0 +1,31 @@
+<!-- Show img when select -->
+<div *ngIf="imageSrc" class="show-img__select">
+  <img [src]="imageSrc" style="width: 100px" alt="">
+</div>
+
+<div *ngIf="currentFileUpload" style="padding: 0 4px;" class="progress mt-2">
+  <div class="progress-bar progress-bar-info" role="progressbar" attr.aria-valuenow="{{ percentage }}"
+       aria-valuemin="0"
+       aria-valuemax="100"
+       [ngStyle]="{ width: percentage + '%' }">
+    {{ percentage }}%
+  </div>
+</div>
+
+<form [formGroup]="formChat" (ngSubmit)="send()" class="chat-bar">
+  <input class="message" type="text" placeholder="Write a message" formControlName="message">
+
+  <div class="chat-bar__function">
+    <div class="attachment-group">
+      <label for="attachment-input" class="attachment">
+        <i class="fa-solid fa-link"></i>
+      </label>
+
+      <input type="file" (change)="selectFile($event)" id="attachment-input">
+    </div>
+
+    <button type="submit" class="send-group">
+      <i class="fa-solid fa-paper-plane"></i>
+    </button>
+  </div>
+</form>

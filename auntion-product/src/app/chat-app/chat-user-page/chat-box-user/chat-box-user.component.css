@@ -1,0 +1,121 @@
+/* Screen chat middle */
+.screen-chat__middle-group {
+  background-color: #eeeeee;
+  padding: 25px 20px;
+  height: 50vh;
+  overflow-y: auto;
+}
+
+.screen-chat__middle-group .info-user {
+  position: relative;
+  padding: 12px;
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.screen-chat__middle-group .info-user .icon-user {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -50%);
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background-color: var(--button-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.screen-chat__middle-group .info-user .icon-user i {
+  font-size: 1.8rem;
+  color: #fff;
+}
+
+.screen-chat__middle-group .info-user__group:last-child {
+  margin-top: 12px;
+}
+
+.screen-chat__middle-group .info-user__group span {
+  color: #888;
+  font-size: 1.3rem;
+}
+
+.screen-chat__middle-group .info-user__group p {
+  margin: 0;
+  color: #000;
+  font-size: 1.4rem;
+}
+
+.screen-chat__middle-group .info-chat .info {
+  display: flex;
+  align-items: center;
+}
+
+.screen-chat__middle-group .info-chat {
+  margin-top: 24px;
+}
+
+.screen-chat__middle-group .info-chat__item {
+  display: flex;
+  margin-top: 18px;
+}
+
+.screen-chat__middle-group .info-chat img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.screen-chat__middle-group .info-chat .time {
+  color: #888;
+  font-size: 1.3rem;
+}
+
+.screen-chat__middle-group .info-chat .name {
+  color: #000;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.screen-chat__middle-group .text-chat {
+  background: #fff;
+  border-radius: 5px;
+  padding: 8px 12px;
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin-top: 6px;
+  min-width: 165px;
+}
+
+.screen-chat__middle-group .text-chat p {
+  margin: 0;
+  text-align: left;
+}
+
+/* User */
+.screen-chat__middle-group .info-chat__item.user {
+  justify-content: flex-end;
+}
+
+.screen-chat__middle-group .user .text-chat {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+.screen-chat__middle-group .info-chat .user .time {
+  text-align: right;
+}
+
+.info-chat__item.user .info-chat__item-right-area {
+  text-align: right;
+}
+
+.text-chat .text-chat__img {
+  min-width: 250px;
+  min-height: 250px;
+  object-fit: contain;
+  border-radius: unset !important;
+}

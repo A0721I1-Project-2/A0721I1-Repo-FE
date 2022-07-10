@@ -8,10 +8,13 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFireAuthModule} from '@angular/fire/auth';
+import { UserItemComponent } from './chat-app/chat-admin-page/user-item/user-item.component';
+import { UserListComponent } from './chat-app/chat-admin-page/user-list/user-list.component';
+import {ChatUserPageModule} from './chat-app/chat-user-page/chat-user-page.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -19,8 +22,9 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    AngularFireDatabaseModule ,
-    AngularFireAuthModule
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    ChatUserPageModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

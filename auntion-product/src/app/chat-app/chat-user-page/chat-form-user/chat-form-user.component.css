@@ -1,0 +1,63 @@
+.chat-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  background-color: #fff;
+}
+
+.chat-bar .message {
+  height: 50px;
+  border: none;
+  font-size: 1.5rem;
+  outline: none;
+  flex: 4;
+}
+
+.chat-bar__function input {
+  display: none;
+}
+
+.chat-bar .chat-bar__function {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.chat-bar__function .attachment-group label {
+  margin: 0px 0px 0px 6px;
+  cursor: pointer;
+}
+
+.chat-bar__function .send-group,
+.chat-bar__function .attachment-group label {
+  padding: 12px 6px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+.chat-bar__function .attachment-group label i,
+.chat-bar__function .send-group i {
+  font-size: 1.6rem;
+  transition: all 0.3s;
+}
+
+.chat-bar__function .attachment-group label:hover i,
+.chat-bar__function .send-group:hover i {
+  color: var(--button-color);
+}
+
+/* Show select file and img */
+.show-img__select {
+  padding: 12px 12px 0 12px;
+}
+
+.show-img__select img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 3px;
+}
