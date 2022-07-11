@@ -8,7 +8,7 @@ import {InstructionComponent} from './instruction/instruction.component';
 
 const routes: Routes = [
   {
-    path: 'show-home',
+    path: '',
     component: ShowHomeComponent
   },
   {
