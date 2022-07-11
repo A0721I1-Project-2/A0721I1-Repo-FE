@@ -104,4 +104,9 @@ export class ChatFormUserComponent implements OnInit {
   checkFileAndImg(file: File) {
     this.isFile = this.chatService.checkFileOrImg(file);
   }
+
+  /* Close file */
+  closeFile() {
+    this.uploadSrc = null;
+  }
 }

@@ -11,6 +11,7 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
 import { UserItemComponent } from './chat-app/chat-admin-page/user-item/user-item.component';
 import { UserListComponent } from './chat-app/chat-admin-page/user-list/user-list.component';
 import {ChatUserPageModule} from './chat-app/chat-user-page/chat-user-page.module';
+import {HomeModule} from './home/home.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import {ChatUserPageModule} from './chat-app/chat-user-page/chat-user-page.modul
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     ChatUserPageModule,
+    HomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
