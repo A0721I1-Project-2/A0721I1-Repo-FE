@@ -13,7 +13,7 @@
   border: none;
   font-size: 1.5rem;
   outline: none;
-  flex: 4;
+  width: 100%;
 }
 
 .chat-bar__function input {
@@ -54,6 +54,7 @@
 /* Show select file and img */
 .show-upload__select {
   padding: 12px;
+  background-color: #fff;
 }
 
 .show-img__select {
@@ -157,7 +158,9 @@
   transform-origin: bottom left;
   transition: all 0.3s;
   visibility: hidden;
-
+  min-height: 50px;
+  display: flex;
+  align-items: center;
 }
 
 /* Responsive */

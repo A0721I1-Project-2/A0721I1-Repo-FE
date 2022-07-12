@@ -7,9 +7,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RoomChatUserComponent implements OnInit {
 
+  /* Check hidden screen chat */
+  hiddenScreen = true;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  /* Close box chat */
+  closeBoxChat() {
+    const screenChat = document.getElementById('screenChat');
+    this.hiddenScreen = true;
+    screenChat.classList.add('hidden');
+  }
+
+  /* Show screen chat */
+  showScreenChat() {
+    const screenChat = document.getElementById('screenChat');
+    this.hiddenScreen = !this.hiddenScreen;
+    if (this.hiddenScreen) {
+      screenChat.classList.add('hidden');
+    } else {
+      screenChat.classList.remove('hidden');
+    }
   }
 
 }

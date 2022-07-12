@@ -44,9 +44,9 @@ export class ChatFormUserComponent implements OnInit {
     let message = this.formChat.get('message').value;
 
     /* Check empty message */
-    if(message == null || this.selectedFiles == null) {
+    if(message == null) {
       this.showNotiError = true;
-      console.log(this.showNotiError)
+      console.log(this.showNotiError);
       setTimeout(() => {
         this.showNotiError = false;
       }, 3000);

@@ -39,7 +39,7 @@
           <img class="text-chat__img" *ngIf="message.fileUpload && !message.isFile" [src]="message.fileUpload.url" alt="">
 
           <a class="text-chat__file" *ngIf="message.fileUpload && message.isFile"
-             href="{{message.fileUpload.url}}">{{message.fileUpload.name}}</a>
+             href="{{message.fileUpload.url}}" target="_blank">{{message.fileUpload.name}}</a>
 
           <p>{{message.message}}</p>
         </div>

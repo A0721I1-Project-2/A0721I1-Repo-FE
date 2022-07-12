@@ -7,7 +7,7 @@ import {environment} from '../environments/environment';
 import { ChatBoxUserComponent } from './chat-box-user/chat-box-user.component';
 import { ChatFormUserComponent } from './chat-form-user/chat-form-user.component';
 import { RoomChatUserComponent } from './room-chat-user/room-chat-user.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [ChatBoxUserComponent, ChatFormUserComponent, RoomChatUserComponent],

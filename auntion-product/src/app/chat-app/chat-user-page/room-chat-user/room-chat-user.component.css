@@ -61,18 +61,6 @@ li {
   display: flex;
 }
 
-.chat-icon.hidden-chat .close-icon {
-  display: none;
-}
-
-.chat-icon.show-chat .close-icon {
-  display: flex;
-}
-
-.chat-icon.show-chat .chat-icon {
-  display: none;
-}
-
 .chat-icon:hover i {
   transform: scale(1.1);
 }
@@ -107,10 +95,6 @@ li {
   animation-duration: 0.3s;
   transform-origin: bottom right;
   z-index: 999;
-  /* display: none; */
-}
-
-.screen-chat.show {
   display: block;
 }
 
@@ -280,7 +264,7 @@ li {
 /* Mobile */
 @media (max-width: 739px) {
   .screen-chat {
-    top: 45%;
+    top: 32%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 90%;

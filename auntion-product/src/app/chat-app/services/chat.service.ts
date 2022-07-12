@@ -119,10 +119,10 @@ export class ChatService {
   getTimeStamp(): any {
     const now = new Date();
     const date = now.getFullYear() + '/' +
-      (now.getMonth() + 1) + '/' + now.getUTCDate();
+      (now.getMonth() + 1) + '/' + now.getDate();
 
-    const time = now.getUTCHours() + ':' +
-      (now.getUTCMinutes() + 1) + ':' + now.getUTCSeconds();
+    const time = now.getHours() + ':' +
+      (now.getMinutes() + 1) + ':' + now.getSeconds();
     return date + ' ' + time;
   }
 

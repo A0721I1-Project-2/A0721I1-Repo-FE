@@ -1,14 +1,11 @@
-
 <div class="home__container">
   <div class="container">
     <div class="screen-chat__container">
-      <div id="chatIcon" class="chat-icon hidden-chat">
+      <div (click)="showScreenChat()" id="chatIcon" class="chat-icon hidden-chat">
         <i class="chat-icon fa-solid fa-comments"></i>
-
-        <i class="close-icon fa-solid fa-x"></i>
       </div>
 
-      <div class="screen-chat">
+      <div id="screenChat" class="screen-chat hidden">
         <div class="screen-chat__header-group">
           <div class="screen-chat__header">
             <div class="middle">
@@ -16,7 +13,7 @@
             </div>
 
             <div class="footer">
-              <i class="fa-solid fa-xmark"></i>
+              <i (click)="closeBoxChat()" class="fa-solid fa-xmark"></i>
             </div>
           </div>
 

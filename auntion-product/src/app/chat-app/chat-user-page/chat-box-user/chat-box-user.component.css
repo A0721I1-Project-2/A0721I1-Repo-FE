@@ -102,7 +102,10 @@
 
 .screen-chat__middle-group .user .text-chat {
   background-color: var(--primary-color);
-  color: #fff;
+  color: #fff !important;
+}
+.screen-chat__middle-group .user .text-chat a {
+  color: #fff !important;
 }
 
 .screen-chat__middle-group .info-chat .user .time {
