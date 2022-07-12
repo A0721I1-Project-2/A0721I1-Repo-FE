@@ -26,8 +26,8 @@ export class UserListComponent implements OnInit {
       /* Set data user for firebase */
       for (let i = 0; i < this.accounts.length; i++) {
         /* Get status msg by account id */
-        this.connectFirebaseService.getStatusMsg(this.accounts[i].idAccount).valueChanges().subscribe(statusMsg => {
-          if(statusMsg) {
+        this.connectFirebaseService.getStatusMsg(this.accounts[i].idAccount).subscribe(statusMsg => {
+          if (statusMsg) {
             this.statusUserMsg.push(statusMsg);
           }
         });
@@ -35,9 +35,13 @@ export class UserListComponent implements OnInit {
         /* Get member by account id */
         this.apiService.getMemberByAccountId(this.accounts[i].idAccount).subscribe(member => {
           this.connectFirebaseService.setDataUser(this.accounts[i].idAccount, this.accounts[i].username, member.emailMember, this.accounts[i].roles, false);
-        })
+        });
       }
     });
   }
 
+  /* Seen message */
+  seenMsg(userId: any) {
+    this.connectFirebaseService.setStatusMsg(userId, true);
+  }
 }

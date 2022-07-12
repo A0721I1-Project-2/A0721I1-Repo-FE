@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {AngularFireDatabase, AngularFireList} from "@angular/fire/database";
 import {AngularFireStorage} from "@angular/fire/storage";
 import {ApiService} from "./api.service";
@@ -28,18 +28,21 @@ export class ChatService {
   /* Check file or img */
   isFile: boolean;
 
+  /* Check first message */
+  isFirstMsg: boolean;
+
   /* Get url -> push */
   saveFileData(fileUpload: FileUpload): void {
     this.db.list('/uploads').push(fileUpload);
   }
 
   /* Send message */
-  sendMessage(message: any , fileUpload: any) {
+  sendMessage(message: any, fileUpload: any) {
     const timeStamp = this.getTimeStamp();
 
     this.chatMessages = this.getMessages();
 
-    if(fileUpload == null) {
+    if (fileUpload == null) {
       fileUpload = null;
       this.isFile = null;
     }
@@ -47,14 +50,20 @@ export class ChatService {
     this.chatMessages.push({
       message: message,
       username: this.account.username,
-      fileUpload: fileUpload ,
-      timeSent: timeStamp ,
+      fileUpload: fileUpload,
+      timeSent: timeStamp,
       isFile: this.isFile,
       isOwn: this.account.roles
     });
 
-    /* Set status seen message */
-    this.connectFirebaseService.setStatusSeenMsg(this.account.idAccount , false , message);
+    this.connectFirebaseService.getStatusMsg(this.account.idAccount).subscribe(data => {
+      if (data == null) {
+        this.connectFirebaseService.setStatusMsg(this.account.idAccount, false, 0);
+      } else {
+        console.log('hi')
+        // this.connectFirebaseService.setStatusMsg(this.account.idAccount, true, data.quantity);
+      }
+    });
   }
 
   /* Get messages */
@@ -84,7 +93,7 @@ export class ChatService {
   }
 
   /* Push file to storage */
-  pushFileToStorage(message: any , fileUpload: FileUpload): Observable<any> {
+  pushFileToStorage(message: any, fileUpload: FileUpload): Observable<any> {
     const filePath = `uploads/${fileUpload.file.name}`;
     const storageRef = this.storage.ref(filePath);
     const uploadTask = this.storage.upload(filePath, fileUpload.file);
@@ -101,7 +110,7 @@ export class ChatService {
           } else {
             this.saveImg(uploadTask, storageRef);
           }
-          this.sendMessage(message , fileUpload);
+          this.sendMessage(message, fileUpload);
         });
       })
     ).subscribe();
@@ -130,12 +139,12 @@ export class ChatService {
     const time = now.getHours() + ':' +
       (now.getMinutes() > 10 ? '' + now.getMinutes() : '0' + now.getMinutes());
 
-    const timeShow = now.getHours() > 12 ? 'PM':'AM';
+    const timeShow = now.getHours() > 12 ? 'PM' : 'AM';
     return date + ' ' + time + ' ' + timeShow;
   }
 
   constructor(private db: AngularFireDatabase, private storage: AngularFireStorage
-  , private apiService: ApiService , private connectFirebaseService: ConnectFirebaseService) {
+    , private apiService: ApiService, private connectFirebaseService: ConnectFirebaseService) {
     // Get user with current data
     this.apiService.getMemberByAccountId(1).subscribe(member => {
       this.member = member;
