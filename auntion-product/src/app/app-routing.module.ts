@@ -26,6 +26,10 @@ const routes: Routes = [
   {
     path: 'product',
     loadChildren: () => import('./product/product.module').then(module => module.ProductModule)
+  },
+  {
+    path: 'admin',
+    loadChildren: () => import('./chat-app/chat-admin-page/chat-admin-page.module').then(module => module.ChatAdminPageModule)
   }
 ];
 
