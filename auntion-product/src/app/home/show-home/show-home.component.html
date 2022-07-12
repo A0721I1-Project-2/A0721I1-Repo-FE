@@ -129,15 +129,15 @@
       <div class="driver-default"></div>
 
       <div class="container">
-        <div class="row">
+        <div class="row" >
           <!-- Sản phẩm 1 -->
           <div class="col-xl-3 col-md-6 col-lg-4 col-sm-6" *ngFor="let product of products">
             <div class="product-auction" >
-              <div class="product-counter-inner" >
-                <div>TIME LEFT: <span style="color: #fff;" id="time-remain">{{product.remainingTime}}</span></div>
+              <div class="product-counter-inner">
+                <div>TIME LEFT: <span style="color: #fff;">{{product.remainingTime}}</span></div>
               </div>
-              <div class="product-image">
-                <a href="/"><img src="https://firebasestorage.googleapis.com/v0/b/a0721i1.appspot.com/o/A0721I1-hong-tra-sua-tran-chau_326977.jpg?alt=media&token=3dfab192-2593-4ba7-8076-740f74ba3777" alt="Flycame"
+              <div class="product-image" *ngFor="let img of product.imageProductList">
+                <a href="/"><img [src]="img.imageProduct" alt="Flycame"
                                  onError="this.src='./assets/home-header/image/Image_not_available.png'"></a>
               </div>
               <div class="product-title">
@@ -360,7 +360,7 @@
 
         </div>
       </div>
-      <button class="load-more btn btn-primary" >Load more</button>
+      <button id="load-more" class="load-more btn btn-primary" (click)="loadMore()">Load more</button>
     </div>
 
   </div>
@@ -369,7 +369,4 @@
 
 
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script>
 
-</script>
