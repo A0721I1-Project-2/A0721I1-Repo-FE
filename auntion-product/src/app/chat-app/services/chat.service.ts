@@ -8,6 +8,7 @@ import {FileUpload} from "../models/FileUpload";
 import {Observable} from "rxjs";
 import {ChatMessage} from "../models/ChatMessage";
 import {Account} from "../../model/Account";
+import {ConnectFirebaseService} from "./connect-firebase.service";
 
 @Injectable({
   providedIn: 'root'
@@ -35,19 +36,25 @@ export class ChatService {
   /* Send message */
   sendMessage(message: any , fileUpload: any) {
     const timeStamp = this.getTimeStamp();
+
     this.chatMessages = this.getMessages();
-    console.log(message);
+
     if(fileUpload == null) {
       fileUpload = null;
       this.isFile = null;
     }
+
     this.chatMessages.push({
       message: message,
+      username: this.account.username,
       fileUpload: fileUpload ,
       timeSent: timeStamp ,
       isFile: this.isFile,
       isOwn: this.account.roles
-    })
+    });
+
+    /* Set status seen message */
+    this.connectFirebaseService.setStatusSeenMsg(this.account.idAccount , false , message);
   }
 
   /* Get messages */
@@ -91,11 +98,10 @@ export class ChatService {
 
           if (this.isFile) {
             this.saveFileData(fileUpload);
-            this.sendMessage(message , fileUpload);
           } else {
             this.saveImg(uploadTask, storageRef);
-            this.sendMessage(message , fileUpload);
           }
+          this.sendMessage(message , fileUpload);
         });
       })
     ).subscribe();
@@ -118,16 +124,18 @@ export class ChatService {
   /* Get and format time */
   getTimeStamp(): any {
     const now = new Date();
-    const date = now.getFullYear() + '/' +
-      (now.getMonth() + 1) + '/' + now.getDate();
+    const date = now.getDate() + '/' +
+      (now.getMonth() + 1) + '/' + now.getFullYear();
 
     const time = now.getHours() + ':' +
-      (now.getMinutes() + 1) + ':' + now.getSeconds();
-    return date + ' ' + time;
+      (now.getMinutes() > 10 ? '' + now.getMinutes() : '0' + now.getMinutes());
+
+    const timeShow = now.getHours() > 12 ? 'PM':'AM';
+    return date + ' ' + time + ' ' + timeShow;
   }
 
   constructor(private db: AngularFireDatabase, private storage: AngularFireStorage
-  , private apiService: ApiService) {
+  , private apiService: ApiService , private connectFirebaseService: ConnectFirebaseService) {
     // Get user with current data
     this.apiService.getMemberByAccountId(1).subscribe(member => {
       this.member = member;

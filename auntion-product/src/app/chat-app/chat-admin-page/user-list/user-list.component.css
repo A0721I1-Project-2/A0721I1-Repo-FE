@@ -29,8 +29,7 @@
 
 .user-list__container .form__search-chat i {
   height: 100%;
-  padding: 0 0px 0px 8px;
-  flex: 1;
+  padding: 0 8px 0px 12px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -61,6 +60,11 @@
   padding: 12px;
   cursor: pointer;
   border-radius: 5px;
+}
+
+.user-list__item.not-seen {
+  background-color: #fff;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .user-list__item:hover {

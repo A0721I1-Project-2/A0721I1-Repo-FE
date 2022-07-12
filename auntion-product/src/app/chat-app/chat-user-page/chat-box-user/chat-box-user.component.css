@@ -103,7 +103,12 @@
 .screen-chat__middle-group .user .text-chat {
   background-color: var(--primary-color);
   color: #fff !important;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 350px;
 }
+
 .screen-chat__middle-group .user .text-chat a {
   color: #fff !important;
 }

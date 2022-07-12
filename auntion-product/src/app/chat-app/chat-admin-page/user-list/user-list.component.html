@@ -10,44 +10,16 @@
 
   <div class="middle">
     <ul class="user-list__group">
-<!--      <li class="user-list__item" *ngFor="let account of accounts">-->
-<!--        <p>{{account}}</p>-->
-<!--      </li>-->
-
-      <li class="user-list__item">
+      <li class="user-list__item" *ngFor="let status of statusUserMsg" [ngClass]="!status.statusMsg?'not-seen':null">
         <div class="info">
           <p>Tuấn</p>
-          <span>HOWHOWHOWHOWHOWHOWHOWHOWHOWHOWHOWHOW</span>
+          <span>{{status.messageNew}}</span>
         </div>
 
           <div class="notification">
             <p class="date">2020-05-12</p>
-            <span class="quantity">2</span>
+            <span class="quantity">{{status.quantity}}</span>
           </div>
-      </li>
-
-      <li class="user-list__item">
-        <div class="info">
-          <p>Tuấn</p>
-          <span>HOWHOWHOWHOWHOWHOWHOWHOWHOWHOWHOWHOW</span>
-        </div>
-
-        <div class="notification">
-          <p class="date">2020-05-12</p>
-          <span class="quantity">2</span>
-        </div>
-      </li>
-
-      <li class="user-list__item">
-        <div class="info">
-          <p>Tuấn</p>
-          <span>HOWHOWHOWHOWHOWHOWHOWHOWHOWHOWHOWHOW</span>
-        </div>
-
-        <div class="notification">
-          <p class="date">2020-05-12</p>
-          <span class="quantity">2</span>
-        </div>
       </li>
     </ul>
   </div>

@@ -46,7 +46,6 @@ export class ChatFormUserComponent implements OnInit {
     /* Check empty message */
     if(message == null) {
       this.showNotiError = true;
-      console.log(this.showNotiError);
       setTimeout(() => {
         this.showNotiError = false;
       }, 3000);
