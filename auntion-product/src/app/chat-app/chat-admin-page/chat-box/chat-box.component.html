@@ -2,7 +2,10 @@
   <header class="chat-box__header">
     <div class="info">
       <p class="name">Tuan</p>
-      <span class="active">Active</span>
+      <span class="active">
+        <div></div>
+        <span>Active</span>
+      </span>
     </div>
 
     <i class="fa-solid fa-ellipsis-vertical"></i>
@@ -10,19 +13,43 @@
 
   <div class="chat-box__middle">
     <div class="chat-box__item">
-      <div class="info">
+      <div class="detail">
+        <p class="name">Tuan</p>
+        <span class="time">3:40 PM</span>
+      </div>
+
+      <div class="text-chat">
+        <!--        <img class="text-chat__img" *ngIf="message.fileUpload && !message.isFile" [src]="message.fileUpload.url" alt="">-->
+        <img src="./assets/user/avatar.avif" class="text-chat__img" alt="">
+        <!--        <a *ngIf="message.fileUpload && message.isFile"-->
+        <!--           href="{{message.fileUpload.url}}" target="_blank">{{message.fileUpload.name}}</a>-->
+
+        <p>PPPPPP</p>
+      </div>
+    </div>
+    <div class="chat-box__item user">
+      <div class="detail">
         <p class="name">Tuan</p>
         <span class="time">3:40 PM</span>
       </div>
 
       <div class="text-chat">
 <!--        <img class="text-chat__img" *ngIf="message.fileUpload && !message.isFile" [src]="message.fileUpload.url" alt="">-->
-        <img src="" class="text-chat__img" alt="">
+<!--        <img src="./assets/user/avatar.avif" class="text-chat__img" alt="">-->
 <!--        <a *ngIf="message.fileUpload && message.isFile"-->
 <!--           href="{{message.fileUpload.url}}" target="_blank">{{message.fileUpload.name}}</a>-->
 
         <p>PPPPPP</p>
       </div>
+    </div>
+  </div>
+
+  <div class="chat-box__footer">
+    <div class="form__input">
+      <input type="text" placeholder="Your message">
+
+      <i class="fa-solid fa-link"></i>
+      <i class="fa-solid fa-paper-plane" type="submit"></i>
     </div>
   </div>
 </div>

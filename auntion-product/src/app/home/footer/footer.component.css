@@ -10,6 +10,7 @@
   background-color: var(--primary-color);
   width: 100%;
   bottom: 0;
+  z-index: 999;
 }
 
 .footer__container .footer__item .header {

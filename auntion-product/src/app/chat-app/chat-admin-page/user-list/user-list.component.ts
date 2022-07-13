@@ -42,6 +42,6 @@ export class UserListComponent implements OnInit {
 
   /* Seen message */
   seenMsg(userId: any) {
-    this.connectFirebaseService.setStatusMsg(userId, true);
+    this.connectFirebaseService.setStatusMsg(userId, true , 0);
   }
 }
