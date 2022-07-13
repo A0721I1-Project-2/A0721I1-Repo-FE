@@ -10,11 +10,12 @@
   background-color: var(--primary-color);
   width: 100%;
   bottom: 0;
+  /*margin-top: 50px;*/
 }
 
 .footer__container .footer__item .header {
   position: relative;
-  font-size: 2rem;
+  font-size: 22px;
   color: #fff;
   text-transform: uppercase;
   margin-bottom: 24px;
@@ -178,7 +179,7 @@
 }
 
 .footer__bottom-left-area a {
-  font-size: 2rem;
+  font-size: 22px;
   text-transform: uppercase;
   color: #fff !important;
   display: block;
@@ -190,13 +191,16 @@
 
 .footer__bottom-right-area {
   color: #fff;
-  font-size: 1.8rem;
+  font-size: 22px;
   display: block;
   font-weight: 300;
   margin: 0;
 }
 
 @media (max-width: 739px) {
+  * {
+    font-size: 13px;
+  }
   .footer__item .download-app {
     align-items: center;
   }
@@ -204,6 +208,18 @@
   .footer__bottom-left-area {
     flex-direction: column;
     text-align: center;
+  }
+  .content .content__item span {
+    font-size: 14px;
+  }
+  .footer__item .content span {
+    font-size: 14px;
+  }
+  .footer__bottom .footer__bottom-left-area {
+    font-size: 16px;
+  }
+  .footer__bottom-right-area {
+    font-size: 18px;
   }
 
   .footer__item .footer__form {
@@ -216,7 +232,7 @@
     flex: unset;
     height: 60px;
     width: 100%;
-    font-size: 1.8rem;
+    /*font-size: 1.8rem;*/
     margin-top: 12px;
     border-radius: 5px;
   }
