@@ -175,9 +175,10 @@ body {
 
 /* Bắt đầu - CSS cho list-product */
 .list-product {
-  position: absolute;
+  /*position: absolute;*/
   display: inline-block;
   margin-top: 285px;
+  margin-bottom: 50px;
   text-align: center;
   width: 100%;
   background-color: rgb(243, 246, 253);
@@ -258,11 +259,12 @@ body {
   display: none;
 }
 .load-more {
-  position: absolute;
+  /*position: absolute;*/
   margin-top: 25px;
   display: flex;
-  left: 50%;
-  transform: translate(-50%);
+  margin-bottom: 25px;
+/*  left: 50%;*/
+/*  transform: translate(-50%);*/
 }
 
 /*.product-auction:hover {*/
@@ -316,6 +318,12 @@ body {
 
   .clear {
     clear: both;
+  }
+  html {
+    height: 100%;
+  }
+  body {
+    min-height: 100%;
   }
 
 
@@ -446,9 +454,10 @@ body {
   /* Bắt đầu - CSS cho list-product */
   .list-product {
     margin-top: 350px;
-    width: 90%;
-    left: 50%;
-    transform: translate(-50%);
+    width: 100%;
+    /*left: 50%;*/
+    /*transform: translate(-50%);*/
+
   }
 
   .list-product .product-auction {
@@ -457,10 +466,20 @@ body {
     box-shadow: none;
     /* padding-top: 120px; */
     height: 425px;
-    width: 100%;
+    width: 90%;
     margin-top: 25px;
-  }
+    /*display: flex;*/
+    /*align-items: center;*/
+    /*justify-content: center;*/
+    /*flex-direction: column;*/
 
+  }
+  .col-xl-3.col-md-6.col-lg-4.col-sm-6 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
   .list-product .auction-name-h3 h3 {
     font-size: 18px !important;
   }
@@ -641,9 +660,9 @@ body {
   /* Bắt đầu - CSS cho list-product */
   .list-product {
     margin-top: 350px;
-    width: 90%;
-    left: 50%;
-    transform: translate(-50%);
+    width: 100%;
+    /*left: 50%;*/
+    /*transform: translate(-50%);*/
   }
 
   .list-product .product-auction {
@@ -756,7 +775,7 @@ body {
     color: white;
     cursor: pointer;
     padding: 6px 12px;
-    border-radius: 18px;
+    border-radius: 10px;
   }
 
   #myBtn:hover {
@@ -813,8 +832,8 @@ body {
   .list-product {
     margin-top: 320px;
     width: 100%;
-    left: 50%;
-    transform: translate(-50%);
+    /*left: 50%;*/
+    /*transform: translate(-50%);*/
   }
 
   .product-auction .product-counter-inner div {
@@ -822,9 +841,9 @@ body {
   }
 
   .product-auction .product-image img {
-    width: 60%;
-    height: auto;
     padding: 20px 0;
+    width: 70%;
+    height: 179px
   }
 
   .product-auction .product-title {
@@ -926,9 +945,9 @@ body {
   /* Bắt đầu - CSS cho list-product */
   .list-product {
     margin-top: 270px;
-    width: 80%;
-    left: 50%;
-    transform: translate(-50%);
+    width: 100%;
+    /*left: 50%;*/
+    /*transform: translate(-50%);*/
   }
   .list-product .product-auction {
     height: 470px;
@@ -939,9 +958,9 @@ body {
   }
 
   .product-auction .product-image img {
-    width: 70%;
-    height: auto;
     padding: 20px 0;
+    width: 70%;
+    height: 179px
   }
 
   .product-auction .product-title {
