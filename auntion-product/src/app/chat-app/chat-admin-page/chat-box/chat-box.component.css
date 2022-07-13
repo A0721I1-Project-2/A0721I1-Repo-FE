@@ -7,7 +7,7 @@
 .chat-box__container .chat-box__header {
   display: flex;
   justify-content: space-between;
-  padding: 0 0 8px 12px;
+  padding: 0 8px 8px 12px;
   border-bottom: 1px solid #dadada;
   margin-bottom: 8px;
 }
@@ -109,6 +109,11 @@
   display: flex;
   align-items: center;
   margin-top: 24px;
+  border: 1px solid #dadada;
+  transition: all 0.3s;
+}
+
+.form__input:hover {
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 

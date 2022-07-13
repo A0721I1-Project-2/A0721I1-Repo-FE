@@ -10,17 +10,29 @@
 
   <div class="middle">
     <ul class="user-list__group">
-      <li class="user-list__item" (click)="seenMsg(status.userId)" *ngFor="let status of statusUserMsg" [ngClass]="!status.statusMsg?'not-seen':null">
+      <li class="user-list__item" *ngFor="let statusMsg of statusUsersMsg">
         <div class="info">
-          <p>Tuấn</p>
-          <span>{{status.messageNew}}</span>
+          <p>{{statusMsg.userId}}</p>
+          <span>{{statusMsg.messageNew}}</span>
         </div>
 
-          <div class="notification">
-            <p class="date">2020-05-12</p>
-            <span class="quantity" *ngIf="status.quantity > 0">{{status.quantity}}</span>
-          </div>
+        <div class="notification">
+          <p class="date">2020-05-12</p>
+          <span class="quantity" *ngIf="statusUserMsg.quantity > 0">{{statusMsg.quantity}}</span>
+        </div>
       </li>
+<!--      <li class="user-list__item" (click)="seenMsg(status.userId)" *ngFor="let status of statusUserMsg"-->
+<!--          [ngClass]="status.statusMsg?'not-seen':null">-->
+<!--        <div class="info">-->
+<!--          <p>{{member.emailMember}}</p>-->
+<!--          <span>{{status.messageNew}}</span>-->
+<!--        </div>-->
+
+<!--        <div class="notification">-->
+<!--          <p class="date">2020-05-12</p>-->
+<!--          <span class="quantity" *ngIf="status.quantity > 0">{{status.quantity}}</span>-->
+<!--        </div>-->
+<!--      </li>-->
     </ul>
   </div>
 </div>

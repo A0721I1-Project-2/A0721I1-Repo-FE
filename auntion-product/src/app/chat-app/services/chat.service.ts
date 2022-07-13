@@ -56,13 +56,14 @@ export class ChatService {
       isOwn: this.account.roles
     });
 
-    this.connectFirebaseService.getStatusMsg(this.account.idAccount).subscribe(data => {
+    let breakProgram = this.connectFirebaseService.getStatusMsg(this.account.idAccount).subscribe(data => {
       if (data == null) {
-        this.connectFirebaseService.setStatusMsg(this.account.idAccount, false, 0);
+        this.connectFirebaseService.setStatusMsg(this.account.idAccount, true, 0 , message);
       } else {
-        console.log('hi')
-        // this.connectFirebaseService.setStatusMsg(this.account.idAccount, true, data.quantity);
+        this.connectFirebaseService.setStatusMsg(this.account.idAccount, true, data.quantity , message);
       }
+      /* To break for loop when sent */
+      breakProgram.unsubscribe();
     });
   }
 
@@ -146,12 +147,12 @@ export class ChatService {
   constructor(private db: AngularFireDatabase, private storage: AngularFireStorage
     , private apiService: ApiService, private connectFirebaseService: ConnectFirebaseService) {
     // Get user with current data
-    this.apiService.getMemberByAccountId(1).subscribe(member => {
+    this.apiService.getMemberByAccountId(2).subscribe(member => {
       this.member = member;
     });
 
     /* Get account with username */
-    this.apiService.getAccountByUsername("anhtuan").subscribe(account => {
+    this.apiService.getAccountByUsername("anhtuan1").subscribe(account => {
       this.account = account;
     });
 

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Account} from "../../../model/Account";
 import {ApiService} from "../../services/api.service";
 import {ConnectFirebaseService} from "../../services/connect-firebase.service";
+import {Member} from "../../../model/Member";
 
 @Component({
   selector: 'app-user-list',
@@ -13,8 +14,12 @@ export class UserListComponent implements OnInit {
   /* Get all users */
   accounts: Account[];
 
+  /* Get member */
+  member: Member;
+
   /* Get status msg */
-  statusUserMsg: any[] = [];
+  statusUserMsg: any;
+  statusUsersMsg: any[] = [];
 
   constructor(private apiService: ApiService, private connectFirebaseService: ConnectFirebaseService) {
   }
@@ -28,12 +33,18 @@ export class UserListComponent implements OnInit {
         /* Get status msg by account id */
         this.connectFirebaseService.getStatusMsg(this.accounts[i].idAccount).subscribe(statusMsg => {
           if (statusMsg) {
-            this.statusUserMsg.push(statusMsg);
+            this.statusUserMsg = statusMsg;
+
+            /* To get user sent message */
+            this.connectFirebaseService.getAllStatusMsg().subscribe(data => {
+              this.statusUsersMsg = data;
+            });
           }
         });
 
         /* Get member by account id */
         this.apiService.getMemberByAccountId(this.accounts[i].idAccount).subscribe(member => {
+          this.member = member;
           this.connectFirebaseService.setDataUser(this.accounts[i].idAccount, this.accounts[i].username, member.emailMember, this.accounts[i].roles, false);
         });
       }
@@ -42,6 +53,6 @@ export class UserListComponent implements OnInit {
 
   /* Seen message */
   seenMsg(userId: any) {
-    this.connectFirebaseService.setStatusMsg(userId, true , 0);
+    // this.connectFirebaseService.setStatusMsg(userId, true , 0);
   }
 }
