@@ -132,12 +132,12 @@
         <div class="row">
           <!-- Sản phẩm 1 -->
           <div class="col-xl-3 col-md-6 col-lg-4 col-sm-6" *ngFor="let product of products">
-            <div class="product-auction" >
-              <div class="product-counter-inner" >
-                <div>TIME LEFT: <span style="color: #fff;" id="time-remain">{{product.remainingTime}}</span></div>
+            <div class="product-auction">
+              <div class="product-counter-inner">
+                <div>TIME LEFT: <span style="color: #fff;">{{product.remainingTime}}</span></div>
               </div>
-              <div class="product-image">
-                <a href="/"><img src="https://firebasestorage.googleapis.com/v0/b/a0721i1.appspot.com/o/A0721I1-hong-tra-sua-tran-chau_326977.jpg?alt=media&token=3dfab192-2593-4ba7-8076-740f74ba3777" alt="Flycame"
+              <div class="product-image" *ngFor="let img of product.imageProductList">
+                <a href="/"><img [src]="img.imageProduct" alt="Flycame"
                                  onError="this.src='./assets/home-header/image/Image_not_available.png'"></a>
               </div>
               <div class="product-title">
@@ -146,8 +146,8 @@
                 </h5>
               </div>
               <div class="product-price">
-                <p style="color: #838386;">Current Price ($):</p>
-                <h5>{{product.finalPrice}}</h5>
+                <p style="color: #838386;">Current Price:</p>
+                <h5>${{product.finalPrice}}</h5>
               </div>
               <div class="product-btn">
                 <a class="btn button-auction-product" href="/" [hidden]="checkFinished==true">AUCTION</a>
@@ -360,7 +360,14 @@
 
         </div>
       </div>
-      <button class="load-more btn btn-primary" >Load more</button>
+      <button id="load-more" class="load-more btn btn-primary" (click)="loadMore()">Load more</button>
+      <button id="myBtn" title="Go to top list product">
+        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-arrow-bar-up"
+             viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+                d="M8 10a.5.5 0 0 0 .5-.5V3.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 3.707V9.5a.5.5 0 0 0 .5.5zm-7 2.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5z"/>
+        </svg>
+      </button>
     </div>
 
   </div>
@@ -369,7 +376,4 @@
 
 
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script>
 
-</script>

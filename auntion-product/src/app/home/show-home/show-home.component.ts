@@ -17,9 +17,12 @@ export class ShowHomeComponent implements OnInit {
   formSearch: FormGroup;
   flagCheck = false;
   checkFinished = false;
+  checkLoadMore = false;
+  checkHiddenLoadMore = false;
   nameProductSearch: string;
   // tslint:disable-next-line:ban-types
   messageAlert: String[];
+  currentItem = 8;
   constructor(private homeService: HomeService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
@@ -39,6 +42,10 @@ export class ShowHomeComponent implements OnInit {
         if (this.nameProductSearch != null) {
           this.nameProductSearch = '';
         }
+        this.checkLoadMore = false;
+        if (!this.checkLoadMore) {
+          this.currentItem = 8;
+        }
         // console.log(data);
       },
       () => {
@@ -47,9 +54,41 @@ export class ShowHomeComponent implements OnInit {
       () => {
         this.showListAuntionWithTime();
         this.checkFinished = false;
+        this.checkLoadMore = false;
+        this.checkHiddenLoadMore = false;
+        const loadMoreBtn = document.querySelector('#load-more');
+        // tslint:disable-next-line:triple-equals
+        if (this.checkHiddenLoadMore == false) {
+          // @ts-ignore
+          // tslint:disable-next-line:no-unused-expression
+          loadMoreBtn.style.display = 'inline-block';
+        }
       }
     );
   }
+  /*showListProductAuction() {
+    this.showListAuntionWithTime();
+    // this.showListAuntionWithTime();
+    if (this.nameProductSearch != null) {
+      this.nameProductSearch = '';
+    }
+    this.checkLoadMore = false;
+    if (!this.checkLoadMore) {
+      this.currentItem = 4;
+    }
+    this.checkFinished = false;
+    this.checkLoadMore = false;
+    this.checkHiddenLoadMore = false;
+    const loadMoreBtn = document.querySelector('#load-more');
+      // tslint:disable-next-line:triple-equals
+    if (this.checkHiddenLoadMore == false) {
+        // @ts-ignore
+        // tslint:disable-next-line:no-unused-expression
+        loadMoreBtn.style.display = 'inline-block';
+      }
+    }*/
+
+
 
   showListAuntionWithTime() {
     this.homeService.showListProductAuction().subscribe(
@@ -74,30 +113,28 @@ export class ShowHomeComponent implements OnInit {
           // tslint:disable-next-line:only-arrow-functions no-shadowed-variable
           (function(j) {
             // tslint:disable-next-line:only-arrow-functions
-            var x = window.setInterval(function() {
+            const x = setInterval(function() {
               // console.log(countDownDate[j]);
               // Get today's date and time
-              var now = new Date().getTime();
+              const now = new Date().getTime();
               // console.log(now);
               // Find the distance between now and the count down date
-              // tslint:disable-next-line:prefer-const
-              var distance = [];
+              const distance = [];
               // console.log(countDownDate[0]);
               distance[j] = countDownDate[j] - now;
               // Time calculations for days, hours, minutes and seconds
-              var days = Math.floor(distance[j] / (1000 * 60 * 60 * 24));
-              var hours = Math.floor((distance[j] % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-              var minutes = Math.floor((distance[j] % (1000 * 60 * 60)) / (1000 * 60));
-              var seconds = Math.floor((distance[j] % (1000 * 60)) / 1000);
+              const days = Math.floor(distance[j] / (1000 * 60 * 60 * 24));
+              const hours = Math.floor((distance[j] % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+              const minutes = Math.floor((distance[j] % (1000 * 60 * 60)) / (1000 * 60));
+              const seconds = Math.floor((distance[j] % (1000 * 60)) / 1000);
               // Display the result in the element with id="demo"
-              products[j].remainingTime = document.getElementById('time-remain').innerHTML = days + 'd ' + hours + 'h '
-                + minutes + 'm ' + seconds + 's ';
+              products[j].remainingTime = days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's ';
               // If the count down is finished, write some text
               if (distance[j] < 0) {
                 clearInterval(x);
-                products[j].remainingTime = document.getElementById('time-remain').innerHTML = 'FINISHED';
+                products[j].remainingTime  = 'FINISHED';
               }
-            }, 1000 * 0.1 * j);
+            }, 1000);
           })(j);
           // }
         }
@@ -201,7 +238,7 @@ export class ShowHomeComponent implements OnInit {
               const distance = [];
               // console.log(countDownDate[0]);
               distance[j] = countDownDate[j] - now;
-              // console.log(distance[j]);
+              console.log(distance[j]);
               // Time calculations for days, hours, minutes and seconds
               const days = Math.floor(distance[j] / (1000 * 60 * 60 * 24));
               const hours = Math.floor((distance[j] % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -211,11 +248,10 @@ export class ShowHomeComponent implements OnInit {
               // If the count down is finished, write some text
               if (distance[j] < 0) {
                 clearInterval(x);
-                products[j].remainingTime = document.getElementById('time-remain').innerHTML = 'FINISHED';
+                products[j].remainingTime = 'FINISHED';
               } else {
                 // Display the result in the element with id="demo"
-                products[j].remainingTime = document.getElementById('time-remain').innerHTML = days + 'd ' + hours + 'h '
-                  + minutes + 'm ' + seconds + 's ';
+                products[j].remainingTime = days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's ';
               }
             }, 1000);
           })(j);
@@ -245,6 +281,18 @@ export class ShowHomeComponent implements OnInit {
       () => {
         this.showListAuntionFinishedWithTime();
         this.checkFinished = true;
+        this.checkLoadMore = true;
+        this.checkHiddenLoadMore = false;
+        if (this.checkLoadMore) {
+          this.currentItem = 8;
+        }
+        const loadMoreBtn = document.querySelector('#load-more');
+        // tslint:disable-next-line:triple-equals
+        if (this.checkHiddenLoadMore == false) {
+          // @ts-ignore
+          // tslint:disable-next-line:no-unused-expression
+          loadMoreBtn.style.display = 'inline-block';
+        }
       }
     );
   }
@@ -289,11 +337,10 @@ export class ShowHomeComponent implements OnInit {
               // If the count down is finished, write some text
               if (distance[j] < 0) {
                 clearInterval(x);
-                products[j].remainingTime = document.getElementById('time-remain').innerHTML = 'FINISHED';
+                products[j].remainingTime = 'FINISHED';
               } else {
                 // Display the result in the element with id="demo"
-                products[j].remainingTime = document.getElementById('time-remain').innerHTML = days + 'd ' + hours + 'h '
-                  + minutes + 'm ' + seconds + 's ';
+                products[j].remainingTime = days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's ';
               }
             }, 1000);
           })(j);
@@ -321,6 +368,18 @@ export class ShowHomeComponent implements OnInit {
       },
       () => {
         this.showListSortAuntionWithTime(typeProductName);
+        this.checkLoadMore = true;
+        if (this.checkLoadMore) {
+          this.currentItem = 8;
+        }
+        this.checkHiddenLoadMore = false;
+        const loadMoreBtn = document.querySelector('#load-more');
+        // tslint:disable-next-line:triple-equals
+        if (this.checkHiddenLoadMore == false) {
+          // @ts-ignore
+          // tslint:disable-next-line:no-unused-expression
+          loadMoreBtn.style.display = 'inline-block';
+        }
       }
     );
   }
@@ -344,6 +403,7 @@ export class ShowHomeComponent implements OnInit {
       }
     } else {
       // @ts-ignore
+      // $('#myModal').modal('hide');
       $('#myModal').modal('hide');
     }
     if (priceRange === '$0 – $5') {
@@ -380,6 +440,7 @@ export class ShowHomeComponent implements OnInit {
           // Code line: time-left use setInterval and For loop
           let products = [];
           const countDownDate: number[] = [];
+          this.checkLoadMore = true;
           products = this.products = data;
           for (let i = 0; i < products.length; i++) {
             // tslint:disable-next-line:prefer-const
@@ -414,17 +475,32 @@ export class ShowHomeComponent implements OnInit {
                 // If the count down is finished, write some text
                 if (distance[j] < 0) {
                   clearInterval(x);
-                  products[j].remainingTime = document.getElementById('time-remain').innerHTML = 'FINISHED';
+                  products[j].remainingTime = 'FINISHED';
                 } else {
                   // Display the result in the element with id="demo"
-                  products[j].remainingTime = document.getElementById('time-remain').innerHTML = days + 'd ' + hours + 'h '
-                    + minutes + 'm ' + seconds + 's ';
+                  products[j].remainingTime = days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's ';
                 }
               }, 1000);
             })(j);
             // }
           }
 
+        },
+        () => {
+        },
+        () => {
+          this.checkLoadMore = true;
+          if (this.checkLoadMore) {
+            this.currentItem = 8;
+          }
+          this.checkHiddenLoadMore = false;
+          const loadMoreBtn = document.querySelector('#load-more');
+          // tslint:disable-next-line:triple-equals
+          if (this.checkHiddenLoadMore == false) {
+            // @ts-ignore
+            // tslint:disable-next-line:no-unused-expression
+            loadMoreBtn.style.display = 'inline-block';
+          }
         }
       );
     } else {
@@ -433,6 +509,7 @@ export class ShowHomeComponent implements OnInit {
           // Code line: time-left use setInterval and For loop
           let products = [];
           const countDownDate: number[] = [];
+          this.checkLoadMore = true;
           products = this.products = data;
           for (let i = 0; i < products.length; i++) {
             // tslint:disable-next-line:prefer-const
@@ -467,18 +544,68 @@ export class ShowHomeComponent implements OnInit {
                 // If the count down is finished, write some text
                 if (distance[j] < 0) {
                   clearInterval(x);
-                  products[j].remainingTime = document.getElementById('time-remain').innerHTML = 'FINISHED';
+                  products[j].remainingTime = 'FINISHED';
                 } else {
                   // Display the result in the element with id="demo"
-                  products[j].remainingTime = document.getElementById('time-remain').innerHTML = days + 'd ' + hours + 'h '
-                    + minutes + 'm ' + seconds + 's ';
+                  products[j].remainingTime = days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's ';
                 }
               }, 1000);
             })(j);
             // }
           }
+        },
+        () => {
+        },
+        () => {
+          this.checkLoadMore = true;
+          if (this.checkLoadMore) {
+            this.currentItem = 8;
+          }
+          this.checkHiddenLoadMore = false;
+          const loadMoreBtn = document.querySelector('#load-more');
+          // tslint:disable-next-line:triple-equals
+          if (this.checkHiddenLoadMore == false) {
+            // @ts-ignore
+            // tslint:disable-next-line:no-unused-expression
+            loadMoreBtn.style.display = 'inline-block';
+          }
         }
       );
     }
+  }
+
+  loadMore() {
+    // @ts-ignore
+    const boxes = [...document.querySelectorAll('.col-xl-3')];
+    console.log('Chiều dài boxes = ' + boxes.length);
+    console.log('currenItem ben ngoai = ' + this.currentItem);
+    const loadMoreBtn = document.querySelector('#load-more');
+    // @ts-ignore
+
+    if (this.currentItem < boxes.length) {
+      for (let i = this.currentItem; i < this.currentItem + 8; i++) {
+        // @ts-ignore
+        if ($('.col-xl-3:hidden').length > 0) {
+          boxes[i].style.display = 'inline-block';
+        }
+        console.log('currenItem ben trong loop = ' + this.currentItem);
+      }
+      this.currentItem += 8;
+    }
+
+
+    // tslint:disable-next-line:triple-equals
+    // @ts-ignore
+    // tslint:disable-next-line:triple-equals
+    if ($('.col-xl-3:hidden').length == 0) {
+      this.checkHiddenLoadMore = true;
+      if (this.checkHiddenLoadMore) {
+        // @ts-ignore
+        // tslint:disable-next-line:no-unused-expression
+        loadMoreBtn.style.display = 'none';
+      }
+    }
+    // @ts-ignore
+    console.log('số boxes còn lại = ' + $('.col-xl-3:hidden').length);
   }
 }
