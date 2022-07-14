@@ -8,3 +8,10 @@
 html {
   font-family: 'Fira Code', monospace;
 }
+:root {
+  --primary-color: #5f6771;
+  --color-content: #11b683;
+  --color-background: #a1def5;
+  --color-headder-footer-cart: #d9dadb;
+  --color-hover: #ff3366;
+}
