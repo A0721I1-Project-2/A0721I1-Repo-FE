@@ -1,14 +1,14 @@
 import {Injectable} from '@angular/core';
-import {AngularFireDatabase, AngularFireList} from "@angular/fire/database";
-import {AngularFireStorage} from "@angular/fire/storage";
-import {ApiService} from "./api.service";
+import {AngularFireDatabase, AngularFireList, snapshotChanges} from '@angular/fire/database';
+import {AngularFireStorage} from '@angular/fire/storage';
+import {ApiService} from './api.service';
 import {Member} from '../../model/Member';
-import {finalize} from "rxjs/operators";
-import {FileUpload} from "../models/FileUpload";
-import {Observable} from "rxjs";
-import {ChatMessage} from "../models/ChatMessage";
-import {Account} from "../../model/Account";
-import {ConnectFirebaseService} from "./connect-firebase.service";
+import {finalize} from 'rxjs/operators';
+import {FileUpload} from '../models/FileUpload';
+import {Observable} from 'rxjs';
+import {Account} from '../../model/Account';
+import {ConnectFirebaseService} from './connect-firebase.service';
+import {ChatMessage} from '../models/ChatMessage';
 
 @Injectable({
   providedIn: 'root'
@@ -28,19 +28,20 @@ export class ChatService {
   /* Check file or img */
   isFile: boolean;
 
-  /* Check first message */
-  isFirstMsg: boolean;
-
   /* Get url -> push */
   saveFileData(fileUpload: FileUpload): void {
     this.db.list('/uploads').push(fileUpload);
   }
 
   /* Send message */
-  sendMessage(message: any, fileUpload: any) {
+  sendMessage(message: any, fileUpload: any, userId: any) {
     const timeStamp = this.getTimeStamp();
 
-    this.chatMessages = this.getMessages();
+    console.log(userId);
+
+    let path = `messages/${userId}`;
+
+    this.chatMessages = this.getMessages(userId);
 
     if (fileUpload == null) {
       fileUpload = null;
@@ -58,20 +59,53 @@ export class ChatService {
 
     let breakProgram = this.connectFirebaseService.getStatusMsg(this.account.idAccount).subscribe(data => {
       if (data == null) {
-        this.connectFirebaseService.setStatusMsg(this.account.idAccount, true, 0 , message);
+        this.connectFirebaseService.setStatusMsg(this.account.idAccount, true, 0, message);
       } else {
-        this.connectFirebaseService.setStatusMsg(this.account.idAccount, true, data.quantity , message);
+        this.connectFirebaseService.setStatusMsg(this.account.idAccount, true, data.quantity, message);
       }
       /* To break for loop when sent */
       breakProgram.unsubscribe();
     });
+
+    this.getMessages(userId).snapshotChanges().subscribe(key => {
+      path = `messages/${userId}/${key[key.length - 1].key}`;
+      this.db.object(path).update(this.chatMessages).catch(error => console.log(error));
+    });
   }
 
   /* Get messages */
-  getMessages(): AngularFireList<ChatMessage[]> {
-    /* messages must be correct because it is name url to contain database */
-    return this.db.list('messages', ref => ref.orderByKey().limitToLast(400));
+  getMessages(userId: any): AngularFireList<ChatMessage[]> {
+    return this.db.list(`messages/${userId}`, ref => ref.orderByKey().limitToLast(400));
   }
+
+  // /* Send message */
+  // sendMessage(message: any, fileUpload: any) {
+  //   const timeStamp = this.getTimeStamp();
+  //
+  //   this.chatMessages = this.getMessages();
+  //
+  //   if (fileUpload == null) {
+  //     fileUpload = null;
+  //     this.isFile = null;
+  //   }
+  //
+  //   this.chatMessages.push({
+  //     message: message,
+  //     username: this.account.username,
+  //     fileUpload: fileUpload,
+  //     timeSent: timeStamp,
+  //     isFile: this.isFile,
+  //     isOwn: this.account.roles
+  //   });
+  //
+  //
+  // }
+  //
+  // /* Get messages */
+  // getMessages(): AngularFireList<ChatMessage[]> {
+  //   /* messages must be correct because it is name url to contain database */
+  //   return this.db.list('messages', ref => ref.orderByKey().limitToLast(400));
+  // }
 
   /* Save img */
   private saveImg(uploadTask: any, fileRef: any): void {
@@ -111,7 +145,9 @@ export class ChatService {
           } else {
             this.saveImg(uploadTask, storageRef);
           }
-          this.sendMessage(message, fileUpload);
+          // this.sendMessage(message, fileUpload);
+          /* Fix there */
+          this.sendMessage(message, fileUpload, 3);
         });
       })
     ).subscribe();
@@ -120,8 +156,8 @@ export class ChatService {
 
   /* To check url or img */
   checkFileOrImg(file: File): boolean {
-    let fileCheck = file.type;
-    let checkImg = fileCheck.substr(0, fileCheck.indexOf('/'));
+    const fileCheck = file.type;
+    const checkImg = fileCheck.substr(0, fileCheck.indexOf('/'));
     if (checkImg === 'image') {
       this.isFile = false;
       return false;
@@ -152,7 +188,7 @@ export class ChatService {
     });
 
     /* Get account with username */
-    this.apiService.getAccountByUsername("anhtuan1").subscribe(account => {
+    this.apiService.getAccountByUsername('anhtuan1').subscribe(account => {
       this.account = account;
     });
 

@@ -47,6 +47,19 @@ export class ConnectFirebaseService {
     this.db.object(path).update(dataStatus).catch(error => console.log(error));
   }
 
+  /* Set status message when sent */
+  setSeenStatusMsg(userId: any, status: boolean , quantity: number) {
+    const path = `statusMsg/${userId}`;
+
+    const dataStatus = {
+      userId: userId,
+      statusMsg: status,
+      quantity: quantity
+    }
+
+    this.db.object(path).update(dataStatus).catch(error => console.log(error));
+  }
+
   /* Get status and quantity message with user id*/
   getStatusMsg(userId): Observable<any> {
     const path = `statusMsg/${userId}`;

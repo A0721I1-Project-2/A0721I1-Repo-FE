@@ -41,23 +41,27 @@
 }
 
 /* Chat box item */
+.chat-box__item {
+  margin: 24px 0;
+}
+
 .chat-box__item .detail {
   display: flex;
   align-items: center;
 }
 
-.chat-box__item.user {
+.chat-box__item.admin {
   display: flex;
   flex-direction: column;
   align-items: end;
 }
 
-.chat-box__item.user .text-chat {
+.chat-box__item.admin .text-chat {
   background-color: var(--primary-color);
 }
 
-.chat-box__item.user .text-chat a ,
-.chat-box__item.user .text-chat p {
+.chat-box__item.admin .text-chat a ,
+.chat-box__item.admin .text-chat p {
   color: #fff !important;
 }
 
@@ -80,6 +84,7 @@
   padding: 15px;
   border-radius: 10px;
   margin-top: 8px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
 .chat-box__item .text-chat.user {
@@ -101,38 +106,3 @@
   color: var(--primary-color) !important;
 }
 
-/* Form send message */
-.form__input {
-  background-color: #f8fafb;
-  padding: 8px 12px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  margin-top: 24px;
-  border: 1px solid #dadada;
-  transition: all 0.3s;
-}
-
-.form__input:hover {
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-}
-
-.form__input i {
-  font-size: 1.2rem;
-  padding: 4px 8px;
-  transition: all 0.3s;
-  cursor: pointer;
-}
-
-.form__input i:hover {
-  color: var(--button-color);
-}
-
-.form__input input {
-  height: 35px;
-  padding: 0 12px 0 8px;
-  background-color: transparent;
-  border: none;
-  outline: none;
-  flex: 1;
-}

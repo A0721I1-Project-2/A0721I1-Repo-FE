@@ -21,6 +21,7 @@ export class ChatBoxUserComponent implements OnInit , OnChanges {
 
   /* Store message */
   messages: Observable<any>;
+  messagesAdmin: Observable<any>;
 
   constructor(private apiService: ApiService , private chatService: ChatService) { }
 
@@ -29,7 +30,8 @@ export class ChatBoxUserComponent implements OnInit , OnChanges {
     this.now = new Date().toLocaleDateString();
 
     /* Get all message */
-    this.messages = this.chatService.getMessages().valueChanges();
+    this.messages = this.chatService.getMessages(2).valueChanges();
+    this.messagesAdmin = this.chatService.getMessages(3).valueChanges();
 
     /* Get user */
     this.apiService.getMemberByAccountId(1).subscribe(member => {
@@ -43,6 +45,7 @@ export class ChatBoxUserComponent implements OnInit , OnChanges {
   }
 
   ngOnChanges(): void {
-    this.messages = this.chatService.getMessages().valueChanges();
+    this.messages = this.chatService.getMessages(2).valueChanges();
+    this.messagesAdmin = this.chatService.getMessages(3).valueChanges();
   }
 }

@@ -44,17 +44,16 @@ export class ChatFormUserComponent implements OnInit {
     let message = this.formChat.get('message').value;
 
     /* Check empty message */
-    if(message == null) {
+    if (message == null) {
       this.showNotiError = true;
       setTimeout(() => {
         this.showNotiError = false;
       }, 3000);
     } else {
       if (this.formChat.value && this.selectedFiles == null) {
-        this.chatService.sendMessage(message, null);
+        this.chatService.sendMessage(message, null , 2);
       }
 
-      this.formChat.reset();
       /* To send file */
       if (this.selectedFiles) {
         const file = this.selectedFiles.item(0);
@@ -78,6 +77,7 @@ export class ChatFormUserComponent implements OnInit {
           });
       }
     }
+    this.formChat.reset();
   }
 
   selectFile(event: any) {
