@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-chat-admin-home',
@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChatAdminHomeComponent implements OnInit {
 
+  userItemChild: any;
+
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
+  getUserFromChild(event: any) {
+    this.userItemChild = event;
+  }
 }

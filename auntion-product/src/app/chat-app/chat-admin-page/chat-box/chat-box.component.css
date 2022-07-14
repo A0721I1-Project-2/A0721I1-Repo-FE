@@ -63,6 +63,7 @@
 .chat-box__item.admin .text-chat a ,
 .chat-box__item.admin .text-chat p {
   color: #fff !important;
+  overflow-wrap: break-word;
 }
 
 .chat-box__item .detail .name {

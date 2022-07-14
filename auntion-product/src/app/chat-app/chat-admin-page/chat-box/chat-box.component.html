@@ -32,7 +32,6 @@
     <!-- Message of admin -->
     <div class="chat-box__item admin" *ngFor="let message of messagesAdmin | async">
       <div class="detail">
-        <p class="name">{{message.username}}</p>
         <span class="time">{{message.timeSent}}</span>
       </div>
 

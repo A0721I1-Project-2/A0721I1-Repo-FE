@@ -1,4 +1,4 @@
-import {Component, OnChanges, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {ApiService} from '../../services/api.service';
 import {ChatService} from '../../services/chat.service';
@@ -10,6 +10,9 @@ import {ChatService} from '../../services/chat.service';
 })
 export class ChatBoxComponent implements OnInit, OnChanges {
 
+  /* Get data from parent component*/
+  @Input() userIdParent: any;
+
   /* Store message */
   messages: Observable<any>;
 
@@ -17,16 +20,18 @@ export class ChatBoxComponent implements OnInit, OnChanges {
   messagesAdmin: Observable<any>;
 
   constructor(private apiService: ApiService, private chatService: ChatService) {
+    console.log(this.userIdParent)
   }
 
   ngOnInit(): void {
     /* Get all message */
-    this.messages = this.chatService.getMessages(2).valueChanges();
+    this.messages = this.chatService.getMessages(this.userIdParent).valueChanges();
     this.messagesAdmin = this.chatService.getMessages(3).valueChanges();
   }
 
   ngOnChanges(): void {
-    this.messages = this.chatService.getMessages(2).valueChanges();
+    console.log(this.userIdParent)
+    this.messages = this.chatService.getMessages(this.userIdParent).valueChanges();
     this.messagesAdmin = this.chatService.getMessages(3).valueChanges();
   }
 }

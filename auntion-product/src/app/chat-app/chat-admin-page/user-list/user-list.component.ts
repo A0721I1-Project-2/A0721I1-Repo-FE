@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Account} from "../../../model/Account";
 import {ApiService} from "../../services/api.service";
 import {ConnectFirebaseService} from "../../services/connect-firebase.service";
@@ -10,6 +10,9 @@ import {Member} from "../../../model/Member";
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
+
+  /* Share user id to parent component */
+  @Output() userIdItem = new EventEmitter();
 
   /* Get all users */
   accounts: Account[];
@@ -52,7 +55,8 @@ export class UserListComponent implements OnInit {
   }
 
   /* Seen message */
-  seenMsg(userId: any) {
+   seenMsg(userId: any) {
+     this.userIdItem.emit(userId);
     this.connectFirebaseService.setSeenStatusMsg(userId, false, 0);
   }
 }
