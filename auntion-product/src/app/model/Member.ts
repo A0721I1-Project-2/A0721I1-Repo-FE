@@ -1,3 +1,6 @@
+import {Rank} from './Rank';
+import {Account} from './Account';
+
 export interface Member {
   idMember: number;
   nameMember: string;
@@ -8,11 +11,11 @@ export interface Member {
   idCardMember: string;
   paypalMember: string;
   flagDelete: boolean;
-  account: any;
+  account: Account;
   invoiceList: any;
   point: number;
   paymentList: any;
-  rank: any;
+  rank: Rank;
   cart: any;
   products: any;
 }

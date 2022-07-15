@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+
+import {Component, OnInit} from '@angular/core';
+import {Member} from '../../model/Member';
+import {Rank} from '../../model/Rank';
+import {MemberService} from '../service/member.service';
+import {FormControl, FormGroup} from '@angular/forms';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-list-member',
@@ -7,9 +14,142 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListMemberComponent implements OnInit {
 
-  constructor() { }
+  number: number;
+  memberList: Member[] = [];
+  member: Member;
+  rankList: Rank[] = [];
+  rank: Rank;
+  indexIdMember: number;
+  searchForm: FormGroup;
+  pageNumber = 0;
+  totalPage: number[] = [];
+  emptyForm = false;
+  ids: number[] = [];
+  accountList: Account[] = [];
+
+  constructor(private service: MemberService) { }
 
   ngOnInit(): void {
+    this.getAllRank();
+    this.getAllAccount();
+    this.showMember(this.pageNumber);
+    this.searchForm = new FormGroup({
+      nameMember: new FormControl(''),
+      addressMember: new FormControl(''),
+      emailMember: new FormControl(''),
+      phoneNumberMember: new FormControl(''),
+      nameRankMember: new FormControl(''),
+    });
   }
 
+  showMember(page: number) {
+    page = this.pageNumber;
+    this.service.getMember(page).subscribe((data: any) => {
+      this.memberList = data.content;
+      this.setPage(data.totalPages);
+    });
+  }
+
+  searchMember() {
+    let nameMember = this.searchForm.value.nameMember;
+    let emailMember = this.searchForm.value.emailMember;
+    let phoneNumberMember = this.searchForm.value.phoneNumberMember;
+    let nameRankMember = this.searchForm.value.nameRankMember;
+    let addressMember = this.searchForm.value.addressMember;
+    if (nameMember === '') {
+      nameMember = 'null';
+    }
+    if (emailMember === '') {
+      emailMember = 'null';
+    }
+    if (phoneNumberMember === '') {
+      phoneNumberMember = 'null';
+    }
+    if (nameRankMember === '') {
+      nameRankMember = 'null';
+    }
+    if (addressMember === '') {
+      addressMember = 'null';
+    }
+    if (nameMember === 'null' && emailMember === 'null' && phoneNumberMember === 'null' && nameRankMember === 'null'
+      && addressMember === 'null') {
+      this.emptyForm = true;
+    }
+    this.pageNumber = 0;
+    this.service.searchMember(nameMember, emailMember, phoneNumberMember, nameRankMember, addressMember, this.pageNumber).subscribe();
+    this.showMember(this.pageNumber);
+  }
+
+  getAllRank(){
+    this.service.getRankMember().subscribe(data => {
+      this.rankList = data;
+    });
+  }
+
+  getAllAccount(){
+    this.service.getAccount().subscribe(data => {
+      this.accountList = data;
+      console.log(this.accountList);
+    });
+  }
+
+  setPage(totalPage: number) {
+    this.totalPage = new Array(totalPage);
+  }
+
+  changePageNumber(i: number) {
+    this.pageNumber = i;
+    this.showMember(this.pageNumber);
+  }
+
+  perviousPage() {
+    if (this.pageNumber <= 0) {
+      alert('Không thể chuyển qua trang trước!');
+    } else {
+      this.pageNumber -= 1;
+      this.showMember(this.pageNumber);
+    }
+  }
+
+  nextPage() {
+    if (this.pageNumber === this.totalPage.length) {
+      alert('Không thể chuyển qua trang sau!');
+    } else {
+      this.pageNumber += 1;
+      this.showMember(this.pageNumber);
+    }
+  }
+
+  onIdChanged(value: boolean , idMember: number) {
+    if (value) {
+      this.ids.push(idMember);
+    } else {
+      this.indexIdMember = this.ids.indexOf(idMember);
+      this.ids.splice(this.indexIdMember, 1);
+    }
+  }
+
+  blockMember() {
+    this.service.blockMember(this.ids).subscribe(data => {
+      Swal.fire(
+        'Block member success!',
+        '',
+        'success'
+      );
+      this.ids = [];
+      this.ngOnInit();
+    });
+  }
+
+  unBlockMember() {
+    this.service.unBlockMember(this.ids).subscribe(data => {
+      Swal.fire(
+        'Unblock member success!',
+        '',
+        'success'
+      );
+      this.ids = [];
+      this.ngOnInit();
+    });
+  }
 }
