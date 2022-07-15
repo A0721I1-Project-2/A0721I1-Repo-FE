@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ChatService} from "../../services/chat.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {FileUpload} from "../../models/FileUpload";
@@ -25,15 +25,19 @@ export class ChatFormComponent implements OnInit {
   /* Form Chat */
   formChat: FormGroup;
 
+  /* Get user id from parent component */
+  @Input() userIdChild;
+
   /* To show error message */
   showNotiError = false;
 
-  constructor(private chatService: ChatService, private fb: FormBuilder) { }
+  constructor(private chatService: ChatService, private fb: FormBuilder) {
+  }
 
   ngOnInit(): void {
     /* Form Chat */
     this.formChat = this.fb.group({
-      message: ['' , Validators.required]
+      message: ['', Validators.required]
     });
   }
 
@@ -70,7 +74,7 @@ export class ChatFormComponent implements OnInit {
       }, 3000);
     } else {
       if (this.formChat.value && this.selectedFiles == null) {
-        this.chatService.sendMessage(message, null , 3);
+        this.chatService.sendMessage(message, null, this.userIdChild);
       }
 
       /* To send file */

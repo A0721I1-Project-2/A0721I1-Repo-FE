@@ -10,18 +10,31 @@
 
   <div class="middle">
     <ul class="user-list__group">
-      <li class="user-list__item" [ngClass]="statusMsg.statusMsg?'not-seen':null"
-          (click)="seenMsg(statusMsg.userId)" *ngFor="let statusMsg of statusUsersMsg">
+      <li class="user-list__item" (click)="seenMsg(statusUserMsg.userId)">
         <div class="info">
-          <p>{{statusMsg.userId}}</p>
-          <span>{{statusMsg.messageNew}}</span>
+          <p>{{statusUserMsg.userId}}</p>
+          <span>{{statusUserMsg.messageNew}}</span>
+          <span>Đã gửi 1 tin nhắn đính kèm</span>
         </div>
 
         <div class="notification">
-          <p class="date">2020-05-12</p>
-          <span class="quantity" *ngIf="statusMsg.quantity > 0">{{statusMsg.quantity}}</span>
+<!--          <p class="date">2020-05-12</p>-->
+<!--          <span class="quantity" *ngIf="statusMsg.quantity > 0">{{statusMsg.quantity}}</span>-->
         </div>
       </li>
+<!--      <li class="user-list__item" [ngClass]="statusMsg.statusMsg?'not-seen':null"-->
+<!--          (click)="seenMsg(statusMsg.userId)" *ngFor="let statusMsg of messages | async">-->
+<!--        <div class="info">-->
+<!--          <p>Tuan</p>-->
+<!--          <span>{{statusMsg[messages.length - 1].message}}</span>-->
+<!--          <span *ngIf="!statusMsg.messageNew">Đã gửi 1 tin nhắn đính kèm</span>-->
+<!--        </div>-->
+
+<!--        <div class="notification">-->
+<!--          <p class="date">2020-05-12</p>-->
+<!--          <span class="quantity" *ngIf="statusMsg.quantity > 0">{{statusMsg.quantity}}</span>-->
+<!--        </div>-->
+<!--      </li>-->
     </ul>
   </div>
 </div>

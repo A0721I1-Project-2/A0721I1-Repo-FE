@@ -21,7 +21,6 @@
 .chat-box__container .chat-box__header .info .active {
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 
 .chat-box__container .chat-box__header .info .active div {

@@ -2,8 +2,6 @@ import {Injectable} from '@angular/core';
 import {AngularFireDatabase, AngularFireList, AngularFireObject} from '@angular/fire/database';
 import {Observable} from "rxjs";
 
-const BASE_PATH = "users";
-
 @Injectable({
   providedIn: 'root'
 })
@@ -14,14 +12,14 @@ export class ConnectFirebaseService {
 
   /* Get all users */
   getUsers() {
-    const path = `${BASE_PATH}/`;
+    const path = `users/`;
     this.users = this.db.list(path);
     return this.users.valueChanges();
   }
 
   /* Set data for user */
   setDataUser(userId: any, username: string, email: string, roles: any[], status: boolean) {
-    const path = `${BASE_PATH}/${userId}`;
+    const path = `users/${userId}`;
 
     const data = {
       username: username,
@@ -34,21 +32,27 @@ export class ConnectFirebaseService {
   }
 
   /* Set status message */
-  setStatusMsg(userId: any, status: boolean , quantity: number , msgNew: string) {
+  setStatusMsg(userId: any, status: boolean, quantity: number, msgNew: string) {
     const path = `statusMsg/${userId}`;
 
-    const dataStatus = {
+    if(status) {
+      quantity += 1;
+    } else {
+      quantity = 0;
+    }
+
+    let dataStatus = {
       userId: userId,
       statusMsg: status,
       messageNew: msgNew,
-      quantity: quantity + 1
+      quantity: quantity
     }
 
     this.db.object(path).update(dataStatus).catch(error => console.log(error));
   }
 
   /* Set status message when sent */
-  setSeenStatusMsg(userId: any, status: boolean , quantity: number) {
+  setSeenStatusMsg(userId: any, status: boolean, quantity: number) {
     const path = `statusMsg/${userId}`;
 
     const dataStatus = {

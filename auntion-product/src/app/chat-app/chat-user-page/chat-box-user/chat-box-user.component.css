@@ -60,6 +60,7 @@
 .screen-chat__middle-group .info-chat__item {
   display: flex;
   margin-top: 18px;
+  flex-direction: column;
 }
 
 .screen-chat__middle-group .info-chat img {
@@ -87,7 +88,8 @@
   font-size: 1.4rem;
   font-weight: 400;
   margin-top: 6px;
-  min-width: 165px;
+  max-width: 350px;
+  width: max-content;
 }
 
 .screen-chat__middle-group .text-chat p {
@@ -98,7 +100,7 @@
 
 /* User */
 .screen-chat__middle-group .info-chat__item.user {
-  justify-content: flex-end;
+  align-items: end;
 }
 
 .screen-chat__middle-group .user .text-chat {
@@ -107,7 +109,6 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  max-width: 350px;
 }
 
 .screen-chat__middle-group .user .text-chat a {
@@ -119,7 +120,9 @@
 }
 
 .info-chat__item.user .info-chat__item-right-area {
-  text-align: right;
+  display: flex;
+  align-items: end;
+  flex-direction: column;
 }
 
 .text-chat .text-chat__img {

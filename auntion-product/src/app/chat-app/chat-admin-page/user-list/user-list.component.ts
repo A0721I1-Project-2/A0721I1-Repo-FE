@@ -3,6 +3,7 @@ import {Account} from "../../../model/Account";
 import {ApiService} from "../../services/api.service";
 import {ConnectFirebaseService} from "../../services/connect-firebase.service";
 import {Member} from "../../../model/Member";
+import {ChatService} from "../../services/chat.service";
 
 @Component({
   selector: 'app-user-list',
@@ -21,42 +22,43 @@ export class UserListComponent implements OnInit {
   member: Member;
 
   /* Get status msg */
-  statusUserMsg: any;
   statusUsersMsg: any[] = [];
+  statusUserMsg: any;
 
-  constructor(private apiService: ApiService, private connectFirebaseService: ConnectFirebaseService) {
+  /* Store message */
+  messages: any;
+
+  constructor(private apiService: ApiService, private connectFirebaseService: ConnectFirebaseService
+    , private chatService: ChatService) {
   }
 
   ngOnInit(): void {
     this.apiService.getAccountsByRoleMember().subscribe(data => {
-      this.accounts = data;
+        this.accounts = data;
 
-      /* Set data user for firebase */
-      for (let i = 0; i < this.accounts.length; i++) {
-        /* Get status msg by account id */
-        this.connectFirebaseService.getStatusMsg(this.accounts[i].idAccount).subscribe(statusMsg => {
-          if (statusMsg) {
-            this.statusUserMsg = statusMsg;
+        /* Set data user for firebase */
+        for (let i = 0; i < this.accounts.length; i++) {
+          /* Get status msg by account id */
+          this.connectFirebaseService.getStatusMsg(this.accounts[i].idAccount).subscribe(data=> {
+            if(data) {
+              this.statusUserMsg = data;
+            }
+          })
 
-            /* To get user sent message */
-            this.connectFirebaseService.getAllStatusMsg().subscribe(data => {
-              this.statusUsersMsg = data;
-            });
-          }
-        });
-
-        /* Get member by account id */
-        this.apiService.getMemberByAccountId(this.accounts[i].idAccount).subscribe(member => {
-          this.member = member;
-          this.connectFirebaseService.setDataUser(this.accounts[i].idAccount, this.accounts[i].username, member.emailMember, this.accounts[i].roles, false);
-        });
+          /* Get member by account id */
+          this.apiService.getMemberByAccountId(this.accounts[i].idAccount).subscribe(member => {
+            this.member = member;
+            this.connectFirebaseService.setDataUser(this.accounts[i].idAccount, this.accounts[i].username,
+              member.emailMember, this.accounts[i].roles, false);
+          });
+        }
       }
-    });
+    );
   }
 
   /* Seen message */
-   seenMsg(userId: any) {
-     this.userIdItem.emit(userId);
+  seenMsg(userId: any) {
+    this.userIdItem.emit(userId);
     this.connectFirebaseService.setSeenStatusMsg(userId, false, 0);
   }
 }

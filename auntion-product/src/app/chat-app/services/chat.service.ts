@@ -17,7 +17,7 @@ export class ChatService {
 
   /* To get user */
   member: Member;
-  account: Account;
+  account: any;
 
   /* To store url download */
   downloadURL: any;
@@ -34,14 +34,13 @@ export class ChatService {
   }
 
   /* Send message */
-  sendMessage(message: any, fileUpload: any, userId: any) {
+  sendMessage(message: any, fileUpload: any, accountId: any) {
     const timeStamp = this.getTimeStamp();
 
-    console.log(userId);
+    /* Create new path for admin and user */
+    let path = `messages/${accountId}`;
 
-    let path = `messages/${userId}`;
-
-    this.chatMessages = this.getMessages(userId);
+    this.chatMessages = this.getMessages(accountId);
 
     if (fileUpload == null) {
       fileUpload = null;
@@ -57,55 +56,33 @@ export class ChatService {
       isOwn: this.account.roles
     });
 
-    let breakProgram = this.connectFirebaseService.getStatusMsg(this.account.idAccount).subscribe(data => {
-      if (data == null) {
-        this.connectFirebaseService.setStatusMsg(this.account.idAccount, true, 0, message);
-      } else {
-        this.connectFirebaseService.setStatusMsg(this.account.idAccount, true, data.quantity, message);
-      }
-      /* To break for loop when sent */
-      breakProgram.unsubscribe();
-    });
+    /* To hidden quantity when its role admin */
+    if (accountId === 1) {
+      console.log('hi');
+      this.connectFirebaseService.setStatusMsg(this.account.id, false, 0, message);
+    } else {
+      let breakProgram = this.connectFirebaseService.getStatusMsg(this.account.id).subscribe(data => {
+        if (data == null) {
+          this.connectFirebaseService.setStatusMsg(this.account.id, true, 0, message);
+        } else {
+          this.connectFirebaseService.setStatusMsg(this.account.id, true, data.quantity, message);
+        }
+        /* To break for loop when sent */
+        breakProgram.unsubscribe();
+      });
+    }
 
-    this.getMessages(userId).snapshotChanges().subscribe(key => {
-      path = `messages/${userId}/${key[key.length - 1].key}`;
+    /* Ignore error socket */
+    this.getMessages(accountId).snapshotChanges().subscribe(key => {
+      path = `messages/${accountId}/${key[key.length - 1].key}`;
       this.db.object(path).update(this.chatMessages).catch(error => console.log(error));
     });
   }
 
   /* Get messages */
-  getMessages(userId: any): AngularFireList<ChatMessage[]> {
-    return this.db.list(`messages/${userId}`, ref => ref.orderByKey().limitToLast(400));
+  getMessages(accountId: any): AngularFireList<ChatMessage[]> {
+    return this.db.list(`messages/${accountId}`, ref => ref.orderByKey().limitToLast(400));
   }
-
-  // /* Send message */
-  // sendMessage(message: any, fileUpload: any) {
-  //   const timeStamp = this.getTimeStamp();
-  //
-  //   this.chatMessages = this.getMessages();
-  //
-  //   if (fileUpload == null) {
-  //     fileUpload = null;
-  //     this.isFile = null;
-  //   }
-  //
-  //   this.chatMessages.push({
-  //     message: message,
-  //     username: this.account.username,
-  //     fileUpload: fileUpload,
-  //     timeSent: timeStamp,
-  //     isFile: this.isFile,
-  //     isOwn: this.account.roles
-  //   });
-  //
-  //
-  // }
-  //
-  // /* Get messages */
-  // getMessages(): AngularFireList<ChatMessage[]> {
-  //   /* messages must be correct because it is name url to contain database */
-  //   return this.db.list('messages', ref => ref.orderByKey().limitToLast(400));
-  // }
 
   /* Save img */
   private saveImg(uploadTask: any, fileRef: any): void {
@@ -145,9 +122,9 @@ export class ChatService {
           } else {
             this.saveImg(uploadTask, storageRef);
           }
-          // this.sendMessage(message, fileUpload);
+
           /* Fix there */
-          this.sendMessage(message, fileUpload, 3);
+          this.sendMessage(message, fileUpload, this.account.id);
         });
       })
     ).subscribe();
@@ -182,16 +159,14 @@ export class ChatService {
 
   constructor(private db: AngularFireDatabase, private storage: AngularFireStorage
     , private apiService: ApiService, private connectFirebaseService: ConnectFirebaseService) {
-    // Get user with current data
-    this.apiService.getMemberByAccountId(2).subscribe(member => {
-      this.member = member;
-    });
 
-    /* Get account with username */
-    this.apiService.getAccountByUsername('anhtuan1').subscribe(account => {
-      this.account = account;
-    });
+    /* Get info account after login */
+    if (window.localStorage.getItem('user')) {
+      this.account = JSON.parse(window.localStorage.getItem('user'));
+    }
 
-    // this.user = JSON.parse(window.localStorage.getItem('user'));
+    if (window.localStorage.getItem('admin')) {
+      this.account = JSON.parse(window.localStorage.getItem('admin'));
+    }
   }
 }

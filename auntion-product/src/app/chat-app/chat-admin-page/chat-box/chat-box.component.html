@@ -1,7 +1,7 @@
-<div class="chat-box__container">
+<div *ngIf="member" class="chat-box__container">
   <header class="chat-box__header">
     <div class="info">
-      <p class="name">Tuan</p>
+      <p class="name">{{member.nameMember}}</p>
       <span class="active">
         <div></div>
         <span>Active</span>
@@ -13,24 +13,7 @@
 
   <!-- Message of user -->
   <div class="chat-box__middle">
-    <div class="chat-box__item" *ngFor="let message of messages | async">
-      <div class="detail">
-        <p class="name">Tuan</p>
-        <span class="time">3:40 PM</span>
-      </div>
-
-      <div class="text-chat">
-        <img class="text-chat__img" *ngIf="message.fileUpload && !message.isFile" [src]="message.fileUpload.url" alt="">
-
-        <a class="text-chat__file" *ngIf="message.fileUpload && message.isFile"
-           href="{{message.fileUpload.url}}" target="_blank">{{message.fileUpload.name}}</a>
-
-        <p>{{message.message}}</p>
-      </div>
-    </div>
-
-    <!-- Message of admin -->
-    <div class="chat-box__item admin" *ngFor="let message of messagesAdmin | async">
+    <div class="chat-box__item" *ngFor="let message of messages | async" [ngClass]="message.isOwn.length == 2?'admin':null">
       <div class="detail">
         <span class="time">{{message.timeSent}}</span>
       </div>
@@ -44,9 +27,25 @@
         <p>{{message.message}}</p>
       </div>
     </div>
+
+<!--    &lt;!&ndash; Message of admin &ndash;&gt;-->
+<!--    <div class="chat-box__item admin" *ngFor="let message of messagesAdmin | async">-->
+<!--      <div class="detail">-->
+<!--        <span class="time">{{message.timeSent}}</span>-->
+<!--      </div>-->
+
+<!--      <div class="text-chat">-->
+<!--        <img class="text-chat__img" *ngIf="message.fileUpload && !message.isFile" [src]="message.fileUpload.url" alt="">-->
+
+<!--        <a class="text-chat__file" *ngIf="message.fileUpload && message.isFile"-->
+<!--           href="{{message.fileUpload.url}}" target="_blank">{{message.fileUpload.name}}</a>-->
+
+<!--        <p>{{message.message}}</p>-->
+<!--      </div>-->
+<!--    </div>-->
   </div>
 
   <div class="chat-box__footer">
-    <app-chat-form></app-chat-form>
+    <app-chat-form [userIdChild]="userIdParent"></app-chat-form>
   </div>
 </div>

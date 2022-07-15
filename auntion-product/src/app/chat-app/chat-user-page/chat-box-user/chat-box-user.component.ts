@@ -14,7 +14,7 @@ export class ChatBoxUserComponent implements OnInit , OnChanges {
 
   /* Get user */
   member: Member;
-  account: Account;
+  user: any;
 
   /* Get date now */
   now: any;
@@ -23,29 +23,28 @@ export class ChatBoxUserComponent implements OnInit , OnChanges {
   messages: Observable<any>;
   messagesAdmin: Observable<any>;
 
-  constructor(private apiService: ApiService , private chatService: ChatService) { }
+  constructor(private apiService: ApiService , private chatService: ChatService) {
+  }
 
   ngOnInit(): void {
+    this.user = JSON.parse(window.localStorage.getItem('user'));
+
     /* Get date now */
     this.now = new Date().toLocaleDateString();
 
     /* Get all message */
-    this.messages = this.chatService.getMessages(2).valueChanges();
-    this.messagesAdmin = this.chatService.getMessages(3).valueChanges();
+    this.messages = this.chatService.getMessages(this.user.id).valueChanges();
+    /* According to configure BE admin always has id = 1 */
+    // this.messagesAdmin = this.chatService.getMessages(1).valueChanges();
 
     /* Get user */
-    this.apiService.getMemberByAccountId(1).subscribe(member => {
+    this.apiService.getMemberByAccountId(this.user.id).subscribe(member => {
       this.member = member;
-    });
-
-    /* Get account */
-    this.apiService.getAccountByUsername('anhtuan').subscribe(account => {
-      this.account = account;
     });
   }
 
   ngOnChanges(): void {
-    this.messages = this.chatService.getMessages(2).valueChanges();
-    this.messagesAdmin = this.chatService.getMessages(3).valueChanges();
+    this.messages = this.chatService.getMessages(this.user.id).valueChanges();
+    // this.messagesAdmin = this.chatService.getMessages(1).valueChanges();
   }
 }

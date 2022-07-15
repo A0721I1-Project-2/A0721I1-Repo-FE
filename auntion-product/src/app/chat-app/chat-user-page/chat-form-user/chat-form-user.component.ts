@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ChatService} from "../../services/chat.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {FileUpload} from "../../models/FileUpload";
+import {Account} from "../../../model/Account";
 
 @Component({
   selector: 'app-chat-form-user',
@@ -14,6 +15,9 @@ export class ChatFormUserComponent implements OnInit {
   selectedFiles: FileList;
   currentFileUpload: FileUpload;
   percentage: number;
+
+  /* Get data user */
+  user: any;
 
   /* Check img and url */
   isFile: boolean;
@@ -32,9 +36,12 @@ export class ChatFormUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    /* Get data user */
+    this.user = JSON.parse(window.localStorage.getItem('user'));
+
     /* Form Chat */
     this.formChat = this.fb.group({
-      message: ['' , Validators.required]
+      message: ['', Validators.required]
     });
   }
 
@@ -44,14 +51,15 @@ export class ChatFormUserComponent implements OnInit {
     let message = this.formChat.get('message').value;
 
     /* Check empty message */
-    if (message == null) {
+    if (message == '' && this.selectedFiles == null) {
       this.showNotiError = true;
       setTimeout(() => {
         this.showNotiError = false;
       }, 3000);
     } else {
+      console.log(message);
       if (this.formChat.value && this.selectedFiles == null) {
-        this.chatService.sendMessage(message, null , 2);
+        this.chatService.sendMessage(message, null, this.user.id);
       }
 
       /* To send file */
@@ -67,6 +75,7 @@ export class ChatFormUserComponent implements OnInit {
 
         this.chatService.pushFileToStorage(message, this.currentFileUpload).subscribe(percentage => {
             this.percentage = Math.round(percentage);
+            this.selectedFiles = null;
           },
           error => {
             console.log(error);
