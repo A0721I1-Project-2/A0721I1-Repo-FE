@@ -307,6 +307,21 @@ body {
 .col-xl-3:nth-child(8) {
   display: inline-block;
 }
+.modal {
+  animation: animationModal ease .5s;
+}
+
+@keyframes animationModal {
+  from {
+    transform: translateY(-500px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+}
 
 
 
