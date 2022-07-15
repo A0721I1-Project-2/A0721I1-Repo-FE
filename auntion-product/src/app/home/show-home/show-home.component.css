@@ -17,14 +17,16 @@ body {
 #slider {
   position: relative;
   margin-top: 136px;
-  padding-top: 50%;
-  background: linear-gradient(
-    to right,
-    rgba(17, 182, 131, 0.7) -10%,
-    rgba(255, 51, 102, 0) 50%
-  ),
-  url(./image/slider.jpeg) top center / cover no-repeat;
+  height: auto;
+  /*padding-top: 50%;*/
+  /*background: linear-gradient(*/
+  /*  to right,*/
+  /*  rgba(17, 182, 131, 0.7) -10%,*/
+  /*  rgba(255, 51, 102, 0) 50%*/
+  /*),*/
+  /*url(./image/slider.jpeg) top center / cover no-repeat;*/
 }
+
 
 #slider .text-slider {
   color: #fff;
@@ -59,7 +61,7 @@ body {
   font-size: 30px;
   font-weight: 300;
   margin-top: 40px;
-  /* text-align: justify; */
+   /*text-align: justify;*/
   display: block;
   text-transform: none;
 }
@@ -306,6 +308,21 @@ body {
 .col-xl-3:nth-child(7),
 .col-xl-3:nth-child(8) {
   display: inline-block;
+}
+.modal {
+  animation: animationModal ease .5s;
+}
+
+@keyframes animationModal {
+  from {
+    transform: translateY(-500px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
 }
 
 

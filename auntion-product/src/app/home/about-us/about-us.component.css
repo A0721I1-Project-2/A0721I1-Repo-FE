@@ -1,3 +1,6 @@
+.about-us__container {
+  margin: 200px 0;
+}
 .about-us__container .about-us__img-group {
   position: relative;
   border-radius: 5px;
@@ -48,9 +51,12 @@
 .about-us__container .content-right {
   padding-left: 40px;
 }
+.about-us__container .content-right span {
+  color: #11b683;
+}
 
 .about-us__container .content-right .title {
-  font-size: 3.4rem;
+  font-size: 32px;
   margin-bottom: 25px;
   text-transform: capitalize;
   letter-spacing: 1.3px;
@@ -58,7 +64,7 @@
 }
 
 .about-us__container .content-right p {
-  font-size: 1.4rem;
+  font-size: 18px;
   margin-bottom: 25px;
   color: #888;
 }
@@ -135,5 +141,5 @@
 
 .about-us__container .single-team .social .circle:hover {
   background-color: var(--primary-color-blue);
-  color: #fff;
+  color: #11b683;
 }

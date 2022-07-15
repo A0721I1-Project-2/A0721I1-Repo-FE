@@ -4,8 +4,9 @@ import {ShowHomeComponent} from './show-home/show-home.component';
 import {ProductDetailComponent} from './product-detail/product-detail.component';
 import {ForgotPasswordComponent} from './forgot-password/forgot-password.component';
 import {InstructionComponent} from './instruction/instruction.component';
-import {ContactUsComponent} from "./contact-us/contact-us.component";
-import {AboutUsComponent} from "./about-us/about-us.component";
+import {ContactUsComponent} from './contact-us/contact-us.component';
+import {AboutUsComponent} from './about-us/about-us.component';
+
 
 
 const routes: Routes = [

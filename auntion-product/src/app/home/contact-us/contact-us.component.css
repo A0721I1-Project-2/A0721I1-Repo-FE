@@ -1,12 +1,20 @@
+* {
+  font-size: 18px;
+
+}
 .home-contact__container {
   background-color: #fff;
+  margin: 200px 0;
 }
-
+.home-contact__container  .section-title h2 {
+  font-size: 22px;
+  color: #11b683;
+}
 .home-contact__container .location {
   margin-top: 30px;
-  background-color: rgb(249, 249, 249);
+  background-color: rgb(243, 246, 253);
   padding: 30px;
-  border: 1px solid rgb(238, 238, 238);
+  border: 1px solid rgb(243, 246, 253);
   border-radius: 4px;
   display: flex;
   flex-direction: column;
@@ -18,13 +26,14 @@
   margin-bottom: 30px;
 }
 
-.home-contact__container .location .single-location i {
-  color: var(--primary-color-blue);
-  font-size: 3rem;
+.home-contact__container .location .single-location i
+{
+  color: #11b683 !important;
+  /*font-size: 3rem;*/
 }
 
 .home-contact__container .location .single-location .title {
-  font-size: 1.8rem;
+  /*font-size: 1.8rem;*/
   font-weight: 600;
   color: rgb(8, 24, 40);
   margin: 10px 0;
@@ -32,22 +41,22 @@
 
 .home-contact__container .location .single-location p ,
 .home-contact__container .location .single-location a {
-  font-size: 1.4rem;
+  /*font-size: 1.4rem;*/
   display: block;
   color: #888;
   transition: all 0.2s;
 }
 
-.home-contact__container .location .single-location a:hover {
-  color: var(--primary-color-blue) !important;
+.home-contact__container .location .single-location:hover a i {
+  color: #11b683 !important;
 }
 
 /* Home Contact */
 .home-contact__form {
   margin-top: 30px;
   padding: 40px;
-  background-color: rgb(249, 249, 249);
-  border: 1px solid rgb(238, 238, 238);
+  background-color: rgb(243, 246, 253);
+  border: 1px solid rgb(243, 246, 253);
   border-radius: 4px;
   height: 450px;
 }
@@ -91,8 +100,8 @@
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  background-color: var(--primary-color-blue);
-  font-size: 1.4rem;
+  background-color: #ff3366;
+  /*font-size: 1.4rem;*/
   border: none;
   outline: none;
   transition: all 0.3s;
@@ -101,15 +110,15 @@
 }
 
 .button:hover {
-  color: var(--white-color) !important;
-  background-color: var(--primary-color) !important;
+  color: #fff !important;
+  background-color: #11b683 !important;
 }
 
 .input {
   width: 100%;
   flex: 1;
   height: 45px;
-  font-size: 1.4rem;
+  /*font-size: 1.4rem;*/
   outline: none;
   border: 1px solid var(--border-color);
   padding: 0 12px;
@@ -123,6 +132,6 @@
   display: flex !important;
   align-items: center;
   justify-content: center;
-  font-size: 1.6rem;
+  /*font-size: 1.6rem;*/
 }
 
