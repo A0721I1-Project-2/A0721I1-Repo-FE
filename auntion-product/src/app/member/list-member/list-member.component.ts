@@ -27,12 +27,21 @@ export class ListMemberComponent implements OnInit {
   ids: number[] = [];
   accountList: Account[] = [];
 
-  constructor(private service: MemberService) { }
+  constructor(private service: MemberService) {
+    this.searchForm = new FormGroup({
+      nameMember: new FormControl(''),
+      addressMember: new FormControl(''),
+      emailMember: new FormControl(''),
+      phoneNumberMember: new FormControl(''),
+      nameRankMember: new FormControl(''),
+    });
+  }
 
   ngOnInit(): void {
     this.getAllRank();
     this.getAllAccount();
-    this.showMember(this.pageNumber);
+    // this.showMember(this.pageNumber);
+    this.searchMember();
     this.searchForm = new FormGroup({
       nameMember: new FormControl(''),
       addressMember: new FormControl(''),
@@ -56,10 +65,10 @@ export class ListMemberComponent implements OnInit {
     let phoneNumberMember = this.searchForm.value.phoneNumberMember;
     let nameRankMember = this.searchForm.value.nameRankMember;
     let addressMember = this.searchForm.value.addressMember;
-    if (nameMember === '') {
+    if (nameMember.trim() === '') {
       nameMember = 'null';
     }
-    if (emailMember === '') {
+    if (emailMember.trim() === '') {
       emailMember = 'null';
     }
     if (phoneNumberMember === '') {
@@ -71,13 +80,18 @@ export class ListMemberComponent implements OnInit {
     if (addressMember === '') {
       addressMember = 'null';
     }
-    if (nameMember === 'null' && emailMember === 'null' && phoneNumberMember === 'null' && nameRankMember === 'null'
-      && addressMember === 'null') {
+    console.log(nameMember, emailMember, phoneNumberMember, nameRankMember, addressMember);
+    if (nameMember === 'null' && emailMember === 'null' && phoneNumberMember === 'null'
+      && nameRankMember === 'null' && addressMember === 'null') {
       this.emptyForm = true;
     }
-    this.pageNumber = 0;
-    this.service.searchMember(nameMember, emailMember, phoneNumberMember, nameRankMember, addressMember, this.pageNumber).subscribe();
-    this.showMember(this.pageNumber);
+    this.service.searchMember(nameMember, emailMember, phoneNumberMember,
+      nameRankMember, addressMember, this.pageNumber).subscribe((data: any) => {
+      this.memberList = data.content;
+      this.setPage(data.totalPages);
+      console.log(this.memberList);
+    });
+    // this.showMember(this.pageNumber);
   }
 
   getAllRank(){
@@ -89,7 +103,7 @@ export class ListMemberComponent implements OnInit {
   getAllAccount(){
     this.service.getAccount().subscribe(data => {
       this.accountList = data;
-      console.log(this.accountList);
+      // console.log(this.accountList);
     });
   }
 

@@ -13,7 +13,7 @@
       <input type="text" placeholder="Phone number" formControlName="phoneNumberMember">
       <select formControlName="nameRankMember">
         <ng-container *ngFor="let rank of rankList">
-          <option ngValue="{{rank}}">{{rank.nameRank}}</option>
+          <option ngValue="{{rank.nameRank}}">{{rank.nameRank}}</option>
         </ng-container>
 
         <!--        <option value="2">Gold</option>-->
@@ -35,10 +35,10 @@
             <th scope="col">#</th>
             <th scope="col">Selected</th>
             <th scope="col">Name</th>
-            <th scope="col">Rank</th>
-            <th scope="col">Email</th>
             <th scope="col">Address</th>
+            <th scope="col">Email</th>
             <th scope="col">Phone number</th>
+            <th scope="col">Rank</th>
             <th scope="col">Last login</th>
             <th scope="col">Dedication Points</th>
             <th scope="col">Block</th>
@@ -53,10 +53,10 @@
                      (change)="onIdChanged(idMember.checked ,member.idMember)">
             </td>
             <td style="text-align: center">{{member.nameMember}}</td>
-            <td style="text-align: center">{{member.rank.nameRank}}</td>
-            <td>{{member.emailMember}}</td>
             <td>{{member.addressMember}}</td>
+            <td>{{member.emailMember}}</td>
             <td style="text-align: center">{{member.phoneMember}}</td>
+            <td style="text-align: center">{{member.rank.nameRank}}</td>
             <td style="text-align: center">{{member.account.last_login}}</td>
             <td style="text-align: center">{{member.point}}</td>
             <td style="text-align: center; color: red" *ngIf="member.account.block">Block</td>
@@ -133,24 +133,29 @@
             </div>
           </div>
         </div>
-        <a href="#" class="btn btn-secondary">Unblock</a>
+
+        <a href="#" data-toggle="modal" data-target="#exampleModal2" class="btn btn-secondary modal-second">Unblock</a>
+        <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel2">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Are you sure to unblock this member ?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="unBlockMember()" data-dismiss="modal">Unblock member</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
         <a href="#" class="btn btn-success">Add new user</a>
       </div>
-
-
-
-<!--      <div style="float: right; margin-right: 30px;" class="btn-pagination">-->
-<!--        <a href="#" class="btn btn-outline-success" style="width: 40px;padding-left: 7px; padding-top: 8px;"><i-->
-<!--          class='bx bx-chevron-left bx-sm'></i></a>-->
-<!--        <a href="#" class="btn btn-outline-success"><span>1</span></a>-->
-<!--        <a href="#" class="btn btn-outline-success"><span>2</span></a>-->
-<!--        <a href="#" class="btn btn-outline-success" style="width: 40px;padding-left: 6px; padding-top: 8px;"><i-->
-<!--          class='bx bx-chevron-right bx-sm'></i></a>-->
-<!--      </div>-->
-
-
-
-
     </div>
   </div>
 </div>
