@@ -10,13 +10,16 @@ import { FooterComponent } from './footer/footer.component';
 import { InstructionComponent } from './instruction/instruction.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 
 @NgModule({
-  declarations: [ShowHomeComponent, ProductDetailComponent, ForgotPasswordComponent, HeaderComponent, FooterComponent, InstructionComponent, AboutUsComponent, ContactUsComponent],
-  imports: [
-    CommonModule,
-    HomeRoutingModule
-  ]
+  declarations: [ShowHomeComponent, ProductDetailComponent, ForgotPasswordComponent, HeaderComponent, FooterComponent, InstructionComponent, AboutUsComponent, ContactUsComponent, ChangePasswordComponent],
+    imports: [
+        CommonModule,
+        HomeRoutingModule,
+        ReactiveFormsModule
+    ]
 })
 export class HomeModule { }
