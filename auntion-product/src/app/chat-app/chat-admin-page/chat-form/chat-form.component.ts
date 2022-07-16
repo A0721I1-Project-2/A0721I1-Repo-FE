@@ -66,13 +66,15 @@ export class ChatFormComponent implements OnInit {
     /* Send message */
     let message = this.formChat.get('message').value;
 
+    /* Check empty message */
+    console.log(this.userIdChild);
+
     if (message == '' && this.selectedFiles == null) {
       this.showNotiError = true;
       setTimeout(() => {
         this.showNotiError = false;
       }, 3000);
     } else {
-      console.log(message);
       if (this.formChat.value && this.selectedFiles == null) {
         this.chatService.sendMessage(message, null, this.userIdChild);
       }
@@ -88,7 +90,7 @@ export class ChatFormComponent implements OnInit {
           message = null;
         }
 
-        this.chatService.pushFileToStorage(message, this.currentFileUpload).subscribe(percentage => {
+        this.chatService.pushFileToStorage(message, this.currentFileUpload , this.userIdChild).subscribe(percentage => {
             this.percentage = Math.round(percentage);
           },
           error => {

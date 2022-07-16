@@ -57,7 +57,6 @@ export class ChatFormUserComponent implements OnInit {
         this.showNotiError = false;
       }, 3000);
     } else {
-      console.log(message);
       if (this.formChat.value && this.selectedFiles == null) {
         this.chatService.sendMessage(message, null, this.user.id);
       }
@@ -73,7 +72,7 @@ export class ChatFormUserComponent implements OnInit {
           message = null;
         }
 
-        this.chatService.pushFileToStorage(message, this.currentFileUpload).subscribe(percentage => {
+        this.chatService.pushFileToStorage(message, this.currentFileUpload , this.user.id).subscribe(percentage => {
             this.percentage = Math.round(percentage);
           },
           error => {

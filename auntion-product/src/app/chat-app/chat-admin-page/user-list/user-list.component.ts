@@ -43,7 +43,7 @@ export class UserListComponent implements OnInit {
             if (data) {
               this.statusUserMsg = data;
 
-              this.apiService.getMemberByAccountId(this.statusUserMsg.userId).subscribe(member=> {
+              this.apiService.getMemberByAccountId(this.statusUserMsg.userId).subscribe(member => {
                 this.member = member;
               });
             }

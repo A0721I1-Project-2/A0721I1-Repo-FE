@@ -85,6 +85,7 @@
   border-radius: 10px;
   margin-top: 8px;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  width: max-content;
 }
 
 .chat-box__item .text-chat.user {

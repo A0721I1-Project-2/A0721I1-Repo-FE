@@ -37,6 +37,8 @@ export class ChatService {
   sendMessage(message: any, fileUpload: any, accountId: any) {
     const timeStamp = this.getTimeStamp();
 
+    console.log(accountId);
+
     /* Create new path for admin and user */
     let path = `messages/${accountId}`;
 
@@ -57,20 +59,15 @@ export class ChatService {
     });
 
     /* To hidden quantity when its role admin */
-    if (accountId === 1) {
-      console.log('hi');
-      this.connectFirebaseService.setStatusMsg(this.account.id, false, 0, message);
-    } else {
-      let breakProgram = this.connectFirebaseService.getStatusMsg(this.account.id).subscribe(data => {
-        if (data == null) {
-          this.connectFirebaseService.setStatusMsg(this.account.id, true, 0, message);
-        } else {
-          this.connectFirebaseService.setStatusMsg(this.account.id, true, data.quantity, message);
-        }
-        /* To break for loop when sent */
-        breakProgram.unsubscribe();
-      });
-    }
+    let breakProgram = this.connectFirebaseService.getStatusMsg(this.account.id).subscribe(data => {
+      if (data == null) {
+        this.connectFirebaseService.setStatusMsg(this.account.id, true, 0, message);
+      } else {
+        this.connectFirebaseService.setStatusMsg(this.account.id, true, data.quantity, message);
+      }
+      /* To break for loop when sent */
+      breakProgram.unsubscribe();
+    });
 
     /* Ignore error socket */
     this.getMessages(accountId).snapshotChanges().subscribe(key => {
@@ -105,7 +102,7 @@ export class ChatService {
   }
 
   /* Push file to storage */
-  pushFileToStorage(message: any, fileUpload: FileUpload): Observable<any> {
+  pushFileToStorage(message: any, fileUpload: FileUpload, accountId: any): Observable<any> {
     const filePath = `uploads/${fileUpload.file.name}`;
     const storageRef = this.storage.ref(filePath);
     const uploadTask = this.storage.upload(filePath, fileUpload.file);
@@ -124,7 +121,7 @@ export class ChatService {
           }
 
           /* Fix there */
-          this.sendMessage(message, fileUpload, this.account.id);
+          this.sendMessage(message, fileUpload, accountId);
         });
       })
     ).subscribe();
@@ -159,14 +156,5 @@ export class ChatService {
 
   constructor(private db: AngularFireDatabase, private storage: AngularFireStorage
     , private apiService: ApiService, private connectFirebaseService: ConnectFirebaseService) {
-
-    /* Get info account after login */
-    if (window.localStorage.getItem('user')) {
-      this.account = JSON.parse(window.localStorage.getItem('user'));
-    }
-
-    if (window.localStorage.getItem('admin')) {
-      this.account = JSON.parse(window.localStorage.getItem('admin'));
-    }
   }
 }

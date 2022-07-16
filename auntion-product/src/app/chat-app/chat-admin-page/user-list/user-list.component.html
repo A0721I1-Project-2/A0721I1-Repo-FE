@@ -9,17 +9,17 @@
   </div>
 
   <div class="middle">
-    <ul class="user-list__group">
+    <ul *ngIf="statusUserMsg" class="user-list__group">
       <li class="user-list__item" (click)="seenMsg(statusUserMsg.userId)">
         <div class="info">
-          <p>{{member.nameMember}}</p>
+          <p *ngIf="member">{{member.nameMember}}</p>
           <span>{{statusUserMsg.messageNew}}</span>
           <span *ngIf="!statusUserMsg.messageNew">Đã gửi 1 tin nhắn đính kèm</span>
         </div>
 
         <div class="notification">
-<!--          <p class="date">2020-05-12</p>-->
-<!--          <span class="quantity" *ngIf="statusMsg.quantity > 0">{{statusMsg.quantity}}</span>-->
+          <p class="date">2020-05-12</p>
+          <span class="quantity" *ngIf="statusUserMsg.quantity > 0">{{statusUserMsg.quantity}}</span>
         </div>
       </li>
 <!--      <li class="user-list__item" [ngClass]="statusMsg.statusMsg?'not-seen':null"-->
