@@ -39,15 +39,18 @@ export class UserListComponent implements OnInit {
         /* Set data user for firebase */
         for (let i = 0; i < this.accounts.length; i++) {
           /* Get status msg by account id */
-          this.connectFirebaseService.getStatusMsg(this.accounts[i].idAccount).subscribe(data=> {
-            if(data) {
+          this.connectFirebaseService.getStatusMsg(this.accounts[i].idAccount).subscribe(data => {
+            if (data) {
               this.statusUserMsg = data;
+
+              this.apiService.getMemberByAccountId(this.statusUserMsg.userId).subscribe(member=> {
+                this.member = member;
+              });
             }
-          })
+          });
 
           /* Get member by account id */
           this.apiService.getMemberByAccountId(this.accounts[i].idAccount).subscribe(member => {
-            this.member = member;
             this.connectFirebaseService.setDataUser(this.accounts[i].idAccount, this.accounts[i].username,
               member.emailMember, this.accounts[i].roles, false);
           });

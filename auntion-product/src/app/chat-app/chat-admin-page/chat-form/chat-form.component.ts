@@ -66,13 +66,13 @@ export class ChatFormComponent implements OnInit {
     /* Send message */
     let message = this.formChat.get('message').value;
 
-    /* Check empty message */
-    if (message == null) {
+    if (message == '' && this.selectedFiles == null) {
       this.showNotiError = true;
       setTimeout(() => {
         this.showNotiError = false;
       }, 3000);
     } else {
+      console.log(message);
       if (this.formChat.value && this.selectedFiles == null) {
         this.chatService.sendMessage(message, null, this.userIdChild);
       }

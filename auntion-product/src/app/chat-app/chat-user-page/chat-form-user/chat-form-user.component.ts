@@ -75,7 +75,6 @@ export class ChatFormUserComponent implements OnInit {
 
         this.chatService.pushFileToStorage(message, this.currentFileUpload).subscribe(percentage => {
             this.percentage = Math.round(percentage);
-            this.selectedFiles = null;
           },
           error => {
             console.log(error);

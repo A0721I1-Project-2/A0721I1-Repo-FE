@@ -12,9 +12,9 @@
     <ul class="user-list__group">
       <li class="user-list__item" (click)="seenMsg(statusUserMsg.userId)">
         <div class="info">
-          <p>{{statusUserMsg.userId}}</p>
+          <p>{{member.nameMember}}</p>
           <span>{{statusUserMsg.messageNew}}</span>
-          <span>Đã gửi 1 tin nhắn đính kèm</span>
+          <span *ngIf="!statusUserMsg.messageNew">Đã gửi 1 tin nhắn đính kèm</span>
         </div>
 
         <div class="notification">
