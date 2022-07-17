@@ -10,10 +10,15 @@ import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {ControlAdminPageModule} from './control-admin-page/control-admin-page.module';
 
+import {UserItemComponent} from './chat-app/chat-admin-page/user-item/user-item.component';
+import {UserListComponent} from './chat-app/chat-admin-page/user-list/user-list.component';
+import {ChatUserPageModule} from './chat-app/chat-user-page/chat-user-page.module';
+import {HomeModule} from './home/home.module';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -23,7 +28,9 @@ import {ControlAdminPageModule} from './control-admin-page/control-admin-page.mo
     FormsModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    ControlAdminPageModule
+    ControlAdminPageModule,
+    ChatUserPageModule,
+    HomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

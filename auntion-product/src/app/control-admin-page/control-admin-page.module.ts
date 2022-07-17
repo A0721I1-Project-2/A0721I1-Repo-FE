@@ -12,8 +12,10 @@ import * as CanvasJSAngularChart from '../../assets/canvasjs.angular.component';
 var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
 
 @NgModule({
-  declarations: [HeaderAdminComponent, NavbarAdminComponent, FooterAdminComponent, HomeAdminComponent, ContentAdminComponent,
-    CanvasJSChart],
+  declarations: [HeaderAdminComponent, NavbarAdminComponent, FooterAdminComponent, HomeAdminComponent, CanvasJSChart],
+  exports: [
+    HomeAdminComponent
+  ],
   imports: [
     CommonModule,
     ControlAdminPageRoutingModule
@@ -21,3 +23,4 @@ var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
 })
 export class ControlAdminPageModule {
 }
+

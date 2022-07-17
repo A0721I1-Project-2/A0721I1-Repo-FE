@@ -53,7 +53,6 @@ Chart.register(
 );
 import {registerables} from 'chart.js';
 
-
 @Component({
   selector: 'app-home-admin',
   templateUrl: './home-admin.component.html',
@@ -109,4 +108,5 @@ export class HomeAdminComponent implements OnInit {
       }],
     };
   }
+
 }
