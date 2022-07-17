@@ -767,3 +767,21 @@ input[type="text"] {
     opacity: 1;
   }
 }
+.more{
+  font-weight: 300;
+  font-size: 11px;
+  height: 0px;
+}
+#btn-pay{
+  background-color: var(--color-content);
+  font-weight: 300;
+}
+#btn-pay:hover{
+  background-color: var(--color-hover);
+}
+#btn-close{
+  font-weight: 300;
+}
+#btn-close:hover{
+  background-color: var(--color-hover);
+}

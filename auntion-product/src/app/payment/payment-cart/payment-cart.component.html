@@ -1,3 +1,33 @@
+<!--&lt;!&ndash; Button trigger modal &ndash;&gt;-->
+<!--<button hidden type="button" id="button-confirm" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">-->
+<!--</button>-->
+<!--&lt;!&ndash; Modal &ndash;&gt;-->
+<!--<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">-->
+<!--  <div class="modal-dialog modal-dialog-centered" role="document">-->
+<!--    <div class="modal-content">-->
+<!--      <div style="    text-align: center;-->
+<!--    padding-top: 20px;">-->
+<!--        <h6 style="font-weight: 400">Terms of Purchase</h6>-->
+<!--        <hr style="margin: 0">-->
+<!--      </div>-->
+<!--      <div class="modal-body" style="padding-top: 40px">-->
+<!--        <p style="font-size: 12px;-->
+<!--  font-weight: 300;">1. Select: Sales earnings from invoiced orders are generally credited to your available balance on or before the Saturday following the applicable invoice due date.</p>-->
+<!--        <p style="font-size: 12px;-->
+<!--  font-weight: 300;">2. In the way we specify, you can choose to accelerate the conversion of Sales Income from invoiced orders (the net amount of applicable fees) to your available balance by activating Faster payment service. Upon activation, your choice to use the Faster Paying Service will apply to all future billed orders until you deactivate the service.</p>-->
+<!--        <p style="font-size: 12px;-->
+<!--  font-weight: 300;">3. Fees: A 1.5% processing fee will be applied to all relevant sales earnings to expedite the conversion of sales earnings into your available balance. This processing fee will be in addition to any other fees payable to Amazon or an Amazon Agent under your seller agreement and will be payable to Amazon Services LLC.-->
+<!--          Remittance Schedule: We will transfer your available balance to you, including any sales earnings transferred on an expedited basis, according to the remittance schedule defined in your merchant agreement.</p>-->
+<!--        <input checked id="check-pay" type="checkbox"> <span style="font-size: 12px;-->
+<!--  font-weight: 300;"> I agree to all of the terms</span>-->
+<!--      </div>-->
+<!--      <div class="modal-footer">-->
+<!--        <button type="button" id="btn-close" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+<!--        <button type="button" id="btn-pay" class="btn"><a href="{{link}}" target="_top" style="color: black">Pay</a></button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
 <article>
   <!-- Start Multiform HTML -->
   <section class="multi_step_form">
@@ -49,7 +79,7 @@
                                 </div>
                                 <div class=" pl-0 flex-sm-col col-auto  my-auto "><p><b>{{product.finalPrice}}$</b></p></div>
                               </div>
-                              <i *ngIf="product.length == 0" style="color: red">Please choose product payment!</i>
+                              <i *ngIf="product.length == 0" class="more" style="color: red; font-size: 11px;">Please choose product payment!</i>
                               <hr class="my-2">
                               <div class="row ">
                                 <div class="col">
@@ -65,6 +95,25 @@
                                     <div class="col-4"><p ><b>Total</b></p></div>
                                     <div class="flex-sm-col col-auto"><p  class="mb-1"><b>{{total}}$</b></p> </div>
                                   </div><hr class="my-0">
+                                  <div>
+                                    <p class="more" style="color: darkorange; padding-top: 5px">Please pay for the products in the cart within 24 hours after the successful auction time.</p>
+                                    <p class="more">The website's terms of purchase and payment require users to comply.    <i><a
+                                      href="" style="color: blue">   More...</a></i></p>
+                                    <p class="more">Thank you for using our site.</p>
+                                      <p class="more">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+                                           <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+                                            <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                                        </svg>
+                                    295 Nguyen Tat Thanh, Da Nang, Viet Nam.
+                                        <span style="position: absolute; right: 10px">
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="currentColor" class="bi bi-c-circle" viewBox="0 0 16 16">
+                                            <path d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8Zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0ZM8.146 4.992c-1.212 0-1.927.92-1.927 2.502v1.06c0 1.571.703 2.462 1.927 2.462.979 0 1.641-.586 1.729-1.418h1.295v.093c-.1 1.448-1.354 2.467-3.03 2.467-2.091 0-3.269-1.336-3.269-3.603V7.482c0-2.261 1.201-3.638 3.27-3.638 1.681 0 2.935 1.054 3.029 2.572v.088H9.875c-.088-.879-.768-1.512-1.729-1.512Z"/>
+                                          </svg>
+                                          A0721I1
+                                        </span>
+                                      </p>
+                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -84,6 +133,7 @@
           <fieldset style="padding-top: 25px" >
             <div class="card-header card-2" style="background-color: white">
               <p class="card-text text-muted mt-md-4  mb-2 space">RECEIVER INFORMATION <span class=" small text-muted ml-2 cursor-pointer"></span> </p>
+              <p style="height: 0px; font-weight: 300">Please complete all information!</p>
               <hr class="my-2">
             </div>
             <div class="row">
@@ -254,7 +304,7 @@
                 <div class="container">
                   <div class="row" style="padding-bottom: 25px;">
                     <div class="col-12">
-                      <div class="font-weight-light pay-total-title" style=" text-align: left!important;">You're buying from:   <b style="color: black; font-size: 18px;">{{member.nameMember}}</b></div>
+                      <div class="font-weight-light pay-total-title" style=" text-align: left!important;">You're buying from:   <b style="color: black; font-size: 18px;">Name</b></div>
                     </div>
                   </div>
                   <div class="row " *ngFor="let item of product">

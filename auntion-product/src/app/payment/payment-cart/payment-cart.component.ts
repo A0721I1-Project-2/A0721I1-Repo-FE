@@ -39,11 +39,16 @@ export class PaymentCartComponent implements OnInit {
   firstName: string;
   lastName: string;
 
+  link: string;
+
   constructor(
     private service: PaymentService
   ) { }
 
   ngOnInit(): void {
+    sessionStorage.removeItem('testObject');
+    sessionStorage.removeItem('message');
+    // console.log('retrievedObject: ', JSON.parse(sessionStorage.getItem('testObject')));
     // Phuong thuc lay ra member
     this.service.getMember(this.idMember).subscribe(data => {
       this.member = data;
@@ -230,12 +235,24 @@ export class PaymentCartComponent implements OnInit {
       document.getElementById('noti').hidden = false;
     }
     else {
-      this.service.createPayment(this.payment.value).subscribe(data => {
-        console.log('OK');
-      }, error => {
-        console.log('NOT OK');
-      });
-      console.log(this.payment.value);
+      if (document.getElementById('paypal').hidden === true){
+        this.service.savePayment(this.payment.value).subscribe(data => {
+          console.log('OK COD');
+          this.ngOnInit();
+        }, error => {
+          console.log('ERR COD');
+        });
+      }
+      else {
+        this.service.createPayment(this.payment.value).subscribe(data => {
+          this.link = data;
+          window.open(this.link, '_parent');
+          sessionStorage.setItem('testObject', JSON.stringify(this.payment.value));
+          sessionStorage.setItem('message', 'Hoàn thành đơn hàng');
+        }, error => {
+          console.log('NOT OK');
+        });
+      }
     }
   }
 

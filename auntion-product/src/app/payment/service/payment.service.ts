@@ -35,7 +35,10 @@ export class PaymentService {
   getCart(id: number): Observable<Cart>{
     return this.httpClient.get<Cart>(API_URL + 'getCart/' + String(id));
   }
-  createPayment(payment: Payment): Observable<Payment>{
-    return this.httpClient.post<Payment>(API_URL + 'savePayment', payment);
+  createPayment(payment: Payment): Observable<string>{
+    return this.httpClient.post<string>(API_URL + 'authorize_payment', payment);
+  }
+  savePayment(parse: any): Observable<Payment> {
+    return this.httpClient.post<Payment>(API_URL + 'savePayment', parse);
   }
 }
