@@ -77,8 +77,10 @@
   margin-left: .3em;
 }
 /* Deprecated as of 4.4.0 */
+/* Fixed by me */
 .pull-right {
   float: right;
+  margin-top: 20px;
 }
 .pull-left {
   float: left;

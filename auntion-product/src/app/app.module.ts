@@ -8,15 +8,12 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFireAuthModule} from '@angular/fire/auth';
-import * as CanvasJSAngularChart from '../assets/canvasjs.angular.component';
 import {ControlAdminPageModule} from './control-admin-page/control-admin-page.module';
 
-var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
 
 @NgModule({
   declarations: [
-    AppComponent,
-    CanvasJSChart
+    AppComponent
   ],
   imports: [
     BrowserModule,
