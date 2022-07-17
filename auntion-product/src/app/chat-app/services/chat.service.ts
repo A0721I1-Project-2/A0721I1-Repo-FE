@@ -15,8 +15,7 @@ import {ChatMessage} from '../models/ChatMessage';
 })
 export class ChatService {
 
-  /* To get user */
-  member: Member;
+  /* To store account after login */
   account: any;
 
   /* To store url download */
@@ -37,8 +36,6 @@ export class ChatService {
   sendMessage(message: any, fileUpload: any, accountId: any) {
     const timeStamp = this.getTimeStamp();
 
-    console.log(accountId);
-
     /* Create new path for admin and user */
     let path = `messages/${accountId}`;
 
@@ -49,6 +46,10 @@ export class ChatService {
       this.isFile = null;
     }
 
+    console.log(message);
+    console.log(this.isFile);
+
+    /* Get username by account Id */
     this.chatMessages.push({
       message: message,
       username: this.account.username,
@@ -60,20 +61,24 @@ export class ChatService {
 
     /* To hidden quantity when its role admin */
     let breakProgram = this.connectFirebaseService.getStatusMsg(this.account.id).subscribe(data => {
-      if (data == null) {
-        this.connectFirebaseService.setStatusMsg(this.account.id, true, 0, message);
+      if(this.account.id === 1) {
+        this.connectFirebaseService.setStatusMsg(accountId, false, 0, message);
       } else {
-        this.connectFirebaseService.setStatusMsg(this.account.id, true, data.quantity, message);
+        if (data == null) {
+          this.connectFirebaseService.setStatusMsg(accountId, true, 0, message);
+        } else {
+          this.connectFirebaseService.setStatusMsg(accountId, true, data.quantity, message);
+        }
       }
       /* To break for loop when sent */
       breakProgram.unsubscribe();
     });
 
-    /* Ignore error socket */
-    this.getMessages(accountId).snapshotChanges().subscribe(key => {
-      path = `messages/${accountId}/${key[key.length - 1].key}`;
-      this.db.object(path).update(this.chatMessages).catch(error => console.log(error));
-    });
+    /* Ignore error socket and save with id user */
+    // this.getMessages(accountId).snapshotChanges().subscribe(key => {
+    //   path = `messages/${accountId}/${key[key.length - 1].key}`;
+    //   this.db.object(path).update(this.chatMessages).catch(error => console.log(error));
+    // });
   }
 
   /* Get messages */
@@ -156,5 +161,9 @@ export class ChatService {
 
   constructor(private db: AngularFireDatabase, private storage: AngularFireStorage
     , private apiService: ApiService, private connectFirebaseService: ConnectFirebaseService) {
+    this.account = JSON.parse(window.localStorage.getItem('user'));
+    if(this.account == null) {
+      this.account = JSON.parse(window.localStorage.getItem('admin'));
+    }
   }
 }

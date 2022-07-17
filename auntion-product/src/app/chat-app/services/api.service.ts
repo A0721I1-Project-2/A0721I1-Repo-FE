@@ -27,6 +27,11 @@ export class ApiService {
     return this.httpClient.get<Member>(`${BASE_PATH_MEMBER}/account=${accountId}`);
   }
 
+  /* Get account by id */
+  getAccountById(accountId: number): Observable<Account> {
+    return this.httpClient.get<Account>(`${BASE_PATH_ACCOUNT}/account/id=${accountId}`);
+  }
+
   /* Get account by username */
   getAccountByUsername(username: string): Observable<Account> {
     return this.httpClient.get<Account>(`${BASE_PATH_ACCOUNT}/username&${username}`);

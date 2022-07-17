@@ -50,8 +50,9 @@ export class ChatFormUserComponent implements OnInit {
     /* Send message */
     let message = this.formChat.get('message').value;
 
+    console.log(message);
     /* Check empty message */
-    if (message == '' && this.selectedFiles == null) {
+    if ((message == '' || message == null) && this.selectedFiles == null) {
       this.showNotiError = true;
       setTimeout(() => {
         this.showNotiError = false;

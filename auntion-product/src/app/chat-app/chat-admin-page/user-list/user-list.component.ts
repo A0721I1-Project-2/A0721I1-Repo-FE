@@ -1,16 +1,16 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Account} from "../../../model/Account";
-import {ApiService} from "../../services/api.service";
-import {ConnectFirebaseService} from "../../services/connect-firebase.service";
-import {Member} from "../../../model/Member";
-import {ChatService} from "../../services/chat.service";
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
+import {Account} from '../../../model/Account';
+import {ApiService} from '../../services/api.service';
+import {ConnectFirebaseService} from '../../services/connect-firebase.service';
+import {Member} from '../../../model/Member';
+import {ChatService} from '../../services/chat.service';
 
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.css']
 })
-export class UserListComponent implements OnInit {
+export class UserListComponent implements OnInit, OnChanges {
 
   /* Share user id to parent component */
   @Output() userIdItem = new EventEmitter();
@@ -19,44 +19,55 @@ export class UserListComponent implements OnInit {
   accounts: Account[];
 
   /* Get member */
-  member: Member;
+  members: Member;
 
   /* Get status msg */
   statusUsersMsg: any[] = [];
   statusUserMsg: any;
-
-  /* Store message */
-  messages: any;
+  statusUsersTemp: any[] = [];
+  count = 1;
 
   constructor(private apiService: ApiService, private connectFirebaseService: ConnectFirebaseService
     , private chatService: ChatService) {
   }
 
+  ngOnChanges(): void {
+    console.log('hi');
+  }
+
   ngOnInit(): void {
-    this.apiService.getAccountsByRoleMember().subscribe(data => {
-        this.accounts = data;
+    this.apiService.getAccountsByRoleMember().subscribe(accounts => {
+      this.accounts = accounts;
 
-        /* Set data user for firebase */
-        for (let i = 0; i < this.accounts.length; i++) {
-          /* Get status msg by account id */
-          this.connectFirebaseService.getStatusMsg(this.accounts[i].idAccount).subscribe(data => {
-            if (data) {
-              this.statusUserMsg = data;
+      for (let i = 0; i < this.accounts.length; i++) {
+        this.connectFirebaseService.getStatusMsg(this.accounts[i].idAccount).subscribe(statusMsg => {
+          if (statusMsg) {
+            const status = statusMsg;
 
-              this.apiService.getMemberByAccountId(this.statusUserMsg.userId).subscribe(member => {
-                this.member = member;
-              });
+            this.statusUsersMsg.push(status);
+
+            /* Remove element duplicate */
+            for (let j = 0; j < this.statusUsersMsg.length; j++) {
+              /* Check for first message */
+              if (this.statusUsersMsg.length > 1 &&
+                this.statusUsersMsg[j].userId === this.statusUsersMsg[this.statusUsersMsg.length - 1].userId) {
+                this.statusUsersMsg.splice(this.statusUsersMsg.length - 1, 1);
+                this.statusUsersMsg[j] = statusMsg;
+                break;
+              }
+
+              /* Check for rest message */
+              if (this.statusUsersMsg.length > 1 &&
+                this.statusUsersMsg[j + 1].userId === this.statusUsersMsg[this.statusUsersMsg.length - 1].userId) {
+                this.statusUsersMsg.splice(this.statusUsersMsg.length - 1, 1);
+                this.statusUsersMsg[j + 1] = statusMsg;
+                break;
+              }
             }
-          });
-
-          /* Get member by account id */
-          this.apiService.getMemberByAccountId(this.accounts[i].idAccount).subscribe(member => {
-            this.connectFirebaseService.setDataUser(this.accounts[i].idAccount, this.accounts[i].username,
-              member.emailMember, this.accounts[i].roles, false);
-          });
-        }
+          }
+        });
       }
-    );
+    });
   }
 
   /* Seen message */

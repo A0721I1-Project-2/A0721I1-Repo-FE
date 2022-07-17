@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {AngularFireDatabase, AngularFireList, AngularFireObject} from '@angular/fire/database';
 import {Observable} from "rxjs";
+import {ApiService} from "./api.service";
 
 @Injectable({
   providedIn: 'root'
@@ -41,14 +42,20 @@ export class ConnectFirebaseService {
       quantity = 0;
     }
 
-    let dataStatus = {
-      userId: userId,
-      statusMsg: status,
-      messageNew: msgNew,
-      quantity: quantity
-    }
+    let member = null;
+    this.apiService.getMemberByAccountId(userId).subscribe(data => {
+      member = data.nameMember;
 
-    this.db.object(path).update(dataStatus).catch(error => console.log(error));
+      let dataStatus = {
+        userId: userId,
+        statusMsg: status,
+        nameMember: member,
+        messageNew: msgNew,
+        quantity: quantity
+      };
+
+      this.db.object(path).update(dataStatus).catch(error => console.log(error));
+    })
   }
 
   /* Set status message when sent */
@@ -78,6 +85,6 @@ export class ConnectFirebaseService {
     return this.db.list(path).valueChanges();
   }
 
-  constructor(private db: AngularFireDatabase) {
+  constructor(private db: AngularFireDatabase , private apiService: ApiService) {
   }
 }

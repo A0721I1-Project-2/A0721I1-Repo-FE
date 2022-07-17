@@ -32,6 +32,7 @@ export class LoginFormComponent implements OnInit {
         localStorage.setItem('user' , JSON.stringify(data));
       } else {
         localStorage.setItem('admin' , JSON.stringify(data));
+        console.log(JSON.parse(localStorage.getItem('admin')));
       }
     });
   }
