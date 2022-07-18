@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
 
 
 const routes: Routes = [
@@ -9,7 +9,7 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then(module =>  module.HomeModule)
+    loadChildren: () => import('./home/home.module').then(module => module.HomeModule)
   },
   {
     path: 'auction-product',
@@ -33,7 +33,8 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    loadChildren: () => import('./chat-app/chat-admin-page/chat-admin-page.module').then(module => module.ChatAdminPageModule)
+    loadChildren: () => import('./control-admin-page/control-admin-page.module').then(module => module.ControlAdminPageModule)
+
   }
 ];
 
@@ -41,4 +42,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
