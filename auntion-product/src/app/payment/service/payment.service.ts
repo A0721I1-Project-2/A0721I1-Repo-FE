@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {Address} from '../payment-cart/address';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {Address} from '../payment-cart/address';
 import {Product} from '../../model/Product';
 import {Member} from '../../model/Member';
 import {Transport} from '../../model/Transport';
@@ -14,9 +14,13 @@ const API_URL = 'http://localhost:8080/manager/payment/api/';
   providedIn: 'root'
 })
 export class PaymentService {
-  constructor(
-    private httpClient: HttpClient
-  ) {}
+   urlSendEmai = 'http://localhost:8080/manager/invoice-status/api/sendMail';
+
+  constructor(private httpClient: HttpClient) { }
+  // tslint:disable-next-line:variable-name
+  public postImagePDFAndSendEmail(UrlImgInvoice: string): Observable<string> {
+    return this.httpClient.get<string>(this.urlSendEmai + '?img=' + UrlImgInvoice);
+  }
   getAddress(): Observable<Address[]>{
     return this.httpClient.get<Address[]>(API_ADDRESS);
   }
