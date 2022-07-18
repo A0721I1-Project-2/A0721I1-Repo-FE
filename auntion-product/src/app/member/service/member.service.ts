@@ -29,11 +29,15 @@ export class MemberService {
   }
 
   blockMember(blockList: number[]): Observable<Member[]> {
-    return this.httpClient.post<Member[]>(this.API_URL + '/member/Block', blockList);
+    return this.httpClient.post<Member[]>(this.API_URL + '/member/block', blockList);
   }
 
   unBlockMember(unBlockList: number[]): Observable<Member[]> {
     return this.httpClient.post<Member[]>(this.API_URL + '/member/unBlock', unBlockList);
+  }
+
+  deleteMember(deleteList: number[]): Observable<Member[]> {
+    return this.httpClient.post<Member[]>(this.API_URL + '/member/delete', deleteList);
   }
 
   getAccount(): Observable<Account[]>{

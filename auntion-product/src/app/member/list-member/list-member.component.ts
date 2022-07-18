@@ -71,13 +71,13 @@ export class ListMemberComponent implements OnInit {
     if (emailMember.trim() === '') {
       emailMember = 'null';
     }
-    if (phoneNumberMember === '') {
+    if (phoneNumberMember.trim() === '') {
       phoneNumberMember = 'null';
     }
     if (nameRankMember === '') {
       nameRankMember = 'null';
     }
-    if (addressMember === '') {
+    if (addressMember.trim() === '') {
       addressMember = 'null';
     }
     console.log(nameMember, emailMember, phoneNumberMember, nameRankMember, addressMember);
@@ -144,26 +144,63 @@ export class ListMemberComponent implements OnInit {
   }
 
   blockMember() {
-    this.service.blockMember(this.ids).subscribe(data => {
+    if (this.ids.length === 0) {
       Swal.fire(
-        'Block member success!',
+        'Haven\'t selected a member to block',
         '',
-        'success'
+        'error'
       );
-      this.ids = [];
-      this.ngOnInit();
-    });
+    } else {
+      this.service.blockMember(this.ids).subscribe(data => {
+        Swal.fire(
+          'Block member success!',
+          '',
+          'success'
+        );
+        this.ids = [];
+        this.ngOnInit();
+      });
+    }
   }
 
   unBlockMember() {
-    this.service.unBlockMember(this.ids).subscribe(data => {
+    if (this.ids.length === 0) {
       Swal.fire(
-        'Unblock member success!',
+        'Haven\'t selected a member to unblock',
         '',
-        'success'
+        'error'
       );
-      this.ids = [];
-      this.ngOnInit();
-    });
+      console.log(this.ids);
+    } else {
+      this.service.unBlockMember(this.ids).subscribe(data => {
+        Swal.fire(
+          'Unblock member success!',
+          '',
+          'success'
+        );
+        this.ids = [];
+        this.ngOnInit();
+      });
+    }
+  }
+
+  deleteMember() {
+    if (this.ids.length === 0) {
+      Swal.fire(
+        'Haven\'t selected a member to delete',
+        '',
+        'error'
+      );
+    } else {
+      this.service.deleteMember(this.ids).subscribe(data => {
+        Swal.fire(
+          'Block member success!',
+          '',
+          'success'
+        );
+        this.ids = [];
+        this.ngOnInit();
+      });
+    }
   }
 }
