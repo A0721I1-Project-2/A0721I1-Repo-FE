@@ -8,6 +8,7 @@ import {MemberDTO} from '../../model/MemberDTO';
 
 const API_URL = `${environment.apiUrl}`;
 const API_ADDRESS = 'http://localhost:3000/address';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -15,6 +16,8 @@ export class MemberService {
 
   constructor(private httpClient: HttpClient) {
   }
+
+  /*// bin code */
   // tslint:disable-next-line:ban-types
   private alertMessage: String;
 
@@ -22,13 +25,18 @@ export class MemberService {
   get messAlert(): String {
     return this.alertMessage;
   }
-  getAddress(): Observable<Address[]>{
+
+  /*bin code*/
+  getAddress(): Observable<Address[]> {
     return this.httpClient.get<Address[]>(API_ADDRESS);
   }
 
+  /*bin code*/
   addNewAccount(member: MemberDTO): Observable<MemberDTO> {
     return this.httpClient.post<MemberDTO>(API_URL + '/member/saveNewAccountMember', member);
   }
+
+  /*bin code*/
   checkUsername(username: string): Observable<Account[]> {
     return this.httpClient.get<Account[]>(API_URL + '/member/checkUsername?username=' + username);
   }
