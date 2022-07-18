@@ -6,6 +6,9 @@ import {ListMemberComponent} from './list-member/list-member.component';
 import {SignUpMemberComponent} from './sign-up-member/sign-up-member.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgxCaptchaModule} from 'ngx-captcha';
+// @ts-ignore
+import {NgxPaginationModule} from 'ngx-pagination';
+
 
 
 
@@ -16,7 +19,9 @@ import {NgxCaptchaModule} from 'ngx-captcha';
     MemberRoutingModule,
     ReactiveFormsModule,
     NgxCaptchaModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule,
+    ReactiveFormsModule
   ]
 })
 export class MemberModule {
