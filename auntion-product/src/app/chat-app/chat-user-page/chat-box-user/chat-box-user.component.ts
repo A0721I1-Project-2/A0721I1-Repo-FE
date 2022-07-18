@@ -45,4 +45,8 @@ export class ChatBoxUserComponent implements OnInit , OnChanges {
   ngOnChanges(): void {
     this.messages = this.chatService.getMessages(this.user.id).valueChanges();
   }
+
+  showFile(url: any) {
+    window.open(url);
+  }
 }

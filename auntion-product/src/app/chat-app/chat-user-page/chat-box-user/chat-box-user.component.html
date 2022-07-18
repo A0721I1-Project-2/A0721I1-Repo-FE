@@ -31,19 +31,24 @@
     <!-- Message of user -->
     <div *ngFor="let message of messages | async" class="info-chat__item"
          [ngClass]="message.isOwn.length == 1?'user':null">
-      <div class="function__message">
-        <i class="fa-solid fa-ellipsis-vertical"></i>
-      </div>
       <span class="time">{{message.timeSent}}</span>
 
-      <div class="text-chat">
-        <img class="text-chat__img" *ngIf="message.fileUpload && !message.isFile" [src]="message.fileUpload.url"
-             alt="">
+      <div class="text-chat-group">
+        <div class="function__message">
+          <i class="fa-solid fa-ellipsis-vertical"></i>
 
-        <a class="text-chat__file" *ngIf="message.fileUpload && message.isFile"
-           href="{{message.fileUpload.url}}" target="_blank">{{message.fileUpload.name}}</a>
+          <div class=""></div>
+        </div>
 
-        <p>{{message.message}}</p>
+        <div class="text-chat">
+          <img class="text-chat__img" *ngIf="message.fileUpload && !message.isFile" [src]="message.fileUpload.url"
+               alt="" (click)="showFile(message.fileUpload.url)">
+
+          <a class="text-chat__file" *ngIf="message.fileUpload && message.isFile" (click)="showFile(message.fileUpload.url)"
+             href="{{message.fileUpload.url}}" target="_blank">{{message.fileUpload.name}}</a>
+
+          <p>{{message.message}}</p>
+        </div>
       </div>
     </div>
   </div>
