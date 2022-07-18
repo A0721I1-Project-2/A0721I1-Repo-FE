@@ -1,33 +1,17 @@
-<!--&lt;!&ndash; Button trigger modal &ndash;&gt;-->
-<!--<button hidden type="button" id="button-confirm" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">-->
-<!--</button>-->
-<!--&lt;!&ndash; Modal &ndash;&gt;-->
-<!--<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">-->
-<!--  <div class="modal-dialog modal-dialog-centered" role="document">-->
-<!--    <div class="modal-content">-->
-<!--      <div style="    text-align: center;-->
-<!--    padding-top: 20px;">-->
-<!--        <h6 style="font-weight: 400">Terms of Purchase</h6>-->
-<!--        <hr style="margin: 0">-->
-<!--      </div>-->
-<!--      <div class="modal-body" style="padding-top: 40px">-->
-<!--        <p style="font-size: 12px;-->
-<!--  font-weight: 300;">1. Select: Sales earnings from invoiced orders are generally credited to your available balance on or before the Saturday following the applicable invoice due date.</p>-->
-<!--        <p style="font-size: 12px;-->
-<!--  font-weight: 300;">2. In the way we specify, you can choose to accelerate the conversion of Sales Income from invoiced orders (the net amount of applicable fees) to your available balance by activating Faster payment service. Upon activation, your choice to use the Faster Paying Service will apply to all future billed orders until you deactivate the service.</p>-->
-<!--        <p style="font-size: 12px;-->
-<!--  font-weight: 300;">3. Fees: A 1.5% processing fee will be applied to all relevant sales earnings to expedite the conversion of sales earnings into your available balance. This processing fee will be in addition to any other fees payable to Amazon or an Amazon Agent under your seller agreement and will be payable to Amazon Services LLC.-->
-<!--          Remittance Schedule: We will transfer your available balance to you, including any sales earnings transferred on an expedited basis, according to the remittance schedule defined in your merchant agreement.</p>-->
-<!--        <input checked id="check-pay" type="checkbox"> <span style="font-size: 12px;-->
-<!--  font-weight: 300;"> I agree to all of the terms</span>-->
-<!--      </div>-->
-<!--      <div class="modal-footer">-->
-<!--        <button type="button" id="btn-close" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-<!--        <button type="button" id="btn-pay" class="btn"><a href="{{link}}" target="_top" style="color: black">Pay</a></button>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
+<div class="alert alert-warning" id="alert" role="alert" hidden>
+  <h4 class="alert-heading">Halo!</h4>
+  <button type="button" class="close" (click)="hide()">&times;</button>
+  <strong>Warning!</strong> {{message}}
+</div>
+<!-- Button trigger modal -->
+<button id="button-load" hidden type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+</button>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class='spinner'></div>
+    </div>
+</div>
 <article>
   <!-- Start Multiform HTML -->
   <section class="multi_step_form">
@@ -151,8 +135,8 @@
                   </div>
                   <label class="field field_v1">
                     <select class="form-select form-select-sm field__input" id="country" aria-label=".form-select-sm">
-                      <option value="" selected>Select country</option>
-                      <option value="Việt Nam"><p>Việt Nam</p></option>
+                      <option value="">Select country</option>
+                      <option selected value="Việt Nam"><p>Việt Nam</p></option>
                     </select>
                     <span class="field__label-wrap">
                             <span class="field__label">Country<i style="color: red">(*)</i></span>
@@ -255,10 +239,6 @@
 <!--        Step3-->
         <section id="content3" class="tab-content">
           <fieldset>
-              <div [hidden]="true" id="noti" class="alert alert-danger">
-                <button type="button" class="close" (click)="hide()">&times;</button>
-                <strong>Warning!</strong> Please fill in the information correctly and completely
-              </div>
             <div class="pay-container">
               <ul class="pay-ul">
                 <div class="pay-title">
@@ -295,7 +275,22 @@
                 </li>
                 <li class="ts">
                   <div class="pay-title">
-                    <span>Payment</span>
+                      <div class="modal-body" style="padding-top: 10px; text-align: left">
+                        <p style="font-size: 12px; font-weight: 500; text-align: center; color: red">Please confirm our payment terms of A0721I1!</p>
+                        <hr>
+                        <p style="font-size: 12px;
+                          font-weight: 300;">1. Select: Sales earnings from invoiced orders are generally credited to your available balance on or before the Saturday following the applicable invoice due date.</p>
+                        <p style="font-size: 12px;
+                          font-weight: 300;">2. In the way we specify, you can choose to accelerate the conversion of Sales Income from invoiced orders (the net amount of applicable fees) to your available balance by activating Faster payment service. Upon activation, your choice to use the Faster Paying Service will apply to all future billed orders until you deactivate the service.</p>
+                        <p style="font-size: 12px;
+                          font-weight: 300;">3. Fees: A 1.5% processing fee will be applied to all relevant sales earnings to expedite the conversion of sales earnings into your available balance. This processing fee will be in addition to any other fees payable to Amazon or an Amazon Agent under your seller agreement and will be payable to Amazon Services LLC.
+                          Remittance Schedule: We will transfer your available balance to you, including any sales earnings transferred on an expedited basis, according to the remittance schedule defined in your merchant agreement.</p>
+                      </div>
+                    <div class="check-confirm" style="text-align: left;
+                          padding-left: 18px;">
+                      <input checked id="check-pay" type="checkbox"> <span style="font-size: 12px;
+                          font-weight: 300;"> I agree to all of the terms</span>
+                    </div>
                   </div>
                 </li>
               </ul>
@@ -304,7 +299,7 @@
                 <div class="container">
                   <div class="row" style="padding-bottom: 25px;">
                     <div class="col-12">
-                      <div class="font-weight-light pay-total-title" style=" text-align: left!important;">You're buying from:   <b style="color: black; font-size: 18px;">Name</b></div>
+                      <div class="font-weight-light pay-total-title" style=" text-align: left!important;">You're buying from:   <b style="color: black; font-size: 18px;">{{lastName}}</b></div>
                     </div>
                   </div>
                   <div class="row " *ngFor="let item of product">

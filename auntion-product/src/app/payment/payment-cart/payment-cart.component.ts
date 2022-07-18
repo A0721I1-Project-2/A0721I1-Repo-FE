@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {PaymentService} from '../service/payment.service';
 import {Address} from './address';
 import {Districts} from './districts';
@@ -9,6 +9,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Transport} from '../../model/Transport';
 import {PaymentMethod} from '../../model/PaymentMethod';
 import {Cart} from '../../model/Cart';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-payment-cart',
@@ -38,17 +39,23 @@ export class PaymentCartComponent implements OnInit {
   total = 0;
   firstName: string;
   lastName: string;
-
+  message: string;
   link: string;
 
   constructor(
-    private service: PaymentService
-  ) { }
+    private service: PaymentService,
+    private router: Router
+  ) {
+  }
 
   ngOnInit(): void {
+    if (sessionStorage.getItem('testObject') != null){
+      this.message = '';
+      this.message = sessionStorage.getItem('message-fail');
+      document.getElementById('alert').hidden = false;
+    }
     sessionStorage.removeItem('testObject');
     sessionStorage.removeItem('message');
-    // console.log('retrievedObject: ', JSON.parse(sessionStorage.getItem('testObject')));
     // Phuong thuc lay ra member
     this.service.getMember(this.idMember).subscribe(data => {
       this.member = data;
@@ -98,13 +105,17 @@ export class PaymentCartComponent implements OnInit {
     // Phuong thuc lay ra danh sach san pham
     this.service.getProduct(this.idMember).subscribe(data => {
       this.products = data;
+      this.fee = 1;
+      this.total = 0;
+      this.subPrice = 0;
       this.fee = this.fee * this.products.length;
-      for (let i = 0; i < this.products.length ; i++){
+      // tslint:disable-next-line:prefer-for-of
+      for (let i = 0; i < this.products.length; i++) {
         this.subPrice += this.products[i].finalPrice;
         this.product.push(this.products[i]);
       }
       this.total = this.subPrice + this.fee;
-      }, error => {
+    }, error => {
       console.log('err');
     });
 
@@ -127,17 +138,18 @@ export class PaymentCartComponent implements OnInit {
 
   // Phuong thuc lay ra quan huyen khi chon thanh pho
   setDistricts() {
-    for (let i = 0; i < this.addressList.length; i++){
-      if (this.addressList[i].Name === (document.getElementById('city') as HTMLInputElement).value){
+    for (let i = 0; i < this.addressList.length; i++) {
+      if (this.addressList[i].Name === (document.getElementById('city') as HTMLInputElement).value) {
         this.districtList = this.addressList[i].Districts;
       }
     }
   }
 
   // Phuong thuc lay ra phuong xa khi chon quan huyen
-  setWards(){
-    for (let i = 0 ; i < this.districtList.length; i++){
-      if (this.districtList[i].Name === (document.getElementById('district') as HTMLInputElement).value){
+  setWards() {
+    // tslint:disable-next-line:prefer-for-of
+    for (let i = 0; i < this.districtList.length; i++) {
+      if (this.districtList[i].Name === (document.getElementById('district') as HTMLInputElement).value) {
         this.wardList = this.districtList[i].Wards;
         break;
       }
@@ -171,10 +183,10 @@ export class PaymentCartComponent implements OnInit {
 
   // Phuong thuc tinh tong tien khi chon san pham thanh toan
   setTotal(idProduct: number) {
-    if ((document.getElementById(String(idProduct)) as HTMLInputElement).checked === true){
+    if ((document.getElementById(String(idProduct)) as HTMLInputElement).checked === true) {
       // tslint:disable-next-line:prefer-for-of
-      for (let i = 0 ; i < this.products.length ; i++){
-        if (this.products[i].idProduct === idProduct){
+      for (let i = 0; i < this.products.length; i++) {
+        if (this.products[i].idProduct === idProduct) {
           this.product.push(this.products[i]);
           this.subPrice = this.subPrice + this.products[i].finalPrice;
           this.fee = this.fee + 1;
@@ -182,15 +194,13 @@ export class PaymentCartComponent implements OnInit {
           break;
         }
       }
-    }
-    else {
-      // tslint:disable-next-line:prefer-for-of
-      for (let i = 0 ; i < this.products.length ; i++){
-        if (this.products[i].idProduct === idProduct){
-          for (let j = 0; j < this.product.length ; j++){
-            if (this.product[j].idProduct === idProduct){
+    } else {
+      for (let i = 0; i < this.products.length; i++) {
+        if (this.products[i].idProduct === idProduct) {
+          for (let j = 0; j < this.product.length; j++) {
+            if (this.product[j].idProduct === idProduct) {
               this.product[j] = this.product[j + 1];
-              for (let m = j + 1; m < this.product.length; m++){
+              for (let m = j + 1; m < this.product.length; m++) {
                 this.product[m] = this.product[m + 1];
               }
             }
@@ -208,10 +218,10 @@ export class PaymentCartComponent implements OnInit {
   }
 
 // Phuong thuc lay ra firstName lastName
-  getInfo(name: string){
-    for (let i = 0 ; i < name.length ; i++){
-      if (name[i] === ' '){
-        this.firstName = name.substr(0 , i);
+  getInfo(name: string) {
+    for (let i = 0; i < name.length; i++) {
+      if (name[i] === ' ') {
+        this.firstName = name.substr(0, i);
         this.lastName = name.substr(i + 1, name.length);
         break;
       }
@@ -220,6 +230,7 @@ export class PaymentCartComponent implements OnInit {
 
   // Phuong thuc khi thanh toan
   submit1() {
+    sessionStorage.setItem('message-fail', 'Payment failed!');
     this.payment.patchValue(
       {
         feeService: this.fee,
@@ -231,24 +242,26 @@ export class PaymentCartComponent implements OnInit {
         product: this.product
       }
     );
-    if (this.payment.invalid){
-      document.getElementById('noti').hidden = false;
-    }
-    else {
-      if (document.getElementById('paypal').hidden === true){
+    if (this.payment.invalid || (document.getElementById('check-pay') as HTMLInputElement).checked === false) {
+      this.message = '';
+      this.message = 'Please fill in the information correctly and completely';
+      document.getElementById('alert').hidden = false;
+    } else {
+      if (document.getElementById('paypal').hidden === true) {
         this.service.savePayment(this.payment.value).subscribe(data => {
           console.log('OK COD');
-          this.ngOnInit();
+          sessionStorage.setItem('message', 'Complete your order');
+          this.router.navigateByUrl('/home/show-home');
         }, error => {
           console.log('ERR COD');
         });
-      }
-      else {
+      } else {
+        document.getElementById('button-load').click();
         this.service.createPayment(this.payment.value).subscribe(data => {
           this.link = data;
           window.open(this.link, '_parent');
           sessionStorage.setItem('testObject', JSON.stringify(this.payment.value));
-          sessionStorage.setItem('message', 'Hoàn thành đơn hàng');
+          sessionStorage.setItem('message', 'Complete your order');
         }, error => {
           console.log('NOT OK');
         });
@@ -258,6 +271,6 @@ export class PaymentCartComponent implements OnInit {
 
   // Phuong thuc an thong bao
   hide() {
-    document.getElementById('noti').hidden = true;
+    document.getElementById('alert').hidden = true;
   }
 }
