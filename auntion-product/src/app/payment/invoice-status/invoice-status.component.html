@@ -1,0 +1,75 @@
+<div class="row">
+
+  <div class="col-3"></div>
+  <div class="col-6" style="padding-inline: 30px; border: 4px solid #11B683;background-color: #def2f1;">
+    <div class="content">
+      <div style="padding-inline: 1px;">
+        <h1 style="color: #11B683; text-align: center;">Order Status</h1>
+        <div class="tong" *ngFor="let invoiceDetail of invoice; index as i">
+          <div class="tonghop">
+            <h3>Pay form: </h3>
+            <p class="col-12"> {{invoiceDetail.invoice.payment.paymentMethod.namePaymentMethod}}</p>
+          </div>
+          <div class="mot" style="font-size: 1.2rem">
+            <h3>Delivery method: </h3>
+            <p class="col-12">{{invoiceDetail.invoice.payment.transport.nameTransport}}</p>
+          </div>
+          <div class="hai">
+            <h3>Order detail number: {{invoiceDetail.idInvoiceDetail}}</h3>
+            <div class="col-12" style="border: 1px solid #dee2e6; font-size: 1.3rem; margin-top: 10px">
+              <p class='bx bxs-user'> Receiver: {{invoiceDetail.invoice.payment.fullNameReceiver}}</p><br>
+              <p class='fas bx bxs-phone bx-rotate-120'> Phone number: {{invoiceDetail.invoice.payment.phoneReceiver}}</p><br>
+              <p class='bx bxs-envelope'> Email: {{invoiceDetail.invoice.payment.emailReceiver}}</p>
+            </div>
+            <div class="col-12" style="border: 1px solid #dee2e6; font-size: 1.3rem; margin-top: 1rem">
+              <p style="margin-top: 10px" class='bx bxs-location-plus'> Address: {{invoiceDetail.invoice.payment.addressReceiver}}</p><br>
+              <p class='bx bxs-alarm-add' > National: Viet Nam</p><br>
+              <p class='bx bxs-bookmark'> City: Đa Nang</p><br>
+              <p class='bx bxs-bookmarks'> District: Lien Chieu</p><br>
+              <p class='bx bxs-bookmarks'> Ward: Hoa Khanh Nam</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" *ngFor="let invoiceDetail of invoice; index as i">
+        <div class="col-12">
+          <table class="table table-bordered" style="margin-top: 1rem; font-size: 1.3rem;text-align:center " >
+            <thead style="background: #11B683;">
+            <tr>
+              <th scope="col">Product</th>
+              <th scope="col">Auction Price (USD)</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>
+<!--                <img src=""  alt="" height="200" width="200"/>-->
+
+                <span>{{invoiceDetail.product.nameProduct}}</span></td>
+
+              <td>{{invoiceDetail.product.finalPrice}}</td>
+            </tr>
+            <tr>
+              <th style="text-align: center">Delivery charges (USD)</th>
+              <td>{{invoiceDetail.invoice.payment.transport.feeTransport}}</td>
+
+            </tr>
+            <tr>
+              <th style="text-align: center">Total money (USD)</th>
+              <td>9.4</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div style="text-align: center" class="form-group">
+        <!--                    <button type="submit" class="btn" style="background: #ff3366; height: 45px">Print invoice</button>-->
+        <button type="button" class="btn btn-outline-dark" data-dismiss="modal" style="height: 45px">Print invoice</button>
+        <button type="reset" class="btn btn-outline-dark" data-dismiss="modal" style="background: #11B683; margin-left: 15px; height: 45px">Back to auction history</button>
+        <!--                    Quay lại lịch sử đấu giá-->
+      </div>
+    </div>
+  </div>
+
+
+</div>
