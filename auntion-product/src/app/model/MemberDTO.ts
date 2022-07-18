@@ -1,22 +1,15 @@
-export interface Member {
-  idMember: number;
+export class MemberDTO {
   nameMember: string;
   dateOfBirthMember: number;
   emailMember: string;
-  addressMember: string;
   city: string;
   district: string;
   ward: string;
   phoneMember: string;
   idCardMember: string;
   paypalMember: string;
+  username: string;
   flagDelete: boolean;
-  account: any;
-  invoiceList: any;
-  point: number;
-  paymentList: any;
-  rank: any;
-  cart: any;
-  products: any;
+  password: string;
   checkedClause: boolean;
 }

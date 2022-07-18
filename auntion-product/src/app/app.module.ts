@@ -5,9 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {AngularFireModule} from '@angular/fire';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFireAuthModule} from '@angular/fire/auth';
+import {NgxCaptchaModule} from 'ngx-captcha';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
     ReactiveFormsModule,
     FormsModule,
     AngularFireDatabaseModule ,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    NgxCaptchaModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,1 +1,506 @@
-<p>sign-up-member works!</p>
+<div class="register-form mt-3 mb-3">
+  <div class="container">
+    <div class="row">
+      <div class="main-page col-md-8 col-12 col-sm-6">
+        <form [formGroup]="formCreateAccount" (ngSubmit)="createAccount()" *ngIf="formCreateAccount" class="p-4">
+          <div class="row">
+            <div class="text-tittle-page col-12 text-center">
+              <h2 class="tittle-page1">Create Account</h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6 col-sm-12 col-md-10">
+              <div class="form-group">
+                <label><i class="fas fa-user" aria-hidden="true"></i> Name </label>
+                <input type="text" class="form-control" placeholder="Not contain character special"
+                       formControlName="nameMember">
+                <!--       <span style="color: red" *ngIf="(formCreateAccount.get('nameMember').hasError('required')
+                      && formCreateAccount.get('nameMember').touched)">
+                         <i>Name member not empty!</i>
+                       </span>
+                       <span style="color: red" *ngIf="(formCreateAccount.get('nameMember').hasError('pattern')
+                      && formCreateAccount.get('nameMember').touched)">
+                         <i>Name member invalid format!</i>
+                       </span>-->
+                <div *ngIf="!formCreateAccount.get('nameMember').valid && formCreateAccount.get('nameMember').touched">
+                  <span *ngIf="formCreateAccount.get('nameMember').errors?.required"
+                        style="color: red"><i>Not Empty!</i></span>
+                  <span *ngIf="formCreateAccount.get('nameMember').errors?.pattern"
+                        style="color: red"><i>Invalid Format!</i></span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label><i class="fas fa-user" aria-hidden="true"></i> Username </label>
+                <input type="text" class="form-control" placeholder="Not contain character special"
+                       formControlName="username">
+                <div *ngIf="!formCreateAccount.get('username').valid && formCreateAccount.get('username').touched">
+                  <span *ngIf="formCreateAccount.get('username').errors?.required" style="color: red"><i>Not Empty!</i></span>
+                  <span *ngIf="formCreateAccount.get('username').errors?.pattern"
+                        style="color: red"><i>Invalid Format!</i></span>
+                  <span *ngIf="formCreateAccount.get('username').errors?.checkUsername" style="color: red"><i>Username was created! </i>
+                  </span>
+                </div>
+              </div>
+
+              <div formGroupName="password">
+                <div class="form-group">
+                  <label><i class="fas fa-solid fa-lock" aria-hidden="true"></i> Password
+                  </label>
+                  <input type="password" id="password1" name="password1" class="form-control" placeholder=""
+                         formControlName="password1">
+                  <div *ngIf="!formCreateAccount.get(['password','password1']).valid && formCreateAccount.get(['password','password1']).touched">
+                    <span *ngIf="formCreateAccount.get(['password','password1']).errors?.required" style="color: red"><i>Not Empty!</i></span>
+                    <span *ngIf="formCreateAccount.get(['password','password1']).errors?.minlength"
+                          style="color: red"><i>Invalid Format!</i></span>
+                  </div>
+
+
+                  <!--       <span *ngIf="!formCreateAccount.get(['password','password1']).valid &&
+                         (formCreateAccount.get(['password','password1']).touched || formCreateAccount.get(['password','password1']).dirty)">
+                        <span class="text-danger"
+                              *ngIf="formCreateAccount.get(['password','password1']).hasError('required')">
+                         <i>Plese enter password</i></span>
+                           <span class="text-danger"
+                                 *ngIf="formCreateAccount.get(['password','password1']).hasError('minlength')">
+                             <i>Must be more than 6 character</i></span>
+                       </span>-->
+                </div>
+                <div class="form-group">
+                  <label><i class="fas fa-solid fa-lock" aria-hidden="true"></i> Confirm
+                    Password
+                  </label>
+                  <input type="password" id="confirmPassword" name="confirmPassword" class="form-control"
+                         placeholder="" formControlName="cfPassword">
+              <!--    <div *ngIf="!formCreateAccount.get(['password','cfPassword']).valid && formCreateAccount.get(['password','cfPassword']).touched">
+                    <span *ngIf="formCreateAccount.get(['password','password1']).errors?.required" style="color: red"><i>Not Empty!</i></span>
+                    <span *ngIf="formCreateAccount.get('passwordnotmatch',['password']).errors?.comparePassword"
+                          style="color: red"><i>Password does not match!</i></span>
+                  </div>-->
+                          <span style="color: red" *ngIf="(formCreateAccount.get(['password','cfPassword']).hasError('required')
+                       && formCreateAccount.get(['password','cfPassword']).touched)">
+                          <i>Please enter Confirm Password!</i>
+                        </span>
+                          <span style="color: red"
+                                *ngIf="formCreateAccount.hasError('passwordnotmatch',  ['password']) && formCreateAccount.get('password').touched">
+                                       <i>Password does not match!</i>
+                          </span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label><i class="fas fa-solid fa-calendar" aria-hidden="true"></i> Date of Birth
+                </label>
+                <input type="date" id="timeEnd" class="form-control" placeholder=""
+                       formControlName="dateOfBirthMember">
+                <span style="color: red" *ngIf="(formCreateAccount.get('dateOfBirthMember').hasError('required')
+               && formCreateAccount.get('dateOfBirthMember').touched)">
+                  <i>Please enter date of birth!</i>
+                </span>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label><i class="fas fa-solid fa-id-badge" aria-hidden="true"></i> Identity </label>
+                <input type="number" class="form-control" placeholder="Must be more than 7 number"
+                       formControlName="idCardMember">
+                <span style="color: red" *ngIf="(formCreateAccount.get('idCardMember').hasError('required')
+               && formCreateAccount.get('idCardMember').touched)">
+                  <i>Please enter id card</i>
+                </span>
+                <span style="color: red" *ngIf="(formCreateAccount.get('idCardMember').hasError('pattern')
+               && formCreateAccount.get('idCardMember').touched)">
+                  <i>Id card invalid format!</i>
+                </span>
+              </div>
+              <div class="form-group">
+                <label><i class="fas fa-solid fa-phone" aria-hidden="true"></i> Phone Number </label>
+                <input type="number" class="form-control" placeholder="Start 84.XXX.XXX.XXX."
+                       formControlName="phoneMember">
+                <span style="color: red" *ngIf="(formCreateAccount.get('phoneMember').hasError('required')
+               && formCreateAccount.get('phoneMember').touched)">
+                  <i>Please enter Phone Member!</i>
+                </span>
+                <span style="color: red" *ngIf="(formCreateAccount.get('phoneMember').hasError('pattern')
+               && formCreateAccount.get('phoneMember').touched)">
+                  <i>Phone Member not invalid format!</i>
+                </span>
+              </div>
+              <div class="form-group">
+                <label><i class="fas fa-solid fa-envelope" aria-hidden="true"></i> Email</label>
+                <input type="email" class="form-control" placeholder="Format with abc@gmail.com,...etc.."
+                       formControlName="emailMember">
+                <span style="color: red" *ngIf="(formCreateAccount.get('emailMember').hasError('required')
+               && formCreateAccount.get('emailMember').touched)">
+                  <i>Please enter Email Member!</i>
+                </span>
+                <span style="color: red" *ngIf="(formCreateAccount.get('emailMember').hasError('pattern')
+               && formCreateAccount.get('emailMember').touched)">
+                  <i>Email Member not invalid format!</i>
+                </span>
+
+              </div>
+              <div class="form-group">
+                <label><i class="fas fa-user" aria-hidden="true"></i> Verifycode
+                </label>
+                <ngx-recaptcha2 #captchaElem [siteKey]="siteKey">
+                </ngx-recaptcha2>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="form-group">
+                <label><i class="fas fa-solid fa-id-card" aria-hidden="true"></i> Address
+                </label>
+                <div class="row" style="padding-left: 15px">
+                  <div class="form-select col-sm-4 col-md-4">
+                    <select (change)="setDistricts()" class="selected form-control" style="width: 190px"
+                            formControlName="city" id="city" aria-label=".form-select-sm">
+                      <option value="" selected>Select city</option>
+                      <option *ngFor="let citis of addressList" value="{{citis.Name}}"><p>{{citis.Name}}</p></option>
+                    </select>
+                  </div>
+                  <div class="form-select col-sm-4 col-md-4">
+                    <select (change)="setWards()" class="selected form-control" style="width: 190px"
+                            formControlName="district" id="district" aria-label=".form-select-sm">
+                      <option value="" selected>Select district</option>
+                      <option *ngFor="let districts of districtList " value="{{districts.Name}}">
+                        <p>{{districts.Name}}</p></option>
+                    </select>
+                  </div>
+                  <div class="form-select col-sm-4 col-md-4">
+                    <select class="selected form-control" style="width: 190px" formControlName="ward" id="ward"
+                            aria-label=".form-select-sm">
+                      <option value="" selected>Select ward</option>
+                      <option *ngFor="let wards of wardList" value="{{wards.Name}}"><p>{{wards.Name}}</p></option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-sm-12">
+              <div class="form-group form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="checkbox" [checked]="checkPolicy" (change)="checkedClauseAccount($event)">By Creating an account,
+                  you agree to our
+                  <a href="#" data-toggle="modal" data-target="#exampleModalLong1"><b>User
+                    Agreement</b></a>
+                  and acknowledge reading our
+                  <a href="#" data-toggle="modal" data-target="#exampleModalLong2"><b>User Privacy
+                    Notice</b></a>.<br>
+                  <!--  <span style="color: red" *ngIf="formCreateAccount.touched"><i>You must agree acknowledge</i></span>-->
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="row form-btn col-12">
+            <button type="submit" class="btn btn-warning1 mb-3 mt-3" [disabled]="formCreateAccount.invalid || !checkPolicy">Register
+            </button>
+          </div>
+
+        </form>
+      </div>
+      <div class="return-page col-md-4 col-12 col-sm-6">
+        <div class="return-sign-in text-center">
+          <h1>Welcome Back!</h1>
+          <p>To keep connected with us please login with your personal info</p>
+          <button type="submit" class="btn btn-warning1 mb-3 mt-3 float-center">Sign In
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle1">User Agreement</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <b>1. <a href="#1" class="modal-tittle">Introduction</a></b> <br>
+
+        <b>2. <a href="#2" class="modal-tittle">About Us</a></b><br>
+
+        <b>3. <a href="#3" class="modal-tittle">Using Our Service</a></b><br>
+        <b><a id="1">1. Introduction</a></b><br>
+        <p class="content-modal">
+          This User Agreement, the Mobile Application Terms of Use, and all policies and additional terms
+          posted on and in our sites, applications, tools and services (collectively "Services") set out the
+          terms on which eBay offers you access to and use of our Services. You can find an overview of our
+          policies here. The Mobile Application Terms of Use, all policies and additional terms posted on and
+          in our Services are incorporated into this User Agreement. You agree to comply with all terms of
+          this User Agreement when accessing or using our Services.
+          <br>
+          The entity you are contracting with is: eBay Inc., 2025 Hamilton Ave., San Jose, CA 95125, if you
+          reside in the United States; eBay (UK) Limited, 1 More London Place, London, SE1 2AF, United
+          Kingdom, if you reside in the United Kingdom; eBay GmbH, Albert-Einstein-Ring 2-6, 14532
+          Kleinmachnow, Germany, if you reside in the European Union; eBay Canada Limited, 240 Richmond Street
+          West, 2nd Floor Suite 02-100, Toronto, Ontario, M5V 1V6, Canada, if you reside in Canada; eBay
+          Singapore Services Pte Ltd., 10 Collyer Quay, #10-01 Ocean Financial Centre, Singapore 049315, if
+          you reside in India; and eBay Marketplaces GmbH, Helvetiastrasse 15/17, 3005, Bern, Switzerland, if
+          you reside in any other country. In this User Agreement, these entities are individually and
+          collectively referred to as "eBay," "we," or "us."
+          <br>
+          Please be advised that this User Agreement contains provisions that govern
+          how claims you and we have against each other are resolved (see "Disclaimer of Warranties;
+          Limitation of Liability" and "Legal Disputes" provisions below). It also contains an Agreement to
+          Arbitrate which will, with limited exception, require you to submit claims you have against us
+          or our agents to binding and final arbitration, unless you opt out of the Agreement to Arbitrate
+          (see Legal Disputes, Section B ("Agreement to Arbitrate")). If you do not opt out: (1)
+          you will only be permitted to pursue claims against us or our agents on an individual basis,
+          not as a plaintiff or class member in any class or representative action or proceeding and (2)
+          you will only be permitted to seek relief (including monetary, injunctive, and declaratory relief)
+          on an individual basis.
+          <br>
+        </p>
+        <b><a id="2">2. About Us</a></b><br>
+        <p class="content-modal">
+          eBay is a marketplace that allows users to offer, sell and buy goods and services in various
+          geographic locations using a variety of pricing formats. eBay is not a party to contracts for sale
+          between third-party sellers and buyers, nor is eBay a traditional auctioneer.
+          <br>
+          Any guidance eBay provides as part of our Services, such as pricing, shipping,
+          listing, and sourcing is solely informational and you may decide to follow it or not.
+          We may help facilitate the resolution of disputes between buyers and sellers through various
+          programs. Unless otherwise expressly provided, eBay has no control over and does not guarantee:
+          the existence, quality, safety or legality of items advertised; the truth or accuracy of users'
+          content
+          or listings; the ability of sellers to sell items; the ability of buyers to pay for items; or that a
+          buyer
+          or seller will actually complete a transaction or return an item.
+          <br>
+        </p>
+        <b><a id="3">3. Using Our Service</a></b><br>
+        <p class="content-modal">
+          In connection with using or accessing our Services you agree to comply with this User Agreement, our
+          policies, our terms, and all applicable laws, rules, and regulations, and you will not:
+          <br>
+          breach or circumvent any laws, regulations, third-party rights or our systems, Services, policies,
+          or determinations of your account status;
+          use our Services if you are not able to form legally binding contracts (for example, if you are
+          under 18 years old), or are temporarily or indefinitely suspended from using our Services, or are a
+          person with whom transactions are prohibited under economic or trade sanctions;
+          fail to pay for items purchased by you, unless you have a valid reason as set out in an eBay policy,
+          for example, the seller has materially changed the item's description after you bid (see our Unpaid
+          item policy);
+          fail to deliver items sold by you, unless you have a valid reason as set out in an eBay policy;
+          manipulate the price of any item or interfere with any other user's listings;
+          take any action that may undermine the feedback or ratings systems (our Feedback policies);
+          transfer your eBay account (including feedback) and user ID to another party without our consent;
+          share your log in credentials with any third parties. If you require that authorized third parties
+          (employees, agents, etc) have access to your account we offer a Multi-User Account Access program
+          for that purpose.
+          create listings, post, or upload content in inappropriate categories or areas on our sites;
+          post false, inaccurate, misleading, deceptive, defamatory, or libelous content;
+          distribute or post spam, unsolicited or bulk electronic communications, chain letters, or pyramid
+          schemes;
+          distribute viruses or any other technologies that may harm eBay or the interests or property of
+          users;
+          use any robot, spider, scraper, data mining tools, data gathering and extraction tools, or other
+          automated means to access our Services for any purpose, except with the prior express permission of
+          eBay;
+          circumvent any technical measures used to provide our Services.
+          interfere with the functioning of our Services, such as by imposing an unreasonable or
+          disproportionately large load on our infrastructure;
+          export or re-export any eBay application or tool, except in compliance with the export control laws,
+          and rules and policies of any relevant jurisdictions;
+          infringe the copyright, trademark, patent, publicity, moral, database, and/or other intellectual
+          property rights (collectively, "Intellectual Property Rights") that belong to or are licensed to
+          eBay. Some, but not all, actions that may constitute infringement are reproducing, performing,
+          displaying, distributing, copying, reverse engineering, decompiling, disassembling, or preparing
+          derivative works from content that belongs to eBay or someone else;
+          infringe any Intellectual Property Rights that belong to third parties affected by your use of our
+          Services or post content that does not belong to you;
+          commercialize any eBay application or any information, data or software associated with such
+          application, except with the prior express permission of eBay; or
+          harvest or otherwise collect or use information about users without their consent.
+          Sellers must meet eBay's minimum performance standards. Failure to meet these standards may result
+          in eBay charging sellers additional fees, and/or limiting, restricting, suspending, or downgrading
+          your seller account.
+
+          If we believe you are abusing eBay and/or our Services in any way, we may, in our sole discretion
+          and without limiting other remedies, limit, suspend, or terminate your user account(s) and access to
+          our Services, delay or remove hosted content, remove any special status associated with your
+          account(s), remove, not display, and/or demote listings, reduce or eliminate any discounts, and take
+          technical and/or legal steps to prevent you from using our Services.
+
+          If we believe you are violating our policies prohibiting Offers to buy or sell outside of eBay, you
+          may be subject to a range of actions, including limits on your buying and selling privileges,
+          restrictions on listings and account features, suspension of your account, application of fees, and
+          recovery of expenses for policy monitoring and enforcement. Also, as provided below in the Fees and
+          Taxes section, if we believe you are violating our policy on buying or selling outside of eBay, you
+          may be charged final value fees.
+
+          We may cancel unconfirmed accounts or accounts that have been inactive for a substantial period of
+          time. Additionally, we reserve the right to refuse, modify, or terminate all or part of our Services
+          to anyone for any reason at our discretion.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-success" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 2-->
+<div class="modal fade" id="exampleModalLong2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle2">User Privacy Notice</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <b>1. <a href="#4" class="modal-tittle">Introduction</a></b><br>
+
+        <b>2. <a href="#5" class="modal-tittle">About Us</a></b><br>
+
+        <b>3. <a href="#6" class="modal-tittle">Using Our Service</a></b><br>
+        <b><a id="4">1. Introduction</a></b><br>
+        This User Agreement, the Mobile Application Terms of Use, and all policies and additional terms posted
+        on and in our sites, applications, tools and services (collectively "Services") set out the terms on
+        which eBay offers you access to and use of our Services. You can find an overview of our policies here.
+        The Mobile Application Terms of Use, all policies and additional terms posted on and in our Services are
+        incorporated into this User Agreement. You agree to comply with all terms of this User Agreement when
+        accessing or using our Services.
+        <br>
+        The entity you are contracting with is: eBay Inc., 2025 Hamilton Ave., San Jose, CA 95125, if you reside
+        in the United States; eBay (UK) Limited, 1 More London Place, London, SE1 2AF, United Kingdom, if you
+        reside in the United Kingdom; eBay GmbH, Albert-Einstein-Ring 2-6, 14532 Kleinmachnow, Germany, if you
+        reside in the European Union; eBay Canada Limited, 240 Richmond Street West, 2nd Floor Suite 02-100,
+        Toronto, Ontario, M5V 1V6, Canada, if you reside in Canada; eBay Singapore Services Pte Ltd., 10 Collyer
+        Quay, #10-01 Ocean Financial Centre, Singapore 049315, if you reside in India; and eBay Marketplaces
+        GmbH, Helvetiastrasse 15/17, 3005, Bern, Switzerland, if you reside in any other country. In this User
+        Agreement, these entities are individually and collectively referred to as "eBay," "we," or "us."
+        <br>
+        Please be advised that this User Agreement contains provisions that govern
+        how claims you and we have against each other are resolved (see "Disclaimer of Warranties;
+        Limitation of Liability" and "Legal Disputes" provisions below). It also contains an Agreement to
+        Arbitrate which will, with limited exception, require you to submit claims you have against us
+        or our agents to binding and final arbitration, unless you opt out of the Agreement to Arbitrate
+        (see Legal Disputes, Section B ("Agreement to Arbitrate")). If you do not opt out: (1)
+        you will only be permitted to pursue claims against us or our agents on an individual basis,
+        not as a plaintiff or class member in any class or representative action or proceeding and (2)
+        you will only be permitted to seek relief (including monetary, injunctive, and declaratory relief)
+        on an individual basis.
+        <br>
+        <br>
+        <b><a id="5">2. About Us</a></b><br>
+        eBay is a marketplace that allows users to offer, sell and buy goods and services in various geographic
+        locations using a variety of pricing formats. eBay is not a party to contracts for sale between
+        third-party sellers and buyers, nor is eBay a traditional auctioneer.
+        <br>
+        Any guidance eBay provides as part of our Services, such as pricing, shipping,
+        listing, and sourcing is solely informational and you may decide to follow it or not.
+        We may help facilitate the resolution of disputes between buyers and sellers through various
+        programs. Unless otherwise expressly provided, eBay has no control over and does not guarantee:
+        the existence, quality, safety or legality of items advertised; the truth or accuracy of users' content
+        or listings; the ability of sellers to sell items; the ability of buyers to pay for items; or that a
+        buyer
+        or seller will actually complete a transaction or return an item.
+        <br>
+        <br>
+        <b><a id="6">3. Using Our Service</a></b><br>
+        In connection with using or accessing our Services you agree to comply with this User Agreement, our
+        policies, our terms, and all applicable laws, rules, and regulations, and you will not:
+        <br>
+        breach or circumvent any laws, regulations, third-party rights or our systems, Services, policies, or
+        determinations of your account status;
+        use our Services if you are not able to form legally binding contracts (for example, if you are under 18
+        years old), or are temporarily or indefinitely suspended from using our Services, or are a person with
+        whom transactions are prohibited under economic or trade sanctions;
+        fail to pay for items purchased by you, unless you have a valid reason as set out in an eBay policy, for
+        example, the seller has materially changed the item's description after you bid (see our Unpaid item
+        policy);
+        fail to deliver items sold by you, unless you have a valid reason as set out in an eBay policy;
+        manipulate the price of any item or interfere with any other user's listings;
+        take any action that may undermine the feedback or ratings systems (our Feedback policies);
+        transfer your eBay account (including feedback) and user ID to another party without our consent;
+        share your log in credentials with any third parties. If you require that authorized third parties
+        (employees, agents, etc) have access to your account we offer a Multi-User Account Access program for
+        that purpose.
+        create listings, post, or upload content in inappropriate categories or areas on our sites;
+        post false, inaccurate, misleading, deceptive, defamatory, or libelous content;
+        distribute or post spam, unsolicited or bulk electronic communications, chain letters, or pyramid
+        schemes;
+        distribute viruses or any other technologies that may harm eBay or the interests or property of users;
+        use any robot, spider, scraper, data mining tools, data gathering and extraction tools, or other
+        automated means to access our Services for any purpose, except with the prior express permission of
+        eBay;
+        circumvent any technical measures used to provide our Services.
+        interfere with the functioning of our Services, such as by imposing an unreasonable or
+        disproportionately large load on our infrastructure;
+        export or re-export any eBay application or tool, except in compliance with the export control laws, and
+        rules and policies of any relevant jurisdictions;
+        infringe the copyright, trademark, patent, publicity, moral, database, and/or other intellectual
+        property rights (collectively, "Intellectual Property Rights") that belong to or are licensed to eBay.
+        Some, but not all, actions that may constitute infringement are reproducing, performing, displaying,
+        distributing, copying, reverse engineering, decompiling, disassembling, or preparing derivative works
+        from content that belongs to eBay or someone else;
+        infringe any Intellectual Property Rights that belong to third parties affected by your use of our
+        Services or post content that does not belong to you;
+        commercialize any eBay application or any information, data or software associated with such
+        application, except with the prior express permission of eBay; or
+        harvest or otherwise collect or use information about users without their consent.
+        Sellers must meet eBay's minimum performance standards. Failure to meet these standards may result in
+        eBay charging sellers additional fees, and/or limiting, restricting, suspending, or downgrading your
+        seller account.
+
+        If we believe you are abusing eBay and/or our Services in any way, we may, in our sole discretion and
+        without limiting other remedies, limit, suspend, or terminate your user account(s) and access to our
+        Services, delay or remove hosted content, remove any special status associated with your account(s),
+        remove, not display, and/or demote listings, reduce or eliminate any discounts, and take technical
+        and/or legal steps to prevent you from using our Services.
+
+        If we believe you are violating our policies prohibiting Offers to buy or sell outside of eBay, you may
+        be subject to a range of actions, including limits on your buying and selling privileges, restrictions
+        on listings and account features, suspension of your account, application of fees, and recovery of
+        expenses for policy monitoring and enforcement. Also, as provided below in the Fees and Taxes section,
+        if we believe you are violating our policy on buying or selling outside of eBay, you may be charged
+        final value fees.
+
+        We may cancel unconfirmed accounts or accounts that have been inactive for a substantial period of time.
+        Additionally, we reserve the right to refuse, modify, or terminate all or part of our Services to anyone
+        for any reason at our discretion.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-success" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Modal success
+<div class="container text-center">
+  <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#scaleModal">Scale Modal</button>
+</div>
+ Modal
+<div class="modal fade-scale" id="scaleModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel" text-center>Create account success</h4>
+      </div>
+      <div class="modal-body">
+       You account {{account.username}} was created succesfully ! Come back Login
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" [routerLink]="['.../login']">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+ Modal -->
+
