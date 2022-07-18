@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {AngularFireDatabase, AngularFireList, AngularFireObject} from '@angular/fire/database';
-import {Observable} from "rxjs";
+import {AngularFireDatabase, AngularFireList} from '@angular/fire/database';
+import {Observable} from 'rxjs';
 import {ApiService} from "./api.service";
 
 @Injectable({
@@ -10,13 +10,6 @@ export class ConnectFirebaseService {
 
   /* To store list users */
   users: AngularFireList<any>;
-
-  /* Get all users */
-  getUsers() {
-    const path = `users/`;
-    this.users = this.db.list(path);
-    return this.users.valueChanges();
-  }
 
   /* Set data for user */
   setDataUser(userId: any, username: string, email: string, roles: any[], status: boolean) {
@@ -36,7 +29,7 @@ export class ConnectFirebaseService {
   setStatusMsg(userId: any, status: boolean, quantity: number, msgNew: string) {
     const path = `statusMsg/${userId}`;
 
-    if(status) {
+    if (status) {
       quantity += 1;
     } else {
       quantity = 0;
@@ -78,13 +71,18 @@ export class ConnectFirebaseService {
     return this.db.object(path).valueChanges();
   }
 
-  /* Get all in status  message */
-  getAllStatusMsg(): Observable<any> {
-    const path = `statusMsg/`;
+  /* Set status for account */
+  setStatusForAccount(accountId: any, status: boolean) {
+    const path = `users/${accountId}`;
 
-    return this.db.list(path).valueChanges();
+    const data = {
+      status: status
+    }
+
+    this.db.object(path).update(data).then(() => window.location.reload())
+      .catch(error => console.log(error));
   }
 
-  constructor(private db: AngularFireDatabase , private apiService: ApiService) {
+  constructor(private db: AngularFireDatabase, private apiService: ApiService) {
   }
 }

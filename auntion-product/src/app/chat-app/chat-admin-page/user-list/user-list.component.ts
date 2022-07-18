@@ -18,17 +18,11 @@ export class UserListComponent implements OnInit, OnChanges {
   /* Get all users */
   accounts: Account[];
 
-  /* Get member */
-  members: Member;
-
   /* Get status msg */
   statusUsersMsg: any[] = [];
-  statusUserMsg: any;
-  statusUsersTemp: any[] = [];
   count = 1;
 
-  constructor(private apiService: ApiService, private connectFirebaseService: ConnectFirebaseService
-    , private chatService: ChatService) {
+  constructor(private apiService: ApiService, private connectFirebaseService: ConnectFirebaseService) {
   }
 
   ngOnChanges(): void {

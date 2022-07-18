@@ -61,7 +61,7 @@ export class ChatService {
 
     /* To hidden quantity when its role admin */
     let breakProgram = this.connectFirebaseService.getStatusMsg(this.account.id).subscribe(data => {
-      if(this.account.id === 1) {
+      if (this.account.id === 1) {
         this.connectFirebaseService.setStatusMsg(accountId, false, 0, message);
       } else {
         if (data == null) {
@@ -84,6 +84,17 @@ export class ChatService {
   /* Get messages */
   getMessages(accountId: any): AngularFireList<ChatMessage[]> {
     return this.db.list(`messages/${accountId}`, ref => ref.orderByKey().limitToLast(400));
+  }
+
+  /* Delete message */
+  deleteMessage(accountId: any): void {
+    /* Get key in message to delete */
+    this.getMessages(accountId).snapshotChanges().subscribe(key => {
+      const path = `messages/${accountId}`;
+
+      console.log(key);
+      // return this.db.list(path).remove(key[key.length - 1].key);
+    });
   }
 
   /* Save img */
@@ -162,7 +173,7 @@ export class ChatService {
   constructor(private db: AngularFireDatabase, private storage: AngularFireStorage
     , private apiService: ApiService, private connectFirebaseService: ConnectFirebaseService) {
     this.account = JSON.parse(window.localStorage.getItem('user'));
-    if(this.account == null) {
+    if (this.account == null) {
       this.account = JSON.parse(window.localStorage.getItem('admin'));
     }
   }

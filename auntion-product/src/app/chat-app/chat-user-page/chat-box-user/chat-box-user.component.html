@@ -1,3 +1,4 @@
+<!-- Chat box -->
 <div class="screen-chat__middle-group">
   <div class="info-user">
     <div class="icon-user">
@@ -17,10 +18,6 @@
 
   <div class="info-chat">
     <div class="info-chat__item">
-      <div class="img-group">
-        <img src="./assets/avatar.avif" alt="">
-      </div>
-
       <div class="info-chat__item-right-area">
         <span class="name">Admin</span>
         <span class="time">{{now}}</span>
@@ -32,7 +29,11 @@
     </div>
 
     <!-- Message of user -->
-    <div *ngFor="let message of messages | async" class="info-chat__item" [ngClass]="message.isOwn.length == 1?'user':null">
+    <div *ngFor="let message of messages | async" class="info-chat__item"
+         [ngClass]="message.isOwn.length == 1?'user':null">
+      <div class="function__message">
+        <i class="fa-solid fa-ellipsis-vertical"></i>
+      </div>
       <span class="time">{{message.timeSent}}</span>
 
       <div class="text-chat">
@@ -45,21 +46,5 @@
         <p>{{message.message}}</p>
       </div>
     </div>
-
-    <!--    &lt;!&ndash; Message of admin &ndash;&gt;-->
-    <!--    <div class="chat-box__item" *ngFor="let message of messagesAdmin | async">-->
-    <!--      <div class="detail">-->
-    <!--        <span class="time">{{message.timeSent}}</span>-->
-    <!--      </div>-->
-
-    <!--      <div class="text-chat">-->
-    <!--        <img class="text-chat__img" *ngIf="message.fileUpload && !message.isFile" [src]="message.fileUpload.url" alt="">-->
-
-    <!--        <a class="text-chat__file" *ngIf="message.fileUpload && message.isFile"-->
-    <!--           href="{{message.fileUpload.url}}" target="_blank">{{message.fileUpload.name}}</a>-->
-
-    <!--        <p>{{message.message}}</p>-->
-    <!--      </div>-->
-    <!--    </div>-->
   </div>
 </div>

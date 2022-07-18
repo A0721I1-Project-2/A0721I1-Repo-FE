@@ -73,6 +73,7 @@
 .screen-chat__middle-group .info-chat .time {
   color: #888;
   font-size: 1.3rem;
+  margin-left: 8px;
 }
 
 .screen-chat__middle-group .info-chat .name {
@@ -109,6 +110,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .screen-chat__middle-group .user .text-chat a {

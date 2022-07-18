@@ -50,9 +50,8 @@ export class ChatFormUserComponent implements OnInit {
     /* Send message */
     let message = this.formChat.get('message').value;
 
-    console.log(message);
     /* Check empty message */
-    if ((message == '' || message == null) && this.selectedFiles == null) {
+    if ((message === '' || message == null) && this.selectedFiles == null) {
       this.showNotiError = true;
       setTimeout(() => {
         this.showNotiError = false;
@@ -73,7 +72,7 @@ export class ChatFormUserComponent implements OnInit {
           message = null;
         }
 
-        this.chatService.pushFileToStorage(message, this.currentFileUpload , this.user.id).subscribe(percentage => {
+        this.chatService.pushFileToStorage(message, this.currentFileUpload, this.user.id).subscribe(percentage => {
             this.percentage = Math.round(percentage);
           },
           error => {
@@ -89,6 +88,33 @@ export class ChatFormUserComponent implements OnInit {
   }
 
   selectFile(event: any) {
+    /* To get info files selected */
+    this.selectedFiles = event.target.files;
+
+    /* Check file or img to show */
+    this.checkFileAndImg(this.selectedFiles.item(0));
+
+    /* To show images */
+    // this.uploadSrc = [];
+    //
+    // let files = event.target.files;
+    // if (files) {
+    //   for (let file of files) {
+    //     let reader = new FileReader();
+    //     /* Check file or image */
+    //     if (!this.isFile) {
+    //       reader.onload = (e: any) => {
+    //         this.uploadSrc.push(e.target.result);
+    //       }
+    //     } else {
+    //       this.uploadSrc.push(file);
+    //       reader.readAsDataURL(file);
+    //     }
+    //     reader.readAsDataURL(file);
+    //   }
+    // }
+
+    // Single img
     this.selectedFiles = event.target.files;
 
     /* Check file or img to show */
