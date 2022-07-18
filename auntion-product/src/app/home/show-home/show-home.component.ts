@@ -66,30 +66,6 @@ export class ShowHomeComponent implements OnInit {
       }
     );
   }
-  /*showListProductAuction() {
-    this.showListAuntionWithTime();
-    // this.showListAuntionWithTime();
-    if (this.nameProductSearch != null) {
-      this.nameProductSearch = '';
-    }
-    this.checkLoadMore = false;
-    if (!this.checkLoadMore) {
-      this.currentItem = 4;
-    }
-    this.checkFinished = false;
-    this.checkLoadMore = false;
-    this.checkHiddenLoadMore = false;
-    const loadMoreBtn = document.querySelector('#load-more');
-      // tslint:disable-next-line:triple-equals
-    if (this.checkHiddenLoadMore == false) {
-        // @ts-ignore
-        // tslint:disable-next-line:no-unused-expression
-        loadMoreBtn.style.display = 'inline-block';
-      }
-    }*/
-
-
-
   showListAuntionWithTime() {
     this.homeService.showListProductAuction().subscribe(
       (data) => {
@@ -147,65 +123,7 @@ export class ShowHomeComponent implements OnInit {
     );
   }
 
-//   showListAuntionWithTime() {
-//     this.homeService.showListProductAuction().subscribe(
-//       (data) => {
-//         // tslint:disable-next-line:prefer-const
-//         let products = [];
-//         // tslint:disable-next-line:prefer-const
-//         let countDownDate: number[] = [];
-//         products = this.products = data;
-//         for (let i = 0; i < products.length; i++) {
-//           // tslint:disable-next-line:prefer-const
-//           countDownDate[i] = new Date(this.products[i].endDate).getTime();
-//           console.log(i + '//' + this.products[i].endDate);
-//           console.log(countDownDate[i]);
-//         }
-//         console.log(countDownDate);
-// // Update the count down every 1 second
-//         // tslint:disable-next-line:only-arrow-functions no-shadowed-variable prefer-const
-//         // for (let i = 0; i < countDownDate.length; i++) {
-//
-//         // for (let j = 0; j < countDownDate.length; j++) {
-//         // tslint:disable-next-line:only-arrow-functions no-shadowed-variable
-//         let j = 0;
-//         // tslint:disable-next-line:only-arrow-functions
-//         const x = setInterval(function() {
-//           const distance = [];
-//           if ( j < countDownDate.length) {
-//             // console.log(countDownDate[j]);
-//             // Get today's date and time
-//             const now = new Date().getTime();
-//             // console.log(now);
-//             // Find the distance between now and the count down date
-//             // console.log(countDownDate[0]);
-//             distance[j] = countDownDate[j] - now;
-//             // Time calculations for days, hours, minutes and seconds
-//             const days = Math.floor(distance[j] / (1000 * 60 * 60 * 24));
-//             const hours = Math.floor((distance[j] % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-//             const minutes = Math.floor((distance[j] % (1000 * 60 * 60)) / (1000 * 60));
-//             const seconds = Math.floor((distance[j] % (1000 * 60)) / 1000);
-//             // Display the result in the element with id="demo"
-//             products[j].remainingTime = document.getElementById('time-remain').innerHTML = days + 'd ' + hours + 'h '
-//               + minutes + 'm ' + seconds + 's ';
-//           }
-//           j++;
-//           if (distance[j] < 0) {
-//             clearInterval(x);
-//             products[j].remainingTime = document.getElementById('time-remain').innerHTML = 'Finished';
-//           }
-//           // If the count down is finished, write some text
-//         }, 1000);
-//         // }
-//         // }
-//
-//         if (this.nameProductSearch != null) {
-//           this.nameProductSearch = '';
-//         }
-//         // console.log(data);
-//       },
-//     );
-//   }
+
 
   showListAuntionFinishedWithTime() {
     this.homeService.showListProductFinished().subscribe(
