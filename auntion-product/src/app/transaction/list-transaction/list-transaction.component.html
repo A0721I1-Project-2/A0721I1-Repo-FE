@@ -55,7 +55,13 @@
           <td>{{invoiceDetails.product.endDate}}</td>
           <td>{{invoiceDetails.invoice.member.nameMember}}</td>
           <td>{{invoiceDetails.invoice.payment.fullNameReceiver}}</td>
-          <td>{{invoiceDetails.product.nameProduct}}</td>
+          <td style="text-align: left;
+                     overflow: hidden;
+                     white-space: nowrap;
+                     text-overflow: ellipsis;
+                     max-width: 100px;">
+            {{invoiceDetails.product.nameProduct}}
+          </td>
           <td >{{invoiceDetails.product.initialPrice}}</td>
           <td>{{invoiceDetails.product.finalPrice}}</td>
           <td>{{invoiceDetails.invoice.payment.feeService}}</td>
@@ -74,8 +80,8 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body" *ngFor="let i ">
-                Do you want to delete this transaction? {{idInvoice}}
+              <div class="modal-body" *ngFor="let i of listIdInvoice">
+                Do you want to delete this transaction with ID: {{i}} ?
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

@@ -3,13 +3,11 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import { HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {AngularFireModule} from '@angular/fire';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {TransactionModule} from './transaction/transaction.module';
-import {Ng2SearchPipeModule} from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -24,8 +22,7 @@ import {Ng2SearchPipeModule} from 'ng2-search-filter';
         AngularFireDatabaseModule,
         AngularFireAuthModule,
         TransactionModule,
-        HttpClientModule,
-        Ng2SearchPipeModule
+        HttpClientModule
     ],
   providers: [],
   bootstrap: [AppComponent]

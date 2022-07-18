@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TransactionService} from '../service/transaction.service';
 import {InvoiceDetail} from '../../model/InvoiceDetail';
 import {FormControl, FormGroup} from '@angular/forms';
@@ -165,28 +165,31 @@ export class ListTransactionComponent implements OnInit {
 
   findSum(data) {
     this.item = data;
-      for (let i = 0; i < data.length; i++) {
-        this.result = this.item[i].product.finalPrice + this.item[i].invoice.payment.feeService;
-        this.total += this.result;
-      }
+    for (let i = 0; i < data.length; i++) {
+      this.result = this.item[i].product.finalPrice + this.item[i].invoice.payment.feeService;
+      this.total += this.result;
+    }
   }
 
   onChangeDelete($event: any) {
     this.idInvoice = $event.target.value;
     this.idInvoiceChecked = $event.target.checked;
+    console.log(this.idInvoiceChecked);
     if (this.idInvoiceChecked) {
       this.listIdInvoice.push(this.idInvoice);
     } else {
-      this.idInvoiceChecked.splice(this.idInvoiceChecked.indexOf( this.idInvoice), 1);
+      this.idInvoiceChecked.splice(this.idInvoiceChecked.indexOf(this.idInvoice), 1);
     }
   }
 
   /* Delete invoice */
   deleteInvoice() {
-    for (let i = 0 ; i < this.listIdInvoice.length ; i++) {
-      this.transactionService.delete(this.listIdInvoice[i]).subscribe(() => {
-        this.ngOnInit();
-      });
+    if (this.listIdInvoice.length > 0) {
+      for (let i = 0; i < this.listIdInvoice.length; i++) {
+        this.transactionService.delete(this.listIdInvoice[i]).subscribe(() => {
+          this.ngOnInit();
+        });
+      }
     }
   }
 }

@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { TransactionRoutingModule } from './transaction-routing.module';
 import { ListTransactionComponent } from './list-transaction/list-transaction.component';
-import {ReactiveFormsModule} from "@angular/forms";
-import {Ng2SearchPipeModule} from "ng2-search-filter";
+import {ReactiveFormsModule} from '@angular/forms';
+
 
 
 @NgModule({
@@ -15,8 +14,7 @@ import {Ng2SearchPipeModule} from "ng2-search-filter";
     imports: [
         CommonModule,
         TransactionRoutingModule,
-        ReactiveFormsModule,
-        Ng2SearchPipeModule
+        ReactiveFormsModule
     ]
 })
 export class TransactionModule { }
