@@ -8,11 +8,12 @@ import {FooterAdminComponent} from './footer-admin/footer-admin.component';
 import {HomeAdminComponent} from './home-admin/home-admin.component';
 import {ContentAdminComponent} from './content-admin/content-admin.component';
 import * as CanvasJSAngularChart from '../../assets/canvasjs.angular.component';
+import { Error500Component } from './error500/error500.component';
 
 var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
 
 @NgModule({
-  declarations: [HeaderAdminComponent, NavbarAdminComponent, FooterAdminComponent, HomeAdminComponent, CanvasJSChart],
+  declarations: [HeaderAdminComponent, NavbarAdminComponent, FooterAdminComponent, HomeAdminComponent, CanvasJSChart, Error500Component],
   exports: [
     HomeAdminComponent
   ],
