@@ -8,20 +8,25 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFireAuthModule} from '@angular/fire/auth';
+import {TransactionModule} from './transaction/transaction.module';
+import {Ng2SearchPipeModule} from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    FormsModule,
-    AngularFireDatabaseModule ,
-    AngularFireAuthModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        FormsModule,
+        AngularFireDatabaseModule,
+        AngularFireAuthModule,
+        TransactionModule,
+        HttpClientModule,
+        Ng2SearchPipeModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
