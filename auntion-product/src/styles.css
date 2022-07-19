@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+:root {
+  --primary-color: #2c2b30;
+  --button-color: #ff3366;
+  --active-color: #11b683;
+}
+
+html {
+  font-family: 'Fira Code', monospace;
+}

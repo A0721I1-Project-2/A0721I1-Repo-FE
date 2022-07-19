@@ -1,0 +1,73 @@
+<section id="main-content">
+  <section class="wrapper">
+    <h3><i class="fa fa-angle-right"></i>Statistics</h3>
+    <form (ngSubmit)="report()" [formGroup]="statsGroup">
+      <div class="border border-primary">
+        <div class="row mt">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="kw">Keyword</label>
+              <input type="text" name="kw" id="kw" class="form-control" formControlName="keyword"/>
+            </div>
+          </div>
+          <div class="col-md-4">
+
+            <div class="form-group">
+              <label for="fromDate">From date<i class="text-danger">(*)</i> </label>
+              <div class='input-group date' id='datetimepicker1'>
+                <input type="date" placeholder="yyyy-MM-dd" name="fromDate" id="fromDate"
+                       class="form-control" formControlName="statsBegin"/>
+                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="toDate">To date<i class="text-danger">(*)</i></label>
+              <div class='input-group date' id='datetimepicker2'>
+                <input type="date" placeholder="yyyy-MM-dd" name="toDate" id="toDate"
+                       class="form-control" formControlName="statsEnd"/>
+                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="row mt">
+          <div class="form-btn col-md-3">
+            <input type="submit" value="Report" class="btn btn-round btn btn-default"/>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <br>
+    <div class="tab-pane" id="chartjs">
+      <div class="row mt">
+          <div class="content-panel">
+            <div class="panel-body text-center">
+              <canvas id="myChart" height="480" width="600"></canvas>
+            </div>
+        </div>
+      </div>
+      <div class="row mt">
+        <div class="col-lg-6">
+          <div class="content-panel">
+            <h4><i class="fa fa-angle-right"></i> Bar</h4>
+            <div class="panel-body text-center">
+              <canvas id="bar" height="300" width="400"></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="content-panel">
+            <h4><i class="fa fa-angle-right"></i> Pie</h4>
+            <div class="panel-body text-center">
+              <canvas id="pie" height="300" width="400"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>

@@ -1,0 +1,11 @@
+.footer__admin-container {
+  background-color: var(--primary-color);
+  padding: 20px;
+  text-align: center;
+  color: #fff;
+}
+
+.footer__admin-container p {
+  margin: 0;
+  font-size: 1.2rem;
+}
