@@ -13,7 +13,21 @@ th {
   text-align: center;
 }
 
+hr {
+  background: #11b683;
+  height: 1px;
+  margin-top: 70px;
+  margin-bottom: 50px;
+}
 
+.total-revenue {
+  border-left: 1px solid Silver;
+  border-top: 1px solid Silver;
+  border-right: 1px solid Silver;
+  border-bottom: 1px solid Silver;
+  margin: 0;
+  padding: 10px;
+}
 
 h1 {
   color: #11b683;

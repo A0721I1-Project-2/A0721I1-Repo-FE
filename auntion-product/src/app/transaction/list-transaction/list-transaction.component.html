@@ -1,8 +1,7 @@
-
-<script src="getById.js"></script>
 <div class="content" style="padding-inline: 100px;">
   <h1>Transaction Management</h1>
 
+  <hr>
 
   <div>
     <form [formGroup]="searchTransaction" (ngSubmit)="search()">
@@ -11,7 +10,7 @@
       <input type="text" class="form-control ml-3" placeholder="Buyer" formControlName="nameBuyer">
       <input type="text" class="form-control ml-3" placeholder="Product Name" formControlName="nameProduct">
       <select class="custom-select ml-3" formControlName="status">
-        <option disabled selected>Status</option>
+        <option [selected]="Status" disabled>Status</option>
         <option value="true">Success</option>
         <option value="false">Failed</option>
       </select>
@@ -66,7 +65,7 @@
           <td>{{invoiceDetails.product.finalPrice}}</td>
           <td>{{invoiceDetails.invoice.payment.feeService}}</td>
           <td *ngIf="invoiceDetails.invoice.idStatusInvoice == true">Success</td>
-          <td *ngIf="invoiceDetails.invoice.idStatusInvoice == false">Fail</td>
+          <td *ngIf="invoiceDetails.invoice.idStatusInvoice == false">Failed</td>
           <td>
             <input data-target="#idCheckbox" type="checkbox" [value]="invoiceDetails.invoice.idInvoice" [checked]="invoiceDetails.invoice.select" (change)="onChangeDelete($event)"></td>
         </tr>

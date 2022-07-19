@@ -24,6 +24,7 @@ export class ListTransactionComponent implements OnInit {
   result = 0;
   item;
   total = 0;
+  Status = 'Status';
 
   payments: Payment[];
 
@@ -73,7 +74,7 @@ export class ListTransactionComponent implements OnInit {
   }
 
   search() {
-    this.result = 0;
+    this.total = 0;
 
     if (this.searchTransaction.value.nameSeller === '' || this.searchTransaction.value.nameSeller === undefined) {
       this.searchTransaction.value.nameSeller = 'null';
@@ -141,28 +142,6 @@ export class ListTransactionComponent implements OnInit {
     this.showPage(this.pageNumber);
   }
 
-  // checkHiddenChosen(idInvoice: number, data: Invoice) {
-  //   data.flagDelete = !data.flagDelete;
-  //   if (data.flagDelete) {
-  //     this.listIdInvoice.push(idInvoice);
-  //   } else {
-  //     this.listIdInvoice.splice(this.listIdInvoice.indexOf(idInvoice), 1);
-  //   }
-  // }
-  //
-  // hiddenTransaction() {
-  //   if (this.listIdInvoice.length > 0) {
-  //     for (let i = 0; i <      .length; i++) {
-  //       this.activatedRoute.paramMap.subscribe((param: ParamMap) => {
-  //         this.id = +param.get('id');
-  //         this.transactionService.delete(this.id).subscribe(next => this.router.navigateByUrl(''));
-  //       });
-  //     }
-  //   } else {
-  //     alert('');
-  //   }
-  // }
-
   findSum(data) {
     this.item = data;
     for (let i = 0; i < data.length; i++) {
@@ -171,6 +150,7 @@ export class ListTransactionComponent implements OnInit {
     }
   }
 
+  /* */
   onChangeDelete($event: any) {
     this.idInvoice = $event.target.value;
     this.idInvoiceChecked = $event.target.checked;
@@ -183,6 +163,7 @@ export class ListTransactionComponent implements OnInit {
   }
 
   /* Delete invoice */
+
   deleteInvoice() {
     if (this.listIdInvoice.length > 0) {
       for (let i = 0; i < this.listIdInvoice.length; i++) {
