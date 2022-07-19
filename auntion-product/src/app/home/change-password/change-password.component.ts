@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {AbstractControl, FormControl, FormGroup} from '@angular/forms';
+import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import {HomeService} from '../service/home.service';
 import {ActivatedRoute} from '@angular/router';
-import {validate} from "codelyzer/walkerFactory/walkerFn";
 
 
 @Component({
@@ -17,10 +16,9 @@ export class ChangePasswordComponent implements OnInit {
 
   constructor(private homeService: HomeService, private route: ActivatedRoute) {
     this.token = this.route.snapshot.paramMap.get('token');
-    console.log(this.token);
     this.changePasswordForm = new FormGroup({
-      password: new FormControl('',[]),
-      confirmPass: new FormControl(''),
+      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      confirmPass: new FormControl('', [Validators.required]),
     }, {validators: identityConfirmPassword});
   }
 

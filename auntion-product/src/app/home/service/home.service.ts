@@ -21,13 +21,12 @@ export class HomeService {
 
   // VinhTQ
   changePassword(password: string, token: string): Observable<string> {
-    return this.httpClient.post<string>(URL_ACCOUNT_API + '/change-password?token=' + token + '&password=' + password, {
-    });
+    return this.httpClient.post<string>(URL_ACCOUNT_API + '/change-password?token=' + token + '&password=' + password, {});
   }
 
   // VinhTQ
   getProductByIdForProductDetail(id): Observable<Product> {
-    return this.httpClient.get<Product>(URL_HOME_API + '');
+    return this.httpClient.get<Product>(URL_HOME_API + '/find-by-id/' + id);
   }
 
   // HauLST

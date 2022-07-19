@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HomeService} from '../service/home.service';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-forgot-password',
@@ -13,8 +13,8 @@ export class ForgotPasswordComponent implements OnInit {
 
   constructor(private homeService: HomeService) {
     this.forgotPasswordForm = new FormGroup({
-      username: new FormControl(''),
-      email: new FormControl(''),
+      username: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required, Validators.email]),
     });
   }
 
