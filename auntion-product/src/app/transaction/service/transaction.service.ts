@@ -29,6 +29,10 @@ export class TransactionService {
     return this.http.get(API_URL + 'search-date/' + startDate + '/' + endDate);
   }
 
+  searchStatus(status: string) {
+    return this.http.get(API_URL + 'search-status/' + status);
+  }
+
   delete(id: any) {
     return this.http.patch(API_URL + 'delete/' + id , {});
   }
