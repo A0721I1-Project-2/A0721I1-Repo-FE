@@ -6,6 +6,7 @@ import {AuctionDTO} from '../../model/auctionDTO';
 import {Member} from '../../model/Member';
 import {Account} from '../../model/Account';
 import {ImageProduct} from '../../model/ImageProduct';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-auction',
@@ -13,7 +14,7 @@ import {ImageProduct} from '../../model/ImageProduct';
   styleUrls: ['./auction.component.css']
 })
 export class AuctionComponent implements OnInit {
-  idProduct = 1;
+  idProduct: number;
   product: Product;
   currentPrice: number;
   currentWinner: string;
@@ -24,9 +25,11 @@ export class AuctionComponent implements OnInit {
   account: Account;
   isFinish = false;
 
-  constructor(private auctionProductService: AuctionProductService) { }
+  constructor(private auctionProductService: AuctionProductService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    const idProduct = this.activatedRoute.snapshot.params.id;
+    this.idProduct = idProduct;
     this.getMemberAndAccountIdFromLocalStore();
     window.localStorage.setItem('id', '1');
     this.getAuctionList();

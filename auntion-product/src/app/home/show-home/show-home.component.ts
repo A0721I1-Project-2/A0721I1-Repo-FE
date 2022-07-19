@@ -69,6 +69,7 @@ export class ShowHomeComponent implements OnInit {
   showListAuntionWithTime() {
     this.homeService.showListProductAuction().subscribe(
       (data) => {
+        console.log(data);
         // tslint:disable-next-line:prefer-const
         let products = [];
         // tslint:disable-next-line:prefer-const

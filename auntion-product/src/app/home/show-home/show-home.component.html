@@ -165,7 +165,7 @@
                 <div>TIME LEFT: <span style="color: #fff;">{{product.remainingTime}}</span></div>
               </div>
               <div class="product-image" *ngFor="let img of product.imageProductList">
-                <a href="/"><img [src]="img.imageProduct" alt="Flycame"
+                <a routerLink="/" ><img [src]="img.imageProduct" alt="Flycame"
                                  onError="this.src='./assets/home-header/image/Image_not_available.png'"></a>
               </div>
               <div class="product-title">
@@ -178,7 +178,7 @@
                 <h5>${{product.finalPrice}}</h5>
               </div>
               <div class="product-btn">
-                <a class="btn button-auction-product" href="/" [hidden]="checkFinished==true">AUCTION</a>
+                <a class="btn button-auction-product" [routerLink]="['/auction-product/auction', product.idProduct]" [hidden]="checkFinished==true">AUCTION</a>
               </div>
             </div>
           </div>

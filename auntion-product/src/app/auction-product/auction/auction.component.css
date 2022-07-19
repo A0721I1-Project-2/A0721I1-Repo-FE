@@ -12,7 +12,7 @@ body,h1,h2,h3,h4,h5,h6 {
 
 .page__container {
   max-width: 1250px;
-  margin: 60px auto 0px;
+  margin: 200px auto 60px;
 }
 
 .page__layout {
@@ -383,6 +383,10 @@ label.star:before {
 .modal-header {
   color: white;
   font-weight: bold;
+}
+
+.modal-body {
+  color: black;
 }
 
 .btn-danger {
