@@ -35,6 +35,7 @@ export class LoginFormComponent implements OnInit {
         this.connectFirebaseService.setStatusForAccount(JSON.parse(localStorage.getItem('user')).id, true);
       } else {
         localStorage.setItem('admin', JSON.stringify(data));
+        console.log(localStorage.getItem('admin'));
         /* Set status for account */
         this.connectFirebaseService.setStatusForAccount(JSON.parse(localStorage.getItem('admin')).id, true);
       }

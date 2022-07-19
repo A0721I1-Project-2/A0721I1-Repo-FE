@@ -1,0 +1,49 @@
+<!--<div class="chat-admin__container">-->
+<!--  <div class="header" style="border-bottom: 1px solid #dadada;"><h3>Header</h3></div>-->
+<!--  <div class="row">-->
+<!--    <div style="border-right: 1px solid #dadada" class="col-3">-->
+<!--&lt;!&ndash;      <h3 *ngIf="userItemChild">{{userItemChild}}</h3>&ndash;&gt;-->
+<!--    </div>-->
+
+<!--    <div class="col-9">-->
+<!--      <div class="chat-box__container">-->
+<!--        <div class="row">-->
+<!--          <div class="col-4" style=" background: #f8fafb;border-right: 1px solid #dadada;">-->
+<!--            <app-user-list (userIdItem)="getUserFromChild($event)"></app-user-list>-->
+<!--          </div>-->
+<!--          <div class="col-8" style="padding: 50px 30px 20px 20px; background: #f8fafb">-->
+<!--            <app-chat-box [userIdParent]="userItemChild"></app-chat-box>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<div class="chat-admin__container" style="overflow: hidden">
+  <div class="header__admin">
+    <app-header-admin></app-header-admin>
+  </div>
+  <div class="content__admin-container">
+    <div class="row">
+      <div class="d-none-m-b col-md-2 p-r-0">
+        <app-navbar-admin></app-navbar-admin>
+      </div>
+
+      <div class="col-12 col-md-10 p-l-0">
+        <div class="chat-box__container">
+          <div class="row">
+            <div class="col-md-4" style=" background: #f8fafb;border-right: 1px solid #dadada">
+              <app-user-list (userIdItem)="getUserFromChild($event)"></app-user-list>
+            </div>
+            <div class="col-md-8" style="padding: 50px 30px 20px 20px; background: #f8fafb">
+              <app-chat-box-admin [userIdParent]="userItemChild"></app-chat-box-admin>
+            </div>
+          </div>
+        </div>
+        <app-footer-admin></app-footer-admin>
+      </div>
+    </div>
+  </div>
+</div>
+
