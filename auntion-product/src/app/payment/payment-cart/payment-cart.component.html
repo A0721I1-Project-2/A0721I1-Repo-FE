@@ -1,0 +1,374 @@
+<div class="alert alert-warning" id="alert" role="alert" hidden>
+  <h4 class="alert-heading">Halo!</h4>
+  <button type="button" class="close" (click)="hide()">&times;</button>
+  <strong>Warning!</strong> {{message}}
+</div>
+<!-- Button trigger modal -->
+<button id="button-load" hidden type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+</button>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class='spinner'></div>
+    </div>
+</div>
+<article>
+  <!-- Start Multiform HTML -->
+  <section class="multi_step_form">
+    <form [formGroup]="payment" (ngSubmit)="submit1()" id="msform">
+      <div class="tittle">
+        <h2>CHECKOUT</h2>
+        <p>In order to use this service, you have to complete this verification process</p>
+        <div class="verticalLine">
+        </div>
+      </div>
+      <!-- progressbar -->
+      <div class="tab_container">
+        <input id="tab1" type="radio" name="tabs" checked>
+        <label for="tab1"><span class="numberCircle">1</span><span>Cart</span></label>
+
+        <input id="tab2" type="radio" name="tabs">
+        <label for="tab2"><span class="numberCircle">2</span><span>Information</span></label>
+
+        <input id="tab3" type="radio" name="tabs" >
+        <label for="tab3"><span class="numberCircle">3</span><span>Payment</span></label>
+        <section id="content1" class="tab-content">
+
+<!--          // Step1-->
+          <fieldset style="" >
+            <div class=" container-fluid my-10 ">
+              <div class="row justify-content-center ">
+                <div class="col-xl-12">
+                  <div class="card shadow-lg add-shadown">
+                    <div class="row justify-content-around">
+                      <div class="col-md-12">
+                        <div class="card border-0 ">
+                          <div class="card-header card-2">
+                            <p class="card-text text-muted mt-md-4  mb-2 space">YOUR ORDER <span class=" small text-muted ml-2 cursor-pointer"></span> </p>
+                            <hr class="my-2">
+                          </div>
+                          <div class="card-body pt-0">
+                            <div>
+                              <div *ngFor="let product of products" class="row  justify-content-between">
+                                <div class="col-auto col-md-7">
+                                  <div class="media flex-column flex-sm-row">
+                                    <span><input (change)="setTotal(product.idProduct)" checked [id]="product.idProduct" type="checkbox"></span>
+                                    <img class=" img-fluid" src="https://thumbs.dreamstime.com/b/new-iphone-features-all-screen-design-99917162.jpg" width="62" height="62">
+                                    <div style="padding-left: 15px" class="media-body  my-auto">
+                                      <div class="row ">
+                                        <div class="col-auto"><p class="mb-0"><b>{{product.nameProduct}}</b></p><small class="text-muted">{{product.productDescription}}</small></div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class=" pl-0 flex-sm-col col-auto  my-auto "><p><b>{{product.finalPrice}}$</b></p></div>
+                              </div>
+                              <i *ngIf="product.length == 0" class="more" style="color: red; font-size: 11px;">Please choose product payment!</i>
+                              <hr class="my-2">
+                              <div class="row ">
+                                <div class="col">
+                                  <div class="row justify-content-between">
+                                    <div class="col-4"><p class="mb-1"><b>Subtotal</b></p></div>
+                                    <div class="flex-sm-col col-auto"><p class="mb-1"><b>{{subPrice}}$</b></p></div>
+                                  </div>
+                                  <div class="row justify-content-between">
+                                    <div class="col"><p class="mb-1"><b>Surcharge</b></p></div>
+                                    <div class="flex-sm-col col-auto"><p class="mb-1"><b>{{fee}} $</b></p></div>
+                                  </div>
+                                  <div class="row justify-content-between">
+                                    <div class="col-4"><p ><b>Total</b></p></div>
+                                    <div class="flex-sm-col col-auto"><p  class="mb-1"><b>{{total}}$</b></p> </div>
+                                  </div><hr class="my-0">
+                                  <div>
+                                    <p class="more" style="color: darkorange; padding-top: 5px">Please pay for the products in the cart within 24 hours after the successful auction time.</p>
+                                    <p class="more">The website's terms of purchase and payment require users to comply.    <i><a
+                                      href="" style="color: blue">   More...</a></i></p>
+                                    <p class="more">Thank you for using our site.</p>
+                                      <p class="more">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+                                           <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+                                            <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                                        </svg>
+                                    295 Nguyen Tat Thanh, Da Nang, Viet Nam.
+                                        <span style="position: absolute; right: 10px">
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="currentColor" class="bi bi-c-circle" viewBox="0 0 16 16">
+                                            <path d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8Zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0ZM8.146 4.992c-1.212 0-1.927.92-1.927 2.502v1.06c0 1.571.703 2.462 1.927 2.462.979 0 1.641-.586 1.729-1.418h1.295v.093c-.1 1.448-1.354 2.467-3.03 2.467-2.091 0-3.269-1.336-3.269-3.603V7.482c0-2.261 1.201-3.638 3.27-3.638 1.681 0 2.935 1.054 3.029 2.572v.088H9.875c-.088-.879-.768-1.512-1.729-1.512Z"/>
+                                          </svg>
+                                          A0721I1
+                                        </span>
+                                      </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </section>
+
+<!--        Step2-->
+        <section id="content2" class="tab-content">
+          <fieldset style="padding-top: 25px" >
+            <div class="card-header card-2" style="background-color: white">
+              <p class="card-text text-muted mt-md-4  mb-2 space">RECEIVER INFORMATION <span class=" small text-muted ml-2 cursor-pointer"></span> </p>
+              <p style="height: 0px; font-weight: 300">Please complete all information!</p>
+              <hr class="my-2">
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <div class="page">
+                  <label class="field field_v1">
+                    <input class="field__input" placeholder="Please enter first name!" formControlName="firstNameReceiver">
+                    <span class="field__label-wrap">
+                            <span class="field__label">First name<i style="color: red">(*)</i></span>
+                        </span>
+                  </label>
+                  <div class="validate-noti" *ngIf="payment.get('firstNameReceiver').invalid">
+                    <i *ngIf="payment.get('firstNameReceiver').errors.required">required!</i>
+                    <i *ngIf="payment.get('firstNameReceiver').errors.pattern">firstName invalid!</i>
+                  </div>
+                  <label class="field field_v1">
+                    <select class="form-select form-select-sm field__input" id="country" aria-label=".form-select-sm">
+                      <option value="">Select country</option>
+                      <option selected value="Việt Nam"><p>Việt Nam</p></option>
+                    </select>
+                    <span class="field__label-wrap">
+                            <span class="field__label">Country<i style="color: red">(*)</i></span>
+                        </span>
+                  </label>
+                  <label class="field field_v1">
+                    <select (change)="setWards()" formControlName="district" class="form-select form-select-sm field__input" id="district" aria-label=".form-select-sm">
+                      <option value="" selected>Select district</option>
+                      <option *ngFor="let districts of districtList " value="{{districts.Name}}"><p>{{districts.Name}}</p></option>
+                    </select>
+                    <span class="field__label-wrap">
+                            <span class="field__label">District<i style="color: red">(*)</i></span>
+                        </span>
+                  </label>
+                  <div class="validate-noti" *ngIf="payment.get('district').invalid && payment.get('district').touched">
+                    <i *ngIf="payment.get('district').errors.required">required!</i>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="page">
+                  <label class="field field_v1">
+                    <input class="field__input" placeholder="Please enter last name!" formControlName="lastNameReceiver">
+                    <span class="field__label-wrap">
+                            <span class="field__label">Last name<i style="color: red">(*)</i></span>
+                        </span>
+                  </label>
+                  <div class="validate-noti" *ngIf="payment.get('lastNameReceiver').invalid && payment.get('lastNameReceiver').touched">
+                    <i *ngIf="payment.get('lastNameReceiver').errors.required">required!</i>
+                    <i *ngIf="payment.get('lastNameReceiver').errors.pattern">lastName invalid!</i>
+                  </div>
+                  <label class="field field_v1">
+                    <select (change)="setDistricts()" formControlName="city" class="form-select form-select-sm mb-3 field__input" id="city" aria-label=".form-select-sm">
+                      <option value="" selected>Select city</option>
+                      <option *ngFor="let citis of addressList" value="{{citis.Name}}" ><p>{{citis.Name}}</p></option>
+                    </select>
+                    <span class="field__label-wrap">
+                            <span class="field__label">City<i style="color: red">(*)</i></span>
+                        </span>
+                  </label>
+                  <div class="validate-noti" *ngIf="payment.get('city').invalid && payment.get('city').touched">
+                    <i *ngIf="payment.get('city').errors.required">required!</i>
+                  </div>
+                  <label class="field field_v1">
+                    <select formControlName="ward" class="form-select form-select-sm mb-3 field__input" id="ward" aria-label=".form-select-sm">
+                      <option value="" selected>Select ward</option>
+                      <option *ngFor="let wards of wardList" value="{{wards.Name}}"><p>{{wards.Name}}</p></option>
+                    </select>
+                    <span class="field__label-wrap">
+                            <span class="field__label">Wards<i style="color: red">(*)</i></span>
+                        </span>
+                  </label>
+                  <div class="validate-noti" *ngIf="payment.get('ward').invalid && payment.get('ward').touched">
+                    <i *ngIf="payment.get('district').errors.required">required!</i>
+                  </div>
+                </div>
+              </div>
+              <div class="page">
+                <label class="field field_v1">
+                  <input class="field__input" placeholder="Please enter address!" formControlName="addressReceiver">
+                  <span class="field__label-wrap">
+                            <span class="field__label">Street<i style="color: red">(*)</i></span>
+                        </span>
+                </label>
+                <div class="validate-noti" *ngIf="payment.get('addressReceiver').invalid && payment.get('addressReceiver').touched">
+                  <i *ngIf="payment.get('addressReceiver').errors.required">required!</i>
+                  <i *ngIf="payment.get('addressReceiver').errors.pattern">Address invalid!</i>
+                </div>
+                <label class="field field_v1">
+                  <input class="field__input" placeholder="Please enter email!" formControlName="emailReceiver">
+                  <span class="field__label-wrap">
+                            <span class="field__label">E-mail<i style="color: red">(*)</i></span>
+                        </span>
+                </label>
+                <div class="validate-noti" *ngIf="payment.get('emailReceiver').invalid && payment.get('emailReceiver').touched">
+                  <i *ngIf="payment.get('emailReceiver').errors.required">required!</i>
+                  <i *ngIf="payment.get('emailReceiver').errors.pattern">email invalid!</i>
+                </div>
+                <label class="field field_v1">
+                  <input class="field__input" placeholder="Please enter phone number!" formControlName="phoneReceiver">
+                  <span class="field__label-wrap">
+                            <span class="field__label">Phone<i style="color: red">(*)</i></span>
+                        </span>
+                </label>
+                <div class="validate-noti" *ngIf="payment.get('phoneReceiver').invalid && payment.get('phoneReceiver').touched">
+                  <i *ngIf="payment.get('phoneReceiver').errors.required">required!</i>
+                  <i *ngIf="payment.get('phoneReceiver').errors.pattern">Phone invalid!</i>
+                </div>
+                <label class="field field_v1">
+                  <textarea formControlName="descriptionReceiver" class="field__input" placeholder="Other..."></textarea>
+                  <span class="field__label-wrap">
+                            <span class="field__label">Other</span>
+                        </span>
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </section>
+
+<!--        Step3-->
+        <section id="content3" class="tab-content">
+          <fieldset>
+            <div class="pay-container">
+              <ul class="pay-ul">
+                <div class="pay-title">
+                  <span>Transport</span>
+                </div>
+                <li>
+                  <button type="button" class="pay-button radioLabel selected">
+                    <div class="pay-img"><img src="https://svgshare.com/getbyhash/sha1-xp6yEPVg8JVylNGbC7hZjznyH0g="></div>
+                    <div><h3>Standard shipping</h3></div>
+                    <span class="pay-radio"></span>
+                  </button>
+                </li>
+                <div class="pay-title">
+                  <span>Payment</span>
+                </div>
+                <li>
+                  <button type="button" (click)="setMethod()" id="paypal-btn" class="selected pay-button radioLabel p-check p-check-paypal">
+                    <div class="pay-img"><img src="https://assets.eneba.com/payments/v1/color/braintree_paypal.svg"></div>
+                    <div><h3>PayPal</h3></div>
+                    <span class="pay-radio"></span>
+                  </button>
+                </li>
+                <li class="ts">
+                  <button type="button" (click)="setMethod1()" id="cod-btn" class="pay-button radioLabel p-check p-check-cod" >
+                    <div class="pay-img"><img src="https://svgshare.com/getbyhash/sha1-hS+LSRR8m56UuZzbeOku5Uzgm8E="></div>
+                    <div><h3>Payment on Delivery (COD)</h3></div>
+                    <span class="pay-radio"></span>
+                  </button>
+                  <div class="pay-cod">
+                    <div class="pay-cod-body">
+                      <p>Just pay when you receive the goods</p>
+                    </div>
+                  </div>
+                </li>
+                <li class="ts">
+                  <div class="pay-title">
+                      <div class="modal-body" style="padding-top: 10px; text-align: left">
+                        <p style="font-size: 12px; font-weight: 500; text-align: center; color: red">Please confirm our payment terms of A0721I1!</p>
+                        <hr>
+                        <p style="font-size: 12px;
+                          font-weight: 300;">1. Select: Sales earnings from invoiced orders are generally credited to your available balance on or before the Saturday following the applicable invoice due date.</p>
+                        <p style="font-size: 12px;
+                          font-weight: 300;">2. In the way we specify, you can choose to accelerate the conversion of Sales Income from invoiced orders (the net amount of applicable fees) to your available balance by activating Faster payment service. Upon activation, your choice to use the Faster Paying Service will apply to all future billed orders until you deactivate the service.</p>
+                        <p style="font-size: 12px;
+                          font-weight: 300;">3. Fees: A 1.5% processing fee will be applied to all relevant sales earnings to expedite the conversion of sales earnings into your available balance. This processing fee will be in addition to any other fees payable to Amazon or an Amazon Agent under your seller agreement and will be payable to Amazon Services LLC.
+                          Remittance Schedule: We will transfer your available balance to you, including any sales earnings transferred on an expedited basis, according to the remittance schedule defined in your merchant agreement.</p>
+                      </div>
+                    <div class="check-confirm" style="text-align: left;
+                          padding-left: 18px;">
+                      <input checked id="check-pay" type="checkbox"> <span style="font-size: 12px;
+                          font-weight: 300;"> I agree to all of the terms</span>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+              <!--                    Get Infor Products to Payment-->
+              <div class="pay-total">
+                <div class="container">
+                  <div class="row" style="padding-bottom: 25px;">
+                    <div class="col-12">
+                      <div class="font-weight-light pay-total-title" style=" text-align: left!important;">You're buying from:   <b style="color: black; font-size: 18px;">{{lastName}}</b></div>
+                    </div>
+                  </div>
+                  <div class="row " *ngFor="let item of product">
+                    <div class="col-4 justify-content-center justify-content-center">
+                      <div style="width: 60%" class="pay-total-img">
+                        <img src="https://thumbs.dreamstime.com/b/new-iphone-features-all-screen-design-99917162.jpg"></div>
+                    </div>
+                    <div class="col-8">
+                                    <span>
+                                        {{item.nameProduct}}
+                                    </span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <hr>
+                    </div>
+                  </div>
+                  <div class="row justify-content-between">
+                    <div class="col-4 pay-float-left">
+                      <p class="mb-1">Sub-total</p>
+                    </div>
+                    <div class="flex-sm-col col-auto"><p class="mb-1"><b>{{subPrice}}$</b></p></div>
+                  </div>
+                  <div class="row justify-content-between">
+                    <div class="col-4 pay-float-left">
+                      <p class="mb-1">Service fee</p>
+                    </div>
+                    <div class="flex-sm-col col-auto"><p class="mb-1"><b>{{fee}}$</b></p></div>
+                  </div>
+                  <div class="row justify-content-between pay-total-final">
+                    <div class="col-4 pay-float-left">
+                      <p class="mb-1">Total:</p>
+                    </div>
+                    <div class="flex-sm-col col-auto"><p class="mb-1"><b>{{total}}$</b></p></div>
+                  </div>
+                  <div id="paypal" class="row btn-payment" hidden>
+                    <div class="col btn-paypal">
+                      <button type="submit" >
+                        <div class="pay-total-img">
+                          <span>Pay with</span>
+                          <img src="https://assets.eneba.com/payments/v1/color/braintree_paypal.svg">
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+                  <div id="cod" class="row btn-payment" hidden>
+                    <div class="col btn-paypal">
+                      <button type="submit">
+                        <div class="pay-total-img">
+                          <span>Pay with</span>
+                          <img src="https://svgshare.com/getbyhash/sha1-hS+LSRR8m56UuZzbeOku5Uzgm8E=">
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <div class="QESfoQ">
+                        By clicking "Continue" I acknowledge I have read and accepted the <button type="button" class="p-link">Terms and Conditions</button> including the <button type="button" class="p-link">Privacy Notice</button> and <button class="p-link" type="button">Cookies</button>. I also have read and accepted <button type="button" class="p-link">A0721I1 &amp; Refund Policy</button></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </section>
+      </div>
+    </form>
+  </section>
+  <!-- END Multiform HTML -->
+</article>
