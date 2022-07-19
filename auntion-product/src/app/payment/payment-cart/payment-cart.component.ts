@@ -9,7 +9,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Transport} from '../../model/Transport';
 import {PaymentMethod} from '../../model/PaymentMethod';
 import {Cart} from '../../model/Cart';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-payment-cart',

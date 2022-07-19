@@ -20,7 +20,8 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
     ReactiveFormsModule,
     FormsModule,
     AngularFireDatabaseModule ,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFireModule
   ],
   providers: [],
   bootstrap: [AppComponent]
