@@ -44,6 +44,7 @@ export class StatisticComponent implements OnInit {
   report() {
     this.statsBeginDate = this.statsGroup.get('statsBegin').value;
     this.statsEndDate = this.statsGroup.get('statsEnd').value;
+    // @ts-ignore
     this.productService.statsProductFromDateToDate(this.statsBeginDate,
       this.statsEndDate).subscribe(items => {
         for (let i in items) {
@@ -80,6 +81,7 @@ export class StatisticComponent implements OnInit {
   }
 
   getDataUser() {
+    // tslint:disable-next-line:forin
     for (const i in this.products) {
       this.labels.push(this.products[i].nameProduct);
       console.log('name product:' + this.products[i].nameProduct);
