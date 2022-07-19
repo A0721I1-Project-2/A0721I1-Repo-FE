@@ -5,6 +5,6 @@ export interface Account {
   isBlock: boolean;
   last_login: string;
   flagDelete: boolean;
-  roles: any[];
   member: any;
+  roles: any;
 }
