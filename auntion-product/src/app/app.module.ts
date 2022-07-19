@@ -14,6 +14,8 @@ import {UserItemComponent} from './chat-app/chat-admin-page/user-item/user-item.
 import {UserListComponent} from './chat-app/chat-admin-page/user-list/user-list.component';
 import {ChatUserPageModule} from './chat-app/chat-user-page/chat-user-page.module';
 import {HomeModule} from './home/home.module';
+import {DatePipe} from '@angular/common';
+import {ProductModule} from './product/product.module';
 
 
 @NgModule({
@@ -31,8 +33,9 @@ import {HomeModule} from './home/home.module';
     ControlAdminPageModule,
     ChatUserPageModule,
     HomeModule,
+    ProductModule,
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule {
