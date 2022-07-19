@@ -112,7 +112,7 @@
   align-items: center;
 }
 
-.text-chat__file p {
+.text-chat__file p{
   font-size: 1rem;
   margin: 0px 0px 0px 8px;
   text-overflow: ellipsis;
@@ -254,4 +254,3 @@
   -webkit-animation-duration: 1s;
   -webkit-animation-fill-mode: both;
 }
-
