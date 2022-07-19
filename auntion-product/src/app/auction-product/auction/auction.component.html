@@ -6,15 +6,48 @@
 
           <div class="product__image">
             <div class="numbertext" id="numbertext"></div>
-            <a onclick="prevImage()" class="prev_image"><</a>
+            <a (click)="prevImage()" class="prev_image" style="color: #FF3366;"><</a>
             <div>
               <img id="mainImage" alt="Image">
             </div>
-            <a onclick="nextImage()" class="next_image">></a>
-            <div style="text-align:center" id="dot"></div>
+            <a (click)="nextImage()" class="next_image" style="color: #FF3366;">></a>
+            <div style="text-align:center" id="dot">
+              <span *ngFor="let item of arrayImage; index as i">
+                <span class="dot" (click)="changeSlide(i)"
+                      style="cursor: pointer; height: 15px;
+                      width: 15px; margin: 0 2px;
+                      background-color: #FF3366;
+                      border-radius: 50%; display: inline-block;
+                      transition: background-color 0.6s ease;">
+                </span>
+              </span>
+            </div>
           </div>
         </div>
+      </div>
 
+      <!-- The Modal -->
+      <div class="modal" id="myModal" data-toggle="modal" data-target="#myModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header" id="modal-header">
+              <h4 class="modal-title" id="modal-head"></h4>
+              <button type="button" class="close" (click)="hide()">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body" id="modal-body">
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" (click)="hide()">Close</button>
+            </div>
+
+          </div>
+        </div>
       </div>
 
       <div class="page__right">
@@ -40,28 +73,29 @@
             </div>
             <div class="product__auction-winner">
               <h5 id="winner">Current Winner</h5>
-              <p>{{currentWinner}}</p>
+              <p *ngIf="currentWinner">{{currentWinner}}</p>
+              <p *ngIf="!currentWinner">None</p>
             </div>
           </div>
         </div>
 
         <div class="bid-level">
-          <form>
+          <form [formGroup]="formAuction" (ngSubmit)="auction()">
             <input type="hidden" class="moneyDauGia">
             <div class="form__auction">
               <h3>Auction Price (USD):</h3>
               <div class="form__auction_button">
-                <button id="minus-btn" onclick='minusPrice()' class="minus__btn border rounded-circle" style="background: white;border-color: #c9c9c9" type="button">
+                <button id="minus-btn" (click)="minusPrice()" class="minus__btn border rounded-circle" style="background: white;border-color: #c9c9c9" type="button">
                   <span>&#8722;</span>
                 </button>
-                <input style="text-align: center" type="text" class="moneyDauGia" id="price" name="money" [value]="currentPrice">
-                <button id="plus-btn" onclick="plusPrice()" class="plus__btn border rounded-circle" style="background: #041E42; border-color: #041E42" type="button">
+                <input style="text-align: center" type="text" class="moneyDauGia" id="price" formControlName="currentBid">
+                <button id="plus-btn" (click)="plusPrice()" class="plus__btn border rounded-circle" style="background: #041E42; border-color: #041E42" type="button">
                   <span>&#43;</span>
                 </button>
               </div>
             </div>
-            <button type="button" class="bid-btn" style="color: white">
-<!--              <span class="btn-icon"><ion-icon name="hammer"></ion-icon></span>-->
+            <div id="isFinish" (click)="auctionFinish()"></div>
+            <button type="submit" class="bid-btn" style="color: white">
               Auction
             </button>
           </form>
@@ -76,35 +110,38 @@
         <tr class="vnsd">
           <th>#</th>
           <th>Bidder</th>
+          <th>Username</th>
           <th>Auction price (USD)</th>
           <th>Time</th>
         </tr>
         </thead>
-        <tbody>
-        <tr class="winner">
-          <td>1</td>
-          <td>
-            <span>HuyNN</span>
-          </td>
-          <td>1550</td>
-          <td>2022/7/7 11:59:00</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>
-            <span>QuangNV</span>
-          </td>
-          <td>1540</td>
-          <td>2022/7/7 9:30:10</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>
-            <span>ToanNv</span>
-          </td>
-          <td>1530</td>
-          <td>2022/7/7 8:10:30</td>
-        </tr>
+        <tbody *ngFor="let item of auctionList;index as i">
+          <ng-template [ngIf]="i == 0">
+            <tr class="winner">
+              <td>{{i+1}}</td>
+              <td>
+                <span>{{item.bidder}}</span>
+              </td>
+              <td>
+                {{item.username}}
+              </td>
+              <td>{{item.price}}</td>
+              <td>{{item.time}}</td>
+            </tr>
+          </ng-template>
+          <ng-template [ngIf]="i != 0">
+            <tr>
+              <td>{{i+1}}</td>
+              <td>
+                <span>{{item.bidder}}</span>
+              </td>
+              <td>
+                {{item.username}}
+              </td>
+              <td>{{item.price}}</td>
+              <td>{{item.time}}</td>
+            </tr>
+          </ng-template>
         </tbody>
       </table>
     </div>
@@ -113,11 +150,7 @@
       <h4 class="product__description-title">
         Product Description
       </h4>
-      <p>Galaxy S22 is the most advanced smartphone in the Galaxy S22 series 3 that Samsung has
-        launched. Integrating the perfect S Pen in the body, equipped with a powerful processor
-        for extremely smooth and outstanding usage tasks with a unique bezel-less camera cluster
-        with its own signature.</p>
+      <p>{{product.productDescription}}</p>
     </div>
   </div>
 </div>
-<script src="/js/auction.js"></script>

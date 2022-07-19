@@ -378,24 +378,17 @@ label.star:before {
   font-family: FontAwesome
 }
 
-/* Modal */
-.modal-content {
-  width: 700px;
-  max-width: 700px;
-}
 
+/*modal*/
 .modal-header {
-  /* background-color: #64FFDA ; */
-  /* background-color: #40C4FF; */
-  background-color: #18FFFF;
+  color: white;
+  font-weight: bold;
 }
 
-.modal__layout{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
+.btn-danger {
+  background: red;
 }
+
 
 .bid-btn {
   margin-top: 25px;
@@ -425,66 +418,6 @@ label.star:before {
 
 .form__auction_button {
   margin: 0px 0px 0px 15px;
-}
-
-.modal-title {
-  display: flex;
-  align-items: center;
-  color: #474747;
-  font-weight: 550;
-}
-
-.modal__left {
-  width: 50%;
-}
-
-.modal__left-img {
-  display: flex;
-  justify-content: center;
-}
-
-.modal__left-img img {
-  width: auto;
-  height: 122px;
-}
-
-.modal__right {
-  width: calc(100% - 50%);
-  padding: 0px  29px;
-}
-
-.modal__right-title {
-  font-size: 18px;
-  color: #041E42;
-  font-size: 25px;
-  text-align: center;
-}
-
-
-.modal__right-info{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 10px 0px;
-}
-
-.modal__right-info p {
-  margin:0px;
-  font-size: 17px;
-  font-weight: 550;
-  color: #474747;
-}
-
-.modal__right-info h4 {
-  margin: 0px 0px 0px 7px;
-  color:#474747;
-  font-weight: 550;
-  font-size: 20px;
-}
-
-.modal-footer  {
-  display: flex;
-  justify-content: flex-end;
 }
 
 .button__close {
@@ -520,6 +453,23 @@ label.star:before {
 .winner {
   color: red;
   font-weight: bold;
+  font-family: 'Lexend', sans-serif;
+}
+
+.winner td, .winner th {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+
+.notWinner {
+  font-family: 'Lexend', sans-serif;
+}
+
+.notWinner td, .notWinner th {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
 }
 
 /* Next & previous buttons */
@@ -562,16 +512,16 @@ label.star:before {
 
 
 /* The dots/bullets/indicators */
-.dot {
-  cursor: pointer;
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #FF3366;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
-}
+/*.dot {*/
+/*  cursor: pointer;*/
+/*  height: 15px;*/
+/*  width: 15px;*/
+/*  margin: 0 2px;*/
+/*  background-color: #FF3366;*/
+/*  border-radius: 50%;*/
+/*  display: inline-block;*/
+/*  transition: background-color 0.6s ease;*/
+/*}*/
 
 .active, .dot:hover {
   background-color: #717171;
