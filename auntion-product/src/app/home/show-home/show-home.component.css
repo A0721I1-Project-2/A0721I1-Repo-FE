@@ -332,6 +332,7 @@ body {
   * {
     font-size: 13px;
   }
+  #navbar
 
   .clear {
     clear: both;
@@ -730,6 +731,7 @@ body {
     text-align: center;
     width: 100%;
   }
+
 
   .sortProduct {
     position: absolute;

@@ -215,6 +215,10 @@
     height: 40px;
     justify-content: center;
     align-items: center;
+
+  }
+  #navbar a {
+    font-size: 12px;
   }
 
   #navbar li a {
