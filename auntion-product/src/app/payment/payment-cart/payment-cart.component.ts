@@ -35,7 +35,7 @@ export class PaymentCartComponent implements OnInit {
 
   // Cac bien chua tong tien, phu phi
   subPrice = 0;
-  fee = 1;
+  fee = 0;
   total = 0;
   firstName: string;
   lastName: string;
@@ -261,7 +261,7 @@ export class PaymentCartComponent implements OnInit {
           this.link = data;
           window.open(this.link, '_parent');
           sessionStorage.setItem('testObject', JSON.stringify(this.payment.value));
-          sessionStorage.setItem('message', 'Complete your order');
+          sessionStorage.setItem('message', 'Payment success ');
         }, error => {
           console.log('NOT OK');
         });
