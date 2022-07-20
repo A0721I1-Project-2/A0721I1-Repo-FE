@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HomeService} from '../service/home.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Product} from '../../model/Product';
@@ -11,6 +11,8 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 })
 export class ShowHomeComponent implements OnInit {
   products: Product[];
+  product: Product;
+  imageProduct: string[];
   min: number;
   max: number;
   typeProductName: string;
@@ -23,7 +25,9 @@ export class ShowHomeComponent implements OnInit {
   // tslint:disable-next-line:ban-types
   messageAlert: String[];
   currentItem = 8;
-  constructor(private homeService: HomeService, private activatedRoute: ActivatedRoute, private router: Router) { }
+
+  constructor(private homeService: HomeService, private activatedRoute: ActivatedRoute, private router: Router) {
+  }
 
   ngOnInit(): void {
     this.showListProductAuction();
@@ -33,11 +37,13 @@ export class ShowHomeComponent implements OnInit {
       priceRange: new FormControl(''),
     });
   }
+
   showListProductAuction() {
     this.homeService.showListProductAuction().subscribe(
       (data) => {
         // tslint:disable-next-line:prefer-const
         this.products = data;
+
         // this.showListAuntionWithTime();
         if (this.nameProductSearch != null) {
           this.nameProductSearch = '';
@@ -46,7 +52,8 @@ export class ShowHomeComponent implements OnInit {
         if (!this.checkLoadMore) {
           this.currentItem = 8;
         }
-        // console.log(data);
+
+        // console.log(this.imageProduct);
       },
       () => {
         console.log('Error product list');
@@ -56,6 +63,7 @@ export class ShowHomeComponent implements OnInit {
         this.checkFinished = false;
         this.checkLoadMore = false;
         this.checkHiddenLoadMore = false;
+        this.imageProduct = [];
         const loadMoreBtn = document.querySelector('#load-more');
         // tslint:disable-next-line:triple-equals
         if (this.checkHiddenLoadMore == false) {
@@ -63,12 +71,34 @@ export class ShowHomeComponent implements OnInit {
           // tslint:disable-next-line:no-unused-expression
           loadMoreBtn.style.display = 'inline-block';
         }
+        // console.log(this.products[0].imageProductList);
+        // // console.log(this.products[0].imageProductList[0]);
+        // // console.log(this.products[1].imageProductList[0]);
+        // console.log(this.products.length);
+        // for (let i = 0; i < this.products.length; i++) {
+        //   // this.imageProduct = this.products[i].imageProductList[0];
+        //   // @ts-ignore
+        //   this.imageProduct[i] = this.products[i].imageProductList[0];
+        //   // console.log(this.products[i].imageProductList[0]);
+        // }
+        // for (let j = 0; j < this.imageProduct.length; j++) {
+        //   this.products[j].mainPhoto = this.imageProduct[j];
+        //   // console.log(this.products[j].mainPhoto);
+        //
+        // }
+        // // (document.getElementById('mainPhoto') as HTMLImageElement).src = this.imageProduct[0];
+        // // console.log(this.imageProduct);
+        // // console.log(this.imageProduct[0]);
+        //
+        // console.log(this.products[0].mainPhoto);
       }
     );
   }
+
   showListAuntionWithTime() {
     this.homeService.showListProductAuction().subscribe(
       (data) => {
+        // console.log(data);
         // tslint:disable-next-line:prefer-const
         let products = [];
         // tslint:disable-next-line:prefer-const
@@ -87,9 +117,9 @@ export class ShowHomeComponent implements OnInit {
 
         for (let j = 0; j < countDownDate.length; j++) {
           // tslint:disable-next-line:only-arrow-functions no-shadowed-variable
-          (function(j) {
+          (function (j) {
             // tslint:disable-next-line:only-arrow-functions
-            const x = setInterval(function() {
+            const x = setInterval(function () {
               // console.log(countDownDate[j]);
               // Get today's date and time
               const now = new Date().getTime();
@@ -108,7 +138,7 @@ export class ShowHomeComponent implements OnInit {
               // If the count down is finished, write some text
               if (distance[j] < 0) {
                 clearInterval(x);
-                products[j].remainingTime  = 'FINISHED';
+                products[j].remainingTime = 'FINISHED';
               }
             }, 1000);
           })(j);
@@ -122,7 +152,6 @@ export class ShowHomeComponent implements OnInit {
       },
     );
   }
-
 
 
   showListAuntionFinishedWithTime() {
@@ -145,9 +174,9 @@ export class ShowHomeComponent implements OnInit {
 
         for (let j = 0; j < countDownDate.length; j++) {
           // tslint:disable-next-line:only-arrow-functions no-shadowed-variable
-          (function(j) {
+          (function (j) {
             // tslint:disable-next-line:only-arrow-functions
-            const x = setInterval(function() {
+            const x = setInterval(function () {
               // console.log(countDownDate[j]);
               // Get today's date and time
               const now = new Date().getTime();
@@ -235,9 +264,9 @@ export class ShowHomeComponent implements OnInit {
 
         for (let j = 0; j < countDownDate.length; j++) {
           // tslint:disable-next-line:only-arrow-functions no-shadowed-variable
-          (function(j) {
+          (function (j) {
             // tslint:disable-next-line:only-arrow-functions
-            const x = setInterval(function() {
+            const x = setInterval(function () {
               // console.log(countDownDate[j]);
               // Get today's date and time
               const now = new Date().getTime();
@@ -373,9 +402,9 @@ export class ShowHomeComponent implements OnInit {
 
           for (let j = 0; j < countDownDate.length; j++) {
             // tslint:disable-next-line:only-arrow-functions no-shadowed-variable
-            (function(j) {
+            (function (j) {
               // tslint:disable-next-line:only-arrow-functions
-              const x = setInterval(function() {
+              const x = setInterval(function () {
                 // console.log(countDownDate[j]);
                 // Get today's date and time
                 const now = new Date().getTime();
@@ -442,9 +471,9 @@ export class ShowHomeComponent implements OnInit {
 
           for (let j = 0; j < countDownDate.length; j++) {
             // tslint:disable-next-line:only-arrow-functions no-shadowed-variable
-            (function(j) {
+            (function (j) {
               // tslint:disable-next-line:only-arrow-functions
-              const x = setInterval(function() {
+              const x = setInterval(function () {
                 // console.log(countDownDate[j]);
                 // Get today's date and time
                 const now = new Date().getTime();
