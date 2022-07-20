@@ -1,4 +1,5 @@
-<div class="container-fluid" style="background: rgb(243, 246, 253)">
+<div class="container-fluid" style="background: rgb(243, 246, 253);margin-top: 198px;
+}">
   <div class="row" id="pdfTable" #pdfTable>
     <div class="col-2"></div>
     <div class="col-8" style="text-align: center;border: 2px solid #11B683;border-radius: 20px;background: white">
@@ -216,9 +217,9 @@
   </div>
   <div class="row">
     <div class="col-10"></div>
-    <div class="col-2" style="text-align: right">
-      <button class="btn"  (click)="print()"> PrintPDF</button>
-      <button class="btn" > Cancel </button>
+    <div class="col-2" style="text-align: right;margin-bottom: 10px">
+      <button class="btn"  (click)="print()" style="margin-right: 15px"> PrintPDF</button>
+      <a routerLink="/home"><button class="btn" > Cancel </button></a>
     </div>
   </div>
 </div>
