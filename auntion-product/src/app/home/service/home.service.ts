@@ -4,7 +4,7 @@ import {Observable} from 'rxjs';
 import {Product} from '../../model/Product';
 
 const URL_HOME_API = 'http://localhost:8080/manager/product/api';
-const URL_ACCOUNT_API = 'http://localhost:8080/manager/account/api';
+const URL_ACCOUNT_API = 'http://localhost:8080/api/account';
 
 @Injectable({
   providedIn: 'root'

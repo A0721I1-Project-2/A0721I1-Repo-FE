@@ -3,7 +3,7 @@ import {Product} from '../../model/Product';
 import {HomeService} from '../service/home.service';
 import {ActivatedRoute} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
-import {} from '@types/googlemaps';
+
 
 @Component({
   selector: 'app-product-detail',
@@ -16,24 +16,13 @@ export class ProductDetailComponent implements OnInit {
   id: string;
 
   constructor(private homeService: HomeService, private route: ActivatedRoute, private http: HttpClient) {
-    this.getCoordinates('Liên Chiểu, Đà Nẵng');
   }
 
-  getCoordinates(address) {
-    fetch('https://maps.googleapis.com/maps/api/geocode/json?address=' + address + '&key=' + 'AIzaSyCd9_zXieHzDOXID8qAVgHNS5nVe_qBSkY')
-      .then(response => response.json())
-      .then(data => {
-        const latitude = data.results.geometry.location.lat;
-        const longitude = data.results.geometry.location.lng;
-        console.log({latitude, longitude});
-      });
-  }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
     this.getProductDetail();
     this.imgFunc();
-
   }
 
   getProductDetail() {
