@@ -8,23 +8,27 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {TransactionModule} from './transaction/transaction.module';
+import {ChatUserPageModule} from './chat-app/chat-user-page/chat-user-page.module';
+import {HomeModule} from './home/home.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        ReactiveFormsModule,
-        FormsModule,
-        AngularFireDatabaseModule,
-        AngularFireAuthModule,
-        TransactionModule,
-        HttpClientModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    TransactionModule,
+    ChatUserPageModule,
+    HomeModule,
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

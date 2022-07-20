@@ -1,0 +1,44 @@
+<div class="home-admin__container">
+  <div class="navbar__admin-mobile" (click)="showNavbar()">
+    <i class="fa-solid fa-bars"></i>
+  </div>
+
+  <div [ngClass]="isShowNavbar?'show':null" class="navbar__admin-mobile-list">
+    <div class="navbar__admin-mobile-item">
+      <a>Dashboard</a>
+    </div>
+
+    <div class="navbar__admin-mobile-item">
+      <a>Dashboard</a>
+    </div>
+
+    <div class="navbar__admin-mobile-item">
+      <a>Dashboard</a>
+    </div>
+
+    <div class="navbar__admin-mobile-item">
+      <a>Dashboard</a>
+    </div>
+
+    <div class="navbar__admin-mobile-item">
+      <a>Dashboard</a>
+    </div>
+  </div>
+
+  <div class="logo__header d-none-m-b">
+    <img src="./assets/img/my-logo.png" alt="">
+  </div>
+
+  <div class="header__account-group">
+    <span>Nguyen Hoang Anh Tuan</span>
+
+    <ul class="account__function-list">
+      <li>
+        <a>Home Page</a>
+      </li>
+      <li>
+        <a>Logout</a>
+      </li>
+    </ul>
+  </div>
+</div>
