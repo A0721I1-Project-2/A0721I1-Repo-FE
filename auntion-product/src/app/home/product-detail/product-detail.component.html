@@ -5,12 +5,22 @@
         <div class="page__wrapper">
           <div class="product__image">
             <div class="numbertext" id="numbertext"></div>
-            <a onclick="prevImage()" class="prev_image"><</a>
+            <a (click)="prevImage()" class="prev_image" style="color: #FF3366;"><</a>
             <div>
-              <img id="mainImage" alt="Image" [src]="arrayImage[0]">
+              <img id="mainImage" alt="Image">
             </div>
-            <a onclick="nextImage()" class="next_image">></a>
-            <div style="text-align:center" id="dot"></div>
+            <a (click)="nextImage()" class="next_image" style="color: #FF3366;">></a>
+            <div style="text-align:center" id="dot">
+              <span *ngFor="let item of arrayImage; index as i">
+                <span class="dot" (click)="changeSlide(i)"
+                      style="cursor: pointer; height: 15px;
+                      width: 15px; margin: 0 2px;
+                      background-color: #FF3366;
+                      border-radius: 50%; display: inline-block;
+                      transition: background-color 0.6s ease;">
+                </span>
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -97,10 +107,10 @@
         <div class="col-6">
           <h4 class="product__description-title">Information Receive</h4>
           <div class="info">
-            <span><i class="fa-solid fa-location-dot"></i> &#160; Address </span>
-            <p>295 Nguyễn Tất Thành, Thanh Bình, Hải Châu, Đà Nẵng</p>
+            <span><i class="fa-solid fa-location-arrow"></i>&#160; Address </span>
+            <p>{{product.members[0].addressMember}}</p>
             <span><i class="fa-solid fa-phone-flip"></i> &#160;Phone Number</span>
-            <p>+84 123 456 789</p>
+            <p>{{product.members[0].phoneMember}}</p>
             <span><i class="fa-solid fa-truck"></i> &#160;Shipping services</span>
             <p>Shipping services offers value-added services such as collection and
               delivery options, delivery
