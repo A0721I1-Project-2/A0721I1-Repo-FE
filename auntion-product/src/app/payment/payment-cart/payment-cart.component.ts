@@ -53,7 +53,7 @@ export class PaymentCartComponent implements OnInit {
       this.message = '';
       this.message = sessionStorage.getItem('message-fail');
       document.getElementById('alert').hidden = false;
-    }
+        }
     sessionStorage.removeItem('testObject');
     sessionStorage.removeItem('message');
     // Phuong thuc lay ra member
@@ -221,8 +221,8 @@ export class PaymentCartComponent implements OnInit {
   getInfo(name: string) {
     for (let i = 0; i < name.length; i++) {
       if (name[i] === ' ') {
-        this.firstName = name.substr(0, i);
-        this.lastName = name.substr(i + 1, name.length);
+        this.firstName = name.substring(0, i);
+        this.lastName = name.substring(i + 1);
         break;
       }
     }
