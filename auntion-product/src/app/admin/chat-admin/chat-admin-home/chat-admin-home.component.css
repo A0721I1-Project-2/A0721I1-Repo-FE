@@ -1,0 +1,20 @@
+.p-r-0 {
+  padding-right: 0px !important;
+}
+
+.p-l-0 {
+  padding-left: 0px !important;
+}
+
+.chat-box__container {
+  overflow: hidden;
+}
+
+/* Responsive */
+/* Mobile */
+@media (max-width: 739px) {
+  .d-none-m-b {
+    display: none;
+  }
+}
+
