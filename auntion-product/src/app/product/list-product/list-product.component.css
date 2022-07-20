@@ -1,0 +1,150 @@
+.clearfix {
+  position: absolute;
+  right: 30px;
+}
+
+h2 {
+  color: #11b683;
+  text-align: left;
+  margin: 50px 0;
+}
+
+th {
+  text-align: center;
+}
+button {
+  font-size: 14px;
+}
+
+.table thead th {
+  vertical-align: middle;
+  border-bottom: 2px solid #dee2e6;
+  background-color: #11b683;
+  color: white;
+}
+button.btn {
+  background-color: #11b683;
+  color: white;
+  font-size: 14px;
+}
+
+button.btn:hover {
+  background-color: #ff3366;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+
+element.style {
+}
+.page-link:not(:disabled):not(.disabled) {
+  cursor: pointer;
+}
+.page-link {
+  position: relative;
+  display: block;
+  padding: 0.5rem 0.75rem;
+  margin-left: -1px;
+  line-height: 1.25;
+  color: white;
+  background-color: #11b683;
+  border: 1px solid #dee2e6;
+}
+
+.page-item.active .page-link {
+  z-index: 1;
+  color: #11b683;
+  background-color: white;
+  border-color: #11b683;
+}
+
+.attributes {
+  width: 20%;
+  font-weight: bold;
+}
+
+.horizontal-line {
+  width: 100%;
+  height: 2px;
+  background-color: #11b683;
+  margin: 50px 0;
+}
+.bidder-info {
+  padding-left: 50px;
+}
+.cursor {
+  cursor: pointer;
+}
+.demo {
+  opacity: 1;
+}
+.active,
+.demo:hover {
+  opacity: 0.6;
+}
+
+a {
+  color: #11b683;
+}
+a:hover {
+  color: #ff3366;
+}
+
+.table td, .table th {
+  padding: 0.25rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+.thumbnail {
+  padding: 0.25rem;
+  background-color: #fff;
+  /*border: 1px solid #dee2e6;*/
+  /*border-radius: 0.25rem;*/
+  max-width: 100%;
+  height: 50px;
+  width: auto;
+  object-fit: cover;
+}
+/*.product-thumbnail {*/
+/*    padding: 10px;*/
+/*    width: 125px;*/
+/*    height: auto;*/
+/*    max-height: 70px;*/
+/*}*/
+
+/*img {*/
+/*    vertical-align: middle;*/
+/*    border-style: none;*/
+/*}*/
+
+/*.product-thumbnail > img {*/
+/*    padding: 10px;*/
+/*    width: 100%;*/
+/*    height: auto;*/
+/*    object-fit: cover;*/
+/*    cursor: pointer;*/
+/*}*/
+
+/*.page-item .page-link {*/
+/*  color: rgb(24, 100, 46) !important;*/
+/*}*/
+
+/*.page-item .page-link:hover {*/
+/*  background-color: #ff3366 !important;*/
+/*  border-color: #ff3366 !important;*/
+/*  color: white !important;*/
+/*}*/
+
+/*.page-item.active .page-link {*/
+/*  background-color: rgb(24, 100, 46) !important;*/
+/*  border-color: rgb(24, 100, 46) !important;*/
+/*  color: white !important;*/
+/*}*/
+
+/*.pagination li{*/
+/*  margin-inside: 3px;*/
+/*}*/

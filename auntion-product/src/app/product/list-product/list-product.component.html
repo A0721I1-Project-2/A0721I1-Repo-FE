@@ -1,1 +1,155 @@
-<p>list-product works!</p>
+<div class="container-fluid" style="padding-inline: 150px;">
+  <h2>Product Management</h2>
+  <div class="horizontal-line"></div>
+  <form method="post" (ngSubmit)="search()" [formGroup]="searchProduct">
+    <div class="d-flex align-items-center justify-content-center">
+      <div class="row" style="margin: 30px">
+          <div class="col">
+            <input type="text" class="form-control ml-3" placeholder="Product Name" formControlName="nameProduct">
+          </div>
+          <div class="col">
+            <select class="custom-select form-control ml-3" formControlName="typeProduct">
+              <option value="" disabled selected hidden>Product Type</option>
+              <option value="1">Electronics</option>
+              <option value="2">Fashion</option>
+              <option value="3">Home & Living</option>
+              <option value="4">Health & Beauty</option>
+              <option value="5">Automotive</option>
+              <option value="6">Computing</option>
+            </select>
+          </div>
+          <div class="col">
+            <input type="text" class="form-control ml-3" placeholder="Seller" formControlName="sellerName">
+          </div>
+          <div class="col">
+            <select class="custom-select form-control ml-3" formControlName="priceRange">
+              <option value="" disabled selected hidden>Price</option>
+              <option value="0 - 100 USD">0 - 100 USD</option>
+              <option value="100 - 500 USD">100 - 500 USD</option>
+              <option value="500 - 5,000 USD">500 - 5,000 USD</option>
+              <option value="5,000 - 50,000 USD">5,000 - 50,000 USD</option>
+              <option value="Above 50,000 USD">Above 50,000 USD</option>
+            </select>
+          </div>
+          <div class="col">
+            <select class="custom-select form-control ml-3" formControlName="biddingStatus">
+              <option value="" disabled selected hidden>Bidding Status</option>
+              <option value="1">Not Bid Yet</option>
+              <option value="2">In Bidding</option>
+              <option value="3">Successful Bid</option>
+              <option value="4">Failed Bid</option>
+            </select>
+          </div>
+          <div class="col-1">
+            <button type="submit" class="btn" (click)="search()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+              </svg>
+            </button>
+          </div>
+      </div>
+    </div>
+  </form>
+  <div style="padding-inline: 30px;">
+    <table class="table table-striped" style="margin-top: 1rem; font-size: 14px;">
+      <thead>
+      <tr>
+        <th></th>
+        <th scope="col">#</th>
+        <th scope="col">Product ID</th>
+        <th scope="col">Product Name</th>
+        <th scope="col">Product Type</th>
+        <th scope="col">Seller</th>
+        <th scope="col">Initial Price (USD)</th>
+        <th scope="col">Approval Status</th>
+        <!--                <p>Not Approved Yet/ Approved/ Not Posted Yet</p>-->
+        <th scope="col">Bidding Status</th>
+        <!--                <p>Chưa đấu giá, Đang đấu giá, Đã đấu giá thành công, Đã đấu giá thất bại.</p>-->
+        <th scope="col">Description</th>
+        <th scope="col">Image</th>
+        <th scope="col">Review</th>
+        <th scope="col">Edit</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let product of productList; index as i">
+        <div hidden>{{product.idProduct}}</div>
+        <td><input type="checkbox"></td>
+        <th scope="row">{{i + 1}}</th>
+        <td>{{product.codeProduct}}</td>
+        <td>{{product.nameProduct}}</td>
+        <td>{{product.typeProduct.nameProductType}}</td>
+        <td>{{product.member.nameMember}}</td>
+        <td>{{product.initialPrice}}</td>
+        <td>{{product.approvalStatus.nameApprovalStatus}}</td>
+        <td>{{product.biddingStatus.nameBiddingStatus}}</td>
+        <td style="overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                max-width: 100px;">{{product.productDescription}}</td>
+        <td style="overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                max-width: 100px;"><a href="#" href="#">https://console.firebase.google.com/u/0/project/fir-demo-project/storage</a></td>
+        <td><button type="button" class="btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-check" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M10.854 6.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 8.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+          <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
+          <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
+        </svg></button></td>
+        <td><button type="button" class="btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+          <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+          <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+        </svg></button></td>
+      </tr>
+      </tbody>
+    </table>
+    <nav aria-label="...">
+      <button class="btn delete">Delete <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+        <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+      </svg></button>
+      <div class="clearfix" style="float: right">
+        <nav aria-label="...">
+          <ul class="pagination">
+            <div *ngIf="pageNumber > 0; then enablePrevious else disablePrevious"></div>
+            <ng-template #enablePrevious>
+              <li class="page-item">
+                <span class="page-link" (click)="previousPage()">Previous</span>
+              </li>
+            </ng-template>
+            <ng-template #disablePrevious>
+              <li class="page-item disabled">
+                <span class="page-link">Previous</span>
+              </li>
+            </ng-template>
+
+            <div *ngFor="let page of totalPagesArray; index as i">
+              <div *ngIf="pageNumber == i; then isCurrentPage else notCurrentPage"></div>
+              <ng-template #isCurrentPage>
+                <li class="page-item active">
+                  <span class="page-link" (click)="changePageNumber(i)">{{i + 1}}</span>
+                </li>
+              </ng-template>
+              <ng-template #notCurrentPage>
+                <li class="page-item">
+                  <span class="page-link" (click)="changePageNumber(i)">{{i + 1}}</span>
+                </li>
+              </ng-template>
+            </div>
+
+            <div *ngIf="pageNumber < totalPagesArray.length - 1; then enableNext else disableNext"></div>
+            <ng-template #enableNext>
+              <li class="page-item">
+                <span class="page-link" (click)="nextPage()">Next</span>
+              </li>
+            </ng-template>
+            <ng-template #disableNext>
+              <li class="page-item disabled">
+                <span class="page-link">Next</span>
+              </li>
+            </ng-template>
+          </ul>
+        </nav>
+      </div>
+    </nav>
+  </div>
+</div>
