@@ -37,16 +37,6 @@ export class ShowHomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(sessionStorage.getItem('message'));
-    this.messagePayment = sessionStorage.getItem('message');
-    this.servicePayment.savePayment(JSON.parse(sessionStorage.getItem('testObject'))).subscribe(data => {
-      console.log('ok');
-      this.messagePayment = sessionStorage.getItem('message');
-      sessionStorage.removeItem('testObject');
-      console.log(this.messagePayment);
-    }, error => {
-      console.log('err');
-    });
     this.showListProductAuction();
     this.formSearch = new FormGroup({
       nameProduct: new FormControl('', [Validators.required, Validators.pattern('^[^!@#$%^&*]+$')]),
