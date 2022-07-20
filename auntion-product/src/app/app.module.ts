@@ -1,21 +1,21 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
-import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './app.component';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {AngularFireModule} from '@angular/fire';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFireAuthModule} from '@angular/fire/auth';
-import {ControlAdminPageModule} from './control-admin-page/control-admin-page.module';
-
-import {UserItemComponent} from './chat-app/chat-admin-page/user-item/user-item.component';
-import {UserListComponent} from './chat-app/chat-admin-page/user-list/user-list.component';
 import {ChatUserPageModule} from './chat-app/chat-user-page/chat-user-page.module';
 import {HomeModule} from './home/home.module';
+import {AppComponent} from './app.component';
+import {AppRoutingModule} from './app-routing.module';
 import {DatePipe} from '@angular/common';
-import {ProductModule} from './product/product.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+// import {MatDatepickerModule} from '@angular/material/datepicker';
+// import {MAT_DATE_FORMATS, MatNativeDateModule} from '@angular/material/core';
+// import {MatFormFieldModule} from '@angular/material/form-field';
+// import {MomentDateModule} from '@angular/material-moment-adapter';
+// import {MatInputModule} from '@angular/material/input';
+// import {MY_DATE_FORMATS} from './product/statistic/statistic.component';
 
 
 @NgModule({
@@ -30,10 +30,9 @@ import {ProductModule} from './product/product.module';
     FormsModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    ControlAdminPageModule,
     ChatUserPageModule,
     HomeModule,
-    ProductModule,
+    BrowserAnimationsModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

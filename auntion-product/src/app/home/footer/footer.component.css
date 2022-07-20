@@ -10,7 +10,7 @@
   background-color: var(--primary-color);
   width: 100%;
   bottom: 0;
-  /*margin-top: 50px;*/
+  z-index: 999;
 }
 
 .footer__container .footer__item .header {

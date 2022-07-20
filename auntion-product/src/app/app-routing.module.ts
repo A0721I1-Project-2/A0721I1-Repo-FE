@@ -4,6 +4,10 @@ import {Routes, RouterModule} from '@angular/router';
 
 const routes: Routes = [
   {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then(module => module.LoginModule)
+  },
+  {
     path: 'home',
     loadChildren: () => import('./home/home.module').then(module => module.HomeModule)
   },
@@ -29,8 +33,7 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    loadChildren: () => import('./control-admin-page/control-admin-page.module').then(module => module.ControlAdminPageModule)
-
+    loadChildren: () => import('./admin/admin.module').then(module => module.AdminModule)
   }
 ];
 

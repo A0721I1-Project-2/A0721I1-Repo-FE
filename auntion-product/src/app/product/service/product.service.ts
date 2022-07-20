@@ -13,6 +13,10 @@ export class ProductService {
   constructor(private httpClient: HttpClient) {
   }
 
+  // statsProductFromDateToDate(startDay: any, endDay: any, biddingStatus: any): Observable<any> {
+  //   return this.httpClient.get(this.URL_API + '/statistic/' + startDay + '&' + endDay + '&' + biddingStatus).pipe(
+  //     map(result => result));
+  // }
   statsProductFromDateToDate(startDay: any, endDay: any, biddingStatus: any): Observable<any> {
     return this.httpClient.get(this.URL_API + '/statistic/' + startDay + '&' + endDay + '&' + biddingStatus).pipe(
       map(result => result));

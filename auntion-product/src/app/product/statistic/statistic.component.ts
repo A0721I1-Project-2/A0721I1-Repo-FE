@@ -7,13 +7,82 @@ import {ProductService} from '../service/product.service';
 import {error} from '@angular/compiler/src/util';
 import {Router} from '@angular/router';
 import {Chart} from 'chart.js';
-import {any} from 'codelyzer/util/function';
+import {
+  ArcElement,
+  LineElement,
+  BarElement,
+  PointElement,
+  BarController,
+  BubbleController,
+  DoughnutController,
+  LineController,
+  PieController,
+  PolarAreaController,
+  RadarController,
+  ScatterController,
+  CategoryScale,
+  LinearScale,
+  LogarithmicScale,
+  RadialLinearScale,
+  TimeScale,
+  TimeSeriesScale,
+  Decimation,
+  Filler,
+  Legend,
+  Title,
+  Tooltip
+} from 'chart.js';
 
+Chart.register(
+  ArcElement,
+  LineElement,
+  BarElement,
+  PointElement,
+  BarController,
+  BubbleController,
+  DoughnutController,
+  LineController,
+  PieController,
+  PolarAreaController,
+  RadarController,
+  ScatterController,
+  CategoryScale,
+  LinearScale,
+  LogarithmicScale,
+  RadialLinearScale,
+  TimeScale,
+  TimeSeriesScale,
+  Decimation,
+  Filler,
+  Legend,
+  Title,
+  Tooltip
+);
+import {registerables} from 'chart.js';
+// import {MAT_DATE_FORMATS} from '@angular/material/core';
+//
+// export const MY_DATE_FORMATS = {
+//   parse: {
+//     dateInput: 'YYYY-MM-DD',
+//   },
+//   display: {
+//     dateInput: 'YYYY-MM-DD',
+//     monthYearLabel: 'MMMM YYYY',
+//     dateA11yLabel: 'LL',
+//     monthYearA11yLabel: 'MMMM YYYY'
+//   },
+// };
+
+// };
 @Component({
   selector: 'app-statistic',
   templateUrl: './statistic.component.html',
-  styleUrls: ['./statistic.component.css']
+  styleUrls: ['./statistic.component.css'],
+  // providers: [
+  //   {provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS}
+  // ]
 })
+
 export class StatisticComponent implements OnInit {
 
 
@@ -28,8 +97,8 @@ export class StatisticComponent implements OnInit {
 
   myChart: any;
   statsGroup: FormGroup;
-  statsBeginDate: string;
-  statsEndDate: string;
+  statsBegin: string;
+  statsEnd: string;
   products: any[] = [];
   labelArr: any[] = [];
   dataArr: any[] = [];
@@ -40,10 +109,12 @@ export class StatisticComponent implements OnInit {
   private locale;
 
   ngOnInit(): void {
+    // this.statsBegin = this.datePipe.transform('', 'yyyy-MM-dd');
+    // this.statsEnd = this.datePipe.transform('', 'yyyy-MM-dd');
     this.statsGroup = this.formBuilder.group({
       keyword: new FormControl(''),
-      statsBegin: new FormControl('', Validators.required),
-      statsEnd: new FormControl('', Validators.required)
+      statsBegin: new FormControl(this.datePipe.transform('', 'yyyy-MM-dd'), Validators.required),
+      statsEnd: new FormControl(this.datePipe.transform('', 'yyyy-MM-dd'), Validators.required)
     });
     const localDate = new Date(Date.now());
     console.log(localDate);
@@ -107,19 +178,21 @@ export class StatisticComponent implements OnInit {
   }
 
   report() {
-    this.statsBeginDate = this.statsGroup.get('statsBegin').value;
-    this.statsEndDate = this.statsGroup.get('statsEnd').value;
-    console.log(this.datePipe.transform(this.statsBeginDate, 'yyyy-MM-dd'));
-    console.log(this.datePipe.transform(this.statsEndDate, 'yyyy-MM-dd'));
-    // Chech if report too much times and the products get many duplicated values
-    if (this.products.length > 0) {
-      this.products = [];
-    }
-    this.productService.statsProductFromDateToDate(this.statsBeginDate,
-      this.statsEndDate, 3).subscribe(items => {
+    this.statsBegin = this.statsGroup.get('statsBegin').value;
+    this.statsEnd = this.statsGroup.get('statsEnd').value;
+    // console.log(this.datePipe.transform(this.statsBeginDate, 'yyyy-MM-dd'));
+    // console.log(this.datePipe.transform(this.statsEndDate, 'yyyy-MM-dd'));
+    // Check if report too much times and the products get many duplicated values
+
+
+    this.productService.statsProductFromDateToDate(this.statsBegin,
+      this.statsEnd, 3).subscribe(items => {
         for (const i in items) {
           console.log('item: ' + items[i]);
-          this.products.push(items[i]);
+          if (this.products.find((test) => test.idProduct === items[i].idProduct) === undefined) {
+            this.products.push(items[i]);
+          }
+
         }
         console.log('products:' + this.products);
         getDataProduct(this.labelArr, this.dataArr, this.count, this.products);
@@ -151,7 +224,7 @@ export class StatisticComponent implements OnInit {
             }, plugins: {
               title: {
                 display: true,
-                text: 'Statistic Bar Chart From ' + this.statsBeginDate.toString() + ' to ' + this.statsEndDate.toString(),
+                text: 'Statistic Bar Chart From ' + this.statsBegin.toString() + ' to ' + this.statsEnd.toString(),
                 padding: {
                   top: 10,
                   bottom: 30
@@ -169,14 +242,13 @@ export class StatisticComponent implements OnInit {
     console.log('Array products finalPrice in y Axis: ' + this.dataArr); // empty
   }
 
-
   getRandomColor() {
     const letters = '0123456789ABCDEF'.split('');
     let color = '#';
     for (let i = 0; i < 6; i++) {
       color += letters[Math.floor(Math.random() * 16)];
+      return color;
     }
-    return color;
   }
 }
 
@@ -189,6 +261,10 @@ function getDataProduct(labelArr: any[], dataArr: any[], length: number, source:
     length++;
   });
   console.log(length);
+}
+
+function checkDateDif() {
+
 }
 
 
