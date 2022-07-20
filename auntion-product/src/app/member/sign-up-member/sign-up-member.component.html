@@ -1,6 +1,6 @@
 <div class="register-form mt-3 mb-3">
   <div class="container">
-    <div class="row" style="margin-top: 116px;">
+    <div class="row" style="margin-top: 118px;">
       <div class="main-page col-md-8 col-12 col-sm-6">
         <form [formGroup]="formCreateAccount" (ngSubmit)="createAccount()" *ngIf="formCreateAccount" class="p-4">
           <div class="row">
@@ -159,6 +159,11 @@
                       <option value="" selected>Select city</option>
                       <option *ngFor="let citis of addressList" value="{{citis.Name}}"><p>{{citis.Name}}</p></option>
                     </select>
+                    <span style="color: red" *ngIf="(formCreateAccount.get('city').hasError('required')
+               && formCreateAccount.get('city').touched)">
+                      <br>
+                  <i>Not empty</i>
+                </span>
                   </div>
                   <div class="form-select col-sm-4 col-md-4">
                     <select (change)="setWards()" class="selected form-control" style="width: 190px"
@@ -167,6 +172,11 @@
                       <option *ngFor="let districts of districtList " value="{{districts.Name}}">
                         <p>{{districts.Name}}</p></option>
                     </select>
+                    <span style="color: red" *ngIf="(formCreateAccount.get('district').hasError('required')
+               && formCreateAccount.get('district').touched)">
+                      <br>
+                  <i>Not empty</i>
+                </span>
                   </div>
                   <div class="form-select col-sm-4 col-md-4">
                     <select class="selected form-control" style="width: 190px" formControlName="ward" id="ward"
@@ -174,6 +184,11 @@
                       <option value="" selected>Select ward</option>
                       <option *ngFor="let wards of wardList" value="{{wards.Name}}"><p>{{wards.Name}}</p></option>
                     </select>
+                    <span style="color: red" *ngIf="(formCreateAccount.get('ward').hasError('required')
+               && formCreateAccount.get('ward').touched)">
+                      <br>
+                  <i>Not empty</i>
+                </span>
                   </div>
                 </div>
               </div>
