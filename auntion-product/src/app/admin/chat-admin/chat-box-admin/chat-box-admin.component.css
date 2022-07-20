@@ -1,0 +1,115 @@
+.chat-box__container {
+  background-color: #ffffff;
+  padding: 12px;
+  border-radius: 10px;
+}
+
+.chat-box__container .chat-box__header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 8px 8px 12px;
+  border-bottom: 1px solid #dadada;
+  margin-bottom: 8px;
+}
+
+.chat-box__container .chat-box__header .info .name {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.chat-box__container .chat-box__header .info .active {
+  display: flex;
+  align-items: center;
+}
+
+.chat-box__container .chat-box__header .info .active div {
+  background-color: #11b683;
+  height: 9px;
+  width: 9px;
+  border-radius: 50%;
+  transform: translateY(1px);
+}
+
+.chat-box__container .chat-box__header .info .active span {
+  font-size: 0.8rem;
+  color: #888;
+  font-weight: 300;
+  display: block;
+  margin-left: 4px;
+}
+
+/* Chat box item */
+.chat-box__item {
+  margin: 24px 0;
+}
+
+.chat-box__item .detail {
+  display: flex;
+  align-items: center;
+}
+
+.chat-box__item.admin {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.chat-box__item.admin:hover {
+  opacity: 0.9;
+}
+
+.chat-box__item.admin .text-chat {
+  background-color: var(--primary-color);
+}
+
+.chat-box__item.admin .text-chat a ,
+.chat-box__item.admin .text-chat p {
+  color: #fff !important;
+  overflow-wrap: break-word;
+}
+
+.chat-box__item .detail .name {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.chat-box__item .detail .time {
+  font-size: 0.8rem;
+  color: #888;
+  font-weight: 300;
+  margin-left: 12px;
+}
+
+.chat-box__item .text-chat {
+  background-color: #f8fafb;
+  max-width: 350px;
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 8px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  width: max-content;
+}
+
+.chat-box__item .text-chat.user {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+.chat-box__item .text-chat img {
+  max-height: 300px;
+  max-width: 300px;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+.chat-box__item .text-chat p ,
+.chat-box__item .text-chat a {
+  font-size: 1rem;
+  margin: 0;
+  color: var(--primary-color) !important;
+}
+

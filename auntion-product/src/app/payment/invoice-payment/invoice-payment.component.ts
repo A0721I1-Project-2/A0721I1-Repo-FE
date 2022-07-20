@@ -1,6 +1,7 @@
 import {Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
 import {PaymentService} from '../service/payment.service';
 import html2canvas from 'html2canvas';
+
 import jspdf from 'jspdf';
 import {finalize} from 'rxjs/operators';
 import {AngularFireStorage} from '@angular/fire/storage';
