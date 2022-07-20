@@ -16,10 +16,10 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 
 @NgModule({
   declarations: [ShowHomeComponent, ProductDetailComponent, ForgotPasswordComponent, HeaderComponent, FooterComponent, InstructionComponent, AboutUsComponent, ContactUsComponent, ChangePasswordComponent],
-    imports: [
-        CommonModule,
-        HomeRoutingModule,
-        ReactiveFormsModule
-    ]
+  imports: [
+    CommonModule,
+    HomeRoutingModule,
+    ReactiveFormsModule
+  ]
 })
 export class HomeModule { }
