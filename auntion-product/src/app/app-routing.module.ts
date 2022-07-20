@@ -1,11 +1,15 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
 
 
 const routes: Routes = [
   {
+    path: 'login' ,
+    loadChildren: () => import('./login/login.module').then(module => module.LoginModule)
+  },
+  {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then(module =>  module.HomeModule)
+    loadChildren: () => import('./home/home.module').then(module => module.HomeModule)
   },
   {
     path: 'auction-product',
@@ -25,11 +29,11 @@ const routes: Routes = [
   },
   {
     path: 'product',
-    loadChildren: () => import('./product/product.module').then(module => module.ProductModule)
+    loadChildren: () => import('./admin/product/product.module').then(module => module.ProductModule)
   },
   {
     path: 'admin',
-    loadChildren: () => import('./control-admin-page/control-admin-page.module').then(module => module.ControlAdminPageModule)
+    loadChildren: () => import('./admin/admin.module').then(module => module.AdminModule)
   }
 ];
 
@@ -37,4 +41,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
