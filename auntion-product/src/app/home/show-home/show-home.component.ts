@@ -11,6 +11,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 })
 export class ShowHomeComponent implements OnInit {
   products: Product[];
+  product: Product;
   min: number;
   max: number;
   typeProductName: string;
@@ -38,6 +39,12 @@ export class ShowHomeComponent implements OnInit {
       (data) => {
         // tslint:disable-next-line:prefer-const
         this.products = data;
+        console.log(this.products);
+        console.log(this.products.length);
+        for (let i = 0; i <= this.products.length; i++) {
+          this.product.mainPhoto = this.products[0].imageProductList;
+        }
+        console.log(this.product.mainPhoto);
         // this.showListAuntionWithTime();
         if (this.nameProductSearch != null) {
           this.nameProductSearch = '';
