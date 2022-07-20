@@ -53,7 +53,7 @@ export class PaymentCartComponent implements OnInit {
       this.message = '';
       this.message = sessionStorage.getItem('message-fail');
       document.getElementById('alert').hidden = false;
-    }
+        }
     sessionStorage.removeItem('testObject');
     sessionStorage.removeItem('message');
     // Phuong thuc lay ra member
