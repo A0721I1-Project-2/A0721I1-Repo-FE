@@ -1,17 +1,18 @@
 <div class="page__container">
-  <div class="page">
-    <div class="page__layout">
-      <div class="page__left">
-        <div class="page__wrapper">
 
-          <div class="product__image">
-            <div class="numbertext" id="numbertext"></div>
-            <a (click)="prevImage()" class="prev_image" style="color: #FF3366;"><</a>
-            <div>
-              <img id="mainImage" alt="Image">
-            </div>
-            <a (click)="nextImage()" class="next_image" style="color: #FF3366;">></a>
-            <div style="text-align:center" id="dot">
+    <div class="page">
+      <div class="page__layout">
+        <div class="page__left">
+          <div class="page__wrapper">
+
+            <div class="product__image">
+              <div class="numbertext" id="numbertext"></div>
+              <a (click)="prevImage()" class="prev_image" style="color: #FF3366;"><</a>
+              <div>
+                <img id="mainImage" alt="Image">
+              </div>
+              <a (click)="nextImage()" class="next_image" style="color: #FF3366;">></a>
+              <div style="text-align:center" id="dot">
               <span *ngFor="let item of arrayImage; index as i">
                 <span class="dot" (click)="changeSlide(i)"
                       style="cursor: pointer; height: 15px;
@@ -21,102 +22,102 @@
                       transition: background-color 0.6s ease;">
                 </span>
               </span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- The Modal -->
-      <div class="modal" id="myModal" data-toggle="modal" data-target="#myModal">
-        <div class="modal-dialog">
-          <div class="modal-content">
-
-            <!-- Modal Header -->
-            <div class="modal-header" id="modal-header">
-              <h4 class="modal-title" id="modal-head"></h4>
-              <button type="button" class="close" (click)="hide()">&times;</button>
-            </div>
-
-            <!-- Modal body -->
-            <div class="modal-body" style="color: black" id="modal-body">
-            </div>
-
-            <!-- Modal footer -->
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" (click)="hide()">Close</button>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-      <div class="page__right">
-        <h2 class="product__title">{{product.nameProduct}}</h2>
-        <div class="product__auction-info">
-          <div class="start__day">
-            <p>Start: {{product.startDate}}</p>
-          </div>
-          <div class="end__day">
-            <p>End: {{product.endDate}}</p>
-          </div>
-        </div>
-        <div class="product__auction">
-<!--          <p class="product__auction-time" id="time-remain"></p>-->
-          <p class="product__auction-time">{{product.remainingTime}}</p>
-          <div class="product__auction-info">
-            <div class="product__auction-price">
-              <h5>Current Bid (USD)</h5>
-              <p>{{currentPrice}}</p>
-            </div>
-            <div class="product__auction-winner">
-              <h5>Price Step (USD)</h5>
-              <p id="priceStep">{{product.incrementPrice}}</p>
-            </div>
-            <div class="product__auction-winner">
-              <h5 id="winner">Current Winner</h5>
-              <p *ngIf="currentWinner">{{currentWinner}}</p>
-              <p *ngIf="!currentWinner">None</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="bid-level">
-          <form [formGroup]="formAuction" (ngSubmit)="auction()">
-            <input type="hidden" class="moneyDauGia">
-            <div class="form__auction">
-              <h3>Auction Price (USD):</h3>
-              <div class="form__auction_button">
-                <button id="minus-btn" (click)="minusPrice()" class="minus__btn border rounded-circle" style="background: white;border-color: #c9c9c9" type="button">
-                  <span>&#8722;</span>
-                </button>
-                <input style="text-align: center" type="text" class="moneyDauGia" id="price" formControlName="currentBid">
-                <button id="plus-btn" (click)="plusPrice()" class="plus__btn border rounded-circle" style="background: #041E42; border-color: #041E42" type="button">
-                  <span>&#43;</span>
-                </button>
               </div>
             </div>
-            <div id="isFinish" (click)="auctionFinish()"></div>
-            <button type="submit" class="bid-btn" style="color: white">
-              Auction
-            </button>
-          </form>
+          </div>
         </div>
 
-      </div>
-    </div>
+        <!-- The Modal -->
+        <div class="modal" id="myModal" data-toggle="modal" data-target="#myModal">
+          <div class="modal-dialog">
+            <div class="modal-content">
 
-    <div class="table__auction">
-      <table class="table">
-        <thead>
-        <tr class="vnsd">
-          <th>#</th>
-          <th>Bidder</th>
-          <th>Username</th>
-          <th>Auction price (USD)</th>
-          <th>Time</th>
-        </tr>
-        </thead>
-        <tbody *ngFor="let item of auctionList;index as i">
+              <!-- Modal Header -->
+              <div class="modal-header" id="modal-header">
+                <h4 class="modal-title" id="modal-head"></h4>
+                <button type="button" class="close" (click)="hide()">&times;</button>
+              </div>
+
+              <!-- Modal body -->
+              <div class="modal-body" style="color: black" id="modal-body">
+              </div>
+
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" (click)="hide()">Close</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="page__right">
+          <h2 class="product__title">{{product.nameProduct}}</h2>
+          <div class="product__auction-info">
+            <div class="start__day">
+              <p>Start: {{product.startDate}}</p>
+            </div>
+            <div class="end__day">
+              <p>End: {{product.endDate}}</p>
+            </div>
+          </div>
+          <div class="product__auction">
+                      <p class="product__auction-time" id="time-remain">{{product.remainingTime}}</p>
+<!--            <p class="product__auction-time">{{product.remainingTime}}</p>-->
+            <div class="product__auction-info">
+              <div class="product__auction-price">
+                <h5>Current Bid (USD)</h5>
+                <p>{{currentPrice}}</p>
+              </div>
+              <div class="product__auction-winner">
+                <h5>Price Step (USD)</h5>
+                <p id="priceStep">{{product.incrementPrice}}</p>
+              </div>
+              <div class="product__auction-winner">
+                <h5 id="winner">Current Winner</h5>
+                <p *ngIf="currentWinner">{{currentWinner}}</p>
+                <p *ngIf="!currentWinner">None</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bid-level">
+            <form [formGroup]="formAuction" (ngSubmit)="auction()">
+              <input type="hidden" class="moneyDauGia">
+              <div class="form__auction">
+                <h3>Auction Price (USD):</h3>
+                <div class="form__auction_button">
+                  <button id="minus-btn" (click)="minusPrice()" class="minus__btn border rounded-circle" style="background: white;border-color: #c9c9c9" type="button">
+                    <span>&#8722;</span>
+                  </button>
+                  <input style="text-align: center" type="text" class="moneyDauGia" id="price" formControlName="currentBid">
+                  <button id="plus-btn" (click)="plusPrice()" class="plus__btn border rounded-circle" style="background: #041E42; border-color: #041E42" type="button">
+                    <span>&#43;</span>
+                  </button>
+                </div>
+              </div>
+              <div id="isFinish" (click)="auctionFinish()"></div>
+              <button type="submit" class="bid-btn" style="color: white">
+                Auction
+              </button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="table__auction">
+        <table class="table">
+          <thead>
+          <tr class="vnsd">
+            <th>#</th>
+            <th>Bidder</th>
+            <th>Username</th>
+            <th>Auction price (USD)</th>
+            <th>Time</th>
+          </tr>
+          </thead>
+          <tbody *ngFor="let item of auctionList;index as i">
           <ng-template [ngIf]="i == 0">
             <tr class="winner">
               <td>{{i+1}}</td>
@@ -143,16 +144,17 @@
               <td>{{item.time}}</td>
             </tr>
           </ng-template>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="product__description">
+        <h4 class="product__description-title">
+          Product Description
+        </h4>
+        <p>{{product.productDescription}}</p>
+      </div>
     </div>
 
-    <div class="product__description">
-      <h4 class="product__description-title">
-        Product Description
-      </h4>
-      <p>{{product.productDescription}}</p>
-    </div>
-  </div>
 
 </div>

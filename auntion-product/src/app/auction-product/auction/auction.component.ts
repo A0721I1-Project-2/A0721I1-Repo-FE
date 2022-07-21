@@ -16,6 +16,7 @@ import {ActivatedRoute} from '@angular/router';
 export class AuctionComponent implements OnInit {
   idProduct: number;
   product: Product;
+  isLoad = false;
   currentPrice: number;
   currentWinner: string;
   formAuction: FormGroup;
@@ -54,6 +55,7 @@ export class AuctionComponent implements OnInit {
       // tslint:disable-next-line:prefer-const
       let productTime;
       productTime = this.product = data;
+      this.isLoad = true;
       if (data.finalPrice === null) {
         this.currentPrice = data.initialPrice;
         this.formAuction.patchValue({currentBid: data.initialPrice});
@@ -69,7 +71,7 @@ export class AuctionComponent implements OnInit {
       const countDownDate = new Date(this.product.endDate).getTime();
       // Update the count down every 1 second
       // tslint:disable-next-line:only-arrow-functions
-      const x = setInterval(function () {
+      const x = setInterval(function() {
 
         // Get today's date and time
         const now = new Date().getTime();
