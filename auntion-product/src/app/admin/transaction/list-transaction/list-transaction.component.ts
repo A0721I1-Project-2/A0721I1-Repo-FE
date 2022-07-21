@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {TransactionService} from '../service/transaction.service';
-import {InvoiceDetail} from '../../model/InvoiceDetail';
 import {FormControl, FormGroup} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Invoice} from '../../model/Invoice';
-import {Payment} from '../../model/Payment';
+import {InvoiceDetail} from '../../../model/InvoiceDetail';
+import {Invoice} from '../../../model/Invoice';
+import {Payment} from '../../../model/Payment';
 
 @Component({
   selector: 'app-list-transaction',
@@ -26,7 +26,13 @@ export class ListTransactionComponent implements OnInit {
   total = 0;
   Status = 'Status';
 
-  payments: Payment[];
+  address: string;
+  street: string;
+  ward: string;
+  district: string;
+  city: string;
+
+  payments: Payment [];
 
   /* Initial properties for delete invoice */
   idInvoice: any;
@@ -36,6 +42,7 @@ export class ListTransactionComponent implements OnInit {
   constructor(private transactionService: TransactionService,
               private activatedRoute: ActivatedRoute,
               private router: Router) {
+
 
   }
 
@@ -62,6 +69,8 @@ export class ListTransactionComponent implements OnInit {
         this.totalPagination = (Math.round(this.listTransactionNotPagination.length / 5)) + 1;
       }
     });
+
+    // console.log(this.totalPage.length);
     this.showPage(this.pageNumber);
   }
 
@@ -70,6 +79,7 @@ export class ListTransactionComponent implements OnInit {
     this.transactionService.getAll(page).subscribe((data: any) => {
       this.invoiceDetail = data.content;
       this.setPage(data.totalPages);
+      console.log(data.totalPages);
     });
   }
 
@@ -149,6 +159,7 @@ export class ListTransactionComponent implements OnInit {
       this.total += this.result;
     }
   }
+
 
   /* */
   onChangeDelete($event: any) {
