@@ -1,6 +1,27 @@
+.p-r-0 {
+  padding-right: 0px !important;
+}
+
+.p-l-0 {
+  padding-left: 0px !important;
+}
+
+.chat-box__container {
+  overflow: hidden;
+}
+
+/* Responsive */
+/* Mobile */
+@media (max-width: 739px) {
+  .d-none-m-b {
+    display: none;
+  }
+}
+
+
 .clearfix {
   position: absolute;
-  right: 6%;
+  right: 5%;
 }
 
 .btn-pagination a {
@@ -48,11 +69,11 @@ label {
 }
 
 .btn {
-  background: #ff3366;
+  background: #11b683;
 }
 
 .btn:hover {
-  background: #11b683;
+  background: #ff3366;
 }
 
 table {
@@ -62,11 +83,32 @@ table {
   min-width: max-content;
 }
 
+.content {
+  margin-top: 60px;
+}
+
 .total-revenue {
-  margin-left: 75%;
+  margin-left: 69%;
 }
 
 /* Mobile: with < 740px */
+@media only screen and (max-width: 46.188rem) {
+  .clearfix {
+    position: absolute;
+    right: 6%;
+  }
+
+  .total-revenue {
+    margin-left: 65%;
+  }
+}
+
+button,
+select,
+input {
+  border-radius: 25px;
+}
+
 @media only screen and (max-width: 46.188rem) {
   .clearfix {
     position: absolute;
@@ -86,7 +128,7 @@ table {
   }
 
   .total-revenue {
-    margin-left: 65%;
+    margin-left: 50%;
   }
 }
 
@@ -98,7 +140,7 @@ table {
   }
 
   .total-revenue {
-    margin-left: 65%;
+    margin-left: 60%;
   }
 }
 
