@@ -71,8 +71,8 @@ export class HeaderComponent implements OnInit {
             this.router.navigateByUrl('/');
             setTimeout(() => {
               window.location.reload();
-            }, 50);
-          }, 700);
+            }, 80);
+          }, 800);
         } else {}
       });
     // if (window.confirm('Bạn có chắc là muốn đăng xuất ra khỏi hệ thống ?')){

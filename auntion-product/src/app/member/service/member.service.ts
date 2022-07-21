@@ -18,7 +18,7 @@ const URL_API = 'http://localhost:8080/profile/';
   providedIn: 'root'
 })
 export class MemberService {
-  public URL_API_DETAIL = 'http://localhost:8080/manager/api/member';
+  public URL_API_DETAIL = 'http://localhost:8080/api/account';
 
 
   constructor(private httpClient: HttpClient) {
