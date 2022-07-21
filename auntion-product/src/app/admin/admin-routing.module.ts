@@ -11,6 +11,10 @@ const routes: Routes = [
     path: 'chat-page',
     loadChildren: () => import('./chat-admin/chat-admin.module').then(module => module.ChatAdminModule)
   },
+  {
+    path: 'transaction',
+    loadChildren: () => import('./transaction/transaction.module').then(module => module.TransactionModule)
+  },
 ];
 
 @NgModule({
