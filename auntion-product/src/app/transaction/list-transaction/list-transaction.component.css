@@ -48,11 +48,11 @@ label {
 }
 
 .btn {
-  background: #11b683;
+  background: #ff3366;
 }
 
 .btn:hover {
-  background: #ff3366;
+  background: #11b683;
 }
 
 table {

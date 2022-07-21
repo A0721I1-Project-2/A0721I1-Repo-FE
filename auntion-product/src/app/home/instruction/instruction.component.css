@@ -1,0 +1,35 @@
+html, body, div, span, applet, object, iframe,h1, h2, h3, h4, h5, h6, p{
+  margin: 0;
+  padding: 0;
+  border: 0;
+  /* font-size: 100%; */
+}
+
+ol, ul {
+  list-style: none;
+}
+.topic{
+  margin: 20px 0;
+}
+.qa-group{
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  margin: 20px;
+}
+.question{
+  width: 100%;
+  background-color: #2b2c30;
+  /* border: 1px solid #ced4da; */
+  border-radius: 8px;
+  color: #fff;
+}
+.answer{
+  width: 100%;
+  /*display: none;*/
+}
+.show{
+  display: block;
+}
+.content{
+  padding: 10px;
+}
