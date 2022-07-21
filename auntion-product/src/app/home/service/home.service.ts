@@ -34,7 +34,7 @@ export class HomeService {
   // HauLST
   searchListProduct(nameProduct: string, typeProductname: string, min: number, max: number) {
     // tslint:disable-next-line:max-line-length
-    return this.httpClient.get<Product[]>(URL_HOME_API + '/list/search/' + '/name=' + nameProduct + '/type-product=' + typeProductname + '/' + min + '/' + max);
+    return this.httpClient.get<Product[]>(URL_HOME_API + '/list/search' + '/name=' + nameProduct + '/type-product=' + typeProductname + '/' + min + '/' + max);
   }
 
   // HauLST

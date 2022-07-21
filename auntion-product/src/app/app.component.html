@@ -20,13 +20,16 @@
 <!--<app-login></app-login>-->
 <!--<router-outlet></router-outlet>-->
 <div class="container-app">
-  <div *ngIf="path !=='http://localhost:4200/login/authentication'">
-    <app-header-unlogin class="app-header-unlogin"></app-header-unlogin>
-    <app-header class="app-header"></app-header>
-    <app-room-chat-user></app-room-chat-user>
-  </div>
-  <router-outlet class="router-outlet"></router-outlet>
-  <div *ngIf="path !=='http://localhost:4200/login/authentication'">
-    <app-footer class="app-footer"></app-footer>
-  </div>
+    <div *ngIf="path !=='http://localhost:4200/login/authentication'">
+
+        <app-header-unlogin></app-header-unlogin>
+        <app-header></app-header>
+        <app-room-chat-user></app-room-chat-user>
+    </div>
+    <router-outlet></router-outlet>
+    <div *ngIf="path !=='http://localhost:4200/login/authentication'">
+        <app-footer class="app-footer"></app-footer>
+    </div>
 </div>
+
+<!-- bạn nào pull về thì chỉ để lại 4 cái này app-header, router-outlet, app-footer, app-room-chat-user -> còn lại bỏ hết ra nha-->

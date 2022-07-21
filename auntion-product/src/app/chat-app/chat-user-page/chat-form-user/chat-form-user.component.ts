@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ChatService} from "../../services/chat.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {FileUpload} from "../../models/FileUpload";
+import {Account} from "../../../model/Account";
 
 @Component({
   selector: 'app-chat-form-user',
@@ -14,6 +15,9 @@ export class ChatFormUserComponent implements OnInit {
   selectedFiles: FileList;
   currentFileUpload: FileUpload;
   percentage: number;
+
+  /* Get data user */
+  user: any;
 
   /* Check img and url */
   isFile: boolean;
@@ -32,9 +36,12 @@ export class ChatFormUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    /* Get data user */
+    this.user = JSON.parse(window.localStorage.getItem('user'));
+
     /* Form Chat */
     this.formChat = this.fb.group({
-      message: ['' , Validators.required]
+      message: ['', Validators.required]
     });
   }
 
@@ -44,18 +51,16 @@ export class ChatFormUserComponent implements OnInit {
     let message = this.formChat.get('message').value;
 
     /* Check empty message */
-    if(message == null) {
+    if ((message === '' || message == null) && this.selectedFiles == null) {
       this.showNotiError = true;
-      console.log(this.showNotiError);
       setTimeout(() => {
         this.showNotiError = false;
       }, 3000);
     } else {
       if (this.formChat.value && this.selectedFiles == null) {
-        this.chatService.sendMessage(message, null);
+        this.chatService.sendMessage(message, null, this.user.id);
       }
 
-      this.formChat.reset();
       /* To send file */
       if (this.selectedFiles) {
         const file = this.selectedFiles.item(0);
@@ -67,7 +72,7 @@ export class ChatFormUserComponent implements OnInit {
           message = null;
         }
 
-        this.chatService.pushFileToStorage(message, this.currentFileUpload).subscribe(percentage => {
+        this.chatService.pushFileToStorage(message, this.currentFileUpload, this.user.id).subscribe(percentage => {
             this.percentage = Math.round(percentage);
           },
           error => {
@@ -79,9 +84,37 @@ export class ChatFormUserComponent implements OnInit {
           });
       }
     }
+    this.formChat.reset();
   }
 
   selectFile(event: any) {
+    /* To get info files selected */
+    this.selectedFiles = event.target.files;
+
+    /* Check file or img to show */
+    this.checkFileAndImg(this.selectedFiles.item(0));
+
+    /* To show images */
+    // this.uploadSrc = [];
+    //
+    // let files = event.target.files;
+    // if (files) {
+    //   for (let file of files) {
+    //     let reader = new FileReader();
+    //     /* Check file or image */
+    //     if (!this.isFile) {
+    //       reader.onload = (e: any) => {
+    //         this.uploadSrc.push(e.target.result);
+    //       }
+    //     } else {
+    //       this.uploadSrc.push(file);
+    //       reader.readAsDataURL(file);
+    //     }
+    //     reader.readAsDataURL(file);
+    //   }
+    // }
+
+    // Single img
     this.selectedFiles = event.target.files;
 
     /* Check file or img to show */

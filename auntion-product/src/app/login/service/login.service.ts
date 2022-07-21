@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
 import {Account} from '../../model/Account';
+import {Observable} from 'rxjs';
+
+const BASE_PATH = 'http://localhost:8080';
+
 
 @Injectable({
   providedIn: 'root'
@@ -23,5 +26,17 @@ export class LoginService {
   login(account: Account): Observable<Account>{
     return this.httpClient.post<Account>(this.URL_LOGIN, account);
   }
+
+
+  /* Authenticate login */
+  handleLogin(account: any): Observable<any> {
+    return this.httpClient.post<any>(`${BASE_PATH}/authenticate` , account);
+  }
+
+  /* Logout */
+  logout() {
+    localStorage.clear();
+  }
+
 
 }

@@ -13,6 +13,8 @@ import {ContactUsComponent} from './contact-us/contact-us.component';
 import {HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
 import { HeaderUnloginComponent } from './header-unlogin/header-unlogin.component';
+import {RouterModule} from '@angular/router';
+
 
 
 @NgModule({
@@ -27,7 +29,8 @@ import { HeaderUnloginComponent } from './header-unlogin/header-unlogin.componen
     CommonModule,
     HomeRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule
   ]
 })
 export class HomeModule {

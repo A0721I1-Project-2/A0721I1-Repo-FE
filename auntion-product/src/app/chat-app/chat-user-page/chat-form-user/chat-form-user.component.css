@@ -1,257 +1,267 @@
 .chat-bar {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 12px;
-  background-color: #fff;
-  box-shadow: rgb(149 157 165 / 20%) 0px 8px 24px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px;
+    background-color: #fff;
+    box-shadow: rgb(149 157 165 / 20%) 0px 8px 24px;
 }
 
 .chat-bar .message {
-  height: 50px;
-  border: none;
-  font-size: 1.5rem;
-  outline: none;
-  width: 100%;
+    height: 50px;
+    border: none;
+    font-size: 1.5rem;
+    outline: none;
+    width: 100%;
 }
 
 .chat-bar__function input {
-  display: none;
+    display: none;
 }
 
 .chat-bar .chat-bar__function {
-  flex: 1;
-  display: flex;
-  align-items: center;
+    flex: 1;
+    display: flex;
+    align-items: center;
 }
 
 .chat-bar__function .attachment-group label {
-  margin: 0px 0px 0px 6px;
-  cursor: pointer;
+    margin: 0px 0px 0px 6px;
+    cursor: pointer;
 }
 
 .chat-bar__function .send-group,
 .chat-bar__function .attachment-group label {
-  padding: 12px 6px;
-  cursor: pointer;
-  background-color: transparent;
-  border: none;
-  outline: none;
+    padding: 12px 6px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    outline: none;
 }
 
 .chat-bar__function .attachment-group label i,
 .chat-bar__function .send-group i {
-  font-size: 1.6rem;
-  transition: all 0.3s;
+    font-size: 1.6rem;
+    transition: all 0.3s;
 }
 
 .chat-bar__function .attachment-group label:hover i,
 .chat-bar__function .send-group:hover i {
-  color: var(--button-color);
+    color: var(--button-color);
 }
 
+
 /* Show select file and img */
+
 .show-upload__select {
-  padding: 12px;
-  background-color: #fff;
+    padding: 12px;
+    background-color: #fff;
 }
 
 .show-img__select {
-  height: 100px;
-  width: 100px;
-  position: relative;
-  transition: all 0.3s;
+    height: 100px;
+    width: 100px;
+    position: relative;
+    transition: all 0.3s;
 }
 
 .show-img__select img {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  border-radius: 10px;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 10px;
 }
 
-.show-img__select i:hover ,
+.show-img__select i:hover,
 .text-chat__file i.close-icon:hover {
-  opacity: 0.9;
-  cursor: pointer;
+    opacity: 0.9;
+    cursor: pointer;
 }
 
-.show-img__select i ,
+.show-img__select i,
 .text-chat__file i.close-icon {
-  position: absolute;
-  height: 25px;
-  width: 25px;
-  border-radius: 50%;
-  background-color: var(--button-color);
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  top: -9px;
-  right: -14px;
-  transition: all 0.3s;
+    position: absolute;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    background-color: var(--button-color);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: -9px;
+    right: -14px;
+    transition: all 0.3s;
 }
 
 .text-chat__file {
-  height: 50px;
-  width: 170px;
-  background-color: var(--primary-color);
-  color: #fff;
-  border-radius: 5px;
-  padding: 12px;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  position: relative;
-  display: block;
-  transition: all 0.3s;
+    height: 50px;
+    width: 170px;
+    background-color: var(--primary-color);
+    color: #fff;
+    border-radius: 5px;
+    padding: 12px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    position: relative;
+    display: block;
+    transition: all 0.3s;
 }
 
 .text-chat__file-group {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .text-chat__file p {
-  font-size: 1rem;
-  margin: 0px 0px 0px 8px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  max-width: 135px;
+    font-size: 1rem;
+    margin: 0px 0px 0px 8px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 135px;
 }
 
 .text-chat__file i {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
 }
 
+
 /* Edit progress */
+
 .progress {
-  padding: 0 4px;
-  height: 27px !important;
-  font-size: 1.2rem !important;
-  font-weight: 500 !important;
+    padding: 0 4px;
+    height: 27px !important;
+    font-size: 1.2rem !important;
+    font-weight: 500 !important;
 }
 
 .progress-bar {
-  background-color: var(--primary-color) !important;
-  border-radius: 10px;
+    background-color: var(--primary-color) !important;
+    border-radius: 10px;
 }
+
 
 /* Alert error */
+
 .alert__error-notification {
-  position: absolute;
-  top: -35px;
-  transform: translate(-50%, -50%);
-  left: 50%;
-  width: 90%;
-  background-color: #EF5350;
-  color: #fff;
-  padding: 0 20px;
-  font-size: 1.2rem;
-  border-radius: 3px;
-  -webkit-animation: fadeIn 0.4s, fadeInUp 0.3s, growth 0.3s;
-  animation: fadeIn 0.4s, fadeInUp 0.3s, growth 0.3s;
-  transform-origin: bottom left;
-  transition: all 0.3s;
-  visibility: hidden;
-  min-height: 50px;
-  display: flex;
-  align-items: center;
+    position: absolute;
+    top: -35px;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    width: 90%;
+    background-color: #EF5350;
+    color: #fff;
+    padding: 0 20px;
+    font-size: 1.2rem;
+    border-radius: 3px;
+    -webkit-animation: fadeIn 0.4s, fadeInUp 0.3s, growth 0.3s;
+    animation: fadeIn 0.4s, fadeInUp 0.3s, growth 0.3s;
+    transform-origin: bottom left;
+    transition: all 0.3s;
+    visibility: hidden;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
 }
+
 
 /* Responsive */
-/* Mobile */
-@media (max-width: 739px) {
 
-}
+
+/* Mobile */
+
+@media (max-width: 739px) {}
+
 
 /* Mobile and Tablet */
-@media (max-width: 1023px) {
-}
+
+@media (max-width: 1023px) {}
+
 
 /* Tablet */
-@media (min-width: 740px) and (max-width: 1023px) {
 
-}
+@media (min-width: 740px) and (max-width: 1023px) {}
 
-/* X-Large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {
-
-}
 
 /* X-Large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {
-  .chat-bar .message {
-    font-size: 1.2rem;
-  }
 
-  .chat-bar__function .attachment-group label i,
-  .chat-bar__function .send-group i {
-    font-size: 1.4rem;
-  }
+@media (min-width: 1200px) {}
+
+
+/* X-Large devices (large desktops, 1200px and up) */
+
+@media (min-width: 1200px) {
+    .chat-bar .message {
+        font-size: 1.2rem;
+    }
+    .chat-bar__function .attachment-group label i,
+    .chat-bar__function .send-group i {
+        font-size: 1.4rem;
+    }
 }
+
 
 /* XX-Large devices (larger desktops, 1400px and up) */
-@media (min-width: 1400px) {
-  .chat-bar .message {
-    font-size: 1.4rem;
-  }
 
-  .chat-bar__function .attachment-group label i,
-  .chat-bar__function .send-group i {
-    font-size: 1.4rem;
-  }
+@media (min-width: 1400px) {
+    .chat-bar .message {
+        font-size: 1.4rem;
+    }
+    .chat-bar__function .attachment-group label i,
+    .chat-bar__function .send-group i {
+        font-size: 1.4rem;
+    }
 }
 
+
 /* Animation */
+
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 @keyframes growth {
-  from {
-    transform: scale(0);
-  }
-  to {
-    transform: scale(1);
-  }
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
 }
 
 @keyframes fadeInUp {
-  from {
-    transform: translate3d(0, 40px, 0)
-  }
-
-  to {
-    transform: translate3d(0, 0, 0);
-    opacity: 1
-  }
+    from {
+        transform: translate3d(0, 40px, 0)
+    }
+    to {
+        transform: translate3d(0, 0, 0);
+        opacity: 1
+    }
 }
 
 @-webkit-keyframes fadeInUp {
-  from {
-    transform: translate3d(0, 40px, 0)
-  }
-
-  to {
-    transform: translate3d(0, 0, 0);
-    opacity: 1
-  }
+    from {
+        transform: translate3d(0, 40px, 0)
+    }
+    to {
+        transform: translate3d(0, 0, 0);
+        opacity: 1
+    }
 }
 
 .animated {
-  animation-duration: 1s;
-  animation-fill-mode: both;
-  -webkit-animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
 }
-

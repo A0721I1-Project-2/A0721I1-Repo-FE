@@ -1,49 +1,52 @@
+<!-- Chat box -->
 <div class="screen-chat__middle-group">
-  <div class="info-user">
-    <div class="icon-user">
-      <i class="fa-solid fa-user"></i>
-    </div>
-
-    <div class="info-user__group">
-      <span>Name: </span>
-      <p *ngIf="member">{{member.nameMember}}</p>
-    </div>
-
-    <div class="info-user__group">
-      <span>E-mail: </span>
-      <p *ngIf="member">{{member.emailMember}}</p>
-    </div>
-  </div>
-
-  <div class="info-chat">
-    <div class="info-chat__item">
-      <div class="img-group">
-        <img src="./assets/avatar.avif" alt="">
-      </div>
-
-      <div class="info-chat__item-right-area">
-        <span class="name">Admin</span>
-        <span class="time">{{now}}</span>
-
-        <div class="text-chat">
-          <p>Hello . How may I help you?</p>
+    <div class="info-user">
+        <div class="icon-user">
+            <i class="fa-solid fa-user"></i>
         </div>
-      </div>
-    </div>
 
-    <div *ngFor="let message of messages | async" class="info-chat__item user">
-      <div class="info-chat__item-right-area">
-        <span class="time">{{message.timeSent}}</span>
-
-        <div class="text-chat">
-          <img class="text-chat__img" *ngIf="message.fileUpload && !message.isFile" [src]="message.fileUpload.url" alt="">
-
-          <a class="text-chat__file" *ngIf="message.fileUpload && message.isFile"
-             href="{{message.fileUpload.url}}" target="_blank">{{message.fileUpload.name}}</a>
-
-          <p>{{message.message}}</p>
+        <div class="info-user__group">
+            <span>Name: </span>
+            <p *ngIf="member">{{member.nameMember}}</p>
         </div>
-      </div>
+
+        <div class="info-user__group">
+            <span>E-mail: </span>
+            <p *ngIf="member">{{member.emailMember}}</p>
+        </div>
     </div>
-  </div>
+
+    <div class="info-chat">
+        <div class="info-chat__item">
+            <div class="info-chat__item-right-area">
+                <span class="name">Admin</span>
+                <span class="time">{{now}}</span>
+
+                <div class="text-chat">
+                    <p>Hello . How may I help you?</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Message of user -->
+        <div *ngFor="let message of messages | async" class="info-chat__item" [ngClass]="message.isOwn.length == 1?'user':null">
+            <span class="time">{{message.timeSent}}</span>
+
+            <div class="text-chat-group">
+                <div class="function__message">
+                    <i class="fa-solid fa-ellipsis-vertical"></i>
+
+                    <div class=""></div>
+                </div>
+
+                <div class="text-chat">
+                    <img class="text-chat__img" *ngIf="message.fileUpload && !message.isFile" [src]="message.fileUpload.url" alt="" (click)="showFile(message.fileUpload.url)">
+
+                    <a class="text-chat__file" *ngIf="message.fileUpload && message.isFile" (click)="showFile(message.fileUpload.url)" href="{{message.fileUpload.url}}" target="_blank">{{message.fileUpload.name}}</a>
+
+                    <p>{{message.message}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

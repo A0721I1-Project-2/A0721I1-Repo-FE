@@ -1,22 +1,22 @@
-import { Injectable } from '@angular/core';
-import {AngularFireDatabase, AngularFireList} from "@angular/fire/database";
-import {AngularFireStorage} from "@angular/fire/storage";
-import {ApiService} from "./api.service";
+import {Injectable} from '@angular/core';
+import {AngularFireDatabase, AngularFireList, snapshotChanges} from '@angular/fire/database';
+import {AngularFireStorage} from '@angular/fire/storage';
+import {ApiService} from './api.service';
 import {Member} from '../../model/Member';
-import {finalize} from "rxjs/operators";
-import {FileUpload} from "../models/FileUpload";
-import {Observable} from "rxjs";
-import {ChatMessage} from "../models/ChatMessage";
-import {Account} from "../../model/Account";
+import {finalize} from 'rxjs/operators';
+import {FileUpload} from '../models/FileUpload';
+import {Observable} from 'rxjs';
+import {Account} from '../../model/Account';
+import {ConnectFirebaseService} from './connect-firebase.service';
+import {ChatMessage} from '../models/ChatMessage';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChatService {
 
-  /* To get user */
-  member: Member;
-  account: Account;
+  /* To store account after login */
+  account: any;
 
   /* To store url download */
   downloadURL: any;
@@ -33,27 +33,68 @@ export class ChatService {
   }
 
   /* Send message */
-  sendMessage(message: any , fileUpload: any) {
+  sendMessage(message: any, fileUpload: any, accountId: any) {
     const timeStamp = this.getTimeStamp();
-    this.chatMessages = this.getMessages();
-    console.log(message);
-    if(fileUpload == null) {
+
+    /* Create new path for admin and user */
+    let path = `messages/${accountId}`;
+
+    this.chatMessages = this.getMessages(accountId);
+
+    if (fileUpload == null) {
       fileUpload = null;
       this.isFile = null;
     }
+
+    console.log(message);
+    console.log(this.isFile);
+
+    /* Get username by account Id */
     this.chatMessages.push({
       message: message,
-      fileUpload: fileUpload ,
-      timeSent: timeStamp ,
+      username: this.account.username,
+      fileUpload: fileUpload,
+      timeSent: timeStamp,
       isFile: this.isFile,
       isOwn: this.account.roles
-    })
+    });
+
+    /* To hidden quantity when its role admin */
+    let breakProgram = this.connectFirebaseService.getStatusMsg(this.account.id).subscribe(data => {
+      if (this.account.id === 1) {
+        this.connectFirebaseService.setStatusMsg(accountId, false, 0, message);
+      } else {
+        if (data == null) {
+          this.connectFirebaseService.setStatusMsg(accountId, true, 0, message);
+        } else {
+          this.connectFirebaseService.setStatusMsg(accountId, true, data.quantity, message);
+        }
+      }
+      /* To break for loop when sent */
+      breakProgram.unsubscribe();
+    });
+
+    /* Ignore error socket and save with id user */
+    // this.getMessages(accountId).snapshotChanges().subscribe(key => {
+    //   path = `messages/${accountId}/${key[key.length - 1].key}`;
+    //   this.db.object(path).update(this.chatMessages).catch(error => console.log(error));
+    // });
   }
 
   /* Get messages */
-  getMessages(): AngularFireList<ChatMessage[]> {
-    /* messages must be correct because it is name url to contain database */
-    return this.db.list('messages', ref => ref.orderByKey().limitToLast(400));
+  getMessages(accountId: any): AngularFireList<ChatMessage[]> {
+    return this.db.list(`messages/${accountId}`, ref => ref.orderByKey().limitToLast(400));
+  }
+
+  /* Delete message */
+  deleteMessage(accountId: any): void {
+    /* Get key in message to delete */
+    this.getMessages(accountId).snapshotChanges().subscribe(key => {
+      const path = `messages/${accountId}`;
+
+      console.log(key);
+      // return this.db.list(path).remove(key[key.length - 1].key);
+    });
   }
 
   /* Save img */
@@ -77,7 +118,7 @@ export class ChatService {
   }
 
   /* Push file to storage */
-  pushFileToStorage(message: any , fileUpload: FileUpload): Observable<any> {
+  pushFileToStorage(message: any, fileUpload: FileUpload, accountId: any): Observable<any> {
     const filePath = `uploads/${fileUpload.file.name}`;
     const storageRef = this.storage.ref(filePath);
     const uploadTask = this.storage.upload(filePath, fileUpload.file);
@@ -91,11 +132,12 @@ export class ChatService {
 
           if (this.isFile) {
             this.saveFileData(fileUpload);
-            this.sendMessage(message , fileUpload);
           } else {
             this.saveImg(uploadTask, storageRef);
-            this.sendMessage(message , fileUpload);
           }
+
+          /* Fix there */
+          this.sendMessage(message, fileUpload, accountId);
         });
       })
     ).subscribe();
@@ -104,8 +146,8 @@ export class ChatService {
 
   /* To check url or img */
   checkFileOrImg(file: File): boolean {
-    let fileCheck = file.type;
-    let checkImg = fileCheck.substr(0, fileCheck.indexOf('/'));
+    const fileCheck = file.type;
+    const checkImg = fileCheck.substr(0, fileCheck.indexOf('/'));
     if (checkImg === 'image') {
       this.isFile = false;
       return false;
@@ -118,26 +160,21 @@ export class ChatService {
   /* Get and format time */
   getTimeStamp(): any {
     const now = new Date();
-    const date = now.getFullYear() + '/' +
-      (now.getMonth() + 1) + '/' + now.getDate();
+    const date = now.getDate() + '/' +
+      (now.getMonth() + 1) + '/' + now.getFullYear();
 
     const time = now.getHours() + ':' +
-      (now.getMinutes() + 1) + ':' + now.getSeconds();
-    return date + ' ' + time;
+      (now.getMinutes() > 10 ? '' + now.getMinutes() : '0' + now.getMinutes());
+
+    const timeShow = now.getHours() > 12 ? 'PM' : 'AM';
+    return date + ' ' + time + ' ' + timeShow;
   }
 
   constructor(private db: AngularFireDatabase, private storage: AngularFireStorage
-  , private apiService: ApiService) {
-    // Get user with current data
-    this.apiService.getMemberByAccountId(1).subscribe(member => {
-      this.member = member;
-    });
-
-    /* Get account with username */
-    this.apiService.getAccountByUsername("anhtuan").subscribe(account => {
-      this.account = account;
-    });
-
-    // this.user = JSON.parse(window.localStorage.getItem('user'));
+    , private apiService: ApiService, private connectFirebaseService: ConnectFirebaseService) {
+    this.account = JSON.parse(window.localStorage.getItem('user'));
+    if (this.account == null) {
+      this.account = JSON.parse(window.localStorage.getItem('admin'));
+    }
   }
 }
