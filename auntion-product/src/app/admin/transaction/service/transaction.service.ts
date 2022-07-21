@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {InvoiceDetail} from '../../model/InvoiceDetail';
 import {Observable} from 'rxjs';
+import {InvoiceDetail} from '../../../model/InvoiceDetail';
 
 const API_URL = 'http://localhost:8080/manager/api/';
 
@@ -27,10 +27,6 @@ export class TransactionService {
 
   searchDate(startDate: string, endDate: string) {
     return this.http.get(API_URL + 'search-date/' + startDate + '/' + endDate);
-  }
-
-  searchStatus(status: string) {
-    return this.http.get(API_URL + 'search-status/' + status);
   }
 
   delete(id: any) {
