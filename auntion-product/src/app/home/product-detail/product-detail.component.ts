@@ -2,8 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Product} from '../../model/Product';
 import {HomeService} from '../service/home.service';
 import {ActivatedRoute} from '@angular/router';
-import {HttpClient} from '@angular/common/http';
-
+import {AuctionDTO} from '../../model/auctionDTO';
 
 @Component({
   selector: 'app-product-detail',
@@ -14,15 +13,20 @@ export class ProductDetailComponent implements OnInit {
   product: Product;
   arrayImage: string[] = [];
   id: any;
+  // 0: not available
+  // 1: available for bidding
+  // 2: not start
+  checkAvailable: number;
+  winner: string;
 
-  constructor(private homeService: HomeService, private route: ActivatedRoute, private http: HttpClient) {
-  }
-
-
-  ngOnInit(): void {
+  constructor(private homeService: HomeService, private route: ActivatedRoute) {
     this.id = this.route.snapshot.paramMap.get('id');
     this.getProductDetail();
+  }
 
+  ngOnInit(): void {
+    this.getProductTime();
+    this.getAuctionHighest();
 
     const imagePromise = this.getImageByProductId(this.id).toPromise();
     imagePromise.then((data) => {
@@ -36,42 +40,53 @@ export class ProductDetailComponent implements OnInit {
     });
   }
 
+  getProductTime() {
+    this.homeService.getProductByIdForProductDetail(this.id).subscribe(data => {
+      // tslint:disable-next-line:max-line-length
+      if (new Date(this.product.startDate).getTime() <= new Date().getTime() && new Date(this.product.endDate).getTime() >= new Date().getTime()) {
+        this.checkAvailable = 1;
+        const id = this.id;
+        const countDownDate = new Date(this.product.endDate).getTime();
+        // tslint:disable-next-line:only-arrow-functions
+        const x = setInterval(function() {
+          const now = new Date().getTime();
+          const distance = countDownDate - now;
+          const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+          document.getElementById('time-remain-' + id).innerHTML = days + 'd ' + hours + 'h '
+            + minutes + 'm ' + seconds + 's ';
+          if (distance < 0) {
+            clearInterval(x);
+            document.getElementById('time-remain-' + id).innerHTML = 'Finished';
+          }
+        }, 1000);
+      } else if (new Date(this.product.startDate).getTime() > new Date().getTime()) {
+        this.checkAvailable = 2;
+        document.getElementById('time-remain-' + this.id).innerHTML = 'Not Start';
+      } else {
+        this.checkAvailable = 0;
+        document.getElementById('time-remain-' + this.id).innerHTML = 'Finished';
+      }
+      console.log(this.checkAvailable);
+    });
+  }
+
   getProductDetail() {
     this.homeService.getProductByIdForProductDetail(this.id).subscribe(data => {
       this.product = data;
-
-      // Set the date we're counting down to
-      const countDownDate = new Date(this.product.endDate).getTime();
-      // Update the count down every 1 second
-      // tslint:disable-next-line:only-arrow-functions
-      const x = setInterval(function() {
-
-        // Get today's date and time
-        const now = new Date().getTime();
-
-        // Find the distance between now and the count down date
-        const distance = countDownDate - now;
-
-        // Time calculations for days, hours, minutes and seconds
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        // Display the result in the element with id="demo"
-        document.getElementById('time-remain').innerHTML = days + 'd ' + hours + 'h '
-          + minutes + 'm ' + seconds + 's ';
-
-        // If the count down is finished, write some text
-        if (distance < 0) {
-          clearInterval(x);
-          document.getElementById('time-remain').innerHTML = 'Finished';
-          document.getElementById('winner').innerHTML = 'Winner';
-          document.getElementById('isFinish').click();
-        }
-      }, 1000);
     });
   }
+
+  getAuctionHighest(){
+    this.homeService.getAuctionList(this.id).subscribe((auctions: AuctionDTO[]) => {
+      if (auctions != null) {
+        this.winner = auctions[0].username;
+      }
+    });
+  }
+
 
   getImageByProductId(id: number) {
     return this.homeService.getImageByProductId(id);
@@ -82,11 +97,10 @@ export class ProductDetailComponent implements OnInit {
     const mainImage = document.getElementById('mainImage') as HTMLImageElement;
     let image = '';
     let numberText;
-    // tslint:disable-next-line:triple-equals
-    if (mainImage.src.indexOf((this.arrayImage)[this.arrayImage.length - 1]) == -1) {
+    if (mainImage.src.indexOf((this.arrayImage)[this.arrayImage.length - 1]) === -1) {
       for (let index = 0; index < this.arrayImage.length - 1; index++) {
-        // tslint:disable-next-line:triple-equals
-        if (mainImage.src.indexOf((this.arrayImage)[index]) != -1) {
+
+        if (mainImage.src.indexOf((this.arrayImage)[index]) !== -1) {
           image = (this.arrayImage)[index + 1];
           numberText = index + 2;
           console.log(numberText);
@@ -105,11 +119,11 @@ export class ProductDetailComponent implements OnInit {
     const src = (document.getElementById('mainImage') as HTMLImageElement).src;
     let image = '';
     let numberText;
-    // tslint:disable-next-line:triple-equals
-    if (src.indexOf(this.arrayImage[0]) == -1) {
+
+    if (src.indexOf(this.arrayImage[0]) === -1) {
       for (let index = 1; index < this.arrayImage.length; index++) {
-        // tslint:disable-next-line:triple-equals
-        if (src.indexOf(this.arrayImage[index]) != -1) {
+
+        if (src.indexOf(this.arrayImage[index]) !== -1) {
           image = this.arrayImage[index - 1];
           numberText = index;
           break;

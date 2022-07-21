@@ -5,6 +5,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Product} from '../../model/Product';
 import {ImageProduct} from '../../model/ImageProduct';
+import {AuctionDTO} from '../../model/auctionDTO';
 
 const URL_HOME_API = 'http://localhost:8080/manager/product/api';
 const URL_ACCOUNT_API = 'http://localhost:8080/api/account';
@@ -41,6 +42,11 @@ export class HomeService {
   // VinhTQ
   getImageByProductId(idProduct: number) {
     return this.httpClient.get<ImageProduct[]>(URL_HOME_API + '/getImageByProductId/' + idProduct);
+  }
+
+  // VinhTQ
+  getAuctionList(idProduct: number) {
+    return this.httpClient.get<AuctionDTO[]>(URL_HOME_API + '/getAuctionList/' + idProduct);
   }
 
   // HauLST

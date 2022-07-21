@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuctionProductService} from '../service/auction-product.service';
 import {Product} from '../../model/Product';
 import {FormControl, FormGroup} from '@angular/forms';
@@ -25,7 +25,8 @@ export class AuctionComponent implements OnInit {
   account: Account;
   isFinish = false;
 
-  constructor(private auctionProductService: AuctionProductService, private activatedRoute: ActivatedRoute) { }
+  constructor(private auctionProductService: AuctionProductService, private activatedRoute: ActivatedRoute) {
+  }
 
   ngOnInit(): void {
     const idProduct = this.activatedRoute.snapshot.params.id;
@@ -50,7 +51,9 @@ export class AuctionComponent implements OnInit {
 
     const productPromise = this.getProductById(this.idProduct).toPromise();
     productPromise.then((data) => {
-      this.product = data;
+      // tslint:disable-next-line:prefer-const
+      let productTime;
+      productTime = this.product = data;
       if (data.finalPrice === null) {
         this.currentPrice = data.initialPrice;
         this.formAuction.patchValue({currentBid: data.initialPrice});
@@ -66,7 +69,7 @@ export class AuctionComponent implements OnInit {
       const countDownDate = new Date(this.product.endDate).getTime();
       // Update the count down every 1 second
       // tslint:disable-next-line:only-arrow-functions
-      const x = setInterval(function() {
+      const x = setInterval(function () {
 
         // Get today's date and time
         const now = new Date().getTime();
@@ -81,8 +84,9 @@ export class AuctionComponent implements OnInit {
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
         // Display the result in the element with id="demo"
-        document.getElementById('time-remain').innerHTML = days + 'd ' + hours + 'h '
-          + minutes + 'm ' + seconds + 's ';
+        // document.getElementById('time-remain').innerHTML = days + 'd ' + hours + 'h '
+        //   + minutes + 'm ' + seconds + 's ';
+        productTime.remainingTime = days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's ';
 
         // If the count down is finished, write some text
         if (distance < 0) {
@@ -112,7 +116,7 @@ export class AuctionComponent implements OnInit {
     });
   }
 
-  getProductById(id: number){
+  getProductById(id: number) {
     return this.auctionProductService.getProductById(id);
   }
 
@@ -120,49 +124,56 @@ export class AuctionComponent implements OnInit {
     const newPrice = Number((document.getElementById('price') as HTMLInputElement).value);
     document.getElementById('modal-head').innerText = 'Auction Alert';
     if (this.isFinish === true) {
-      document.getElementById('modal-body').innerText = 'Auction of product ' + this.product.nameProduct  + ' has finished!';
+      document.getElementById('modal-body').innerText = 'Auction of product ' + this.product.nameProduct + ' has finished!';
       document.getElementById('modal-header').style.background = 'red';
       document.getElementById('myModal').hidden = false;
       document.getElementById('myModal').click();
     } else if (newPrice <= this.currentPrice) {
-        document.getElementById('modal-body').innerText = 'Auction Price must be greater than the Current Bid!';
-        document.getElementById('modal-header').style.background = 'red';
-        document.getElementById('myModal').hidden = false;
-        document.getElementById('myModal').click();
-      } else if (newPrice % this.product.incrementPrice !== 0) {
-        document.getElementById('modal-body').innerText = 'Auction Price must be divisible by the Price Step!';
-        document.getElementById('modal-header').style.background = 'red';
-        document.getElementById('myModal').hidden = false;
-        document.getElementById('myModal').click();
-      } else{
-        let currenDate;
-        let currenDateTime;
-        currenDate = new Date();
-        currenDateTime = `${
-          currenDate.getFullYear().toString().padStart(4, '0')}/${
-          (currenDate.getMonth() + 1).toString().padStart(2, '0')}/${
-          currenDate.getDate().toString().padStart(2, '0')} ${
-          currenDate.getHours().toString().padStart(2, '0')}:${
-          currenDate.getMinutes().toString().padStart(2, '0')}:${
-          currenDate.getSeconds().toString().padStart(2, '0')}`;
+      document.getElementById('modal-body').innerText = 'Auction Price must be greater than the Current Bid!';
+      document.getElementById('modal-header').style.background = 'red';
+      document.getElementById('myModal').hidden = false;
+      document.getElementById('myModal').click();
+    } else if (newPrice % this.product.incrementPrice !== 0) {
+      document.getElementById('modal-body').innerText = 'Auction Price must be divisible by the Price Step!';
+      document.getElementById('modal-header').style.background = 'red';
+      document.getElementById('myModal').hidden = false;
+      document.getElementById('myModal').click();
+    } else {
+      let currenDate;
+      let currenDateTime;
+      currenDate = new Date();
+      currenDateTime = `${
+        currenDate.getFullYear().toString().padStart(4, '0')}/${
+        (currenDate.getMonth() + 1).toString().padStart(2, '0')}/${
+        currenDate.getDate().toString().padStart(2, '0')} ${
+        currenDate.getHours().toString().padStart(2, '0')}:${
+        currenDate.getMinutes().toString().padStart(2, '0')}:${
+        currenDate.getSeconds().toString().padStart(2, '0')}`;
 
-        this.currentWinner = this.account.username;
-        this.currentPrice = newPrice;
-        // @ts-ignore
+      this.currentWinner = this.account.username;
+      this.currentPrice = newPrice;
+      // @ts-ignore
       // tslint:disable-next-line:max-line-length
-        const newAuction: AuctionDTO = {productId: this.product.idProduct, memberId: this.member.idMember, accountId: this.account.idAccount, bidder: this.member.nameMember,
-          price: newPrice, username: this.account.username, time: currenDateTime};
-        this.auctionProductService.createNewAuction(this.product.idProduct, newAuction).subscribe(() => {
-          this.getAuctionList();
-          document.getElementById('modal-body').innerText = 'You have auctioned a product ' + this.product.nameProduct + '!';
-          document.getElementById('modal-header').style.background = '#11B683';
-          document.getElementById('myModal').hidden = false;
-          document.getElementById('myModal').click();
-        }, err => {
-          console.log('err');
-          console.log(err.error.message);
-        });
-      }
+      const newAuction: AuctionDTO = {
+        productId: this.product.idProduct,
+        memberId: this.member.idMember,
+        accountId: this.account.idAccount,
+        bidder: this.member.nameMember,
+        price: newPrice,
+        username: this.account.username,
+        time: currenDateTime
+      };
+      this.auctionProductService.createNewAuction(this.product.idProduct, newAuction).subscribe(() => {
+        this.getAuctionList();
+        document.getElementById('modal-body').innerText = 'You have auctioned a product ' + this.product.nameProduct + '!';
+        document.getElementById('modal-header').style.background = '#11B683';
+        document.getElementById('myModal').hidden = false;
+        document.getElementById('myModal').click();
+      }, err => {
+        console.log('err');
+        console.log(err.error.message);
+      });
+    }
   }
 
   nextImage() {
@@ -249,7 +260,7 @@ export class AuctionComponent implements OnInit {
     const idMember = window.localStorage.getItem('id');
     console.log('idMember: ' + idMember);
     this.isFinish = true;
-    this.auctionProductService.getAuctionList(this.product.idProduct).subscribe( (data: AuctionDTO[]) => {
+    this.auctionProductService.getAuctionList(this.product.idProduct).subscribe((data: AuctionDTO[]) => {
       console.log(data);
       console.log(idMember);
       if (data[0].memberId === Number(idMember)) {

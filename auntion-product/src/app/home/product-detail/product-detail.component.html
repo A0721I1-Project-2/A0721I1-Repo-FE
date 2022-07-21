@@ -37,11 +37,15 @@
         <div class="product__auction">
           <div class="displayflex">
             <span>Time remain: &#160;&#160;</span>
-            <span class="product__auction-time" id="time-remain"></span>
+            <span class="product__auction-time" id="{{'time-remain-'+id}}"></span>
           </div>
           <br>
           <div class="product__auctioneer">
-            <span>Auctioneer:  &#160; {{product.members[0].nameMember}}</span>
+            <span>Auctioneer:  &#160; {{product.member.nameMember}}</span>
+          </div>
+          <br/>
+          <div class="product__auctioneer">
+            <span>Type product:  &#160; {{product.typeProduct.nameProductType}}</span>
           </div>
           <br>
           <div class="product__auction-info">
@@ -54,63 +58,49 @@
               <p id="priceStep">{{product.finalPrice}}</p>
             </div>
             <div class="product__auction-winner">
-              <h5>Current highest bidder</h5>
-              <p>Johnson1999</p>
+              <h5 *ngIf="checkAvailable==1">Current highest bidder</h5>
+              <h5 *ngIf="checkAvailable==2">Winner</h5>
+              <p >{{winner}}</p>
             </div>
           </div>
         </div>
         <br>
-        <div>
+        <div *ngIf="checkAvailable==1">
           <span>Want to bid?</span>
-          <button class="btn btn-auction ">Join the auction now</button>
+          <button class="btn btn-auction " [routerLink]="'/auction-product/auction/'+id">Join the auction now</button>
         </div>
       </div>
     </div>
-    <div class="product__description">
+    <div class="product__description" *ngIf="product">
       <h4 class="product__description-title">
         Product Description
       </h4>
-      <p style="font-size: 18px">Upgrade to a new phone by buying the Samsung Galaxy S22 Ultra 5G that is
-        available at the best prices online on Gadgets Now. Launched on February 9, 2022 (Official) in India,
-        the mobile is available with striking features and adequate specifications at an introductory price of
-        Rs 71,564.
-        <br> The camera of the phone helps you capture stunning pictures as it comes with a
-        Single camera setup on the rear which has 108 MP + 12 MP + 10 MP + 10 MP cameras. While on the front,
-        the mobile sports a 40 MP front camera so that you can click some amazing selfies and make video calls.
-        <br>
-        You will indulge in an immersive way while watching movies or playing games on this phone as it features
-        a 6.8 inches (17.27 cm) display that has a resolution of 1440 x 3080 Pixels.
-        <br>
-        Besides, the mobile runs on the Android v12 operating system that offers you faster updates and is
-        packed with 5000 mAh battery that lets you enjoy watching movies, playing games, and do a lot more on
-        a single full charge.
-        <br>
-        The mobile does not lag performance-wise as it is equipped with Octa-core (1x3.00 GHz Cortex-X2 & 3x2.40
-        GHz Cortex-A710 & 4x1.70 GHz Cortex-A510) Qualcomm SM8450 Snapdragon 8 Gen 1 and comes with 8 GB of RAM
-        and 128 GB of inbuilt storage. Hence, it offers seamless and responsive performance while accessing multiple
-        apps. Also, you can store various files like songs, videos, games, and more without worrying about space
-        constraints.
-        <br>
-        Various connectivity options on the Samsung Galaxy S22 Ultra 5G include WiFi - 802.11, a/ac/b/g/n, Mobile
-        Hotspot,
-        Bluetooth - v5.2, and 5G supported by device (network not rolled-out in India), 4G (supports Indian bands), 3G,
-        2G.
-        Sensors on the mobile include Accelerometer, Barometer, Gyro Sensor, Geomagnetic Sensor, Hall Sensor, Light
-        Sensor,
-        Proximity Sensor.
-        This durable and easy to carry phone measures 163.3 mm x 77.9 mm x 8.9 mm and weighs around 229 grams.
+      <p>
+        {{product.productDescription}}
       </p>
-      <!--      <button onclick="myFunction()" id="myBtn" class="btn btn-auction">Show more</button>-->
+      <br>
+      <h4 class="product__description-title">
+        Product Warranty
+      </h4>
+      <p>
+        Purchasing a product covered by a warranty can help ensure your peace of mind. If things don’t work as expected,
+        a warranty may allow the purchase to be returned, replaced, or repaired. A product’s warranty acts as a
+        guarantee that it will perform. However, not all warranties are equal. A warranty might cover a product for a
+        lifetime or a matter of days. It may cover all kinds of damage or be limited to specific defects. Certain
+        actions, such as misuse, may render a warranty invalid, preventing you from returning a broken product.
+        Understanding how warranties are created and operate will help you know when you can return a product for damage
+        or defect.
+      </p>
     </div>
-    <div class="product__description">
+    <div class="product__description" *ngIf="product">
       <div class="row">
         <div class="col-6">
           <h4 class="product__description-title">Information Receive</h4>
           <div class="info">
             <span><i class="fa-solid fa-location-arrow"></i>&#160; Address </span>
-            <p>{{product.members[0].addressMember}}</p>
+            <p>{{product.member.addressMember}}</p>
             <span><i class="fa-solid fa-phone-flip"></i> &#160;Phone Number</span>
-            <p>{{product.members[0].phoneMember}}</p>
+            <p>{{product.member.phoneMember}}</p>
             <span><i class="fa-solid fa-truck"></i> &#160;Shipping services</span>
             <p>Shipping services offers value-added services such as collection and
               delivery options, delivery

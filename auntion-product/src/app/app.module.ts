@@ -4,6 +4,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFireAuthModule} from '@angular/fire/auth';
+import {NgxCaptchaModule} from 'ngx-captcha';
 import {ChatUserPageModule} from './chat-app/chat-user-page/chat-user-page.module';
 import {HomeModule} from './home/home.module';
 import {AppComponent} from './app.component';
@@ -20,6 +21,9 @@ import {AppRoutingModule} from './app-routing.module';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    AngularFireDatabaseModule ,
+    AngularFireAuthModule,
+    NgxCaptchaModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     ChatUserPageModule,
