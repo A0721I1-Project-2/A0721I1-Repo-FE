@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@angular/cli": "^9.1.15",
     "html-to-image": "^1.9.0",
     "jspdf": "^2.5.1"
   }
