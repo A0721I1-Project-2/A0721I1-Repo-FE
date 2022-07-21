@@ -73,9 +73,9 @@
                      max-width: 100px;">
                     {{invoiceDetails.product.nameProduct}}
                   </td>
-                  <td >{{invoiceDetails.product.initialPrice}}</td>
-                  <td>{{invoiceDetails.product.finalPrice}}</td>
-                  <td>{{invoiceDetails.invoice.payment.feeService}}</td>
+                  <td >{{invoiceDetails.product.initialPrice | currency}}</td>
+                  <td>{{invoiceDetails.product.finalPrice | currency}}</td>
+                  <td>{{invoiceDetails.invoice.payment.feeService | currency}}</td>
                   <td *ngIf="invoiceDetails.invoice.idStatusInvoice == true">Success</td>
                   <td *ngIf="invoiceDetails.invoice.idStatusInvoice == false">Failed</td>
                   <td>
@@ -109,7 +109,7 @@
 
             <button class="btn" data-toggle="modal" id="idCheckbox" data-target="#deleteModal"  style="float: left; color: white">Delete</button>
             <div class="total-revenue">
-              <h3 class="text">Total Revenue: {{total}} USD</h3>
+              <h3 class="text">Total Revenue: {{total | currency}} USD</h3>
             </div>
 
             <!--        Pagination-->

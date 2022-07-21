@@ -88,7 +88,7 @@ table {
 }
 
 .total-revenue {
-  margin-left: 69%;
+  margin-left: 65%;
 }
 
 /* Mobile: with < 740px */
@@ -109,16 +109,6 @@ input {
   border-radius: 25px;
 }
 
-@media only screen and (max-width: 46.188rem) {
-  .clearfix {
-    position: absolute;
-    right: 6%;
-  }
-
-  .total-revenue {
-    margin-left: 65%;
-  }
-}
 
 /* Tablet: with >= 740px and with < 1024px */
 @media only screen and (min-width: 46.25rem) and (max-width: 63.938rem) {
@@ -132,17 +122,18 @@ input {
   }
 }
 
-/*Laptop: >= 1024px */
+/*Laptop: < 1024px */
 @media only screen and (max-width: 85.313rem) {
   .clearfix {
     position: absolute;
-    right: 10%;
+    right: 12.5%;
   }
 
   .total-revenue {
-    margin-left: 60%;
+    margin-left: 34%;
   }
 }
+
 
 .page-item .page-link {
   color: rgb(24, 100, 46) !important;
