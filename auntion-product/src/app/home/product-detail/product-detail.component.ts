@@ -22,6 +22,7 @@ export class ProductDetailComponent implements OnInit {
   constructor(private homeService: HomeService, private route: ActivatedRoute) {
     this.id = this.route.snapshot.paramMap.get('id');
     this.getProductDetail();
+    console.log(this.product)
   }
 
   ngOnInit(): void {
@@ -69,7 +70,6 @@ export class ProductDetailComponent implements OnInit {
         this.checkAvailable = 0;
         document.getElementById('time-remain-' + this.id).innerHTML = 'Finished';
       }
-      console.log(this.checkAvailable);
     });
   }
 
@@ -103,7 +103,6 @@ export class ProductDetailComponent implements OnInit {
         if (mainImage.src.indexOf((this.arrayImage)[index]) !== -1) {
           image = (this.arrayImage)[index + 1];
           numberText = index + 2;
-          console.log(numberText);
           break;
         }
       }

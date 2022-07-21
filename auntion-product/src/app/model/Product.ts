@@ -19,5 +19,4 @@ export interface Product {
   invoiceDetailList: any;
   cart: any;
   members: any;
-  member: any;
 }
