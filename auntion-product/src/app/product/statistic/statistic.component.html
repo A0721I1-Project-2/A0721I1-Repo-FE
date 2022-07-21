@@ -30,9 +30,11 @@
                   <div class="form-group">
                     <label for="fromDate">From date<i class="text-danger">(*)</i> </label>
                     <div class='input-group date' id='datetimepicker1'>
-                      <input type="date" placeholder="yyyy-MM-dd" name="fromDate" id="fromDate"
+                      <input type="date" placeholder="yyyy-MM-dd" formaction="yyyy-MM-dd"
+                             name="fromDate"
+                             id="fromDate"
                              class="form-control" formControlName="statsBegin"/>
-                      <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                      <!--                      <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>-->
                     </div>
                     <!--                    <mat-form-field>-->
                     <!--                      <input matInput id="fromDate" class="form-control" formControlName="statsBegin"-->
@@ -46,11 +48,11 @@
                   <div class="form-group">
                     <label for="toDate">To date<i class="text-danger">(*)</i></label>
                     <div class='input-group date' id='datetimepicker2'>
-                      <input type="date" placeholder="yyyy-MM-dd" name="toDate" id="toDate"
-                             class="form-control" formControlName="statsEnd" value="1997-10-21"/>
+                      <input type="date" formaction="yyyy-MM-dd" name="toDate" id="toDate"
+                             class="form-control" formControlName="statsEnd"/>
                       <!--                             [ngModel]="statsEnd|date:'yyyy-mm-dd'"-->
 
-                      <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                      <!--                      <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>-->
                     </div>
                   </div>
 
@@ -74,24 +76,24 @@
                   </div>
                 </div>
               </div>
-              <div class="row mt">
-                <div class="col-lg-6">
-                  <div class="content-panel">
-                    <h4><i class="fa fa-angle-right"></i>Product Statistic List</h4>
-                    <div class="panel-body text-center">
-                      <canvas id="bar" height="300" width="400"></canvas>
-                    </div>
-                  </div>
-                </div>
-<!--                <div class="col-lg-6">-->
-<!--                  <div class="content-panel">-->
-<!--                    <h4><i class="fa fa-angle-right"></i> Pie</h4>-->
-<!--                    <div class="panel-body text-center">-->
-<!--                      <canvas id="pie" height="300" width="400"></canvas>-->
-<!--                    </div>-->
-<!--                  </div>-->
-<!--                </div>-->
-              </div>
+              <!--              <div class="row mt">-->
+              <!--                <div class="col-lg-6">-->
+              <!--                  <div class="content-panel">-->
+              <!--                    <h4><i class="fa fa-angle-right"></i>Product Statistic List</h4>-->
+              <!--                    <div class="panel-body text-center">-->
+              <!--                      <canvas id="bar" height="300" width="400"></canvas>-->
+              <!--                    </div>-->
+              <!--                  </div>-->
+              <!--                </div>-->
+              <!--                &lt;!&ndash;                <div class="col-lg-6">&ndash;&gt;-->
+              <!--                &lt;!&ndash;                  <div class="content-panel">&ndash;&gt;-->
+              <!--                &lt;!&ndash;                    <h4><i class="fa fa-angle-right"></i> Pie</h4>&ndash;&gt;-->
+              <!--                &lt;!&ndash;                    <div class="panel-body text-center">&ndash;&gt;-->
+              <!--                &lt;!&ndash;                      <canvas id="pie" height="300" width="400"></canvas>&ndash;&gt;-->
+              <!--                &lt;!&ndash;                    </div>&ndash;&gt;-->
+              <!--                &lt;!&ndash;                  </div>&ndash;&gt;-->
+              <!--                &lt;!&ndash;                </div>&ndash;&gt;-->
+              <!--              </div>-->
             </div>
           </section>
         </section>

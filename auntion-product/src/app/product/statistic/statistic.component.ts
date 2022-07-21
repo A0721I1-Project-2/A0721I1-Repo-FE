@@ -183,8 +183,6 @@ export class StatisticComponent implements OnInit {
     // console.log(this.datePipe.transform(this.statsBeginDate, 'yyyy-MM-dd'));
     // console.log(this.datePipe.transform(this.statsEndDate, 'yyyy-MM-dd'));
     // Check if report too much times and the products get many duplicated values
-
-
     this.productService.statsProductFromDateToDate(this.statsBegin,
       this.statsEnd, 3).subscribe(items => {
         for (const i in items) {
@@ -224,7 +222,7 @@ export class StatisticComponent implements OnInit {
             }, plugins: {
               title: {
                 display: true,
-                text: 'Statistic Bar Chart From ' + this.statsBegin.toString() + ' to ' + this.statsEnd.toString(),
+                text: 'Statistic Bar Chart From ' + this.statsBegin.toString() + ' To ' + this.statsEnd.toString(),
                 padding: {
                   top: 10,
                   bottom: 30
