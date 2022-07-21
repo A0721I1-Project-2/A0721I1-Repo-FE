@@ -3,7 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  apiUrl: 'http://localhost:8080',
+ /* recaptcha: {
+    siteKey: '6LcotukgAAAAAOZWmgjxeoTBKYTN5kgJoq01-wXh',
+  }*/
 };
 
 /*

@@ -16,7 +16,7 @@
 }
 .btn:hover {
   /*    cursor: pointer;*/
-  color: black;
+  /*color: black;*/
   background-color: #ff3366;
   transition: 0.5s ease all;
   border: 1px solid var(--grad-clr1);

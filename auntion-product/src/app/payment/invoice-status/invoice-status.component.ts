@@ -70,15 +70,6 @@ export class InvoiceStatusComponent implements OnInit {
     );
   }
 
-  findPaymenById(id: number) {
-    this.service.findPaymentById(id).subscribe(
-      data => {
-        this.payment = data;
-        console.log(this.payment)
-      }
-    )
-  }
-
   getst() {
     console.log(this.address);
     // console.log(this.item.invoice.payment.addressReceiver);

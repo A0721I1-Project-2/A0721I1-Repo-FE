@@ -3,8 +3,36 @@
   --primary-color: #2c2b30;
   --button-color: #ff3366;
   --active-color: #11b683;
+  --color-content: #11b683;
+  --color-background: #a1def5;
+  --color-headder-footer-cart: #d9dadb;
+  --color-hover: #ff3366;
+  /*--primary-color: #5f6771; Conflict*/
 }
 
 html {
   font-family: 'Fira Code', monospace;
+}
+
+
+
+/*HauLST - CSS button back to top*/
+#myBtn {
+  display: none; /* Mặc định button sẽ được ẩn*/
+  position: fixed;
+  bottom: 111px;
+  right: 30px;
+  z-index: 99; /* button được ưu tiên hiển thị đè lên các phần khác*/
+  border: none;
+  outline: none;
+  background-color: #ff3366;
+  color: white;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 10px;
+}
+
+#myBtn:hover {
+  background-color: #11b683;
+
 }
