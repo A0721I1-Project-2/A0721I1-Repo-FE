@@ -220,12 +220,6 @@ export class AuctionComponent implements OnInit {
     }
   }
 
-  minusPrice() {
-    const currentPrice = (document.getElementById('price') as HTMLInputElement).value;
-    const price = Number(currentPrice) - this.product.incrementPrice;
-    (document.getElementById('price') as HTMLInputElement).value = String(price);
-  }
-
   plusPrice() {
     const currentPrice = (document.getElementById('price') as HTMLInputElement).value;
     const price = Number(currentPrice) + this.product.incrementPrice;
