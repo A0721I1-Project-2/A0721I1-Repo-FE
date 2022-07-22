@@ -34,13 +34,9 @@ export class PostProductComponent implements OnInit {
   VALIDATION_MESSAGE = {
     nameProduct: [
       {type: 'required', message: 'Product name cannot be blank !'},
-      // {type: 'minlength', message: 'Vui lòng nhập tên có ít nhất 4 kí tự'},
-      // {type: 'pattern', message: 'Vui lòng nhập tên đúng'}
     ],
     beginPrice: [
       {type: 'required', message: 'Begin Price cannot be blank !'},
-      // {type: 'maxlength', message: 'Vui lòng nhập tên món dài dưới 50 kí tự'},
-      // {type: 'pattern', message: 'Vui lòng nhập loại vắc-xin đúng'}
     ],
     incrementPrice: [
       {type: 'required', message: 'Money For Once Auction cannot be blank !'},
@@ -52,10 +48,10 @@ export class PostProductComponent implements OnInit {
       {type: 'required', message: 'Please select product type!'},
     ],
     startTime: [
-      {type: 'required', message: 'Vui lòng nhập '},
+      {type: 'required', message: 'Please select a date! '},
     ],
     endTime: [
-      {type: 'required', message: 'Vui lòng nhập '},
+      {type: 'required', message: 'Please select a date!'},
     ],
     image: [
       {type: 'required', message: 'Image cannot be blank !'},
@@ -73,6 +69,8 @@ export class PostProductComponent implements OnInit {
       endTime: new FormControl('', Validators.required),
       // image: new FormControl('', Validators.required)
     });
+    // this.getControl.startTime.setValidators([Validators.required, this.customvValidateStartDate()]);
+    // this.getControl.endTime.setValidators([Validators.required, this.customvValidateEnDate()]);
     this.productService.getAllTypeProduct().subscribe(data => {
       this.typeProduct = data;
       console.log(data);
@@ -122,9 +120,9 @@ export class PostProductComponent implements OnInit {
     this.selectedFiles = event.target.files;
     /* To show images */
     this.urls = this.urls;
-    let files = event.target.files;
+    const files = event.target.files;
     if (files) {
-      for (let file of files) {
+      for (const file of files) {
         const reader = new FileReader();
         reader.onload = (e: any) => {
           this.urls.push(e.target.result);
@@ -139,26 +137,26 @@ export class PostProductComponent implements OnInit {
     return this.formCreate.controls;
   }
 
-  private customvValidateStartDate(): ValidatorFn {
+  private customvValidateEnDate(): ValidatorFn {
     return (form): ValidationErrors => {
 
-      const startDate = form.value;
-      const endDate = this.productCreate.endDate;
+      const endDate = form.value;
+      const startDate = this.getControl.startDate.value;
       if (endDate < startDate) {
-        return {invalid: true};
+        return { invalid: true };
       }
 
       return null;
     };
   }
 
-  private customvValidateEnDate(): ValidatorFn {
+  private customvValidateStartDate(): ValidatorFn {
     return (form): ValidationErrors => {
 
-      const endDate = form.value;
-      const startDate = this.productCreate.startDate;
+      const startDate = form.value;
+      const endDate = this.getControl.endDate.value;
       if (endDate < startDate) {
-        return {invalid: true};
+        return { invalid: true };
       }
 
       return null;
@@ -166,7 +164,9 @@ export class PostProductComponent implements OnInit {
   }
 
   showImage() {
-
+  }
+  public get getControl() {
+    return this.formCreate.controls;
   }
 }
 
