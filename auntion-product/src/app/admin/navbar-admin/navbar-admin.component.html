@@ -1,0 +1,37 @@
+<div id="sidebar">
+  <div class="navbar__admin-container">
+    <div class="navbar__admin-header">
+      <p class="centered"><a href="#"><img src="../../../assets/img/messi-profile.jpg" class="img-circle"
+                                           width="80"></a>
+      </p>
+      <h5 class="centered">A0721I1 ADMIN</h5>
+    </div>
+
+    <div class="navbar__admin-list">
+      <div class="navbar__admin-item active">
+        <a [routerLink]="['../']"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
+      </div>
+
+      <div class="navbar__admin-item">
+        <a [routerLink]="['./chat-page']"><i class="fa fa-envelope"></i><span>Admin Consultant</span></a>
+      </div>
+
+      <div class="navbar__admin-item">
+        <a [routerLink]="['./']">Product Management</a>
+      </div>
+      <div class="navbar__admin-item">
+        <a [routerLink]="['./']">Invoice Management</a>
+      </div>
+      <div class="navbar__admin-item">
+        <a [routerLink]="['./transaction']">Transaction Management</a>
+      </div>
+      <div class="navbar__admin-item">
+        <a [routerLink]="['./admin/product/statistic']">
+          <i class=" fa fa-bar-chart-o"></i>
+          <span>Statistic</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+

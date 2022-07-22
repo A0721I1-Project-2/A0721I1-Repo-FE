@@ -1,0 +1,29 @@
+<div class="container" style="margin: 150px;">
+    <div>
+        <h1 style="color: #11b683">Help / FAQ</h1>
+    </div>
+    <div *ngFor="let topic of topics; let i = index">
+        <div class="topic">
+            <h5>{{i + 1}}. {{topic.nameTopic}}</h5>
+        </div>
+        <div *ngFor="let question of questions; let i = index">
+            <div class="qa" *ngIf="question.topic.nameTopic == topic.nameTopic">
+                <div class="qa-group">
+                    <div class="question" data-toggle="collapse" [attr.data-target]="'#'+ question.code">
+                        <p class="content"><b><i class='bx bx-chevron-down'></i>{{question.content}}</b></p>
+                    </div>
+                    <div class="answer" class="collapse" [id]="question.code">
+                        <p class="content">{{question.answer}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <p>
+            You still have questions?
+            <br> We are happy to assist you. <a href="#" style="text-decoration: none">Contact Surplex</a>
+        </p>
+    </div>
+
+</div>
