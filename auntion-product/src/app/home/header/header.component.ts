@@ -60,21 +60,21 @@ export class HeaderComponent implements OnInit {
       buttons: ['Close', true],
       dangerMode: true,
     })
-      .then((willSignOut) => {
-        if (willSignOut) {
-          swal('Logout success !', {
-            icon: 'success',
-          });
-          setTimeout(() => {
-            this.tokenStorageService.signOut();
-            this.ngOnInit();
-            this.router.navigateByUrl('/');
+        .then((willSignOut) => {
+          if (willSignOut) {
+            swal('Logout success !', {
+              icon: 'success',
+            });
             setTimeout(() => {
-              window.location.reload();
-            }, 80);
-          }, 800);
-        } else {}
-      });
+              this.tokenStorageService.signOut();
+              this.ngOnInit();
+              this.router.navigateByUrl('/home');
+              setTimeout(() => {
+                window.location.reload();
+              }, 50);
+            }, 700);
+          } else {}
+        });
     // if (window.confirm('Bạn có chắc là muốn đăng xuất ra khỏi hệ thống ?')){
     //   this.tokenStorageService.signOut();
     //   this.ngOnInit();
