@@ -157,7 +157,7 @@ export class PostProductComponent implements OnInit {
       }
 
       return null;
-    }
+    };
   }
 }
 
