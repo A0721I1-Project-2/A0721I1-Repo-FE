@@ -4,7 +4,7 @@ import {Routes, RouterModule} from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'login' ,
+    path: 'login',
     loadChildren: () => import('./login/login.module').then(module => module.LoginModule)
   },
   {
@@ -30,6 +30,10 @@ const routes: Routes = [
   {
     path: 'product',
     loadChildren: () => import('./product/product.module').then(module => module.ProductModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then(module => module.LoginModule)
   },
   {
     path: 'admin',
