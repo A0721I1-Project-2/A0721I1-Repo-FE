@@ -5,6 +5,7 @@
 
 export const environment = {
   production: false,
+<<<<<<< HEAD
    firebaseConfig : {
     apiKey: 'AIzaSyCXbO7_RtR7KFi5WPYcGJHtYAcMhy0_3SY',
     authDomain: 'update-c1ca8.firebaseapp.com',
@@ -14,6 +15,12 @@ export const environment = {
     appId: '1:689903295833:web:a44df5a3a7d6afceebc048',
     measurementId: 'G-1HYNDBS3CK'
   }
+=======
+  apiUrl: 'http://localhost:8080',
+ /* recaptcha: {
+    siteKey: '6LcotukgAAAAAOZWmgjxeoTBKYTN5kgJoq01-wXh',
+  }*/
+>>>>>>> 52516eb1ca37b9e414e598bb404dfb0694fa3196
 };
 
 /*

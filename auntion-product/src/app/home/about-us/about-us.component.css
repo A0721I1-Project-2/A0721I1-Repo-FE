@@ -1,0 +1,147 @@
+.about-us__container {
+    margin: 200px 0;
+}
+
+.about-us__container .about-us__img-group {
+    position: relative;
+    border-radius: 5px;
+}
+
+.about-us__container .about-us {
+    background-color: #f9f9f9;
+}
+
+.about-us__container .our-team {
+    background-color: #fff;
+}
+
+.about-us__container .button-watch__video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    height: 80px;
+    width: 80px;
+    font-size: 3.2rem;
+    color: var(--primary-color-blue);
+    transition: all 0.3s;
+    background-color: #fff;
+    border: 1px solid #fff;
+    cursor: pointer;
+}
+
+.about-us__container .button-watch__video:before {
+    position: absolute;
+    content: "";
+    -webkit-animation: border-pulsate 2s linear infinite;
+    animation: border-pulsate 2s linear infinite;
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    height: 100%;
+    width: 100%;
+}
+
+.about-us__container .button-watch__video:hover {
+    background-color: var(--primary-color-blue);
+    color: #fff;
+}
+
+.about-us__container .content-right {
+    padding-left: 40px;
+}
+
+.about-us__container .content-right span {
+    color: #11b683;
+}
+
+.about-us__container .content-right .title {
+    font-size: 40px;
+    margin-bottom: 25px;
+    text-transform: capitalize;
+    letter-spacing: 1.3px;
+    font-weight: 700;
+}
+
+.about-us__container .content-right p {
+    font-size: 18px;
+    margin-bottom: 25px;
+    color: #888;
+}
+
+
+/* Our team */
+
+.about-us__container .our-team {
+    background-color: #fff;
+}
+
+.about-us__container .our-team .single-team {
+    width: 100%;
+    height: 100%;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 35px;
+    border-radius: 3px;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+.about-us__container .our-team .single-team:hover {
+    -webkit-box-shadow: 0px 5px 10px rgb(0 0 0 / 12%);
+    box-shadow: 0px 5px 10px rgb(0 0 0 / 12%)
+}
+
+.about-us__container .single-team__img-group {
+    height: 150px;
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+.about-us__container .single-team__img-group img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid #eee;
+    padding: 5px;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+
+.about-us__container .single-team .info {
+    text-align: center;
+}
+
+.about-us__container .single-team .info .name {
+    color: #777;
+    font-size: 1.6rem;
+}
+
+.about-us__container .single-team .info span {
+    font-size: 1.3rem;
+    margin-top: 5px;
+    color: #888;
+}
+
+.about-us__container .single-team .social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 12px;
+}
+
+.about-us__container .single-team .social .circle {
+    height: 36px;
+    width: 36px;
+    margin-right: 8px;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.about-us__container .single-team .social .circle:hover {
+    background-color: var(--primary-color-blue);
+    color: #11b683;
+}
