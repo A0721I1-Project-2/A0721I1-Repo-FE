@@ -4,34 +4,39 @@ import {Product} from '../../model/Product';
 import {Observable} from 'rxjs';
 import {TypeProduct} from '../../model/TypeProduct';
 import {ImageProduct} from '../../model/ImageProduct';
-import {Member} from "../../model/Member";
+import {Member} from '../../model/Member';
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  URL_PRODUCT = 'http://localhost:8080/manager/product';
+  URL_API = 'http://localhost:8080/manager/product/api';
   constructor(
-    private http: HttpClient,
+    private httpClient: HttpClient,
   ) { }
 
 
   findById(id: any): Observable<Product>{
-    return this.http.get<Product>(this.URL_PRODUCT + '/get/' + id );
+    return this.httpClient.get<Product>(this.URL_API + '/get/' + id );
   }
 
   findType(): Observable<TypeProduct[]> {
-    return this.http.get<TypeProduct[]>(this.URL_PRODUCT + '/type');
+    return this.httpClient.get<TypeProduct[]>(this.URL_API + '/type');
   }
 
   findImage(): Observable<ImageProduct[]> {
-    return this.http.get<ImageProduct[]>(this.URL_PRODUCT + '/img');
+    return this.httpClient.get<ImageProduct[]>(this.URL_API + '/img');
   }
 
   updateProduct(product: Product): Observable<void> {
-    return this.http.patch<void>(this.URL_PRODUCT + '/edit', product);
+    return this.httpClient.patch<void>(this.URL_API + '/edit', product);
   }
-  findByIdMember(id: any): Observable<Member>{
-    return this.http.get<Member>(this.URL_PRODUCT + '/member/' + id );
+  findByIdMember(id: any): Observable<Member> {
+    return this.httpClient.get<Member>(this.URL_API + '/member/' + id);
+  }
+  statsProductFromDateToDate(startDay: any, endDay: any): Observable<Product[]> {
+    return this.httpClient.get<Product[]>(this.URL_API + '/statistic/' + startDay + '&' + endDay);
   }
 }

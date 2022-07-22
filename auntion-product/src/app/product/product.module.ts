@@ -11,13 +11,16 @@ import {AngularFireModule} from '@angular/fire';
 import {environment} from './environments/environment';
 
 
+import {CustomDatepipe} from './statistic/custom.datepipe';
+import {HttpClientModule} from '@angular/common/http';
+
 @NgModule({
-  declarations: [StatisticComponent, ListProductComponent, ReviewProductComponent, EditProductComponent],
-    imports: [
-        CommonModule,
-        ProductRoutingModule,
-        ReactiveFormsModule,
-        AngularFireModule.initializeApp(environment.firebase)
-    ]
+  declarations: [StatisticComponent, ListProductComponent, ReviewProductComponent, EditProductComponent, CustomDatepipe],
+  imports: [
+    CommonModule,
+    ProductRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule
+  ]
 })
 export class ProductModule { }

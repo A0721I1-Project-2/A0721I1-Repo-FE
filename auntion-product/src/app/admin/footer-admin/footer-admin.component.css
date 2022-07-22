@@ -1,0 +1,12 @@
+.footer__admin-container {
+  background-color: var(--primary-color);
+  padding: 20px;
+  text-align: center;
+  color: #fff;
+  margin-top: 65px;
+}
+
+.footer__admin-container p {
+  margin: 0;
+  font-size: 1.2rem;
+}
