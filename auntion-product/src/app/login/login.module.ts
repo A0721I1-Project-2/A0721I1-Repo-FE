@@ -8,14 +8,14 @@ import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
-    declarations: [LoginComponent],
-    exports: [
-        LoginComponent
-    ],
-    imports: [
-        CommonModule,
-        LoginRoutingModule,
-        ReactiveFormsModule
-    ]
+  declarations: [LoginComponent],
+  exports: [
+    LoginComponent
+  ],
+  imports: [
+    CommonModule,
+    LoginRoutingModule,
+    ReactiveFormsModule
+  ]
 })
 export class LoginModule { }
