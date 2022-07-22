@@ -55,7 +55,7 @@ export class HeaderComponent implements OnInit {
   logout() {
       swal({
       title: 'Sign-out',
-      text: 'Are you sure logout ?',
+      text: 'Are you sure Logout',
       icon: 'warning',
       buttons: ['Close', true],
       dangerMode: true,
@@ -88,6 +88,7 @@ export class HeaderComponent implements OnInit {
       this.memberService.findByIdUser(this.idUser).subscribe(
         (data) => {
           this.member = data;
+          console.log(data);
         }
       );
     }
