@@ -88,6 +88,7 @@ export class HeaderComponent implements OnInit {
       this.memberService.findByIdUser(this.idUser).subscribe(
         (data) => {
           this.member = data;
+          console.log(data);
         }
       );
     }

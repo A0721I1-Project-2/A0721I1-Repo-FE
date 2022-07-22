@@ -118,7 +118,6 @@ export class SignUpMemberComponent implements OnInit {
         this.memberService.addNewAccount(this.accountCreate).subscribe(() => {
         }, () => {
         }, () => {
-          
           this.route.navigateByUrl('/home');
         });
       }
