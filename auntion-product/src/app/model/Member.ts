@@ -7,6 +7,9 @@ export interface Member {
   dateOfBirthMember: number;
   emailMember: string;
   addressMember: string;
+  city: string;
+  district: string;
+  ward: string;
   phoneMember: string;
   idCardMember: string;
   paypalMember: string;
@@ -18,4 +21,5 @@ export interface Member {
   rank: Rank;
   cart: any;
   products: any;
+  checkedClause: boolean;
 }
