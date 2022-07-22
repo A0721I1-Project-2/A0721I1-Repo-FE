@@ -240,6 +240,7 @@ export class AuctionComponent implements OnInit {
     const id = window.localStorage.getItem('id');
     const memberPromise = this.auctionProductService.getMemberById(Number(id)).toPromise();
     memberPromise.then((memberData) => {
+      console.log(memberData);
       this.member = memberData;
       this.account = memberData.account;
     }, (error) => {
