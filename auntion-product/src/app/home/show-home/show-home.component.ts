@@ -1,11 +1,8 @@
-
-import {PaymentService} from '../../payment/service/payment.service';
 import {Component, OnInit} from '@angular/core';
 import {HomeService} from '../service/home.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Product} from '../../model/Product';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-
 
 @Component({
   selector: 'app-show-home',
@@ -28,13 +25,9 @@ export class ShowHomeComponent implements OnInit {
   // tslint:disable-next-line:ban-types
   messageAlert: String[];
   currentItem = 8;
-  messagePayment: string;
-  constructor(
-    private servicePayment: PaymentService,
-    private homeService: HomeService,
-    private activatedRoute: ActivatedRoute,
-    private router: Router
-  ) { }
+
+  constructor(private homeService: HomeService, private activatedRoute: ActivatedRoute, private router: Router) {
+  }
 
   ngOnInit(): void {
     this.showListProductAuction();
@@ -43,7 +36,6 @@ export class ShowHomeComponent implements OnInit {
       typeProductname: new FormControl(''),
       priceRange: new FormControl(''),
     });
-    // sessionStorage.removeItem('message');
   }
 
   showListProductAuction() {
