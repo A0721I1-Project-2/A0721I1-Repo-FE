@@ -358,7 +358,11 @@ export class ShowHomeComponent implements OnInit {
       }
     } else {
       // @ts-ignore
-      // $('#myModal').modal('hide');
+      // tslint:disable-next-line:only-arrow-functions
+      // $(document).ready(function() {
+      //   // @ts-ignore
+      //   $('#myModal').modal('hide');
+      // });
       $('#myModal').modal('hide');
     }
     if (priceRange === '$0 – $5') {

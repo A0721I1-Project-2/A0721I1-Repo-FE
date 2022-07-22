@@ -24,7 +24,7 @@ export class ChatBoxUserComponent implements OnInit, OnChanges {
   messages: Observable<any>;
 
   constructor(private apiService: ApiService, private chatService: ChatService
-    , private router: Router) {
+    ,         private router: Router) {
   }
 
   ngOnInit(): void {
