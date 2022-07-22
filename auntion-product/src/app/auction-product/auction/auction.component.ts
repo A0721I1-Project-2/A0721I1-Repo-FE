@@ -142,7 +142,7 @@ export class AuctionComponent implements OnInit {
       this.displayStyle = 'block';
     } else {
       let currenDate;
-      let currenDateTime;
+      let currenDateTime; 
       currenDate = new Date();
       currenDateTime = `${
         currenDate.getFullYear().toString().padStart(4, '0')}/${
