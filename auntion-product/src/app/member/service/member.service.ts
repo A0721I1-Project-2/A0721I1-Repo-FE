@@ -56,8 +56,8 @@ export class MemberService {
 
   // SonLT Edit-Member
   editMember(member: Member): Observable<void> {
-    // @ts-ignore
-    return this.httpClient.put(URL_API + '/edit/' + 10 , member);
+
+    return this.httpClient.put<void>(URL_API + '/edit' , member);
   }
 
 

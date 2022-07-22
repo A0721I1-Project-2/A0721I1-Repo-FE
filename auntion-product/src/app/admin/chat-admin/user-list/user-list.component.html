@@ -1,0 +1,27 @@
+<div class="user-list__container">
+  <div class="header">
+    <h3>Message</h3>
+
+    <div class="form__search-chat">
+      <input type="text" placeholder="Search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </div>
+  </div>
+
+  <div class="middle">
+    <ul class="user-list__group">
+      <li class="user-list__item" (click)="seenMsg(status.userId)" *ngFor="let status of statusUsersMsg">
+        <div class="info">
+          <p>{{status.nameMember}}</p>
+          <span>{{status.messageNew}}</span>
+          <span *ngIf="!status.messageNew">Đã gửi 1 tin nhắn đính kèm</span>
+        </div>
+
+        <div class="notification">
+          <p class="date">2020-05-12</p>
+          <span class="quantity" *ngIf="status.quantity > 0">{{status.quantity}}</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

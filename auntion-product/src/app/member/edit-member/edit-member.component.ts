@@ -43,34 +43,32 @@ export class EditMemberComponent implements OnInit {
       this.service.findByIdAccount(id).subscribe(next => {
         this.member = next;
         console.log(this.member);
-        this.editForm.patchValue({
-          idAccount: this.member.account.idAccount,
-          idMember: this.member.idMember,
-          nameMember: this.member.nameMember,
-          dateOfBirthMember: this.member.dateOfBirthMember,
-          emailMember: this.member.emailMember,
-          addressMember: this.member.addressMember,
-          phoneMember: this.member.phoneMember,
-          idCardMember: this.member.idCardMember,
-          paypalMember: this.member.paypalMember,
-          flagDelete: this.member.flagDelete,
-          account: this.member.account,
-          invoiceList: this.member.invoiceList,
-          point: this.member.point,
-          paymentList: this.member.paymentList,
-          rank: this.member.rank,
-          cart: this.member.cart,
-          products: this.member.products,
-        })
+        this.editForm.patchValue(next
+        //   idAccount: this.member.account.idAccount,
+        //   idMember: this.member.idMember,
+        //   nameMember: this.member.nameMember,
+        //   dateOfBirthMember: this.member.dateOfBirthMember,
+        //   emailMember: this.member.emailMember,
+        //   addressMember: this.member.addressMember,
+        //   phoneMember: this.member.phoneMember,
+        //   idCardMember: this.member.idCardMember,
+        //   paypalMember: this.member.paypalMember,
+        //   flagDelete: this.member.flagDelete,
+        //   account: this.member.account,
+        //   invoiceList: this.member.invoiceList,
+        //   point: this.member.point,
+        //   paymentList: this.member.paymentList,
+        //   rank: this.member.rank,
+        //   cart: this.member.cart,
+        //   products: this.member.products,
+        // }
+        )
         this.editForm.get('account').setValue(this.member.account.idAccount, {onlySelf: true});
       })
     })
   }
 
   editSubmit() {
-    console.log('aaa');
-    if (this.editForm.valid) {
-      console.log('bbbb');
       this.member = this.editForm.value;
       console.log(this.member);
       for (let i = 0; i < this.idAccount; i++) {
@@ -90,6 +88,6 @@ export class EditMemberComponent implements OnInit {
         },
       );
     }
-  }
+
 
 }
