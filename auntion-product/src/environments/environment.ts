@@ -13,7 +13,11 @@ export const environment = {
     messagingSenderId: '689903295833',
     appId: '1:689903295833:web:a44df5a3a7d6afceebc048',
     measurementId: 'G-1HYNDBS3CK'
-  }
+  },
+  apiUrl: 'http://localhost:8080',
+ /* recaptcha: {
+    siteKey: '6LcotukgAAAAAOZWmgjxeoTBKYTN5kgJoq01-wXh',
+  }*/
 };
 
 /*

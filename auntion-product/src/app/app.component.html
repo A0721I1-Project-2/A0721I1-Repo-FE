@@ -1,21 +1,12 @@
-<button routerLink="/home/show-home">show-home</button>
-<button routerLink="/home/instruction">instruction</button>
-<button routerLink="/home/product-detail">product-detail</button>
-<button routerLink="/home/forgot-password">forgot-password</button>
-<br>
-<button routerLink="/auction-product/post-product">post-product</button>
-<button routerLink="/auction-product/auction">auction</button>
-<br>
-<button routerLink="/member/list">list-member</button>
-<button routerLink="/member/sign-up">sign-up-member</button>
-<br>
-<button routerLink="/transaction/list">list-transaction</button>
-<br>
-<button routerLink="/payment/invoice">invoice</button>
-<br>
-<button routerLink="/product/statistic">statistic</button>
-<button routerLink="/product/list">list-product</button>
-<button routerLink="/product/review">review-product</button>
-<button routerLink="/product/edit">edit-product</button>
+<div class="container-app">
+<!--    <div *ngIf="path !=='http://localhost:4200/login/authentication'">-->
 
-<router-outlet></router-outlet>
+<!--        <app-header-unlogin></app-header-unlogin>-->
+<!--        <app-header></app-header>-->
+<!--        <app-room-chat-user></app-room-chat-user>-->
+<!--    </div>-->
+    <router-outlet></router-outlet>
+<!--    <div *ngIf="path !=='http://localhost:4200/login/authentication'">-->
+<!--        <app-footer class="app-footer"></app-footer>-->
+<!--    </div>-->
+</div>

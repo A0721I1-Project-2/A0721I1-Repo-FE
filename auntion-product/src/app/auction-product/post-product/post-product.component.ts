@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Product} from '../../model/Product';
 import {FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
 
@@ -7,6 +7,7 @@ import {AuctionProductService} from '../service/auction-product.service';
 import {TypeProduct} from '../../model/TypeProduct';
 import {FileUpload} from '../../model/FileUpload';
 import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-post-product',
   templateUrl: './post-product.component.html',
@@ -19,15 +20,17 @@ export class PostProductComponent implements OnInit {
 
   /* Form create */
   formCreate: FormGroup;
-   typeProduct: TypeProduct[];
+  typeProduct: TypeProduct[];
   /* To store url img */
-  urls = new Array<any>();
+  urls = [];
   selectedFiles: any;
 
   currentImageUpload: FileUpload;
   currentImagesUpload: File[] = [];
 
-  constructor(private firebaseService: FirebaseService  , private productService: AuctionProductService) { }
+  constructor(private firebaseService: FirebaseService, private productService: AuctionProductService) {
+  }
+
   VALIDATION_MESSAGE = {
     nameProduct: [
       {type: 'required', message: 'Product name cannot be blank !'},
@@ -58,6 +61,7 @@ export class PostProductComponent implements OnInit {
       {type: 'required', message: 'Image cannot be blank !'},
     ],
   };
+
   ngOnInit(): void {
     this.formCreate = new FormGroup({
       nameProduct: new FormControl('', Validators.required),
@@ -65,9 +69,9 @@ export class PostProductComponent implements OnInit {
       incrementPrice: new FormControl('', Validators.required),
       descriptionProduct: new FormControl('', Validators.required),
       typeProduct: new FormControl('', Validators.required),
-       startTime: new FormControl( '', Validators.required),
+      startTime: new FormControl('', Validators.required),
       endTime: new FormControl('', Validators.required),
-      image: new FormControl('', Validators.required)
+      // image: new FormControl('', Validators.required)
     });
     this.productService.getAllTypeProduct().subscribe(data => {
       this.typeProduct = data;
@@ -76,52 +80,51 @@ export class PostProductComponent implements OnInit {
       console.log('errors');
     });
   }
+
   createProduct() {
     /* Get properties in form */
     this.productCreate = this.formCreate.value;
-    console.log(this.productCreate);
-    console.log(this.formCreate.invalid);
-    if (this.formCreate.invalid){
+    if (this.formCreate.invalid) {
       return;
-    }else {
-    const typeProductId = this.formCreate.get('typeProduct').value;
-    this.productService.getTypeProductById(typeProductId).subscribe(typeProduct => {
+    } else {
+      const typeProductId = this.formCreate.get('typeProduct').value;
+      this.productService.getTypeProductById(typeProductId).subscribe(typeProduct => {
         this.productCreate.typeProduct = typeProduct;
         this.productService.createProduct(this.productCreate).subscribe(data => {
           /* Tránh lỗi vòng lặp */
           this.currentImagesUpload = [];
           /* Lấy và đẩy từng file vào 1 mảng */
           for (let i = 0; i < this.selectedFiles.length; i++) {
+            console.log(this.selectedFiles.item(i));
             this.currentImagesUpload.push(this.selectedFiles.item(i));
           }
+
           /* push từng file */
-          // tslint:disable-next-line:prefer-for-of
           for (let i = 0; i < this.currentImagesUpload.length; i++) {
             this.currentImageUpload = new FileUpload(this.currentImagesUpload[i]);
 
             /* Lưu trên firebase */
             this.firebaseService.pushImgToStorage(this.currentImageUpload, data);
           }
-          console.log(data);
         });
       });
-    Swal.fire(
+      Swal.fire(
         'The product is being approved!!',
         'You clicked the button!',
         'success'
       );
-     }
+    }
   }
 
   preview(event: any) {
     /* To get info files selected */
+    // this.selectedFiles = event.target.files;
     this.selectedFiles = event.target.files;
-
     /* To show images */
-    this.urls = [];
-    const files = event.target.files;
+    this.urls = this.urls;
+    let files = event.target.files;
     if (files) {
-      for (const file of files) {
+      for (let file of files) {
         const reader = new FileReader();
         reader.onload = (e: any) => {
           this.urls.push(e.target.result);
@@ -135,29 +138,35 @@ export class PostProductComponent implements OnInit {
   get valueSelect() {
     return this.formCreate.controls;
   }
+
   private customvValidateStartDate(): ValidatorFn {
     return (form): ValidationErrors => {
 
       const startDate = form.value;
       const endDate = this.productCreate.endDate;
       if (endDate < startDate) {
-        return { invalid: true };
+        return {invalid: true};
       }
 
       return null;
     };
   }
+
   private customvValidateEnDate(): ValidatorFn {
     return (form): ValidationErrors => {
 
       const endDate = form.value;
       const startDate = this.productCreate.startDate;
       if (endDate < startDate) {
-        return { invalid: true };
+        return {invalid: true};
       }
 
       return null;
     };
+  }
+
+  showImage() {
+
   }
 }
 

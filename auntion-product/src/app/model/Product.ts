@@ -14,7 +14,8 @@ export interface Product {
   typeProduct: any;
   approvalStatus: any;
   biddingStatus: any;
-  imageProductList: any[];
+  imageProductList: any;
+  mainPhoto: string; // HauLST
   invoiceDetailList: any;
   cart: any;
   members: any;
