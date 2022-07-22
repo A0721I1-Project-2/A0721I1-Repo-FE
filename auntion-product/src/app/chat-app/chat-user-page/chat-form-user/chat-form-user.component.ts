@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewChecked, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ChatService} from "../../services/chat.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {FileUpload} from "../../models/FileUpload";
@@ -9,7 +9,9 @@ import {Account} from "../../../model/Account";
   templateUrl: './chat-form-user.component.html',
   styleUrls: ['./chat-form-user.component.css']
 })
-export class ChatFormUserComponent implements OnInit {
+export class ChatFormUserComponent implements OnInit , AfterViewChecked {
+
+  @ViewChild('scrollBottom') private scrollBottom: ElementRef;
 
   /* To select file */
   selectedFiles: FileList;
@@ -33,6 +35,10 @@ export class ChatFormUserComponent implements OnInit {
   showNotiError = false;
 
   constructor(private chatService: ChatService, private fb: FormBuilder) {
+  }
+
+  ngAfterViewChecked() {
+    this.scrollToBottom();
   }
 
   ngOnInit(): void {
@@ -84,7 +90,16 @@ export class ChatFormUserComponent implements OnInit {
           });
       }
     }
+    this.scrollToBottom();
     this.formChat.reset();
+  }
+
+  scrollToBottom(): void {
+    try {
+      this.scrollBottom.nativeElement.scrollBottom = this.scrollBottom.nativeElement.scrollHeight;
+    } catch(err) {
+      console.log(err);
+    }
   }
 
   selectFile(event: any) {
@@ -93,26 +108,6 @@ export class ChatFormUserComponent implements OnInit {
 
     /* Check file or img to show */
     this.checkFileAndImg(this.selectedFiles.item(0));
-
-    /* To show images */
-    // this.uploadSrc = [];
-    //
-    // let files = event.target.files;
-    // if (files) {
-    //   for (let file of files) {
-    //     let reader = new FileReader();
-    //     /* Check file or image */
-    //     if (!this.isFile) {
-    //       reader.onload = (e: any) => {
-    //         this.uploadSrc.push(e.target.result);
-    //       }
-    //     } else {
-    //       this.uploadSrc.push(file);
-    //       reader.readAsDataURL(file);
-    //     }
-    //     reader.readAsDataURL(file);
-    //   }
-    // }
 
     // Single img
     this.selectedFiles = event.target.files;
