@@ -14,6 +14,7 @@ import {TransactionModule} from './transaction/transaction.module';
 import {NgxCaptchaModule} from 'ngx-captcha';
 import {ChatUserPageModule} from './chat-app/chat-user-page/chat-user-page.module';
 import {HomeModule} from './home/home.module';
+import {AngularFireModule} from "@angular/fire";
 
 @NgModule({
   declarations: [

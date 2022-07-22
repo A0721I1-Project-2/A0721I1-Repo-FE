@@ -91,14 +91,16 @@
               <div class="form-group">
                 <label> Images <a style="color: red"> (*)</a></label>
                 <div>
-                  <img *ngFor="let url of urls" [src]="url" class="rounded mb-3" width="180">
+                  <img (click)="showImage()" *ngFor="let url of urls" [src]="url" class="rounded mb-3" width="180">
                 </div>
-                <input accept=".jpg" type="file" formControlName="image" multiple (change)="preview($event)" required="">
-                <div *ngFor="let validation of VALIDATION_MESSAGE.image" class="text-danger">
-                  <div *ngIf="formCreate.get('image').hasError(validation.type) && (formCreate.get('image').dirty || formCreate.get('image').touched)"
-                       class="error-message">
-                    {{validation.message}}</div>
-                </div>
+                <input accept=".jpg" type="file" multiple (change)="preview($event)" required="">
+<!--                <div *ngFor="let validation of VALIDATION_MESSAGE.image" class="text-danger">-->
+<!--                <input accept=".jpg" type="file" formControlName="image" multiple (change)="preview($event)" required="">-->
+<!--                <div *ngFor="let validation of VALIDATION_MESSAGE.image" class="text-danger">-->
+<!--                  <div *ngIf="formCreate.get('image').hasError(validation.type) && (formCreate.get('image').dirty || formCreate.get('image').touched)"-->
+<!--                       class="error-message">-->
+<!--                    {{validation.message}}</div>-->
+<!--                </div>-->
               </div>
             </div>
           </div>
