@@ -12,6 +12,14 @@ export class ChatAdminHomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    const hideNavHp = document.querySelector('#header');
+    const hideFooterHp = document.querySelector('.footer__container');
+// @ts-ignore
+// tslint:disable-next-line:no-unused-expression
+    hideNavHp.style.display = 'none';
+// @ts-ignore
+// tslint:disable-next-line:no-unused-expression
+    hideFooterHp.style.display = 'none';
   }
 
   getUserFromChild(event: any) {

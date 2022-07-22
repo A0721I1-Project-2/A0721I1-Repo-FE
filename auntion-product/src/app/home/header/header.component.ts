@@ -5,7 +5,7 @@ import swal from 'sweetalert';
 import {Member} from '../../model/Member';
 import {TokenStorageService} from '../../login/service/token-storage.service';
 import {MemberService} from '../../member/service/member.service';
-import {Role} from "../../model/Role";
+import {Role} from '../../model/Role';
 
 @Component({
   selector: 'app-header',

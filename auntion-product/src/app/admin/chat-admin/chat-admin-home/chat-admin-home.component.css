@@ -16,5 +16,33 @@
   .d-none-m-b {
     display: none;
   }
+
+  .col-sm-12.col-md-8 {
+  padding: 50px 30px 20px 45px !important;
+  }
+}
+
+/* Mobile and Tablet */
+@media (max-width: 1023px) {
+}
+
+/* Tablet */
+@media (min-width: 740px) and (max-width: 1023px) {
+
+}
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+
+}
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+
+}
+
+/* XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) {
+
 }
 

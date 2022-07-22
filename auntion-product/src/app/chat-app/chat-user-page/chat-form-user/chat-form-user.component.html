@@ -1,29 +1,3 @@
-<!-- Show img when select
-
- FOR UPLOAD MULTIPLE IMG
- -->
-<!--<div *ngIf="uploadSrc" class="show-upload__select">-->
-<!--  <div *ngIf="!isFile" class="show-img__select">-->
-<!--    <div *ngFor="let url of uploadSrc" class="d-flex align-items-center h-100 w-100">-->
-<!--      <div class="show-img__group">-->
-<!--        <img [src]="url" alt="">-->
-<!--        <i (click)="closeFile()" class="fa-solid fa-xmark"></i>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-
-<!--  <div *ngIf="isFile" class="text-chat__file">-->
-<!--    <div class="text-chat__file-group" *ngFor="let url of uploadSrc">-->
-<!--      <i class="fa-solid fa-file"></i>-->
-<!--      <p>{{url.name}}</p>-->
-<!--    </div>-->
-<!--    <i (click)="closeFile()" class="close-icon fa-solid fa-xmark"></i>-->
-<!--  </div>-->
-<!--</div>-->
-
-<!-- Show img when select
- Upload one img and file
- -->
 <div *ngIf="uploadSrc" class="show-upload__select">
     <div *ngIf="!isFile" class="show-img__select">
         <img [src]="uploadSrc" alt="">
@@ -45,6 +19,11 @@
     </div>
 </div>
 
+<form #scrollBottom [formGroup]="formChat" (ngSubmit)="send()" class="chat-bar">
+  <div [style.visibility]="showNotiError ? 'visible' : 'hidden'"
+       [style.opacity]="showNotiError?'1':'0'" id="notiError" class="alert__error-notification">
+    <span>Don't let it blank before sending a message</span>
+  </div>
 <form [formGroup]="formChat" (ngSubmit)="send()" class="chat-bar">
     <div [style.visibility]="showNotiError ? 'visible' : 'hidden'" [style.opacity]="showNotiError?'1':'0'" id="notiError" class="alert__error-notification">
         <span>Don't let it blank before sending a message</span>
@@ -62,7 +41,7 @@
         </div>
 
         <button type="submit" class="send-group">
-      <i class="fa-solid fa-paper-plane"></i>
+       <i class="fa-solid fa-paper-plane"></i>
     </button>
     </div>
 </form>
