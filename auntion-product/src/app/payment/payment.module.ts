@@ -7,10 +7,11 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from './environments/environment';
 
+import { InvoiceStatusComponent } from './invoice-status/invoice-status.component';
 
 
 @NgModule({
-  declarations: [InvoicePaymentComponent, PaymentCartComponent],
+  declarations: [InvoicePaymentComponent, InvoiceStatusComponent, PaymentCartComponent],
   imports: [
     CommonModule,
     PaymentRoutingModule,
