@@ -13,12 +13,17 @@ import {AdminModule} from '../admin/admin.module';
 
 @NgModule({
   declarations: [StatisticComponent, ListProductComponent, ReviewProductComponent, EditProductComponent],
+
+  exports: [
+    StatisticComponent
+  ],
+
   imports: [
     CommonModule,
     ProductRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AdminModule
+    AdminModule,
   ]
 })
 export class ProductModule {

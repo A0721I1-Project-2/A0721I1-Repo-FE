@@ -9,6 +9,14 @@ import {ChatUserPageModule} from './chat-app/chat-user-page/chat-user-page.modul
 import {HomeModule} from './home/home.module';
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
+import {DatePipe} from '@angular/common';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+// import {MatDatepickerModule} from '@angular/material/datepicker';
+// import {MAT_DATE_FORMATS, MatNativeDateModule} from '@angular/material/core';
+// import {MatFormFieldModule} from '@angular/material/form-field';
+// import {MomentDateModule} from '@angular/material-moment-adapter';
+// import {MatInputModule} from '@angular/material/input';
+// import {MY_DATE_FORMATS} from './product/statistic/statistic.component';
 
 
 @NgModule({
@@ -28,8 +36,9 @@ import {AppRoutingModule} from './app-routing.module';
     AngularFireAuthModule,
     ChatUserPageModule,
     HomeModule,
+    BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule {

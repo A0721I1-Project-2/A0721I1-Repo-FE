@@ -14,7 +14,11 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "skipLibCheck": true,
+    "paths": {
+      "@angular/*": ["./node_modules/@angular/*"]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
