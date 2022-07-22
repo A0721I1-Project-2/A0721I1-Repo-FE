@@ -4,7 +4,7 @@ import {Routes, RouterModule} from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'login' ,
+    path: 'login',
     loadChildren: () => import('./login/login.module').then(module => module.LoginModule)
   },
   {
@@ -23,7 +23,7 @@ const routes: Routes = [
     path: 'transaction',
     loadChildren: () => import('./transaction/transaction.module').then(module => module.TransactionModule)
   },
-  {
+    {
     path: 'payment',
     loadChildren: () => import('./payment/payment.module').then(module => module.PaymentModule)
   },
