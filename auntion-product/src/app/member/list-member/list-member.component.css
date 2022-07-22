@@ -1,0 +1,155 @@
+.search-user-list input {
+  height: 38px;
+  margin-inline: 10px;
+  border: 1px solid #dee2e6;
+  padding-inline: 10px;
+  width: 300px;
+}
+
+.search-user-list select {
+  height: 38px;
+  margin-inline: 10px;
+  border: 1px solid #dee2e6;
+  padding-inline: 10px;
+  width: 300px;
+}
+
+.search-user-list button {
+  margin-right: 20px;
+  margin-left: 10px;
+  padding-inline: 30px;
+}
+
+.btn-action a {
+  margin-right: 10px;
+}
+
+.btn-pagination li {
+  height: 38px;
+  margin-inline: 3px;
+  color: rgb(24, 100, 46) !important;
+  border-color: rgb(24, 100, 46) !important;
+}
+
+.btn-pagination li:hover {
+  color: white !important;
+  background-color: rgb(24, 100, 46) !important;
+}
+
+.btn-success{
+  background-color: rgb(24, 100, 46) !important;
+  border-color: rgb(24, 100, 46) !important;
+}
+
+.btn-success:hover{
+  background-color: #ff3366 !important;
+  border-color: #ff3366 !important;
+}
+
+.search-user-list {
+  flex-wrap: wrap;
+  border: 1px solid #d2d7dd;
+  padding-inline: 30px;
+  padding-block: 10px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.table {
+  margin-top: 1rem;
+  margin-bottom: 25px;
+  border: 1px solid #dee2e6;
+  width: 100%;
+}
+
+.page-item .page-link {
+  color: rgb(24, 100, 46) !important;
+}
+
+.page-item .page-link:hover {
+  background-color: #ff3366 !important;
+  border-color: #ff3366 !important;
+  color: white !important;
+}
+
+.page-item.active .page-link {
+  background-color: rgb(24, 100, 46) !important;
+  border-color: rgb(24, 100, 46) !important;
+  color: white !important;
+}
+
+.pagination li{
+  margin-inside: 3px;
+}
+
+
+@media screen and (max-width: 1420px) {
+  .search-user-list {
+    border: 1px solid #dee2e6;
+    padding-inline: 10px;
+    padding-block: 10px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .search-user-list input {
+    padding-inline: 16px;
+    margin-inline: 25px;
+    margin-block: 5px;
+    width: 95%;
+  }
+
+  .search-user-list select {
+    padding-inline: 13px;
+    margin-inline: 25px;
+    margin-block: 5px;
+    width: 95%;
+  }
+
+  .search-user-list button {
+    padding-inline: 30px;
+    margin-inline: 25px;
+    margin-block: 7px;
+    width: 95%;
+  }
+
+  .table {
+    width: 1820px;
+  }
+
+  .table-reposive {
+    overflow-x: scroll;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .search-user-list {
+    flex-wrap: wrap;
+    border: 1px solid #dee2e6;
+    padding-inline: 30px;
+    padding-block: 10px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .search-user-list input{
+    height: 38px;
+    margin-inline: 10px;
+    border: 1px solid #dee2e6;
+    padding-inline: 10px;
+    width: 100%;
+  }
+
+  .search-user-list select{
+    height: 38px;
+    margin-inline: 10px;
+    border: 1px solid #dee2e6;
+    padding-inline: 10px;
+    width: 100%;
+  }
+}

@@ -12,12 +12,15 @@ import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
-  declarations: [StatisticComponent, ListProductComponent, ReviewProductComponent, EditProductComponent, CustomDatepipe],
-  imports: [
-    CommonModule,
-    ProductRoutingModule,
-    ReactiveFormsModule,
-    HttpClientModule
-  ]
+    declarations: [StatisticComponent, ListProductComponent, ReviewProductComponent, EditProductComponent, CustomDatepipe],
+    exports: [
+        CustomDatepipe
+    ],
+    imports: [
+        CommonModule,
+        ProductRoutingModule,
+        ReactiveFormsModule,
+        HttpClientModule
+    ]
 })
 export class ProductModule { }

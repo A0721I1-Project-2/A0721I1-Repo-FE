@@ -9,8 +9,10 @@ import {Transport} from '../../model/Transport';
 import {PaymentMethod} from '../../model/PaymentMethod';
 import {Cart} from '../../model/Cart';
 import {Payment} from '../../model/Payment';
+import {InvoiceDetail} from "../../model/InvoiceDetail";
 const API_ADDRESS = 'http://localhost:3000/address';
 const API_URL = 'http://localhost:8080/manager/payment/api/';
+const API_STATUS = 'http://localhost:8080/manager/invoice-status/api';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +24,9 @@ export class PaymentService {
   // tslint:disable-next-line:variable-name
   public postImagePDFAndSendEmail(UrlImgInvoice: string): Observable<string> {
     return this.httpClient.get<string>(this.urlSendEmai + '?img=' + UrlImgInvoice);
+  }
+  findAllStatusInvoice(): Observable<InvoiceDetail[]> {
+    return this.httpClient.get<InvoiceDetail[]>(API_STATUS + '/status');
   }
   getAddress(): Observable<Address[]>{
     return this.httpClient.get<Address[]>(API_ADDRESS);

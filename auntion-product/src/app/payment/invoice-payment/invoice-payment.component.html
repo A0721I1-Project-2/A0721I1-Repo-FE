@@ -40,34 +40,34 @@
       </div>
       <div class="row">
         <div class="col-4">
-          <p>Name: Thiều THanh TÚ</p>
-          <p>Address: Phan Văn Định</p>
+          <p><span>Name:</span><span>{{invoiceDetail.fullNameReceiver}}</span></p>
           <p>Nation : Việt Nam</p>
+          <p><span>Address:</span><span>{{invoiceDetail.addressReceiver}}</span></p>
         </div>
         <div class="col-4">
-          <p>Phone:09052342342</p>
+          <p><span>Phone:</span><span>{{invoiceDetail.phoneReceiver}}</span></p>
           <p>Fax:+8412312312</p>
-          <p>Email: thieuthanhtu1994@gmail.com</p>
+          <p><span>Email:</span><span>{{invoiceDetail.emailReceiver}}</span></p>
         </div>
         <div class="col-4">
-          <p>Invoice number : HD23</p>
-          <p>Invoice date : 29/06/2022</p>
+          <p><span>Invoice number :</span><span>{{invoiceDetail.idPayment}}</span></p>
           <p>Responsible Entity:A0721I1 Auction </p>
+          <p><span>Invoice date : </span><span>{{today | date:'yyyy-mm-dd'}}</span></p>
         </div>
       </div>
       <hr style="margin-top: 10px;border: 0.4px solid #11B683">
       <div class="row">
         <div class="col-4">
           <p>Delivery unit</p>
-          <p>Shoppe</p>
+          <p>{{Trsanpot}}</p>
         </div>
         <div class="col-4">
-          <p>Payment methods</p>
-          <p>Postpaid</p>
+          <span>Payment methods</span><span></span>
+          <p>{{Paymethod}}</p>
         </div>
         <div class="col-4">
           <p>Payments</p>
-          <p>Bankking</p>
+          <p>Online</p>
         </div>
       </div>
       <hr style="margin-top: 10px;border: 0.4px solid #11B683">
@@ -93,66 +93,16 @@
                   <th scope="col" class="th">Money (USD)</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Ax23</td>
-                  <td>Bút Chì</td>
-                  <td scope="col">cũ</td>
-                  <td scope="col">2022/07/05</td>
+                <tbody >
+                <tr *ngFor= "let invoiceDetail  of invoice, index as i">
+                  <th scope="row">{{i}}</th>
+                  <td>{{invoiceDetail.product.codeProduct}}</td>
+                  <td>{{invoiceDetail.product.nameProduct}}</td>
+                  <td scope="col">{{invoiceDetail.product.productDescription}}</td>
+                  <td scope="col">{{invoiceDetail.product.endDate | date:"yyyy/mm/dd"}}</td>
                   <td>1</td>
-                  <td>20000</td>
-                  <td>20000</td>
-                </tr>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Ax23</td>
-                  <td>Bút Bi</td>
-                  <td scope="col">cũ</td>
-                  <td scope="col">2022/07/05</td>
-                  <td>5</td>
-                  <td>20000</td>
-                  <td>100000</td>
-                </tr>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Ax23</td>
-                  <td>Bút Chì</td>
-                  <td scope="col">cũ</td>
-                  <td scope="col">2022/07/05</td>
-                  <td>1</td>
-                  <td>20000</td>
-                  <td>20000</td>
-                </tr>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Ax23</td>
-                  <td>Bút Chì</td>
-                  <td scope="col">cũ</td>
-                  <td scope="col">2022/07/05</td>
-                  <td>1</td>
-                  <td>20000</td>
-                  <td>20000</td>
-                </tr>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Ax23</td>
-                  <td>Bút Chì</td>
-                  <td scope="col">cũ</td>
-                  <td scope="col">2022/07/05</td>
-                  <td>1</td>
-                  <td>20000</td>
-                  <td>20000</td>
-                </tr>
-                <tr>
-                  <th scope="row"></th>
-                  <td></td>
-                  <td>Service Charge (%)</td>
-                  <td scope="col"></td>
-                  <td scope="col"></td>
-                  <td></td>
-                  <td>20000</td>
-                  <td>20000</td>
+                  <td>{{invoiceDetail.product.finalPrice | number}}</td>
+                  <td>{{invoiceDetail.product.finalPrice | number}}</td>
                 </tr>
                 <tr>
                   <th scope="row"></th>
@@ -161,8 +111,8 @@
                   <td scope="col"></td>
                   <td scope="col"></td>
                   <td></td>
-                  <td>20000</td>
-                  <td>20000</td>
+                  <td>{{feeTransport | number}}</td>
+                  <td>{{feeTransport | number}}</td>
                 </tr>
                 <tr>
                   <th scope="row"></th>
@@ -171,8 +121,8 @@
                   <td scope="col"></td>
                   <td scope="col"></td>
                   <td></td>
-                  <td>20000</td>
-                  <td>20000</td>
+                  <td>{{total + feeTransport | number}}</td>
+                  <td>{{total + feeTransport | number}}</td>
                 </tr>
                 </tbody>
               </table>
@@ -189,7 +139,7 @@
           <p style="margin-bottom: 5px;padding-top: 14px">If you pay the incorrect amount, the product received is not correct in the invoice, then
             contact
             Contact our company:</p>
-          <p>Phone: 2121212121 Email: 1231231231231</p>
+          <p>Phone: 090505050505 Email: A0721I1@Codegym.com</p>
         </div>
 
       </div>
@@ -199,7 +149,7 @@
           <p >Payment Address</p>
           <p >Payment transferred to: Tp bank</p>
           <p >STK: 131231231</p>
-          <p >Company: Adidas</p>
+          <p >Company: A0721I1 Auction</p>
         </div>
         <div class="col-6">
           <h2 style="margin-top: 37px;">Exchange of intentions, soul</h2>
@@ -208,7 +158,7 @@
           <p >Other Information</p>
           <p >Certification license ISO2007</p>
           <p >Hotline: 0905121321</p>
-          <p >Mail: Adidas.com</p>
+          <p >Mail: A0721I1@Codegym.com</p>
         </div>
       </div>
     </div>
@@ -219,7 +169,7 @@
     <div class="col-10"></div>
     <div class="col-2" style="text-align: right;margin-bottom: 10px">
       <button class="btn"  (click)="print()" style="margin-right: 15px"> PrintPDF</button>
-      <a routerLink="/home"><button class="btn" > Cancel </button></a>
+      <a routerLink="/home" (click)="scroll()"><button class="btn" > Cancel </button></a>
     </div>
   </div>
 </div>
