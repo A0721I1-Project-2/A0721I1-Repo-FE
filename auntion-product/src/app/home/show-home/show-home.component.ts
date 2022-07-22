@@ -349,8 +349,8 @@ export class ShowHomeComponent implements OnInit {
         this.showListProductAuction();
       }
     } else {
+
       // @ts-ignore
-      // $('#myModal').modal('hide');
       $('#myModal').modal('hide');
     }
     if (priceRange === '$0 – $5') {
