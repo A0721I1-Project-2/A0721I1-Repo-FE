@@ -1,0 +1,79 @@
+<div style="margin-top: 120px" class="row">
+
+  <div class="col-3"></div>
+  <div class="col-6" style="padding-inline: 30px; border: 4px solid #11B683;background-color: white;">
+    <div class="content">
+      <div style="padding-inline: 1px;">
+        <h1 style="color: #11B683; text-align: center;">Order Status</h1>
+        <div class="tonghop">
+          <h3>Pay form: </h3>
+          <p class="col-12"> {{invoiceDetail.paymentMethod.namePaymentMethod}}</p>
+        </div>
+        <div class="mot" style="font-size: 1.2rem">
+          <h3>Delivery method: </h3>
+          <p class="col-12">{{invoiceDetail.transport.nameTransport}}</p>
+        </div>
+        <div>
+          <h3>Order detail number: <span *ngFor="let invoiceDetail of invoice">{{invoiceDetail.idInvoiceDetail}}  </span></h3>
+          <h3>Payment term: {{today | date:'yyyy-mm-dd' }}  </h3>
+
+        </div>
+            <div class="col-12" style="border: 1px solid #dee2e6; font-size: 1.3rem; margin-top: 20px">
+              <p > Receiver: {{invoiceDetail.fullNameReceiver}}</p>
+              <p > Phone number: {{invoiceDetail.phoneReceiver}}</p>
+              <p class='bx bxs-envelope'> Email: {{invoiceDetail.emailReceiver}}</p>
+            </div>
+            <div class="col-12" style="border: 1px solid #dee2e6; font-size: 1.3rem; margin-top: 1rem">
+              <p style="margin-top: 10px" class='bx bxs-location-plus'> Address: {{street}}</p>
+              <p > National: Viet Nam</p>
+              <p > City: {{city}}</p>
+              <p > District: {{district}}</p>
+              <p > Ward: {{ward}}</p>
+
+            </div>
+          </div>
+      <div class="rowrrow">
+        <div class="col-12">
+          <table class="table table-bordered" style="margin-top: 1rem; font-size: 1.3rem;text-align:center " >
+            <thead style="background: #11B683;">
+            <tr>
+              <th scope="col">Product</th>
+              <th scope="col">Auction Price (USD)</th>
+            </tr>
+            </thead>
+            <tbody *ngFor="let invoiceDetail of invoice; index as i">
+            <tr >
+              <td>
+<!--                <img src=""  alt="" height="200" width="200"/>-->
+                <span>{{invoiceDetail.product.nameProduct}}</span></td>
+              <td>{{invoiceDetail.product.finalPrice}}</td>
+            </tr>
+            </tbody>
+            <tbody>
+            <tr>
+              <th style="text-align: center">Delivery charges (USD)</th>
+              <td>{{feeTransport}}</td>
+            </tr>
+            <tr>
+              <th style="text-align: center">Total money (USD)</th>
+              <td>{{total + feeTransport}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div style="text-align: center" class="form-group">
+        <!--                    <button type="submit" class="btn" style="background: #ff3366; height: 45px">Print invoice</button>-->
+        <a href="/payment/invoice"> <button type="button" class="btn btn-outline-dark" data-dismiss="modal" style="height: 45px">Print invoice</button>
+        </a>
+        <a href="/home">
+        <button type="reset" class="btn btn btn-outline-dark" data-dismiss="modal" style="background: #11B683; margin-left: 15px; height: 45px" >Back to auction history</button>
+        <!--                    Quay lại lịch sử đấu giá-->
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+<!--*ngIf="payment="-->
