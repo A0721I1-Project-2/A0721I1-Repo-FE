@@ -10,7 +10,7 @@ describe('EditMemberComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ EditMemberComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

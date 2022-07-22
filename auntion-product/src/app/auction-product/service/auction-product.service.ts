@@ -20,7 +20,7 @@ export class AuctionProductService {
   }
 
   getMemberById(id: number) {
-    return this.httpClient.get<Member>('http://localhost:8080/member/getMemberById/' + id);
+    return this.httpClient.get<Member>('http://localhost:8080/getMemberById/' + id);
   }
 
   getAccountByMemberId(id: number) {
