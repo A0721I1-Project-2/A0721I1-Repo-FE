@@ -15,7 +15,7 @@
         </div>
         <div>
           <h3>Order detail number: <span *ngFor="let invoiceDetail of invoice">{{invoiceDetail.idInvoiceDetail}}  </span></h3>
-<!--          <h3>Hạn thanh toán: <span *ngFor="let invoiceDetail of invoice">{{invoiceDetail.invoice.dateCreated}}  </span></h3>-->
+          <h3>Payment term: {{today | date:'yyyy-mm-dd' }}  </h3>
 
         </div>
             <div class="col-12" style="border: 1px solid #dee2e6; font-size: 1.3rem; margin-top: 20px">

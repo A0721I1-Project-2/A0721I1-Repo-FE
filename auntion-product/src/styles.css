@@ -14,6 +14,13 @@
 html {
   font-family: 'Fira Code', monospace;
 }
+:root {
+  --primary-color: #5f6771;
+  --color-content: #11b683;
+  --color-background: #a1def5;
+  --color-headder-footer-cart: #d9dadb;
+  --color-hover: #ff3366;
+}
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
@@ -37,6 +44,5 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 #myBtn:hover {
   background-color: #11b683;
-
 }
 

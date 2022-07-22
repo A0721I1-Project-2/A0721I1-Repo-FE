@@ -50,6 +50,8 @@ export class ChatFormAdminComponent implements OnInit {
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
 
+      console.log(file);
+
       const reader = new FileReader();
       if (!this.isFile) {
         reader.onload = e => this.uploadSrc = reader.result;
@@ -67,7 +69,7 @@ export class ChatFormAdminComponent implements OnInit {
     let message = this.formChat.get('message').value;
 
     /* Check empty message */
-    if ((message == '' || message == null) && this.selectedFiles == null) {
+    if ((message === '' || message == null) && this.selectedFiles == null) {
       this.showNotiError = true;
       setTimeout(() => {
         this.showNotiError = false;

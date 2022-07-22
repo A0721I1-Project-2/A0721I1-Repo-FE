@@ -9,6 +9,7 @@ export const environment = {
  /* recaptcha: {
     siteKey: '6LcotukgAAAAAOZWmgjxeoTBKYTN5kgJoq01-wXh',
   }*/
+
 };
 
 /*

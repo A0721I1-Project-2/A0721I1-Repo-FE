@@ -30,6 +30,7 @@ export class InvoiceStatusComponent implements OnInit {
   city: string;
   item = 0;
   address: string;
+  today: Date;
 
   constructor(
     private service: PaymentService,
@@ -40,6 +41,8 @@ export class InvoiceStatusComponent implements OnInit {
   ngOnInit(): void {
     this.findAllStatusInvoice();
     // console.log('check img',this.invoice)
+    this.today=new Date();
+
 
   }
 

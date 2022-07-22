@@ -1,6 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-// @ts-ignore
-import Swal from 'sweetalert2';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Member} from '../../model/Member';
 import {Rank} from '../../model/Rank';
