@@ -11,7 +11,11 @@ const routes: Routes = [
     path: 'chat-page',
     loadChildren: () => import('./chat-admin/chat-admin.module').then(module => module.ChatAdminModule)
   },
-];
+  {
+    path: 'member',
+    loadChildren: () => import('../member/member.module').then(module => module.MemberModule)
+  },
+  ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

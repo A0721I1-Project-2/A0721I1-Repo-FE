@@ -1,9 +1,38 @@
+.p-r-0 {
+  padding-right: 0px !important;
+}
+
+.p-l-0 {
+  padding-left: 0px !important;
+}
+
+.chat-box__container {
+  overflow: hidden;
+}
+
+.header-user-list h1{
+  text-align: center;
+  font-family: 'Times New Roman';
+  font-weight: 1000;
+  font-size: 50px;
+  color: rgb(24, 100, 46);
+}
+
+/* Responsive */
+/* Mobile */
+@media (max-width: 739px) {
+  .d-none-m-b {
+    display: none;
+  }
+}
+
+
 .search-user-list input {
   height: 38px;
   margin-inline: 10px;
   border: 1px solid #dee2e6;
   padding-inline: 10px;
-  width: 300px;
+  width: 240px;
 }
 
 .search-user-list select {
@@ -11,7 +40,7 @@
   margin-inline: 10px;
   border: 1px solid #dee2e6;
   padding-inline: 10px;
-  width: 300px;
+  width: 240px;
 }
 
 .search-user-list button {
@@ -39,6 +68,7 @@
 .btn-success{
   background-color: rgb(24, 100, 46) !important;
   border-color: rgb(24, 100, 46) !important;
+  border-radius: 25px !important;
 }
 
 .btn-success:hover{
@@ -51,7 +81,7 @@
   border: 1px solid #d2d7dd;
   padding-inline: 30px;
   padding-block: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
   display: flex;
   justify-content: center;
 }
