@@ -269,6 +269,10 @@ li {
     transform: translate(-50%, -50%);
     width: 90%;
   }
+  .chat-icon i {
+    transition: all 0.3s;
+    font-size: 1.4rem;
+  }
 }
 
 /* Mobile and Tablet */
@@ -280,7 +284,10 @@ li {
 
 /* Tablet */
 @media (min-width: 740px) and (max-width: 1023px) {
-
+  .chat-icon i {
+    transition: all 0.3s;
+    font-size: 1.6rem;
+  }
 }
 
 /* X-Large devices (large desktops, 1200px and up) */

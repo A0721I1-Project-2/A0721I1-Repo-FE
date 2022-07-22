@@ -35,7 +35,8 @@ export class LoginService {
 
   /* Logout */
   logout() {
-    localStorage.clear();
+    window.localStorage.clear();
+    window.sessionStorage.clear();
   }
 
 
