@@ -362,8 +362,25 @@ body {
         opacity: 1;
     }
 }
-
-
+.alert {
+  position: absolute;
+  z-index: 100;
+  top: 50%;
+  left: 20%;
+  right: 20%;
+  animation-name: alert;
+  animation-duration: 1s;
+}
+@keyframes alert{
+  from{
+    transform: translateX(-300px);
+    opacity: 0;
+  }
+  to{
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
 /* Mobile width <740px */
 
 @media only screen and (max-width: 739px) {
