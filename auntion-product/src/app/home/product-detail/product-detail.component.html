@@ -1,1 +1,121 @@
-<p>product-detail works!</p>
+<div class="page__container">
+  <div class="page ">
+    <div class="page__layout">
+      <div class="page__left">
+        <div class="page__wrapper">
+          <div class="product__image">
+            <div class="numbertext" id="numbertext"></div>
+            <a (click)="prevImage()" class="prev_image" style="color: #FF3366;"><</a>
+            <div>
+              <img id="mainImage" alt="Image">
+            </div>
+            <a (click)="nextImage()" class="next_image" style="color: #FF3366;">></a>
+            <div style="text-align:center" id="dot">
+              <span *ngFor="let item of arrayImage; index as i">
+                <span class="dot" (click)="changeSlide(i)"
+                      style="cursor: pointer; height: 15px;
+                      width: 15px; margin: 0 2px;
+                      background-color: #FF3366;
+                      border-radius: 50%; display: inline-block;
+                      transition: background-color 0.6s ease;">
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="page__right" *ngIf="product">
+        <h2 class="product__title">{{product.nameProduct}}</h2>
+        <div class="product__auction-info">
+          <div class="start__day">
+            <p>Start: {{product.startDate}}</p>
+          </div>
+          <div class="end__day">
+            <p>End: {{product.endDate}}</p>
+          </div>
+        </div>
+        <div class="product__auction">
+          <div class="displayflex">
+            <span>Time remain: &#160;&#160;</span>
+            <span class="product__auction-time" id="{{'time-remain-'+id}}"></span>
+          </div>
+          <br>
+          <div class="product__auctioneer">
+            <span>Auctioneer:  &#160; {{product.members[0].nameMember}}</span>
+          </div>
+          <br/>
+          <div class="product__auctioneer">
+            <span>Type product:  &#160; {{product.typeProduct.nameProductType}}</span>
+          </div>
+          <br/>
+          <div class="product__auctioneer">
+            <h5 *ngIf="checkAvailable==1">Current highest bidder:</h5>
+            <h5 *ngIf="checkAvailable==0">Winner:</h5>
+            <p >{{winner}}</p>
+          </div>
+          <br>
+          <div class="product__auction-info">
+            <div class="product__auction-price">
+              <h5>Original price (USD)</h5>
+              <p>{{product.initialPrice}}</p>
+            </div>
+            <div class="product__auction-winner">
+              <h5>Current price (USD)</h5>
+              <p id="priceStep">{{product.finalPrice}}</p>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div *ngIf="checkAvailable==1">
+          <span>Want to bid?</span>
+          <button class="btn btn-auction " [routerLink]="'/auction-product/auction/'+id">Join the auction now</button>
+        </div>
+      </div>
+    </div>
+    <div class="product__description" *ngIf="product">
+      <h4 class="product__description-title">
+        Product Description
+      </h4>
+      <p>
+        {{product.productDescription}}
+      </p>
+      <br>
+      <h4 class="product__description-title">
+        Product Warranty
+      </h4>
+      <p>
+        Purchasing a product covered by a warranty can help ensure your peace of mind. If things don’t work as expected,
+        a warranty may allow the purchase to be returned, replaced, or repaired. A product’s warranty acts as a
+        guarantee that it will perform. However, not all warranties are equal. A warranty might cover a product for a
+        lifetime or a matter of days. It may cover all kinds of damage or be limited to specific defects. Certain
+        actions, such as misuse, may render a warranty invalid, preventing you from returning a broken product.
+        Understanding how warranties are created and operate will help you know when you can return a product for damage
+        or defect.
+      </p>
+    </div>
+    <div class="product__description" *ngIf="product">
+      <div class="row">
+        <div class="col-6">
+          <h4 class="product__description-title">Information Receive</h4>
+          <div class="info">
+            <span><i class="fa-solid fa-location-arrow"></i>&#160; Address </span>
+            <p>{{product.members[0].addressMember}}</p>
+            <span><i class="fa-solid fa-phone-flip"></i> &#160;Phone Number</span>
+            <p>{{product.members[0].phoneMember}}</p>
+            <span><i class="fa-solid fa-truck"></i> &#160;Shipping services</span>
+            <p>Shipping services offers value-added services such as collection and
+              delivery options, delivery
+              notification, and special handling to meet your shipping needs. (Value-added service
+              offerings vary by country.)</p>
+          </div>
+        </div>
+        <div class="col-6">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d479.21905197383325!2d108.20951899679915!3d16.07833254370184!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x314219a486b7f699%3A0xae6269b629a63e82!2zVHJ1bmcgdMOibSDEkcOgbyB04bqhbyBs4bqtcCB0csOsbmggdmnDqm4gQ29kZUd5bSDEkMOgIE7hurVuZw!5e0!3m2!1svi!2s!4v1656658390900!5m2!1svi!2s"
+            width="550" height="290" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

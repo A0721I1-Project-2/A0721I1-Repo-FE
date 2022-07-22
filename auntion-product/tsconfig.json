@@ -15,7 +15,10 @@
       "es2018",
       "dom"
     ],
-    "allowSyntheticDefaultImports": true
+    "skipLibCheck": true,
+    "paths": {
+      "@angular/*": ["./node_modules/@angular/*"]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

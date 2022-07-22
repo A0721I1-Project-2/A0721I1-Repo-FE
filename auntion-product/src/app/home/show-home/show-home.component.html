@@ -3,15 +3,15 @@
 <p *ngIf="messagePayment != null">{{messagePayment}}</p>
 <!--<script src="src/assets/js/remaining-time-home.js"></script>-->
 <div id="main">
-<!--  <div id="slider">-->
-<!--    <div class="text-slider">-->
-<!--      <h2 class="heading-text">AUCTION</h2>-->
-<!--      <p class="des-text">Online Auction is where everyone goes to shop, sell,-->
-<!--        and give, while discovering variety and affordability.</p>-->
+  <!--  <div id="slider">-->
+  <!--    <div class="text-slider">-->
+  <!--      <h2 class="heading-text">AUCTION</h2>-->
+  <!--      <p class="des-text">Online Auction is where everyone goes to shop, sell,-->
+  <!--        and give, while discovering variety and affordability.</p>-->
 
-<!--      <a href="" class="btn btn-register-slider">REGISTER NOW</a>-->
-<!--    </div>-->
-<!--  </div>-->
+  <!--      <a href="" class="btn btn-register-slider">REGISTER NOW</a>-->
+  <!--    </div>-->
+  <!--  </div>-->
   <div id="slider" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
@@ -168,12 +168,12 @@
                 <div>TIME LEFT: <span style="color: #fff;">{{product.remainingTime}}</span></div>
               </div>
               <div class="product-image">
-                <a routerLink="/" ><img [src]="product.imageProductList[0].imageProduct" alt="Flycame"
-                                 onError="this.src='./assets/home-header/image/Image_not_available.png'"></a>
+                <a [routerLink]="['/home/product-detail/',product.idProduct]"><img [src]="product.imageProductList[0].imageProduct" alt="Flycame"
+                                                                                   onError="this.src='./assets/home-header/image/Image_not_available.png'"></a>
               </div>
               <div class="product-title">
                 <h5>
-                  <a routerLink="/home/product-detail">{{product.nameProduct}}</a>
+                  <a [routerLink]="['/home/product-detail/',product.idProduct]">{{product.nameProduct}}</a>
                 </h5>
               </div>
               <div class="product-price">
@@ -200,4 +200,3 @@
 
   </div>
 </div>
-
