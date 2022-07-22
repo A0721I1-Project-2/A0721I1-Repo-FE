@@ -4,6 +4,7 @@ import {Member} from '../../model/Member';
 import {Rank} from '../../model/Rank';
 import {MemberService} from '../service/member.service';
 import {FormControl, FormGroup} from '@angular/forms';
+// @ts-ignore
 import Swal from 'sweetalert2';
 
 
