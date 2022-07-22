@@ -48,3 +48,31 @@
   color: #fff;
   padding: 12px;
 }
+
+
+/*sidebar navigation*/
+/*Giúp định dạng sidebar bên trái với độ rộng:210px */
+#sidebar {
+  width: 210px;
+  height: 100%;
+  position: fixed;
+  background: #2f323a;
+}
+
+#sidebar h5 {
+  color: #f2f2f2;
+  font-weight: 700;
+}
+
+#sidebar ul li {
+  position: relative;
+}
+
+#sidebar .sub-menu > .sub li {
+  padding-left: 32px;
+}
+
+#sidebar .sub-menu > .sub li:last-child {
+  padding-bottom: 10px;
+}
+
