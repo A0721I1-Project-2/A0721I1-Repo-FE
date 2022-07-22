@@ -19,15 +19,11 @@
     </div>
 </div>
 
-<form #scrollBottom [formGroup]="formChat" (ngSubmit)="send()" class="chat-bar">
+<form [formGroup]="formChat" (ngSubmit)="send()" class="chat-bar">
   <div [style.visibility]="showNotiError ? 'visible' : 'hidden'"
        [style.opacity]="showNotiError?'1':'0'" id="notiError" class="alert__error-notification">
     <span>Don't let it blank before sending a message</span>
   </div>
-<form [formGroup]="formChat" (ngSubmit)="send()" class="chat-bar">
-    <div [style.visibility]="showNotiError ? 'visible' : 'hidden'" [style.opacity]="showNotiError?'1':'0'" id="notiError" class="alert__error-notification">
-        <span>Don't let it blank before sending a message</span>
-    </div>
 
     <input class="message" type="text" placeholder="Write a message" formControlName="message">
 
