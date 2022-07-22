@@ -1,1 +1,260 @@
-<p>post-product works!</p>
+
+<div class="register-form mt-3 mb-3">
+  <div class="container">
+    <div class="row">
+      <div class="main-page col-md-8 col-12 col-sm-6">
+        <form class="p-4" [formGroup]="formCreate" (ngSubmit)="createProduct()">
+          <div class="row">
+            <div class="text-tittle-page col-12 text-center">
+              <h2 class="tittle-page1" style="color: #11b683">Post Product</h2>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-6 col-sm-12 col-md-10">
+              <div class="form-group">
+                <label> Product Name:<a style="color: red"> (*)</a> </label>
+                <input type="text" class="form-control" formControlName="nameProduct">
+<!--                <p style="color: red">Product name cannot be blank !</p>-->
+                <div *ngFor="let validation of VALIDATION_MESSAGE.nameProduct" class="text-danger">
+                  <div *ngIf="formCreate.get('nameProduct').hasError(validation.type) && (formCreate.get('nameProduct').dirty || formCreate.get('nameProduct').touched)"
+                       class="error-message">
+                    {{validation.message}}</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label> Begin Price:<a style="color: red"> (*)</a> </label>
+                <input type="text" class="form-control"  formControlName="beginPrice">
+<!--                <p style="color: red">Begin Price cannot be blank !</p>-->
+                <div *ngFor="let validation of VALIDATION_MESSAGE.beginPrice" class="text-danger">
+                  <div *ngIf="formCreate.get('beginPrice').hasError(validation.type) && (formCreate.get('beginPrice').dirty || formCreate.get('beginPrice').touched)"
+                       class="error-message">
+                    {{validation.message}}</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label> Money For Once Auction:<a style="color: red"> (*)</a></label>
+                <input type="text" class="form-control" formControlName="incrementPrice">
+<!--                <p style="color: red">Money For Once Auction cannot be blank !</p>-->
+                <div *ngFor="let validation of VALIDATION_MESSAGE.incrementPrice" class="text-danger">
+                  <div *ngIf="formCreate.get('incrementPrice').hasError(validation.type) && (formCreate.get('incrementPrice').dirty || formCreate.get('incrementPrice').touched)"
+                       class="error-message">
+                    {{validation.message}}</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label> Detail Information: <a style="color: red"> (*)</a></label>
+                <textarea type="textarea" class="form-control" formControlName="descriptionProduct" rows="5"></textarea>
+<!--                <p style="color: red">Detail Information cannot be blank !</p>-->
+                <div *ngFor="let validation of VALIDATION_MESSAGE.descriptionProduct" class="text-danger">
+                  <div *ngIf="formCreate.get('descriptionProduct').hasError(validation.type) && (formCreate.get('descriptionProduct').dirty || formCreate.get('descriptionProduct').touched)"
+                       class="error-message">
+                    {{validation.message}}</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label> Product Type: <a style="color: red"> (*)</a></label>
+                <select id="select-typeProduct" class="form-control" formControlName="typeProduct">
+                  <option value="" selected hidden>Please select </option>
+                  <option *ngFor="let item of typeProduct" class="option" value="{{item.idProductType}}"><p>{{item.nameProductType}}</p>
+                  </option>
+                </select>
+                <div *ngFor="let validation of VALIDATION_MESSAGE.typeProduct" class="text-danger">
+                  <div *ngIf="formCreate.get('typeProduct').hasError(validation.type) && (formCreate.get('typeProduct').dirty || formCreate.get('typeProduct').touched)"
+                       class="error-message">
+                    {{validation.message}}</div>
+                </div>
+<!--                <p style="color: red">Please select product type!</p>-->
+              </div>
+
+              <div class="form-group">
+                <label> Start Time: <a style="color: red"> (*)</a></label>
+<!--               <input type="datetime-local"  step="1" class="form-control" placeholder="Enter start date" required="" type>-->
+                <input  class="form-control" id="timeStart" step="1" required="" formControlName="startTime"  type="datetime-local" >
+                <div *ngFor="let validation of VALIDATION_MESSAGE.startTime" class="text-danger">
+                  <div *ngIf="formCreate.get('startTime').hasError(validation.type) && (formCreate.get('startTime').dirty || formCreate.get('startTime').touched)"
+                       class="error-message">
+                    {{validation.message}}</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label> End Time:<a style="color: red"> (*)</a></label>
+                <input  class="form-control"  step="1" formControlName="endTime" placeholder="Enter end date" required="" type="datetime-local">
+                <div *ngFor="let validation of VALIDATION_MESSAGE.endTime" class="text-danger">
+                  <div *ngIf="formCreate.get('endTime').hasError(validation.type) && (formCreate.get('endTime').dirty || formCreate.get('endTime').touched)"
+                       class="error-message">
+                    {{validation.message}}</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label> Images <a style="color: red"> (*)</a></label>
+                <div>
+                  <img *ngFor="let url of urls" [src]="url" class="rounded mb-3" width="180">
+                </div>
+                <input accept=".jpg" type="file" formControlName="image" multiple (change)="preview($event)" required="">
+                <div *ngFor="let validation of VALIDATION_MESSAGE.image" class="text-danger">
+                  <div *ngIf="formCreate.get('image').hasError(validation.type) && (formCreate.get('image').dirty || formCreate.get('image').touched)"
+                       class="error-message">
+                    {{validation.message}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="submit"  class="form__group_button_edit" data-toggle="modal" data-target="#exampleModalLong1" value=" Register">
+            <input type="reset" class="form__group_button_retype" value="ReType">
+          </div>
+        </form>
+      </div>
+      <div class="return-page col-md-4 col-12 col-sm-6">
+        <div class="text-center" style="margin-top: 80px">
+<!--          <img src="../post-product/img/11zon_cropped%20(1).png" height="145" width="148"/>-->
+          <h1>Welcome !</h1>
+          <p><b>Your products after registration will be censored and auctioned on the website!</b></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<!--<div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"-->
+<!--     aria-hidden="true">-->
+<!--  <div class="modal-dialog" role="document">-->
+<!--    <div class="modal-content">-->
+<!--      <div class="modal-header">-->
+<!--        <h5 class="modal-title" id="exampleModalLongTitle1" style="color: #ff3366">The product is in the process of approval!</h5>-->
+<!--        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--          <span aria-hidden="true">&times;</span>-->
+<!--        </button>-->
+<!--      </div>-->
+<!--&lt;!&ndash;      <div class="modal-body">&ndash;&gt;-->
+<!--&lt;!&ndash;        <b>1. <a href="#1" class="modal-tittle">Introduction</a></b> <br>&ndash;&gt;-->
+
+<!--&lt;!&ndash;        <b>2. <a href="#2" class="modal-tittle">About Us</a></b><br>&ndash;&gt;-->
+
+<!--&lt;!&ndash;        <b>3. <a href="#3" class="modal-tittle">Using Our Service</a></b><br>&ndash;&gt;-->
+<!--&lt;!&ndash;        <b><a id="1">1. Introduction</a></b><br>&ndash;&gt;-->
+<!--&lt;!&ndash;        <p class="content-modal">&ndash;&gt;-->
+<!--&lt;!&ndash;          This User Agreement, the Mobile Application Terms of Use, and all policies and additional terms&ndash;&gt;-->
+<!--&lt;!&ndash;          posted on and in our sites, applications, tools and services (collectively "Services") set out the&ndash;&gt;-->
+<!--&lt;!&ndash;          terms on which eBay offers you access to and use of our Services. You can find an overview of our&ndash;&gt;-->
+<!--&lt;!&ndash;          policies here. The Mobile Application Terms of Use, all policies and additional terms posted on and&ndash;&gt;-->
+<!--&lt;!&ndash;          in our Services are incorporated into this User Agreement. You agree to comply with all terms of&ndash;&gt;-->
+<!--&lt;!&ndash;          this User Agreement when accessing or using our Services.&ndash;&gt;-->
+<!--&lt;!&ndash;          <br>&ndash;&gt;-->
+<!--&lt;!&ndash;          The entity you are contracting with is: eBay Inc., 2025 Hamilton Ave., San Jose, CA 95125, if you&ndash;&gt;-->
+<!--&lt;!&ndash;          reside in the United States; eBay (UK) Limited, 1 More London Place, London, SE1 2AF, United&ndash;&gt;-->
+<!--&lt;!&ndash;          Kingdom, if you reside in the United Kingdom; eBay GmbH, Albert-Einstein-Ring 2-6, 14532&ndash;&gt;-->
+<!--&lt;!&ndash;          Kleinmachnow, Germany, if you reside in the European Union; eBay Canada Limited, 240 Richmond Street&ndash;&gt;-->
+<!--&lt;!&ndash;          West, 2nd Floor Suite 02-100, Toronto, Ontario, M5V 1V6, Canada, if you reside in Canada; eBay&ndash;&gt;-->
+<!--&lt;!&ndash;          Singapore Services Pte Ltd., 10 Collyer Quay, #10-01 Ocean Financial Centre, Singapore 049315, if&ndash;&gt;-->
+<!--&lt;!&ndash;          you reside in India; and eBay Marketplaces GmbH, Helvetiastrasse 15/17, 3005, Bern, Switzerland, if&ndash;&gt;-->
+<!--&lt;!&ndash;          you reside in any other country. In this User Agreement, these entities are individually and&ndash;&gt;-->
+<!--&lt;!&ndash;          collectively referred to as "eBay," "we," or "us."&ndash;&gt;-->
+<!--&lt;!&ndash;          <br>&ndash;&gt;-->
+<!--&lt;!&ndash;          Please be advised that this User Agreement contains provisions that govern&ndash;&gt;-->
+<!--&lt;!&ndash;          how claims you and we have against each other are resolved (see "Disclaimer of Warranties;&ndash;&gt;-->
+<!--&lt;!&ndash;          Limitation of Liability" and "Legal Disputes" provisions below). It also contains an Agreement to&ndash;&gt;-->
+<!--&lt;!&ndash;          Arbitrate which will, with limited exception, require you to submit claims you have against us&ndash;&gt;-->
+<!--&lt;!&ndash;          or our agents to binding and final arbitration, unless you opt out of the Agreement to Arbitrate&ndash;&gt;-->
+<!--&lt;!&ndash;          (see Legal Disputes, Section B ("Agreement to Arbitrate")). If you do not opt out: (1)&ndash;&gt;-->
+<!--&lt;!&ndash;          you will only be permitted to pursue claims against us or our agents on an individual basis,&ndash;&gt;-->
+<!--&lt;!&ndash;          not as a plaintiff or class member in any class or representative action or proceeding and (2)&ndash;&gt;-->
+<!--&lt;!&ndash;          you will only be permitted to seek relief (including monetary, injunctive, and declaratory relief)&ndash;&gt;-->
+<!--&lt;!&ndash;          on an individual basis.&ndash;&gt;-->
+<!--&lt;!&ndash;          <br>&ndash;&gt;-->
+<!--&lt;!&ndash;        </p>&ndash;&gt;-->
+<!--&lt;!&ndash;        <b><a id="2">2. About Us</a></b><br>&ndash;&gt;-->
+<!--&lt;!&ndash;        <p class="content-modal">&ndash;&gt;-->
+<!--&lt;!&ndash;          eBay is a marketplace that allows users to offer, sell and buy goods and services in various&ndash;&gt;-->
+<!--&lt;!&ndash;          geographic locations using a variety of pricing formats. eBay is not a party to contracts for sale&ndash;&gt;-->
+<!--&lt;!&ndash;          between third-party sellers and buyers, nor is eBay a traditional auctioneer.&ndash;&gt;-->
+<!--&lt;!&ndash;          <br>&ndash;&gt;-->
+<!--&lt;!&ndash;          Any guidance eBay provides as part of our Services, such as pricing, shipping,&ndash;&gt;-->
+<!--&lt;!&ndash;          listing, and sourcing is solely informational and you may decide to follow it or not.&ndash;&gt;-->
+<!--&lt;!&ndash;          We may help facilitate the resolution of disputes between buyers and sellers through various&ndash;&gt;-->
+<!--&lt;!&ndash;          programs. Unless otherwise expressly provided, eBay has no control over and does not guarantee:&ndash;&gt;-->
+<!--&lt;!&ndash;          the existence, quality, safety or legality of items advertised; the truth or accuracy of users'&ndash;&gt;-->
+<!--&lt;!&ndash;          content&ndash;&gt;-->
+<!--&lt;!&ndash;          or listings; the ability of sellers to sell items; the ability of buyers to pay for items; or that a&ndash;&gt;-->
+<!--&lt;!&ndash;          buyer&ndash;&gt;-->
+<!--&lt;!&ndash;          or seller will actually complete a transaction or return an item.&ndash;&gt;-->
+<!--&lt;!&ndash;          <br>&ndash;&gt;-->
+<!--&lt;!&ndash;        </p>&ndash;&gt;-->
+<!--&lt;!&ndash;        <b><a id="3">3. Using Our Service</a></b><br>&ndash;&gt;-->
+<!--&lt;!&ndash;        <p class="content-modal">&ndash;&gt;-->
+<!--&lt;!&ndash;          In connection with using or accessing our Services you agree to comply with this User Agreement, our&ndash;&gt;-->
+<!--&lt;!&ndash;          policies, our terms, and all applicable laws, rules, and regulations, and you will not:&ndash;&gt;-->
+<!--&lt;!&ndash;          <br>&ndash;&gt;-->
+<!--&lt;!&ndash;          breach or circumvent any laws, regulations, third-party rights or our systems, Services, policies,&ndash;&gt;-->
+<!--&lt;!&ndash;          or determinations of your account status;&ndash;&gt;-->
+<!--&lt;!&ndash;          use our Services if you are not able to form legally binding contracts (for example, if you are&ndash;&gt;-->
+<!--&lt;!&ndash;          under 18 years old), or are temporarily or indefinitely suspended from using our Services, or are a&ndash;&gt;-->
+<!--&lt;!&ndash;          person with whom transactions are prohibited under economic or trade sanctions;&ndash;&gt;-->
+<!--&lt;!&ndash;          fail to pay for items purchased by you, unless you have a valid reason as set out in an eBay policy,&ndash;&gt;-->
+<!--&lt;!&ndash;          for example, the seller has materially changed the item's description after you bid (see our Unpaid&ndash;&gt;-->
+<!--&lt;!&ndash;          item policy);&ndash;&gt;-->
+<!--&lt;!&ndash;          fail to deliver items sold by you, unless you have a valid reason as set out in an eBay policy;&ndash;&gt;-->
+<!--&lt;!&ndash;          manipulate the price of any item or interfere with any other user's listings;&ndash;&gt;-->
+<!--&lt;!&ndash;          take any action that may undermine the feedback or ratings systems (our Feedback policies);&ndash;&gt;-->
+<!--&lt;!&ndash;          transfer your eBay account (including feedback) and user ID to another party without our consent;&ndash;&gt;-->
+<!--&lt;!&ndash;          share your log in credentials with any third parties. If you require that authorized third parties&ndash;&gt;-->
+<!--&lt;!&ndash;          (employees, agents, etc) have access to your account we offer a Multi-User Account Access program&ndash;&gt;-->
+<!--&lt;!&ndash;          for that purpose.&ndash;&gt;-->
+<!--&lt;!&ndash;          create listings, post, or upload content in inappropriate categories or areas on our sites;&ndash;&gt;-->
+<!--&lt;!&ndash;          post false, inaccurate, misleading, deceptive, defamatory, or libelous content;&ndash;&gt;-->
+<!--&lt;!&ndash;          distribute or post spam, unsolicited or bulk electronic communications, chain letters, or pyramid&ndash;&gt;-->
+<!--&lt;!&ndash;          schemes;&ndash;&gt;-->
+<!--&lt;!&ndash;          distribute viruses or any other technologies that may harm eBay or the interests or property of&ndash;&gt;-->
+<!--&lt;!&ndash;          users;&ndash;&gt;-->
+<!--&lt;!&ndash;          use any robot, spider, scraper, data mining tools, data gathering and extraction tools, or other&ndash;&gt;-->
+<!--&lt;!&ndash;          automated means to access our Services for any purpose, except with the prior express permission of&ndash;&gt;-->
+<!--&lt;!&ndash;          eBay;&ndash;&gt;-->
+<!--&lt;!&ndash;          circumvent any technical measures used to provide our Services.&ndash;&gt;-->
+<!--&lt;!&ndash;          interfere with the functioning of our Services, such as by imposing an unreasonable or&ndash;&gt;-->
+<!--&lt;!&ndash;          disproportionately large load on our infrastructure;&ndash;&gt;-->
+<!--&lt;!&ndash;          export or re-export any eBay application or tool, except in compliance with the export control laws,&ndash;&gt;-->
+<!--&lt;!&ndash;          and rules and policies of any relevant jurisdictions;&ndash;&gt;-->
+<!--&lt;!&ndash;          infringe the copyright, trademark, patent, publicity, moral, database, and/or other intellectual&ndash;&gt;-->
+<!--&lt;!&ndash;          property rights (collectively, "Intellectual Property Rights") that belong to or are licensed to&ndash;&gt;-->
+<!--&lt;!&ndash;          eBay. Some, but not all, actions that may constitute infringement are reproducing, performing,&ndash;&gt;-->
+<!--&lt;!&ndash;          displaying, distributing, copying, reverse engineering, decompiling, disassembling, or preparing&ndash;&gt;-->
+<!--&lt;!&ndash;          derivative works from content that belongs to eBay or someone else;&ndash;&gt;-->
+<!--&lt;!&ndash;          infringe any Intellectual Property Rights that belong to third parties affected by your use of our&ndash;&gt;-->
+<!--&lt;!&ndash;          Services or post content that does not belong to you;&ndash;&gt;-->
+<!--&lt;!&ndash;          commercialize any eBay application or any information, data or software associated with such&ndash;&gt;-->
+<!--&lt;!&ndash;          application, except with the prior express permission of eBay; or&ndash;&gt;-->
+<!--&lt;!&ndash;          harvest or otherwise collect or use information about users without their consent.&ndash;&gt;-->
+<!--&lt;!&ndash;          Sellers must meet eBay's minimum performance standards. Failure to meet these standards may result&ndash;&gt;-->
+<!--&lt;!&ndash;          in eBay charging sellers additional fees, and/or limiting, restricting, suspending, or downgrading&ndash;&gt;-->
+<!--&lt;!&ndash;          your seller account.&ndash;&gt;-->
+
+<!--&lt;!&ndash;          If we believe you are abusing eBay and/or our Services in any way, we may, in our sole discretion&ndash;&gt;-->
+<!--&lt;!&ndash;          and without limiting other remedies, limit, suspend, or terminate your user account(s) and access to&ndash;&gt;-->
+<!--&lt;!&ndash;          our Services, delay or remove hosted content, remove any special status associated with your&ndash;&gt;-->
+<!--&lt;!&ndash;          account(s), remove, not display, and/or demote listings, reduce or eliminate any discounts, and take&ndash;&gt;-->
+<!--&lt;!&ndash;          technical and/or legal steps to prevent you from using our Services.&ndash;&gt;-->
+
+<!--&lt;!&ndash;          If we believe you are violating our policies prohibiting Offers to buy or sell outside of eBay, you&ndash;&gt;-->
+<!--&lt;!&ndash;          may be subject to a range of actions, including limits on your buying and selling privileges,&ndash;&gt;-->
+<!--&lt;!&ndash;          restrictions on listings and account features, suspension of your account, application of fees, and&ndash;&gt;-->
+<!--&lt;!&ndash;          recovery of expenses for policy monitoring and enforcement. Also, as provided below in the Fees and&ndash;&gt;-->
+<!--&lt;!&ndash;          Taxes section, if we believe you are violating our policy on buying or selling outside of eBay, you&ndash;&gt;-->
+<!--&lt;!&ndash;          may be charged final value fees.&ndash;&gt;-->
+
+<!--&lt;!&ndash;          We may cancel unconfirmed accounts or accounts that have been inactive for a substantial period of&ndash;&gt;-->
+<!--&lt;!&ndash;          time. Additionally, we reserve the right to refuse, modify, or terminate all or part of our Services&ndash;&gt;-->
+<!--&lt;!&ndash;          to anyone for any reason at our discretion.&ndash;&gt;-->
+<!--&lt;!&ndash;        </p>&ndash;&gt;-->
+<!--&lt;!&ndash;      </div>&ndash;&gt;-->
+<!--      <div class="modal-footer">-->
+<!--        <button type="button" class="btn btn-outline-success" data-dismiss="modal">Close</button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+
+

@@ -14,7 +14,7 @@ export interface Product {
   typeProduct: any;
   approvalStatus: any;
   biddingStatus: any;
-  imageProductList: any;
+  imageProductList: any[];
   invoiceDetailList: any;
   cart: any;
   members: any;
