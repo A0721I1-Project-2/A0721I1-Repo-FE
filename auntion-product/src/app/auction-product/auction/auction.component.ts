@@ -135,8 +135,8 @@ export class AuctionComponent implements OnInit {
       this.modalBackground = 'red';
       this.modalHidden = false;
       this.displayStyle = 'block';
-    } else if (newPrice % this.product.incrementPrice !== 0) {
-      this.modalBody = 'Auction Price must be divisible by the Price Step!';
+    } else if ((newPrice - this.currentPrice) % this.product.incrementPrice !== 0) {
+      this.modalBody = 'Auction Price must increase exponentially by the Price Step!';
       this.modalBackground = 'red';
       this.modalHidden = false;
       this.displayStyle = 'block';
