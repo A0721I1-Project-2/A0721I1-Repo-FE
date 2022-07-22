@@ -342,10 +342,12 @@ export class ShowHomeComponent implements OnInit {
     if (this.formSearch?.invalid) {
       if (this.formSearch.get('nameProduct').errors.required) {
         this.messageAlert.push('The product name to be searched cannot be empty');
+        document.getElementById('alert').hidden = false;
         this.showListProductAuction();
       }
       if (this.formSearch.get('nameProduct').errors.pattern) {
         this.messageAlert.push('The product name cannot contain special characters(!@#$%^&*)');
+        document.getElementById('alert').hidden = false;
         this.showListProductAuction();
       }
     } else {
@@ -355,7 +357,8 @@ export class ShowHomeComponent implements OnInit {
       //   // @ts-ignore
       //   $('#myModal').modal('hide');
       // });
-      $('#myModal').modal('hide');
+      // $('#myModal').modal('hide');
+      document.getElementById('alert').hidden = true;
     }
     if (priceRange === '$0 – $5') {
       this.min = 0;
@@ -558,5 +561,9 @@ export class ShowHomeComponent implements OnInit {
     }
     // @ts-ignore
     console.log('số boxes còn lại = ' + $('.col-xl-3:hidden').length);
+  }
+
+  hide() {
+    document.getElementById('alert').hidden = true;
   }
 }

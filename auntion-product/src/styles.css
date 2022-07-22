@@ -10,6 +10,9 @@ html {
   font-family: 'Fira Code', monospace;
 }
 
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
 /*HauLST - CSS button back to top*/
 #myBtn {
   display: none; /* Mặc định button sẽ được ẩn*/
@@ -29,3 +32,4 @@ html {
 #myBtn:hover {
   background-color: #11b683;
 }
+
