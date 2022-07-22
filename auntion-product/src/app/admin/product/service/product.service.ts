@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Product} from '../../../model/Product';
+import {min} from 'rxjs/operators';
 
 const API_URL = 'http://localhost:8080/manager/product/api';
 
@@ -31,11 +32,13 @@ export class ProductService {
 
   //HieuDV
   searchByNameTypeSellerPriceStatus(name: string, typeProduct: number,
-                                    sellerName: string, maxPrice: number,
-                                    minPrice: number, biddingStatus: number,
+                                    sellerName: string, maxPrice: string,
+                                    minPrice: string, biddingStatus: number,
                                     page: number): Observable<Product[]> {
-    return this.http.get<Product[]>(`${API_URL}/search?name=` + name + '&sellerName=' + sellerName + '&maxPrice=' + maxPrice +
-      '&minPrice=' + minPrice + '&biddingStatus=' + biddingStatus + '&page=' + page);
+    console.log(`${API_URL}/search/` + name + '/' +typeProduct+ '/' + sellerName + '/' + maxPrice +
+      '/' + minPrice + '/' + biddingStatus + '/' + page);
+    return this.http.get<Product[]>(`${API_URL}/search/` + name + '/' +typeProduct+ '/' + sellerName + '/' + maxPrice +
+      '/' + minPrice + '/' + biddingStatus + '/' + page);
   }
 
   //HieuDV
@@ -49,7 +52,7 @@ export class ProductService {
 
   //HieuDV
   updateProduct(product): Observable<Product> {
-    return this.http.post<Product>(API_URL + '/update-bidding-status', product);
+    return this.http.put<Product>(API_URL + '/update-bidding-status', product);
   }
 
   //BachLT

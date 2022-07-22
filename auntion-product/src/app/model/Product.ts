@@ -24,6 +24,5 @@ export interface Product {
   mainPhoto: string; // HauLST
   invoiceDetailList: any;
   cart: any;
-  member: Member;
-  members: any;
+  members: Member;
 }

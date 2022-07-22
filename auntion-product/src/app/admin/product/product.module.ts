@@ -9,11 +9,14 @@ import { EditProductComponent } from './edit-product/edit-product.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {CustomDatepipe} from './statistic/custom.datepipe';
 import {HttpClientModule} from '@angular/common/http';
+import {AdminModule} from '../admin.module';
+
 
 
 @NgModule({
   declarations: [StatisticComponent, ListProductComponent, ReviewProductComponent, EditProductComponent, CustomDatepipe],
   imports: [
+    AdminModule,
     CommonModule,
     ProductRoutingModule,
     ReactiveFormsModule,
