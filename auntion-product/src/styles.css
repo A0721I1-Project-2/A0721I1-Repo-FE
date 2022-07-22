@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~ngx-toastr/toastr";
 :root {
   --primary-color: #2c2b30;
   --button-color: #ff3366;
@@ -21,6 +22,9 @@ html {
   --color-hover: #ff3366;
 }
 
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
 
 /*HauLST - CSS button back to top*/
 #myBtn {
@@ -41,3 +45,4 @@ html {
 #myBtn:hover {
   background-color: #11b683;
 }
+

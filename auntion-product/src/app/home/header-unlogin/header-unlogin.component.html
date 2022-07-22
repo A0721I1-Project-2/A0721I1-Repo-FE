@@ -1,0 +1,25 @@
+<div id="main" *ngIf="!isLogin">
+  <div id="header">
+    <div id="logo-header">
+      <a class="logo" href="">
+        <svg id="justify-header" xmlns="http://www.w3.org/2000/svg" width="35" height="35"
+             fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+                d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+        </svg>
+        <img src="./assets/home-header/image/logo-default-173x55 copy.png" alt="logo">
+      </a>
+      <!-- Phần login, tạm ẩn để làm cho trường hợp đã đăng nhập thành công -->
+      <a class="sign-in btn btn-success"  routerLink="/login/authentication">Sign in</a>
+<!--      <a class="sign-in btn btn-success"  routerLink="/login/authentication">Sign in</a>-->
+
+    </div>
+    <ul id="navbar">
+      <li><a routerLink="/home">HOME</a></li>
+      <li><a routerLink="/home/instruction">HOW IT WORKS</a></li>
+      <li><a routerLink="/home/about-us">ABOUT US</a></li>
+      <li><a routerLink="/home/contact-us">CONTACT US</a></li>
+    </ul>
+    <div class="clear"></div>
+  </div>
+</div>

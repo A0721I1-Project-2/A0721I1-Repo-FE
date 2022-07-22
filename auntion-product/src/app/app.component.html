@@ -1,3 +1,4 @@
+
 <!--<button routerLink="/home/show-home">show-home</button>-->
 <!--<button routerLink="/home/instruction">instruction</button>-->
 <!--<button routerLink="/home/product-detail">product-detail</button>-->
@@ -21,10 +22,28 @@
 <!--<button routerLink="/product/edit">edit-product</button>-->
 
 
-<!-- bạn nào pull về thì chỉ để lại 4 cái này app-header, router-outlet, app-footer, app-room-chat-user -> còn lại bỏ hết ra nha-->
-<app-room-chat-user></app-room-chat-user>
-<app-header ></app-header>
-<router-outlet></router-outlet>
-<app-footer ></app-footer>
+<!--&lt;!&ndash; bạn nào pull về thì chỉ để lại 4 cái này app-header, router-outlet, app-footer, app-room-chat-user -> còn lại bỏ hết ra nha&ndash;&gt;-->
+<!--<app-room-chat-user></app-room-chat-user>-->
+<!--<app-header ></app-header>-->
+<!--<router-outlet></router-outlet>-->
+<!--<app-footer ></app-footer>-->
+<div class="container-app">
+  <div *ngIf="path !=='http://localhost:4200/login/authentication'">
+
+    <app-header-unlogin></app-header-unlogin>
+    <app-header></app-header>
+    <app-room-chat-user></app-room-chat-user>
+  </div>
+  <router-outlet></router-outlet>
+  <div *ngIf="path !=='http://localhost:4200/login/authentication'">
+    <app-footer class="app-footer"></app-footer>
+  </div>
+</div>
+
+
+<!--<app-header></app-header>-->
+<!--<app-room-chat-user></app-room-chat-user>-->
+<!--<router-outlet></router-outlet>-->
+<!--<app-footer class="app-footer"></app-footer>-->
 
 
