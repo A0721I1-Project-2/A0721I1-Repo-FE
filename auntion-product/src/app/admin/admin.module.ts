@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {ReactiveFormsModule} from '@angular/forms';
 import { AdminRoutingModule } from './admin-routing.module';
 import { HeaderAdminComponent } from './header-admin/header-admin.component';
 import { NavbarAdminComponent } from './navbar-admin/navbar-admin.component';
@@ -17,7 +17,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    ReactiveFormsModule
   ]
 })
-export class AdminModule { }
+export class AdminModule {
+}
