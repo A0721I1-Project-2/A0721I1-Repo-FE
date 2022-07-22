@@ -1,5 +1,5 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 import {HomeRoutingModule} from './home-routing.module';
 import {ShowHomeComponent} from './show-home/show-home.component';
@@ -12,16 +12,22 @@ import {AboutUsComponent} from './about-us/about-us.component';
 import {ContactUsComponent} from './contact-us/contact-us.component';
 import {HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
+import { HeaderUnloginComponent } from './header-unlogin/header-unlogin.component';
 import {RouterModule} from '@angular/router';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+
+
 
 
 @NgModule({
+
   // tslint:disable-next-line:max-line-length
-  declarations: [ShowHomeComponent, ProductDetailComponent, ForgotPasswordComponent, HeaderComponent, FooterComponent, InstructionComponent, AboutUsComponent, ContactUsComponent],
-  exports: [
-    HeaderComponent,
-    FooterComponent
-  ],
+  declarations: [ShowHomeComponent, ProductDetailComponent, ForgotPasswordComponent, HeaderComponent, FooterComponent, InstructionComponent, AboutUsComponent, ContactUsComponent, HeaderUnloginComponent, ChangePasswordComponent],
+    exports: [
+        HeaderComponent,
+        FooterComponent,
+        HeaderUnloginComponent
+    ],
   imports: [
     CommonModule,
     HomeRoutingModule,
@@ -30,5 +36,4 @@ import {RouterModule} from '@angular/router';
     RouterModule
   ]
 })
-export class HomeModule {
-}
+export class HomeModule { }
