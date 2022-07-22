@@ -1,9 +1,8 @@
-
 import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
 import {Member} from '../../model/Member';
 import {Rank} from '../../model/Rank';
 import {MemberService} from '../service/member.service';
-import {FormControl, FormGroup} from '@angular/forms';
 // @ts-ignore
 import Swal from 'sweetalert2';
 
@@ -28,7 +27,8 @@ export class ListMemberComponent implements OnInit {
   ids: number[] = [];
   accountList: Account[] = [];
 
-  constructor(private service: MemberService) {
+  constructor(private service: MemberService
+  ) {
     this.searchForm = new FormGroup({
       nameMember: new FormControl(''),
       addressMember: new FormControl(''),
@@ -50,6 +50,14 @@ export class ListMemberComponent implements OnInit {
       phoneNumberMember: new FormControl(''),
       nameRankMember: new FormControl(''),
     });
+    const hideNavHp = document.querySelector('#header');
+    const hideFooterHp = document.querySelector('.footer__container');
+// @ts-ignore
+// tslint:disable-next-line:no-unused-expression
+    hideNavHp.style.display = 'none';
+// @ts-ignore
+// tslint:disable-next-line:no-unused-expression
+    hideFooterHp.style.display = 'none';
   }
 
   showMember(page: number) {
