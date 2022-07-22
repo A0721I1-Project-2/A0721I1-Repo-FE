@@ -1,0 +1,156 @@
+.p-r-0 {
+  padding-right: 0px !important;
+}
+
+.p-l-0 {
+  padding-left: 0px !important;
+}
+
+.chat-box__container {
+  overflow: hidden;
+}
+
+/* Responsive */
+/* Mobile */
+@media (max-width: 739px) {
+  .d-none-m-b {
+    display: none;
+  }
+}
+
+
+.clearfix {
+  position: absolute;
+  right: 5%;
+}
+
+.btn-pagination a {
+  color: white;
+}
+
+h1,
+td,
+th {
+  text-align: center;
+}
+
+hr {
+  background: #11b683;
+  height: 1px;
+  margin-top: 70px;
+  margin-bottom: 50px;
+}
+
+.total-revenue {
+  border-left: 1px solid Silver;
+  border-top: 1px solid Silver;
+  border-right: 1px solid Silver;
+  border-bottom: 1px solid Silver;
+  margin: 0;
+  padding: 10px;
+}
+
+h1 {
+  color: #11b683;
+}
+
+label {
+  display: inline-block;
+}
+
+.title {
+  background: #11b683;
+  color: white;
+}
+
+label {
+  font-size: 18px;
+  margin: 0;
+}
+
+.btn {
+  background: #11b683;
+}
+
+.btn:hover {
+  background: #ff3366;
+}
+
+table {
+  overflow:hidden;
+  overflow-y: scroll;
+  /*max-width: fit-content;*/
+  min-width: max-content;
+}
+
+.content {
+  margin-top: 60px;
+}
+
+.total-revenue {
+  margin-left: 65%;
+}
+
+/* Mobile: with < 740px */
+@media only screen and (max-width: 46.188rem) {
+  .clearfix {
+    position: absolute;
+    right: 6%;
+  }
+
+  .total-revenue {
+    margin-left: 65%;
+  }
+}
+
+button,
+select,
+input {
+  border-radius: 25px;
+}
+
+
+/* Tablet: with >= 740px and with < 1024px */
+@media only screen and (min-width: 46.25rem) and (max-width: 63.938rem) {
+  .clearfix {
+    position: absolute;
+    right: 10%;
+  }
+
+  .total-revenue {
+    margin-left: 50%;
+  }
+}
+
+/*Laptop: < 1024px */
+@media only screen and (max-width: 85.313rem) {
+  .clearfix {
+    position: absolute;
+    right: 12.5%;
+  }
+
+  .total-revenue {
+    margin-left: 34%;
+  }
+}
+
+
+.page-item .page-link {
+  color: rgb(24, 100, 46) !important;
+}
+
+.page-item .page-link:hover {
+  background-color: #ff3366 !important;
+  border-color: #ff3366 !important;
+  color: white !important;
+}
+
+.page-item.active .page-link {
+  background-color: rgb(24, 100, 46) !important;
+  border-color: rgb(24, 100, 46) !important;
+  color: white !important;
+}
+
+.pagination li{
+  margin-inside: 3px;
+}

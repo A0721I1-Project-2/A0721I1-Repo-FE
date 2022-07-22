@@ -1,14 +1,15 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {ReactiveFormsModule} from '@angular/forms';
 import { AdminRoutingModule } from './admin-routing.module';
 import { HeaderAdminComponent } from './header-admin/header-admin.component';
 import { NavbarAdminComponent } from './navbar-admin/navbar-admin.component';
 import { FooterAdminComponent } from './footer-admin/footer-admin.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 @NgModule({
-  declarations: [HeaderAdminComponent, NavbarAdminComponent, FooterAdminComponent],
+  declarations: [HeaderAdminComponent, NavbarAdminComponent, FooterAdminComponent, DashboardComponent],
   exports: [
     NavbarAdminComponent,
     HeaderAdminComponent,
@@ -16,7 +17,9 @@ import { FooterAdminComponent } from './footer-admin/footer-admin.component';
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    ReactiveFormsModule
   ]
 })
-export class AdminModule { }
+export class AdminModule {
+}

@@ -1,14 +1,14 @@
 <!--<script src="src/assets/js/remaining-time-home.js"></script>-->
 <div id="main">
-<!--  <div id="slider">-->
-<!--    <div class="text-slider">-->
-<!--      <h2 class="heading-text">AUCTION</h2>-->
-<!--      <p class="des-text">Online Auction is where everyone goes to shop, sell,-->
-<!--        and give, while discovering variety and affordability.</p>-->
+  <!--  <div id="slider">-->
+  <!--    <div class="text-slider">-->
+  <!--      <h2 class="heading-text">AUCTION</h2>-->
+  <!--      <p class="des-text">Online Auction is where everyone goes to shop, sell,-->
+  <!--        and give, while discovering variety and affordability.</p>-->
 
-<!--      <a href="" class="btn btn-register-slider">REGISTER NOW</a>-->
-<!--    </div>-->
-<!--  </div>-->
+  <!--      <a href="" class="btn btn-register-slider">REGISTER NOW</a>-->
+  <!--    </div>-->
+  <!--  </div>-->
   <div id="slider" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
@@ -34,7 +34,7 @@
       <p class="des-text">Online Auction is where everyone goes to shop, sell,
         and give, while discovering variety and affordability.</p>
 
-      <a href="" class="btn btn-register-slider">REGISTER NOW</a>
+      <a routerLink="/member/sign-up" class="btn btn-register-slider">REGISTER NOW</a>
     </div>
   </div>
   <div id="content">
@@ -164,13 +164,13 @@
               <div class="product-counter-inner">
                 <div>TIME LEFT: <span style="color: #fff;">{{product.remainingTime}}</span></div>
               </div>
-              <div class="product-image" *ngFor="let img of product.imageProductList">
-                <a href="/"><img [src]="img.imageProduct" alt="Flycame"
-                                 onError="this.src='./assets/home-header/image/Image_not_available.png'"></a>
+              <div class="product-image">
+                <a [routerLink]="['/home/product-detail/',product.idProduct]"><img [src]="product.imageProductList[0].imageProduct" alt="Flycame"
+                                                                                   onError="this.src='./assets/home-header/image/Image_not_available.png'"></a>
               </div>
               <div class="product-title">
                 <h5>
-                  <a routerLink="/home/product-detail">{{product.nameProduct}}</a>
+                  <a [routerLink]="['/home/product-detail/',product.idProduct]">{{product.nameProduct}}</a>
                 </h5>
               </div>
               <div class="product-price">
@@ -178,213 +178,10 @@
                 <h5>${{product.finalPrice}}</h5>
               </div>
               <div class="product-btn">
-                <a class="btn button-auction-product" href="/" [hidden]="checkFinished==true">AUCTION</a>
+                <a class="btn button-auction-product" [routerLink]="['/auction-product/auction', product.idProduct]" [hidden]="checkFinished==true">AUCTION</a>
               </div>
             </div>
           </div>
-          <!--
-
-                               Sản phẩm 2
-                              <div class="col-xl-3 col-md-6 col-lg-6 col-sm-6 col-sm-6">
-                                <div class="product-auction">
-                                  <div class="product-counter-inner">
-                                    <div>REMAINING TIME: <span style="color: #fff;">00:08:50</span></div>
-                                  </div>
-                                  <div class="product-image">
-                                    <a href="/"><img src="./assets/home-header/image/product-image/biker.jpeg" alt="Flycame"></a>
-                                  </div>
-                                  <div class="product-title">
-                                    <h5>
-                                      <a href="/">Fyxation Eastside Crimson Roja – Bicicleta Urbana 1</a>
-                                    </h5>
-                                  </div>
-                                  <div class="product-price">
-                                    <p style="color: #838386;">Current Price ($):</p>
-                                    <h5>190</h5>
-                                  </div>
-                                  <div class="product-btn">
-                                    <a class="btn button-auction-product" href="/">AUCTION</a>
-                                  </div>
-                                </div>
-                              </div>
-
-
-                     Sản phẩm 3
-                    <div class="col-xl-3 col-md-6 col-lg-6 col-sm-6">
-                      <div class="product-auction">
-                        <div class="product-counter-inner">
-                          <div>REMAINING TIME: <span style="color: #fff;">00:15:50</span></div>
-                        </div>
-                        <div class="product-image">
-                          <a href="/"><img src="./assets/home-header/image/product-image/deer.jpeg" alt="Flycame"></a>
-                        </div>
-                        <div class="product-title">
-                          <h5>
-                            <a href="/">Brass Reclining Deer</a>
-                          </h5>
-                        </div>
-                        <div class="product-price">
-                          <p style="color: #838386;">Current Price ($):</p>
-                          <h5>125</h5>
-                        </div>
-                        <div class="product-btn">
-                          <a class="btn button-auction-product" href="/">AUCTION</a>
-                        </div>
-                      </div>
-                    </div>
-
-
-                     Sản phẩm 4
-                    <div class="col-xl-3 col-md-6 col-lg-6 col-sm-6">
-                      <div class="product-auction">
-                        <div class="product-counter-inner">
-                          <div>REMAINING TIME: <span style="color: #fff;">00:11:25</span></div>
-                        </div>
-                        <div class="product-image">
-                          <a href="/"><img src="./assets/home-header/image/product-image/zane-grey.jpeg"
-                                           alt="Flycame"></a>
-                        </div>
-                        <div class="product-title">
-                          <h5>
-                            <a href="/">Zane Grey - Vanishing American (First Edition)</a>
-                          </h5>
-                        </div>
-                        <div class="product-price">
-                          <p style="color: #838386;">Current Price ($):</p>
-                          <h5>190</h5>
-                        </div>
-                        <div class="product-btn">
-                          <a class="btn button-auction-product" href="/">AUCTION</a>
-                        </div>
-                      </div>
-                    </div>
-
-
-                     Sản phẩm 5
-                    <div class="col-xl-3 col-md-6 col-lg-6 col-sm-6">
-                      <div class="product-auction">
-                        <div class="product-counter-inner">
-                          <div>REMAINING TIME: <span style="color: #fff;">00:20:50</span></div>
-                        </div>
-                        <div class="product-image">
-                          <a href="/"><img src="./assets/home-header/image/product-image/lenovo.jpeg" alt="Flycame"></a>
-                        </div>
-                        <div class="product-title">
-                          <h5>
-                            <a href="/">Lenovo K5 Note 4G
-                              Phablet</a>
-                          </h5>
-                        </div>
-                        <div class="product-price">
-                          <p style="color: #838386;">Current Price ($):</p>
-                          <h5>85</h5>
-                        </div>
-                        <div class="product-btn">
-                          <a class="btn button-auction-product" href="/">AUCTION</a>
-                        </div>
-                      </div>
-                    </div>
-
-
-                     Sản phẩm 6
-                    <div class="col-xl-3 col-md-6 col-lg-6 col-sm-6">
-                      <div class="product-auction">
-                        <div class="product-counter-inner">
-                          <div>REMAINING TIME: <span style="color: #fff;">00:13:55</span></div>
-                        </div>
-                        <div class="product-image">
-                          <a href="/"><img src="./assets/home-header/image/product-image/classic.jpeg" alt="Flycame"></a>
-                        </div>
-                        <div class="product-title">
-                          <h5>
-                            <a href="/">Classic Accessories Roanoke Inflatable Pontoon Boat</a>
-                          </h5>
-                        </div>
-                        <div class="product-price">
-                          <p style="color: #838386;">Current Price ($):</p>
-                          <h5>300</h5>
-                        </div>
-                        <div class="product-btn">
-                          <a class="btn button-auction-product" href="/">AUCTION</a>
-                        </div>
-                      </div>
-                    </div>
-
-
-                     Sản phẩm 7
-                    <div class="col-xl-3 col-md-6 col-lg-6 col-sm-6">
-                      <div class="product-auction">
-                        <div class="product-counter-inner">
-                          <div>REMAINING TIME: <span style="color: #fff;">00:03:50</span></div>
-                        </div>
-                        <div class="product-image">
-                          <a href="/"><img src="./assets/home-header/image/product-image/desk.jpeg" alt="Flycame"></a>
-                        </div>
-                        <div class="product-title">
-                          <h5>
-                            <a href="/">Executive Victorian Desk With Rosa La Vanta Marble</a>
-                          </h5>
-                        </div>
-                        <div class="product-price">
-                          <p style="color: #838386;">Current Price ($):</p>
-                          <h5>67</h5>
-                        </div>
-                        <div class="product-btn">
-                          <a class="btn button-auction-product" href="/">AUCTION</a>
-                        </div>
-                      </div>
-                    </div>
-
-
-                     Sản phẩm 8
-                    <div class="col-xl-3 col-md-6 col-lg-6 col-sm-6">
-                      <div class="product-auction">
-                        <div class="product-counter-inner">
-                          <div>REMAINING TIME: <span style="color: #fff;">00:23:50</span></div>
-                        </div>
-                        <div class="product-image">
-                          <a href="/"><img src="./assets/home-header/image/product-image/biomega.jpeg" alt="Flycame"></a>
-                        </div>
-                        <div class="product-title">
-                          <h5>
-                            <a href="/">Biomega- PEK – Bicicleta Carga</a>
-                          </h5>
-                        </div>
-                        <div class="product-price">
-                          <p style="color: #838386;">Current Price ($):</p>
-                          <h5>225</h5>
-                        </div>
-                        <div class="product-btn">
-                          <a class="btn button-auction-product" href="/">AUCTION</a>
-                        </div>
-                      </div>
-                    </div>
-
-
-                     Sản phẩm 9
-                    <div class="col-xl-3 col-md-6 col-lg-6 col-sm-6">
-                      <div class="product-auction">
-                        <div class="product-counter-inner">
-                          <div>REMAINING TIME: <span style="color: #fff;">00:09:50</span></div>
-                        </div>
-                        <div class="product-image">
-                          <a href="/"><img src="./assets/home-header/image/product-image/flycam.jpeg" alt="Flycame"></a>
-                        </div>
-                        <div class="product-title">
-                          <h5>
-                            <a href="/">Typhoon 4K Quadcopter with Carrying Case — Black</a>
-                          </h5>
-                        </div>
-                        <div class="product-price">
-                          <p style="color: #838386;">Current Price ($):</p>
-                          <h5>125</h5>
-                        </div>
-                        <div class="product-btn">
-                          <a class="btn button-auction-product" href="/">AUCTION</a>
-                        </div>
-                      </div>
-                    </div>
-                      -->
 
         </div>
       </div>
@@ -400,7 +197,3 @@
 
   </div>
 </div>
-
-
-
-

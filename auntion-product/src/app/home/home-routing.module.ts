@@ -7,6 +7,7 @@ import {InstructionComponent} from './instruction/instruction.component';
 import {ContactUsComponent} from './contact-us/contact-us.component';
 import {AboutUsComponent} from './about-us/about-us.component';
 
+import {ChangePasswordComponent} from './change-password/change-password.component';
 
 
 const routes: Routes = [
@@ -15,7 +16,7 @@ const routes: Routes = [
     component: ShowHomeComponent
   },
   {
-    path: 'product-detail',
+    path: 'product-detail/:id',
     component: ProductDetailComponent
   },
   {
@@ -33,6 +34,10 @@ const routes: Routes = [
   {
     path: 'about-us',
     component: AboutUsComponent,
+  },
+  {
+    path: 'change-password/:token',
+    component: ChangePasswordComponent,
   }
 ];
 

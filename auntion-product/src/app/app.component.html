@@ -3,10 +3,10 @@
 
     <app-header-unlogin></app-header-unlogin>
     <app-header></app-header>
-    <app-room-chat-user></app-room-chat-user>
   </div>
   <router-outlet></router-outlet>
   <div *ngIf="path !=='http://localhost:4200/login/authentication'">
     <app-footer class="app-footer"></app-footer>
+    <app-room-chat-user></app-room-chat-user>
   </div>
 </div>
