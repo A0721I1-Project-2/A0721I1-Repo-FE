@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import {HomeService} from '../service/home.service';
 import {ActivatedRoute} from '@angular/router';
-
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-change-password',
@@ -29,6 +29,11 @@ export class ChangePasswordComponent implements OnInit {
     const password = this.changePasswordForm.value.password;
     this.homeService.changePassword(password, this.token).subscribe(data => {
       this.message = data;
+      Swal.fire(
+        'Create success!',
+        '',
+        'success'
+      );
     });
     console.log(this.message);
   }

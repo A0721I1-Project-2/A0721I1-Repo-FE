@@ -26,7 +26,8 @@ export class HomeService {
 
   // VinhTQ
   changePassword(password: string, token: string): Observable<string> {
-    return this.httpClient.post<string>(URL_ACCOUNT_API + '/change-password?token=' + token + '&password=' + password, {});
+    // @ts-ignore
+    return this.httpClient.post<string>(URL_ACCOUNT_API + '/change-password?token=' + token + '&password=' + password, {}, {responseType: 'text'});
   }
 
   // VinhTQ

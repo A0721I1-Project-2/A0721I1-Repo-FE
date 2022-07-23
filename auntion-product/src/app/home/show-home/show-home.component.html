@@ -165,12 +165,12 @@
                 <div>TIME LEFT: <span style="color: #fff;">{{product.remainingTime}}</span></div>
               </div>
               <div class="product-image">
-                <a [routerLink]="['/home/product-detail/',product.idProduct]"><img [src]="product.imageProductList[0].imageProduct" alt="Flycame"
+                <a [routerLink]="['../product-detail/',product.idProduct]"><img [src]="product.imageProductList[0].imageProduct" alt="Flycame"
                                  onError="this.src='./assets/home-header/image/Image_not_available.png'"></a>
               </div>
               <div class="product-title">
                 <h5>
-                  <a [routerLink]="['/home/product-detail/',product.idProduct]">{{product.nameProduct}}</a>
+                  <a [routerLink]="['../product-detail/',product.idProduct]">{{product.nameProduct}}</a>
                 </h5>
               </div>
               <div class="product-price">
