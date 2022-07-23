@@ -59,36 +59,16 @@ Chart.register(
   Tooltip
 );
 import {registerables} from 'chart.js';
-// import {MAT_DATE_FORMATS} from '@angular/material/core';
-//
-// export const MY_DATE_FORMATS = {
-//   parse: {
-//     dateInput: 'YYYY-MM-DD',
-//   },
-//   display: {
-//     dateInput: 'YYYY-MM-DD',
-//     monthYearLabel: 'MMMM YYYY',
-//     dateA11yLabel: 'LL',
-//     monthYearA11yLabel: 'MMMM YYYY'
-//   },
-// };
 
-// };
 @Component({
   selector: 'app-statistic',
   templateUrl: './statistic.component.html',
   styleUrls: ['./statistic.component.css'],
-  // providers: [
-  //   {provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS}
-  // ]
 })
 
 export class StatisticComponent implements OnInit {
 
 
-  // constructor(locale: string, private productService: ProductService) {
-  //   super(locale);
-  // }
   constructor(private productService: ProductService,
               private formBuilder: FormBuilder,
               private datePipe: DatePipe,
@@ -118,13 +98,14 @@ export class StatisticComponent implements OnInit {
     // @ts-ignore
     // tslint:disable-next-line:no-unused-expression
     hideFooterHp.style.display = 'none';
-    // this.statsBegin = this.datePipe.transform('', 'yyyy-MM-dd');
-    // this.statsEnd = this.datePipe.transform('', 'yyyy-MM-dd');
+
+    this.statsBegin = this.datePipe.transform('', 'yyyy-MM-dd');
+    this.statsEnd = this.datePipe.transform('', 'yyyy-MM-dd');
     this.statsGroup = this.formBuilder.group({
       keyword: new FormControl(''),
       statsBegin: new FormControl(this.datePipe.transform('', 'yyyy-MM-dd'), Validators.required),
       statsEnd: new FormControl(this.datePipe.transform('', 'yyyy-MM-dd'), Validators.required)
-    }, checkDateDif(this.statsBegin, this.statsEnd));
+    }, this.checkDateDif());
     const localDate = new Date(Date.now());
     console.log(localDate);
     const month = localDate.getMonth() + 1;
@@ -135,44 +116,49 @@ export class StatisticComponent implements OnInit {
           console.log('item: ' + items[i]);
           this.products.push(items[i]);
         }
-        // Asyns
+        // Async
         console.log('products:' + this.products);
         getDataProduct(this.defaultLabelArr, this.defaultDataArr, this.count, this.products);
 
         this.myChart = new Chart('myChart', {
-          type: 'bar',
-          data: {
-            labels: this.defaultLabelArr,
-            datasets: [{
-              label: 'Revenues',
-              data: this.defaultDataArr,
-              backgroundColor: '#11b683'
-            }]
-          },
-          options: {
-            responsive: true,
-            scales: {
-              x: {
-                display: true
-              },
-              y: {
-                beginAtZero: true,
-                display: true
-              }
+            type: 'bar',
+            data: {
+              labels: this.defaultLabelArr,
+              datasets: [{
+                label: 'Revenues',
+                data: this.defaultDataArr,
+                backgroundColor: '#11b683'
+              }]
             },
-            plugins: {
-              title: {
-                display: true,
-                text: 'Statistic Bar Chart In Current Month',
-                padding: {
-                  top: 10,
-                  bottom: 30
+            options: {
+              responsive: true,
+              scales: {
+                x: {
+                  display: true,
+                },
+                y: {
+                  beginAtZero: true,
+                  display: true,
+                  ticks: {
+                    callback(value) {
+                      return value + 'USD';
+                    }
+                  }
                 }
+              },
+              plugins: {
+                title: {
+                  display: true,
+                  text: 'Statistic Bar Chart In Current Month',
+                  padding: {
+                    top: 10,
+                    bottom: 30
+                  }
+                },
               }
             }
           }
-        });
-
+        );
       },
       error1 => {
         console.log(error1);
@@ -267,6 +253,12 @@ export class StatisticComponent implements OnInit {
       return color;
     }
   }
+
+  checkDateDif(): { date_not_match: boolean } {
+    if (this.datePipe.transform(this.statsBegin, 'yyyy-MM-dd') <= this.datePipe.transform(this.statsEnd, 'yyyy-MM-dd')) {
+      return {date_not_match: true};
+    }
+  }
 }
 
 function getDataProduct(labelArr: any[], dataArr: any[], length: number, source: Product[]) {
@@ -280,10 +272,5 @@ function getDataProduct(labelArr: any[], dataArr: any[], length: number, source:
   console.log(length);
 }
 
-function checkDateDif(startDay: any, endDay: any): { date_not_match: boolean } {
-  if (this.datePipe.transform(this.startDay, 'yyyy-MM-dd') <= this.datePipe.transform(this.endDay, 'yyyy-MM-dd')) {
-    return {date_not_match: true};
-  }
-}
 
 

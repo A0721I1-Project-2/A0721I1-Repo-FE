@@ -945,6 +945,7 @@ PANELS CONFIGURATIONS
   padding-top: 8px;
 }
 
+/*Fa in DanHuynhBa blog*/
 .pr2-social a {
   color: #cdcdcd;
 }
@@ -1140,6 +1141,46 @@ PANELS CONFIGURATIONS
   .chat-room .mid-side {
     margin-bottom: 0 !important;
   }
+}
+
+/* Helpers - Other option */
+
+.centered {
+  text-align: center;
+}
+
+.goleft {
+  text-align: left;
+}
+
+.goright {
+  text-align: right;
+}
+
+.mt {
+  margin-top: 25px;
+}
+
+.mb {
+  margin-bottom: 25px;
+}
 
 
+.no-padding {
+  padding: 0 !important;
+}
+
+.no-margin {
+  margin: 0 !important;
+}
+
+.img-circle {
+  border-radius: 50%;
+}
+
+hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 0;
+  border-top: 1px solid #eee;
 }
