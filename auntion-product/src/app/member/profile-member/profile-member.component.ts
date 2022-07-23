@@ -18,10 +18,10 @@ export class ProfileMemberComponent implements OnInit {
   accountMember: Account[];
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((param) => {
-      this.idAccount = + param.get('user');
-      // console.log(this.idUser);
+      this.idAccount = + param.get('id');
+      console.log(this.idAccount);
       // @ts-ignore
-      this.profileViewMember = this.profileMember.findByIdAccount(this.accountMember).subscribe(
+      this.profileMember.findByIdAccount(this.idAccount).subscribe(
         (data) => {
           this.profileViewMember = data;
           console.log(this.profileViewMember);
@@ -29,7 +29,7 @@ export class ProfileMemberComponent implements OnInit {
         },
         () => {},
         () => {
-          // console.log(this.employee);
+          // console.log(this.member);
         }
       );
     });

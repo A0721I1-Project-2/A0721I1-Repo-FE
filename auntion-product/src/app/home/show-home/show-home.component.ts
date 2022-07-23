@@ -117,9 +117,9 @@ export class ShowHomeComponent implements OnInit {
 
         for (let j = 0; j < countDownDate.length; j++) {
           // tslint:disable-next-line:only-arrow-functions no-shadowed-variable
-          (function (j) {
+          (function(j) {
             // tslint:disable-next-line:only-arrow-functions
-            const x = setInterval(function () {
+            const x = setInterval(function() {
               // console.log(countDownDate[j]);
               // Get today's date and time
               const now = new Date().getTime();
@@ -174,9 +174,9 @@ export class ShowHomeComponent implements OnInit {
 
         for (let j = 0; j < countDownDate.length; j++) {
           // tslint:disable-next-line:only-arrow-functions no-shadowed-variable
-          (function (j) {
+          (function(j) {
             // tslint:disable-next-line:only-arrow-functions
-            const x = setInterval(function () {
+            const x = setInterval(function() {
               // console.log(countDownDate[j]);
               // Get today's date and time
               const now = new Date().getTime();
@@ -264,9 +264,9 @@ export class ShowHomeComponent implements OnInit {
 
         for (let j = 0; j < countDownDate.length; j++) {
           // tslint:disable-next-line:only-arrow-functions no-shadowed-variable
-          (function (j) {
+          (function(j) {
             // tslint:disable-next-line:only-arrow-functions
-            const x = setInterval(function () {
+            const x = setInterval(function() {
               // console.log(countDownDate[j]);
               // Get today's date and time
               const now = new Date().getTime();
@@ -350,7 +350,11 @@ export class ShowHomeComponent implements OnInit {
       }
     } else {
       // @ts-ignore
-      // $('#myModal').modal('hide');
+      // tslint:disable-next-line:only-arrow-functions
+      // $(document).ready(function() {
+      //   // @ts-ignore
+      //   $('#myModal').modal('hide');
+      // });
       $('#myModal').modal('hide');
     }
     if (priceRange === '$0 – $5') {
@@ -402,9 +406,9 @@ export class ShowHomeComponent implements OnInit {
 
           for (let j = 0; j < countDownDate.length; j++) {
             // tslint:disable-next-line:only-arrow-functions no-shadowed-variable
-            (function (j) {
+            (function(j) {
               // tslint:disable-next-line:only-arrow-functions
-              const x = setInterval(function () {
+              const x = setInterval(function() {
                 // console.log(countDownDate[j]);
                 // Get today's date and time
                 const now = new Date().getTime();
@@ -471,9 +475,9 @@ export class ShowHomeComponent implements OnInit {
 
           for (let j = 0; j < countDownDate.length; j++) {
             // tslint:disable-next-line:only-arrow-functions no-shadowed-variable
-            (function (j) {
+            (function(j) {
               // tslint:disable-next-line:only-arrow-functions
-              const x = setInterval(function () {
+              const x = setInterval(function() {
                 // console.log(countDownDate[j]);
                 // Get today's date and time
                 const now = new Date().getTime();
