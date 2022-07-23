@@ -1,15 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-
+import {Product} from '../../../model/Product';
 import {ProductService} from '../service/product.service';
 import {ActivatedRoute} from '@angular/router';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {max, min} from 'rxjs/operators';
 import {consoleTestResultHandler} from 'tslint/lib/test';
-import {Product} from '../../model/Product';
-import {TypeProduct} from '../../model/TypeProduct';
-import {BiddingStatus} from '../../model/BiddingStatus';
-
-
+import {TypeProduct} from '../../../model/TypeProduct';
+import {BiddingStatus} from '../../../model/BiddingStatus';
 
 @Component({
   selector: 'app-list-product',

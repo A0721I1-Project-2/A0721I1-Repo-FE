@@ -21,7 +21,12 @@
         <li><a href="#">General</a></li>
       </ul>
     </li>
-
+    <li class="sub-menu">
+      <a [routerLink]="['/product/list']">Product Management</a>
+    </li>
+    <li class="sub-menu">
+      <a [routerLink]="['./member/list']">Member Management</a>
+    </li>
     <li>
       <a [routerLink]="['./chat-page']">
         <i class="fa fa-envelope"></i>
@@ -51,5 +56,6 @@
         <span>Google Maps</span>
       </a>
     </li>
+
   </ul>
 </div>

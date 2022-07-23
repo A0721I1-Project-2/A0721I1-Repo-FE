@@ -1,5 +1,12 @@
-<app-header></app-header>
-<app-header-unlogin></app-header-unlogin>
-<app-room-chat-user></app-room-chat-user>
-<router-outlet></router-outlet>
-<app-footer class="app-footer"></app-footer>
+<div class="container-app">
+  <div *ngIf="path !=='http://localhost:4200/login/authentication'">
+
+    <app-header-unlogin></app-header-unlogin>
+    <app-header></app-header>
+    <app-room-chat-user></app-room-chat-user>
+  </div>
+  <router-outlet></router-outlet>
+  <div *ngIf="path !=='http://localhost:4200/login/authentication'">
+    <app-footer class="app-footer"></app-footer>
+  </div>
+</div>
