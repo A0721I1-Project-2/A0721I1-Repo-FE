@@ -30,7 +30,7 @@ export class PaymentCartComponent implements OnInit {
   transport: Transport;
   paymentMethod: PaymentMethod;
   cart: Cart;
-  idMember = 1;
+  idMember = 2;
   product: Product[] = [];
 
   // Cac bien chua tong tien, phu phi
@@ -251,7 +251,7 @@ export class PaymentCartComponent implements OnInit {
         this.service.savePayment(this.payment.value).subscribe(data => {
           console.log('OK COD');
           sessionStorage.setItem('message', 'Complete your order');
-          this.router.navigateByUrl('/home/show-home');
+          this.router.navigateByUrl('/payment/invoice-status');
         }, error => {
           console.log('ERR COD');
         });
