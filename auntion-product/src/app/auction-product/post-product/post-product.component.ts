@@ -33,15 +33,17 @@ export class PostProductComponent implements OnInit {
 
   VALIDATION_MESSAGE = {
     nameProduct: [
-      {type: 'required', message: 'Product name cannot be blank !'},
+      {type: 'required', message: 'Product name cannot be blank !'}
     ],
     beginPrice: [
       {type: 'required', message: 'Begin Price cannot be blank !'},
+      {type: 'pattern', message: 'Please enter the correct integer format !'}
     ],
     incrementPrice: [
       {type: 'required', message: 'Money For Once Auction cannot be blank !'},
+      {type: 'pattern', message: 'Please enter the correct integer format !'}
     ],
-    descriptionProduct: [
+    productDescription: [
       {type: 'required', message: 'Detail Information cannot be blank !'},
     ],
     typeProduct: [
@@ -59,11 +61,12 @@ export class PostProductComponent implements OnInit {
   };
 
   ngOnInit(): void {
+    // @ts-ignore
     this.formCreate = new FormGroup({
       nameProduct: new FormControl('', Validators.required),
       beginPrice: new FormControl('', Validators.required),
       incrementPrice: new FormControl('', Validators.required),
-      descriptionProduct: new FormControl('', Validators.required),
+      productDescription: new FormControl('', Validators.required),
       typeProduct: new FormControl('', Validators.required),
       startTime: new FormControl('', Validators.required),
       endTime: new FormControl('', Validators.required),
@@ -98,6 +101,7 @@ export class PostProductComponent implements OnInit {
           }
 
           /* push từng file */
+          // tslint:disable-next-line:prefer-for-of
           for (let i = 0; i < this.currentImagesUpload.length; i++) {
             this.currentImageUpload = new FileUpload(this.currentImagesUpload[i]);
 
