@@ -25,4 +25,5 @@ export interface Product {
   invoiceDetailList: any;
   cart: any;
   members: Member;
+  selected: boolean;
 }

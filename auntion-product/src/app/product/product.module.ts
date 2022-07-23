@@ -8,7 +8,6 @@ import {EditProductComponent} from './edit-product/edit-product.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 
-import {AdminModule} from '../admin.module';
 
 
 
@@ -20,12 +19,12 @@ import {AdminModule} from '../admin.module';
   ],
 
   imports: [
-    AdminModule,
+
     CommonModule,
     ProductRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AdminModule,
+
   ]
 })
 export class ProductModule {

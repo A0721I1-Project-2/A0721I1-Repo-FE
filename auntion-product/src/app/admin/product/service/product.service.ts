@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Product} from '../../../model/Product';
-import {min} from 'rxjs/operators';
+import {map, min} from 'rxjs/operators';
 import {TypeProduct} from '../../../model/TypeProduct';
 import {BiddingStatus} from '../../../model/BiddingStatus';
 
@@ -52,8 +52,19 @@ export class ProductService {
     return this.http.put<Product>(API_URL + '/update-bidding-status', product);
   }
 
+  //HieuDV
+  delete(id: any) {
+    return this.http.patch(API_URL + '/delete/' + id , {});
+  }
+
   //BachLT
-  statsProductFromDateToDate(startDay: any, endDay: any): Observable<Product[]> {
-    return this.http.get<Product[]>(API_URL + '/statistic/' + startDay + '&' + endDay);
+  statsProductFromDateToDate(startDay: any, endDay: any, biddingStatus: any): Observable<any> {
+    return this.http.get(API_URL + '/statistic/' + startDay + '&' + endDay + '&' + biddingStatus).pipe(
+      map(result => result));
+  }
+
+  //Bach
+  statsProductAtCurrentMonth(month: number, biddingStatus: any): Observable<any> {
+    return this.http.get(API_URL + '/statistic/currentMonth&biddingStatus?currentMonth=' + month + '&biddingStatus=' + biddingStatus);
   }
 }
