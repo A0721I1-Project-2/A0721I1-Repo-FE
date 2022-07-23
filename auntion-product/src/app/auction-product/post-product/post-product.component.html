@@ -73,20 +73,26 @@
               <div class="form-group">
                 <label> Start Time: <a style="color: red"> (*)</a></label>
 <!--               <input type="datetime-local"  step="1" class="form-control" placeholder="Enter start date" required="" type>-->
-                <input  class="form-control"  step="1" required="" formControlName="startTime"  type="datetime-local">
+                <input  class="form-control"  step="1" required="" formControlName="startTime"  type="datetime-local" >
                 <div *ngFor="let validation of VALIDATION_MESSAGE.startTime" class="text-danger">
                   <div *ngIf="formCreate.get('startTime').hasError(validation.type) && (formCreate.get('startTime').dirty || formCreate.get('startTime').touched)"
                        class="error-message">
                     {{validation.message}}</div>
                 </div>
+
               </div>
               <div class="form-group">
                 <label> End Time:<a style="color: red"> (*)</a></label>
-                <input  class="form-control"  step="1" formControlName="endTime" placeholder="Enter end date" required="" type="datetime-local">
+                <input  class="form-control"  step="1" formControlName="endTime" placeholder="Enter end date" required="" type="datetime-local" formaction="MM-dd-yyyy-HH-mm" >
                 <div *ngFor="let validation of VALIDATION_MESSAGE.endTime" class="text-danger">
                   <div *ngIf="formCreate.get('endTime').hasError(validation.type) && (formCreate.get('endTime').dirty || formCreate.get('endTime').touched)"
                        class="error-message">
                     {{validation.message}}</div>
+                </div>
+                <div *ngFor="let validation of VALIDATION_MESSAGE.endTime" class="text-danger">
+                  <div *ngIf="formCreate.get('endTime').hasError(validation.type) && (formCreate.get('endTime').dirty || formCreate.get('endTime').touched)|| getControl.endTime.invalid && getControl.endTime.touched"
+                       class="error-message">
+                    {{validation.message1}}</div>
                 </div>
               </div>
               <div class="form-group">

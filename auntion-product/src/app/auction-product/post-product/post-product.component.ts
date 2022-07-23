@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Product} from '../../model/Product';
-import {FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
+import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
 
 import {FirebaseService} from '../service/firebase.service';
 import {AuctionProductService} from '../service/auction-product.service';
@@ -50,10 +50,11 @@ export class PostProductComponent implements OnInit {
       {type: 'required', message: 'Please select product type!'},
     ],
     startTime: [
-      {type: 'required', message: 'Please select a date! '},
+      {type: 'required', message: 'Please select a date! '}
     ],
     endTime: [
       {type: 'required', message: 'Please select a date!'},
+      {type: 'error', message1: 'The end date must be greater than the start date!'}
     ],
     image: [
       {type: 'required', message: 'Image cannot be blank !'},
@@ -71,9 +72,10 @@ export class PostProductComponent implements OnInit {
       startTime: new FormControl('', Validators.required),
       endTime: new FormControl('', Validators.required),
       // image: new FormControl('', Validators.required)
-    });
-    // this.getControl.startTime.setValidators([Validators.required, this.customvValidateStartDate()]);
-    // this.getControl.endTime.setValidators([Validators.required, this.customvValidateEnDate()]);
+    }
+      );
+    // this.getControl.startTime.setValidators([this.customvValidateStartDate()]);
+    this.getControl.endTime.setValidators([this.customvValidateEnDate()]);
     this.productService.getAllTypeProduct().subscribe(data => {
       this.typeProduct = data;
       console.log(data);
@@ -144,12 +146,11 @@ export class PostProductComponent implements OnInit {
   private customvValidateEnDate(): ValidatorFn {
     return (form): ValidationErrors => {
 
-      const endDate = form.value;
-      const startDate = this.getControl.startDate.value;
-      if (endDate < startDate) {
+      const endTime = form.value;
+      const startTime = this.getControl.startTime.value;
+      if (endTime < startTime) {
         return { invalid: true };
       }
-
       return null;
     };
   }
@@ -157,12 +158,11 @@ export class PostProductComponent implements OnInit {
   private customvValidateStartDate(): ValidatorFn {
     return (form): ValidationErrors => {
 
-      const startDate = form.value;
-      const endDate = this.getControl.endDate.value;
-      if (endDate < startDate) {
+      const startTime = form.value;
+      const endTime = this.getControl.endDate.value;
+      if (endTime < startTime) {
         return { invalid: true };
       }
-
       return null;
     };
   }
