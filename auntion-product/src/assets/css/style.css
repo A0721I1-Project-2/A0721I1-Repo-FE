@@ -1655,19 +1655,19 @@
 /*    padding-top: 8px;*/
 /*}*/
 
-/*.pr2-social a {*/
-/*    color: #cdcdcd;*/
-/*}*/
+.pr2-social a {
+    color: #cdcdcd;
+}
 
-/*.pr2-social a:hover {*/
-/*    color: #11B683;*/
-/*}*/
+.pr2-social a:hover {
+    color: #11B683;
+}
 
-/*.pr2-social i {*/
-/*    margin-top: 15px;*/
-/*    margin-right: 12px;*/
-/*    font-size: 20px;*/
-/*}*/
+.pr2-social i {
+    margin-top: 15px;
+    margin-right: 12px;
+    font-size: 20px;
+}
 
 
 /*!*spark line*!*/

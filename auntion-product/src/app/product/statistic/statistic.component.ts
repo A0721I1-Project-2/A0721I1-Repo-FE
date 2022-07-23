@@ -59,36 +59,16 @@ Chart.register(
   Tooltip
 );
 import {registerables} from 'chart.js';
-// import {MAT_DATE_FORMATS} from '@angular/material/core';
-//
-// export const MY_DATE_FORMATS = {
-//   parse: {
-//     dateInput: 'YYYY-MM-DD',
-//   },
-//   display: {
-//     dateInput: 'YYYY-MM-DD',
-//     monthYearLabel: 'MMMM YYYY',
-//     dateA11yLabel: 'LL',
-//     monthYearA11yLabel: 'MMMM YYYY'
-//   },
-// };
 
-// };
 @Component({
   selector: 'app-statistic',
   templateUrl: './statistic.component.html',
   styleUrls: ['./statistic.component.css'],
-  // providers: [
-  //   {provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS}
-  // ]
 })
 
 export class StatisticComponent implements OnInit {
 
 
-  // constructor(locale: string, private productService: ProductService) {
-  //   super(locale);
-  // }
   constructor(private productService: ProductService,
               private formBuilder: FormBuilder,
               private datePipe: DatePipe,
@@ -106,16 +86,26 @@ export class StatisticComponent implements OnInit {
   defaultDataArr: any[] = [];
   count: number;
 
+  message: string = null;
   private locale;
 
   ngOnInit(): void {
-    // this.statsBegin = this.datePipe.transform('', 'yyyy-MM-dd');
-    // this.statsEnd = this.datePipe.transform('', 'yyyy-MM-dd');
+    const hideNavHp = document.querySelector('#header');
+    const hideFooterHp = document.querySelector('.footer__container');
+    // @ts-ignore
+    // tslint:disable-next-line:no-unused-expression
+    hideNavHp.style.display = 'none';
+    // @ts-ignore
+    // tslint:disable-next-line:no-unused-expression
+    hideFooterHp.style.display = 'none';
+
+    this.statsBegin = this.datePipe.transform('', 'yyyy-MM-dd');
+    this.statsEnd = this.datePipe.transform('', 'yyyy-MM-dd');
     this.statsGroup = this.formBuilder.group({
       keyword: new FormControl(''),
       statsBegin: new FormControl(this.datePipe.transform('', 'yyyy-MM-dd'), Validators.required),
       statsEnd: new FormControl(this.datePipe.transform('', 'yyyy-MM-dd'), Validators.required)
-    });
+    }, this.checkDateDif());
     const localDate = new Date(Date.now());
     console.log(localDate);
     const month = localDate.getMonth() + 1;
@@ -126,44 +116,49 @@ export class StatisticComponent implements OnInit {
           console.log('item: ' + items[i]);
           this.products.push(items[i]);
         }
-        // Asyns
+        // Async
         console.log('products:' + this.products);
         getDataProduct(this.defaultLabelArr, this.defaultDataArr, this.count, this.products);
 
         this.myChart = new Chart('myChart', {
-          type: 'bar',
-          data: {
-            labels: this.defaultLabelArr,
-            datasets: [{
-              label: 'Revenues',
-              data: this.defaultDataArr,
-              backgroundColor: '#11b683'
-            }]
-          },
-          options: {
-            responsive: true,
-            scales: {
-              x: {
-                display: true
-              },
-              y: {
-                beginAtZero: true,
-                display: true
-              }
+            type: 'bar',
+            data: {
+              labels: this.defaultLabelArr,
+              datasets: [{
+                label: 'Revenues',
+                data: this.defaultDataArr,
+                backgroundColor: '#11b683'
+              }]
             },
-            plugins: {
-              title: {
-                display: true,
-                text: 'Statistic Bar Chart In Current Month',
-                padding: {
-                  top: 10,
-                  bottom: 30
+            options: {
+              responsive: true,
+              scales: {
+                x: {
+                  display: true,
+                },
+                y: {
+                  beginAtZero: true,
+                  display: true,
+                  ticks: {
+                    callback(value) {
+                      return value + 'USD';
+                    }
+                  }
                 }
+              },
+              plugins: {
+                title: {
+                  display: true,
+                  text: 'Statistic Bar Chart In Current Month',
+                  padding: {
+                    top: 10,
+                    bottom: 30
+                  }
+                },
               }
             }
           }
-        });
-
+        );
       },
       error1 => {
         console.log(error1);
@@ -183,62 +178,72 @@ export class StatisticComponent implements OnInit {
     // console.log(this.datePipe.transform(this.statsBeginDate, 'yyyy-MM-dd'));
     // console.log(this.datePipe.transform(this.statsEndDate, 'yyyy-MM-dd'));
     // Check if report too much times and the products get many duplicated values
-    this.productService.statsProductFromDateToDate(this.statsBegin,
-      this.statsEnd, 3).subscribe(items => {
-        for (const i in items) {
-          console.log('item: ' + items[i]);
-          if (this.products.find((test) => test.idProduct === items[i].idProduct) === undefined) {
-            this.products.push(items[i]);
-          }
+    if (this.datePipe.transform(this.statsBegin, 'yyyy-MM-dd') <= this.datePipe.transform(this.statsEnd, 'yyyy-MM-dd')) {
+      this.productService.statsProductFromDateToDate(this.statsBegin,
+        this.statsEnd, 3).subscribe(items => {
+          for (const i in items) {
+            console.log('item: ' + items[i]);
+            if (this.products.find((test) => test.idProduct === items[i].idProduct) === undefined) {
+              this.products.push(items[i]);
+            }
 
-        }
-        console.log('products:' + this.products);
-        getDataProduct(this.labelArr, this.dataArr, this.count, this.products);
-        console.log('Array products name in x Axis: ' + this.labelArr);
-        console.log('Array products finalPrice in y Axis: ' + this.dataArr);
-        if (this.myChart != null) {
-          this.myChart.destroy();
-        }
-        this.myChart = new Chart('myChart', {
-          type: 'bar',
-          data: {
-            labels: this.labelArr,
-            datasets: [{
-              label: 'Revenues',
-              data: this.dataArr,
-              backgroundColor: '#11b683'
-            }]
-          },
-          options: {
-            responsive: true,
-            scales: {
-              x: {
-                display: true
-              },
-              y: {
-                beginAtZero: true,
-                display: true
-              }
-            }, plugins: {
-              title: {
-                display: true,
-                text: 'Statistic Bar Chart From ' + this.statsBegin.toString() + ' To ' + this.statsEnd.toString(),
-                padding: {
-                  top: 10,
-                  bottom: 30
+          }
+          console.log('products:' + this.products);
+          getDataProduct(this.labelArr, this.dataArr, this.count, this.products);
+          console.log('Array products name in x Axis: ' + this.labelArr);
+          console.log('Array products finalPrice in y Axis: ' + this.dataArr);
+          if (this.myChart != null) {
+            this.myChart.destroy();
+          }
+          this.myChart = new Chart('myChart', {
+            type: 'bar',
+            data: {
+              labels: this.labelArr,
+              datasets: [{
+                label: 'Revenues',
+                data: this.dataArr,
+                backgroundColor: '#11b683'
+              }]
+            },
+            options: {
+              responsive: true,
+              scales: {
+                x: {
+                  display: true
+                },
+                y: {
+                  beginAtZero: true,
+                  display: true
+                }
+              }, plugins: {
+                title: {
+                  display: true,
+                  text: 'Statistic Bar Chart From ' + this.statsBegin.toString() + ' To ' + this.statsEnd.toString(),
+                  padding: {
+                    top: 10,
+                    bottom: 30
+                  }
                 }
               }
             }
-          }
-        });
-      }, () => {
-        console.log(error);
-        this.route.navigateByUrl('/admin/error-500');
-      }
-    );
+          });
+        }, () => {
+          console.log(error);
+          this.route.navigateByUrl('/admin/error-500');
+        }
+      );
+    } else {
+      this.message = 'Start date is later than end date';
+    }
     console.log('Array products name in x Axis after: ' + this.labelArr); // empty
     console.log('Array products finalPrice in y Axis: ' + this.dataArr); // empty
   }
+
+  hide() {
+    document.getElementById('noti').hidden = true;
+    this.message = null;
+  }
+
 
   getRandomColor() {
     const letters = '0123456789ABCDEF'.split('');
@@ -246,6 +251,12 @@ export class StatisticComponent implements OnInit {
     for (let i = 0; i < 6; i++) {
       color += letters[Math.floor(Math.random() * 16)];
       return color;
+    }
+  }
+
+  checkDateDif(): { date_not_match: boolean } {
+    if (this.datePipe.transform(this.statsBegin, 'yyyy-MM-dd') <= this.datePipe.transform(this.statsEnd, 'yyyy-MM-dd')) {
+      return {date_not_match: true};
     }
   }
 }
@@ -261,8 +272,5 @@ function getDataProduct(labelArr: any[], dataArr: any[], length: number, source:
   console.log(length);
 }
 
-function checkDateDif() {
-
-}
 
 

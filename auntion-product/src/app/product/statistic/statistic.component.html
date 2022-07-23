@@ -1,106 +1,85 @@
-<div class="statistical__admin-container" style="overflow: hidden">
-  <div class="header__admin">
-    <app-header-admin></app-header-admin>
-  </div>
-  <div class="content__admin-container">
-    <div class="row">
-      <div class="d-none-m-b col-md-3 p-r-0">
-
-        <app-navbar-admin>
-        </app-navbar-admin>
-
-      </div>
-
-      <div class="col-12 col-md-9 p-l-0">
-        <!--        ***********************-->
-
-        <div class="container"></div>
-        <section id="main-content" style="padding: 20px">
-          <section class="wrapper">
-            <h3><i class="fa fa-angle-right"></i>Statistics</h3>
-            <form (ngSubmit)="report()" [formGroup]="statsGroup">
-              <div class="row mt">
-                <div class="col-md-4">
-                  <div class="form-group">
-                    <label for="kw">Keyword</label>
-                    <input type="text" name="kw" id="kw" class="form-control" formControlName="keyword"/>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="form-group">
-                    <label for="fromDate">From date<i class="text-danger">(*)</i> </label>
-                    <div class='input-group date' id='datetimepicker1'>
-                      <input type="date" placeholder="yyyy-MM-dd" formaction="yyyy-MM-dd"
-                             name="fromDate"
-                             id="fromDate"
-                             class="form-control" formControlName="statsBegin"/>
-                      <!--                      <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>-->
-                    </div>
-                    <!--                    <mat-form-field>-->
-                    <!--                      <input matInput id="fromDate" class="form-control" formControlName="statsBegin"-->
-                    <!--                             [matDatepicker]="picker" placeholder="Choose a begin date">-->
-                    <!--                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>-->
-                    <!--                      <mat-datepicker #picker></mat-datepicker>-->
-                    <!--                    </mat-form-field>-->
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="form-group">
-                    <label for="toDate">To date<i class="text-danger">(*)</i></label>
-                    <div class='input-group date' id='datetimepicker2'>
-                      <input type="date" formaction="yyyy-MM-dd" name="toDate" id="toDate"
-                             class="form-control" formControlName="statsEnd"/>
-                      <!--                             [ngModel]="statsEnd|date:'yyyy-mm-dd'"-->
-
-                      <!--                      <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>-->
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-              <div class="row mt">
-                <div class="form-btn col-md-3">
-                  <input type="submit" value="Report" class="btn btn-round btn btn-default"/>
-                </div>
-              </div>
-            </form>
-
-            <br>
-            <div class="tab-pane" id="chartjs">
-              <div class="row mt">
-                <div class="col-lg-12">
-                  <div class="content-panel">
-                    <div class="panel-body text-center">
-                      <canvas id="myChart" height="480px" width="900px"></canvas>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!--              <div class="row mt">-->
-              <!--                <div class="col-lg-6">-->
-              <!--                  <div class="content-panel">-->
-              <!--                    <h4><i class="fa fa-angle-right"></i>Product Statistic List</h4>-->
-              <!--                    <div class="panel-body text-center">-->
-              <!--                      <canvas id="bar" height="300" width="400"></canvas>-->
-              <!--                    </div>-->
-              <!--                  </div>-->
-              <!--                </div>-->
-              <!--                &lt;!&ndash;                <div class="col-lg-6">&ndash;&gt;-->
-              <!--                &lt;!&ndash;                  <div class="content-panel">&ndash;&gt;-->
-              <!--                &lt;!&ndash;                    <h4><i class="fa fa-angle-right"></i> Pie</h4>&ndash;&gt;-->
-              <!--                &lt;!&ndash;                    <div class="panel-body text-center">&ndash;&gt;-->
-              <!--                &lt;!&ndash;                      <canvas id="pie" height="300" width="400"></canvas>&ndash;&gt;-->
-              <!--                &lt;!&ndash;                    </div>&ndash;&gt;-->
-              <!--                &lt;!&ndash;                  </div>&ndash;&gt;-->
-              <!--                &lt;!&ndash;                </div>&ndash;&gt;-->
-              <!--              </div>-->
-            </div>
-          </section>
-        </section>
-        <app-footer-admin></app-footer-admin>
-      </div>
-    </div>
+<app-header-admin></app-header-admin>
+<app-navbar-admin></app-navbar-admin>
+<div *ngIf="message != null">
+  <div id="noti" class="alert alert-warning alert-dismissible fade show" role="alert">
+    <h4 class="alert-heading text-danger bol font-weight-bold">Alert!!</h4>
+    <p *ngIf="message != null">{{message}}</p>
+    <button type="button" class="close" (click)="hide()" aria-label="Close">
+      <span>&times;</span>
+    </button>
+    <hr>
   </div>
 </div>
+<div class="container">
+  <section id="main-content" style="padding: 20px">
+    <section class="wrapper">
+      <h3><i class="fa fa-angle-right"></i>Statistics</h3>
+      <form (ngSubmit)="report()" [formGroup]="statsGroup">
+        <div class="row mt">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="kw">Keyword</label>
+              <input type="text" name="kw" id="kw" class="form-control" formControlName="keyword"/>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="fromDate">From date<i class="text-danger">(*)</i> </label>
+              <div class='input-group date' id='datetimepicker1'>
+                <input type="date" placeholder="yyyy-MM-dd" formaction="yyyy-MM-dd"
+                       name="fromDate"
+                       id="fromDate"
+                       class="form-control" formControlName="statsBegin"/>
+                <!--                      <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>-->
+              </div>
+              <div
+                *ngIf="statsGroup.get(['statsBegin']).invalid && (statsGroup.get(['statsBegin']).touched || statsGroup.get(['statsBegin']).dirty)">
+                <p class="text-danger" *ngIf="statsGroup.get('statsBegin').hasError('required')">Begin-date required</p>
+              </div>
+              <!--                    <mat-form-field>-->
+              <!--                      <input matInput id="fromDate" class="form-control" formControlName="statsBegin"-->
+              <!--                             [matDatepicker]="picker" placeholder="Choose a begin date">-->
+              <!--                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>-->
+              <!--                      <mat-datepicker #picker></mat-datepicker>-->
+              <!--                    </mat-form-field>-->
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="toDate">To date<i class="text-danger">(*)</i></label>
+              <div class='input-group date' id='datetimepicker2'>
+                <input type="date" formaction="yyyy-MM-dd" name="toDate" id="toDate"
+                       class="form-control" formControlName="statsEnd"/>
+                <!--                             [ngModel]="statsEnd|date:'yyyy-mm-dd'"-->
 
-
+                <!--                      <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>-->
+              </div>
+              <div
+                *ngIf="statsGroup.get(['statsEnd']).invalid && (statsGroup.get(['statsEnd']).touched || statsGroup.get(['statsEnd']).dirty)">
+                <p class="text-danger" *ngIf="statsGroup.get('statsEnd').hasError('required')">End-date required</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt">
+          <div class="form-btn col-md-3">
+            <input type="submit" value="Report" [disabled]="statsGroup.invalid" class="btn btn-round btn btn-default"/>
+          </div>
+        </div>
+      </form>
+      <br>
+      <div class="tab-pane" id="chartjs">
+        <div class="row mt">
+          <div class="col-lg-12">
+            <div class="content-panel">
+              <div class="panel-body text-center">
+                <canvas id="myChart" height="480px" width="900px"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+</div>
+<app-footer-admin></app-footer-admin>
