@@ -30,7 +30,7 @@ export class PaymentCartComponent implements OnInit {
   transport: Transport;
   paymentMethod: PaymentMethod;
   cart: Cart;
-  idMember = 5;
+  idMember;
   product: Product[] = [];
 
   // Cac bien chua tong tien, phu phi
@@ -49,6 +49,9 @@ export class PaymentCartComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (sessionStorage.getItem('id_member') != null){
+      this.idMember = Number(sessionStorage.getItem('id_member'));
+    }
     if (sessionStorage.getItem('testObject') != null){
       this.message = '';
       this.message = sessionStorage.getItem('message-fail');
