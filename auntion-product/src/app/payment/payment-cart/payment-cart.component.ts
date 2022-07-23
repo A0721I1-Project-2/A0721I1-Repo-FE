@@ -30,7 +30,7 @@ export class PaymentCartComponent implements OnInit {
   transport: Transport;
   paymentMethod: PaymentMethod;
   cart: Cart;
-  idMember = 2;
+  idMember = 5;
   product: Product[] = [];
 
   // Cac bien chua tong tien, phu phi
@@ -68,6 +68,13 @@ export class PaymentCartComponent implements OnInit {
         emailReceiver: this.member.emailMember,
         phoneReceiver: this.member.phoneMember
       });
+    }, error => {
+      console.log('err');
+    });
+
+    this.service.getPaymentMethod().subscribe(data => {
+      this.paymentMethod = data[0];
+      console.log(this.paymentMethod);
     }, error => {
       console.log('err');
     });
@@ -113,6 +120,7 @@ export class PaymentCartComponent implements OnInit {
       for (let i = 0; i < this.products.length; i++) {
         this.subPrice += this.products[i].finalPrice;
         this.product.push(this.products[i]);
+        console.log("product")
       }
       this.total = this.subPrice + this.fee;
     }, error => {
@@ -133,7 +141,7 @@ export class PaymentCartComponent implements OnInit {
     }, error => {
       console.log('err');
     });
-    this.setMethod();
+    // this.setMethod();
   }
 
   // Phuong thuc lay ra quan huyen khi chon thanh pho
@@ -157,29 +165,30 @@ export class PaymentCartComponent implements OnInit {
   }
 
   // Cac phuong thuc chon phuong thuc than toan
-  setMethod() {
-    document.getElementById('paypal').hidden = false;
-    document.getElementById('cod').hidden = true;
-    (document.getElementById('paypal-btn') as HTMLInputElement).classList.add('selected');
-    document.getElementById('cod-btn').classList.remove('selected');
-    this.service.getPaymentMethod().subscribe(data => {
-      this.paymentMethod = data[0];
-    }, error => {
-      console.log('err');
-    });
-  }
-
-  setMethod1() {
-    document.getElementById('paypal').hidden = true;
-    document.getElementById('cod').hidden = false;
-    (document.getElementById('cod-btn') as HTMLInputElement).classList.add('selected');
-    document.getElementById('paypal-btn').classList.remove('selected');
-    this.service.getPaymentMethod().subscribe(data => {
-      this.paymentMethod = data[1];
-    }, error => {
-      console.log('err');
-    });
-  }
+  // setMethod() {
+  //   document.getElementById('paypal').hidden = false;
+  //   document.getElementById('cod').hidden = true;
+  //   (document.getElementById('paypal-btn') as HTMLInputElement).classList.add('selected');
+  //   document.getElementById('cod-btn').classList.remove('selected');
+  //   this.service.getPaymentMethod().subscribe(data => {
+  //     this.paymentMethod = data[0];
+  //     console.log(this.paymentMethod);
+  //   }, error => {
+  //     console.log('err');
+  //   });
+  // }
+  //
+  // setMethod1() {
+  //   document.getElementById('paypal').hidden = true;
+  //   document.getElementById('cod').hidden = false;
+  //   (document.getElementById('cod-btn') as HTMLInputElement).classList.add('selected');
+  //   document.getElementById('paypal-btn').classList.remove('selected');
+  //   this.service.getPaymentMethod().subscribe(data => {
+  //     this.paymentMethod = data[1];
+  //   }, error => {
+  //     console.log('err');
+  //   });
+  // }
 
   // Phuong thuc tinh tong tien khi chon san pham thanh toan
   setTotal(idProduct: number) {
@@ -242,20 +251,21 @@ export class PaymentCartComponent implements OnInit {
         product: this.product
       }
     );
+    console.log(this.payment.value);
     if (this.payment.invalid || (document.getElementById('check-pay') as HTMLInputElement).checked === false) {
       this.message = '';
       this.message = 'Please fill in the information correctly and completely';
       document.getElementById('alert').hidden = false;
     } else {
-      if (document.getElementById('paypal').hidden === true) {
-        this.service.savePayment(this.payment.value).subscribe(data => {
-          console.log('OK COD');
-          sessionStorage.setItem('message', 'Complete your order');
-          this.router.navigateByUrl('/payment/invoice-status');
-        }, error => {
-          console.log('ERR COD');
-        });
-      } else {
+      // if (document.getElementById('paypal').hidden === true) {
+      //   this.service.savePayment(this.payment.value).subscribe(data => {
+      //     console.log('OK COD');
+      //     sessionStorage.setItem('message', 'Complete your order');
+      //     this.router.navigateByUrl('/home/show-home');
+      //   }, error => {
+      //     console.log('ERR COD');
+      //   });
+      // } else {
         document.getElementById('button-load').click();
         this.service.createPayment(this.payment.value).subscribe(data => {
           this.link = data;
@@ -265,7 +275,7 @@ export class PaymentCartComponent implements OnInit {
         }, error => {
           console.log('NOT OK');
         });
-      }
+      // }
     }
   }
 
