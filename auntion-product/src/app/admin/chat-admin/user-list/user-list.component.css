@@ -47,6 +47,11 @@
   color: var(--button-color);
 }
 
+.user-list__container .middle {
+  max-height: 650px;
+  overflow-y: scroll;
+}
+
 /* User list */
 .user-list__group {
   padding-left: 0;
@@ -96,7 +101,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: end;
+  align-items: flex-end;
 }
 
 .user-list__item .notification p {
@@ -116,4 +121,71 @@
   border-radius: 50%;
   background-color: var(--button-color);
   color: #fff;
+}
+
+/* Responsive */
+/* Mobile */
+@media (max-width: 739px) {
+  .d-none-m-b {
+    display: none;
+  }
+
+  .header {
+    padding: 12px;
+  }
+}
+
+/* Mobile and Tablet */
+@media (max-width: 1023px) {
+  .user-list__container .form__search-chat input {
+    flex: unset;
+    width: 100%;
+  }
+
+  .user-list__container .middle {
+    max-height: 450px;
+    overflow-y: scroll;
+  }
+}
+
+/* Tablet */
+@media (min-width: 740px) and (max-width: 1023px) {
+  .user-list__item .info span {
+    max-width: 110px;
+  }
+
+  .user-list__item .notification p {
+    font-size: 0.6rem;
+  }
+}
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {}
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {}
+
+/* XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) {}
+
+
+/* Scroll bar */
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

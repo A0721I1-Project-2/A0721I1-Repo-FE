@@ -4,7 +4,7 @@ import {StatisticComponent} from './statistic/statistic.component';
 import {ListProductComponent} from './list-product/list-product.component';
 import {ReviewProductComponent} from './review-product/review-product.component';
 import {EditProductComponent} from './edit-product/edit-product.component';
-
+import { CreateProductComponent } from './create-product/create-product.component';
 
 const routes: Routes = [
   {
@@ -22,6 +22,10 @@ const routes: Routes = [
   {
     path: 'edit',
     component: EditProductComponent
+  },
+  {
+    path: 'create',
+    component: CreateProductComponent
   }
 ];
 

@@ -1,3 +1,4 @@
+import { CreateProductComponent } from './create-product/create-product.component';
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
@@ -9,16 +10,18 @@ import {EditProductComponent} from './edit-product/edit-product.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {AdminModule} from '../admin/admin.module';
+import { CoreModule } from '../shared/core.module';
 
 
 @NgModule({
-  declarations: [StatisticComponent, ListProductComponent, ReviewProductComponent, EditProductComponent],
+  declarations: [StatisticComponent, ListProductComponent, ReviewProductComponent, EditProductComponent, CreateProductComponent],
 
   exports: [
     StatisticComponent
   ],
 
   imports: [
+    CoreModule,
     CommonModule,
     ProductRoutingModule,
     ReactiveFormsModule,

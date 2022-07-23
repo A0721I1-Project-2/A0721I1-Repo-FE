@@ -1,0 +1,252 @@
+
+*{
+    box-sizing: border-box;
+}
+
+
+h1{
+    color: #04AA6D;
+    font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+    font-weight: 800;
+    margin-right: 50px;
+}
+
+#main-content {
+  margin-left: 210px;
+  margin-top: 60px;
+}
+wrapper {
+  display: inline-block;
+  margin-top: 60px;
+  padding: 0px 15px 15px;
+  width: 100%;
+}
+
+ul, ol {
+    margin: 0;
+}
+
+p {
+    margin: 0;
+}
+
+html, body {
+    font-family: 'Lato', sans-serif;
+    font-size: 100%;
+    background: #fff;
+}
+
+.form__group_button_check {
+    padding: 5px 10px;
+    background:#e6e600;
+    border: 1px solid #e6e600;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    height: 35px;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 16px;
+}
+.form__group_button_check:hover{
+    background-color: initial;
+    background-position: 0 0;
+    color: #e6e600;
+}
+
+.form__group_button_edit {
+    padding: 5px 10px;
+    background:#04AA6D;
+    border: 1px solid #04AA6D;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    height: 35px;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 16px;
+}
+.form__group_button_edit:hover{
+    background-color: initial;
+    background-position: 0 0;
+    color: #04AA6D;
+}
+
+.form__group_button_retype {
+    padding: 5px 10px;
+    background:#c1c1d7;
+    border: 1px solid #c1c1d7;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    height: 35px;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 16px;
+}
+.form__group_button_retype:hover{
+    background-color: initial;
+    background-position: 0 0;
+    color: #c1c1d7;
+}
+
+.form__group_button_cancel {
+    padding: 5px 10px;
+    background: #FF4742;
+    border: 1px solid #FF4742;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    height: 35px;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 16px;
+}
+.form__group_button_cancel:hover{
+    background-color: initial;
+    background-position: 0 0;
+    color: #FF4742;
+}
+
+
+.form__group_button_back > a , .form__group_button_edit > a {
+    text-decoration: none;
+    font-weight: 500;
+    color: white;
+}
+
+.services-top-button {
+    background: #FFCC20 !important;
+    animation: all ease-in-out 300ms;
+    cursor: pointer;
+    color:white !important;
+}
+
+
+.services-top-button {
+    background: #fadb14;
+    color: white !important;
+}
+
+.form-group > label {
+    color:#000;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.form-group-button {
+    background: white;
+    border: 1px solid #041E42;
+    color:#000;
+    font-size: 20px;
+    padding: 0px;
+    background: #041E42;
+
+}
+
+/*--banner strip end here--*/
+/*--services start here--*/
+
+.services__layout {
+    display: flex;
+    justify-content: center;
+
+}
+
+.services-top {
+    margin:10px 0px;
+    padding: 8px 24px;
+    text-align: center;
+}
+
+.services-top > button > a {
+    text-align: center;
+    font-size: 15px ;
+    font-weight: 550;
+    color: #ffffff;
+    margin: 0px;
+}
+
+.services-top > button > a:hover {
+    color: white;
+}
+
+.services-top > button {
+    border: 1px solid #FFCC20;
+    background: #FFCC20;
+    outline: none;
+}
+
+.services-top p {
+    font-size: 1.2em;
+    font-weight: 400;
+    color: #95928d;
+    font-family: 'Lora', serif;
+    font-style: italic;
+}
+
+.start-price .price-step{
+    position: relative;
+}
+
+.start-price >img{
+    position: absolute;
+    height: 36px;
+    width: 36px;
+    object-fit: cover;
+    margin-top: -37px;
+    margin-left: 593px;
+}
+
+.price-step > img{
+    position: absolute;
+    height: 36px;
+    width: 36px;
+    object-fit: cover;
+    margin-top: -37px;
+    margin-left: 593px;
+}
+/*Button */
+.button__detail {
+    background: #FFCC20;
+    outline: none;
+    border: 1px solid #FFCC20;
+    color: white;
+}
+
+.btn-upload {
+    background: #7a7adb;
+    color: white;
+    font-weight: 600;
+    padding: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+}
