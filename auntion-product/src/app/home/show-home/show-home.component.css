@@ -365,7 +365,7 @@ body {
 .alert {
   position: absolute;
   z-index: 100;
-  top: 50%;
+  top: -108px;
   left: 20%;
   right: 20%;
   animation-name: alert;
@@ -377,7 +377,7 @@ body {
     opacity: 0;
   }
   to{
-    transform: translateY(0px);
+    transform: translateY(-50px);
     opacity: 1;
   }
 }

@@ -30,7 +30,7 @@ export class PaymentCartComponent implements OnInit {
   transport: Transport;
   paymentMethod: PaymentMethod;
   cart: Cart;
-  idMember = 1;
+  idMember = 5;
   product: Product[] = [];
 
   // Cac bien chua tong tien, phu phi
@@ -120,6 +120,7 @@ export class PaymentCartComponent implements OnInit {
       for (let i = 0; i < this.products.length; i++) {
         this.subPrice += this.products[i].finalPrice;
         this.product.push(this.products[i]);
+        console.log("product")
       }
       this.total = this.subPrice + this.fee;
     }, error => {
