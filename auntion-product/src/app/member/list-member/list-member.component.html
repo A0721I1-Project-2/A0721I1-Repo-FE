@@ -1,181 +1,198 @@
-<div class="list-member">
-  <div class="header-user-list" style="margin-top: 160px">
-    <h1 style="text-align: center; font-family: 'Times New Roman'; font-weight: 1000; font-size: 50px; color: rgb(24, 100, 46);">Manage member</h1>
+<div class="chat-admin__container" style="overflow: hidden">
+  <div class="header__admin">
+    <app-header-admin></app-header-admin>
   </div>
-
-
-  <div style="padding-inline: 30px;">
-    <div class="search-user-list">
-    <form (ngSubmit)="searchMember()" [formGroup]="searchForm">
-      <input type="text" placeholder="Name" formControlName="nameMember">
-      <input type="text" placeholder="Address" formControlName="emailMember">
-      <input type="text" placeholder="Email" formControlName="addressMember">
-      <input type="text" placeholder="Phone number" formControlName="phoneNumberMember">
-      <select formControlName="nameRankMember">
-<!--        <option selected disabled>Rank</option>-->
-        <ng-container *ngFor="let rank of rankList">
-          <option ngValue="{{rank.nameRank}}">{{rank.nameRank}}</option>
-        </ng-container>
-
-        <!--        <option value="2">Gold</option>-->
-        <!--        <option value="3">Silver</option>-->
-        <!--        <option value="4">Btozer</option>-->
-      </select>
-      <button class="btn btn-success" (submit)="searchMember()"> Search </button>
-    </form>
-    </div>
-  </div>
-
-
-  <div style="padding-inline: 30px; width: 100%;">
-    <div class="content" style="padding-inline: 30px; width: 100%; border: 1px solid #d2d7dd; margin-bottom: 20px;">
-      <div class="table-responsive" style="padding-inline: 30px;">
-        <table class="table table-striped">
-          <thead style="background-color: rgb(24, 100, 46); color: white;">
-          <tr style="text-align: center">
-            <th scope="col">#</th>
-            <th scope="col">Selected</th>
-            <th scope="col">Name</th>
-            <th scope="col">Address</th>
-            <th scope="col">Email</th>
-            <th scope="col">Phone number</th>
-            <th scope="col">Rank</th>
-            <th scope="col">Last login</th>
-            <th scope="col">Dedication Points</th>
-            <th scope="col">Block</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr *ngFor="let member of memberList; let i = index">
-            <td style="text-align: center">{{i + 1}}</td>
-            <td style="text-align: center">
-              <input #idMember type="checkbox"
-                     value="{{member.idMember}}"
-                     (change)="onIdChanged(idMember.checked ,member.idMember)">
-            </td>
-            <td style="text-align: center">{{member.nameMember}}</td>
-            <td>{{member.addressMember}}</td>
-            <td>{{member.emailMember}}</td>
-            <td style="text-align: center">{{member.phoneMember}}</td>
-            <td style="text-align: center">{{member.rank.nameRank}}</td>
-            <td style="text-align: center">{{member.account.last_login}}</td>
-            <td style="text-align: center">{{member.point}}</td>
-            <td style="text-align: center; color: red" *ngIf="member.account.block">Block</td>
-            <td style="text-align: center" *ngIf="!member.account.block">None</td>
-          </tr>
-          </tbody>
-        </table>
+  <div class="content__admin-container">
+    <div class="row">
+      <div class="d-none-m-b col-md-2 p-r-0">
+        <app-navbar-admin></app-navbar-admin>
       </div>
 
-      <!--        Pagination-->
-      <div class="clearfix" style="float: right">
-        <nav aria-label="...">
-          <ul class="pagination">
-            <div *ngIf="pageNumber > 0; then enablePrevious else disablePrevious"></div>
-            <ng-template #enablePrevious>
-              <li class="page-item">
-                <span class="page-link" (click)="perviousPage()">Prev</span>
-              </li>
-            </ng-template>
-            <ng-template #disablePrevious>
-              <li class="page-item disabled">
-                <span class="page-link">Prev</span>
-              </li>
-            </ng-template>
+      <div class="col-12 col-md-10 p-l-0" style="height: 850px; margin-top: 70px">
+        <!-- Đây là component để chính -->
+        <div class="list-member">
+          <div class="header-user-list">
+            <h1>Manage member</h1>
+          </div>
 
-            <div *ngFor="let page of totalPage; index as i">
-              <div *ngIf="pageNumber == i; then isCurrentPage else notCurrentPage"></div>
-              <ng-template #isCurrentPage>
-                <li class="page-item active">
-                  <span class="page-link" (click)="changePageNumber(i)">{{i + 1}}</span>
-                </li>
-              </ng-template>
-              <ng-template #notCurrentPage>
-                <li class="page-item">
-                  <span class="page-link" (click)="changePageNumber(i)">{{i + 1}}</span>
-                </li>
-              </ng-template>
+
+          <div style="padding-inline: 30px;">
+            <div class="search-user-list">
+              <form (ngSubmit)="searchMember()" [formGroup]="searchForm">
+                <input type="text" placeholder="Name" formControlName="nameMember">
+                <input type="text" placeholder="Address" formControlName="emailMember">
+                <input type="text" placeholder="Email" formControlName="addressMember">
+                <input type="text" placeholder="Phone number" formControlName="phoneNumberMember">
+                <select formControlName="nameRankMember">
+                  <!--        <option selected disabled>Rank</option>-->
+                  <ng-container *ngFor="let rank of rankList">
+                    <option ngValue="{{rank.nameRank}}">{{rank.nameRank}}</option>
+                  </ng-container>
+
+                  <!--        <option value="2">Gold</option>-->
+                  <!--        <option value="3">Silver</option>-->
+                  <!--        <option value="4">Btozer</option>-->
+                </select>
+                <button class="btn btn-success search" (submit)="searchMember()"> Search </button>
+              </form>
             </div>
+          </div>
 
-            <div *ngIf="pageNumber < totalPage.length - 1; then enableNext else disableNext"></div>
-            <ng-template #enableNext>
-              <li class="page-item">
-                <span class="page-link" (click)="nextPage()">Next</span>
-              </li>
-            </ng-template>
-            <ng-template #disableNext>
-              <li class="page-item disabled">
-                <span class="page-link">Next</span>
-              </li>
-            </ng-template>
-          </ul>
-        </nav>
-      </div>
 
-      <div style="margin-block: 10px; height: 40px;" class="btn-action">
-        <a href="#" class="btn btn-danger modal-third" data-toggle="modal" data-target="#exampleModal3">Delete</a>
-        <div class="modal fade" id="exampleModal3" tabindex="-1ó " role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel3">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
+          <div style="padding-inline: 30px; width: 100%;">
+            <div class="content" style="padding-inline: 30px; width: 100%; border: 1px solid #d2d7dd; margin-bottom: 2px;">
+              <div class="table-responsive" style="padding-inline: 30px;">
+                <table class="table table-striped">
+                  <thead style="background-color: rgb(24, 100, 46); color: white;">
+                  <tr style="text-align: center">
+                    <th scope="col">#</th>
+                    <th scope="col">Selected</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Phone number</th>
+                    <th scope="col">Rank</th>
+                    <th scope="col">Last login</th>
+                    <th scope="col">Dedication Points</th>
+                    <th scope="col">Block</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let member of memberList; let i = index">
+                    <td style="text-align: center">{{i + 1}}</td>
+                    <td style="text-align: center">
+                      <input #idMember type="checkbox"
+                             value="{{member.idMember}}"
+                             (change)="onIdChanged(idMember.checked ,member.idMember)">
+                    </td>
+                    <td style="text-align: center">{{member.nameMember}}</td>
+                    <td>{{member.addressMember}}</td>
+                    <td>{{member.emailMember}}</td>
+                    <td style="text-align: center">{{member.phoneMember}}</td>
+                    <td style="text-align: center">{{member.rank.nameRank}}</td>
+                    <td style="text-align: center">{{member.account.last_login | date:"yy/MM/dd"}}</td>
+                    <td style="text-align: center">{{member.point}}</td>
+                    <td style="text-align: center; color: red" *ngIf="member.account.block">Block</td>
+                    <td style="text-align: center" *ngIf="!member.account.block">None</td>
+                  </tr>
+                  </tbody>
+                </table>
               </div>
-              <div class="modal-body">
-                Are you sure to delete this member ?
+
+              <!--        Pagination-->
+              <div class="clearfix" style="float: right">
+                <nav aria-label="...">
+                  <ul class="pagination">
+                    <div *ngIf="pageNumber > 0; then enablePrevious else disablePrevious"></div>
+                    <ng-template #enablePrevious>
+                      <li class="page-item">
+                        <span class="page-link" (click)="perviousPage()">Prev</span>
+                      </li>
+                    </ng-template>
+                    <ng-template #disablePrevious>
+                      <li class="page-item disabled">
+                        <span class="page-link">Prev</span>
+                      </li>
+                    </ng-template>
+
+                    <div *ngFor="let page of totalPage; index as i">
+                      <div *ngIf="pageNumber == i; then isCurrentPage else notCurrentPage"></div>
+                      <ng-template #isCurrentPage>
+                        <li class="page-item active">
+                          <span class="page-link" (click)="changePageNumber(i)">{{i + 1}}</span>
+                        </li>
+                      </ng-template>
+                      <ng-template #notCurrentPage>
+                        <li class="page-item">
+                          <span class="page-link" (click)="changePageNumber(i)">{{i + 1}}</span>
+                        </li>
+                      </ng-template>
+                    </div>
+
+                    <div *ngIf="pageNumber < totalPage.length - 1; then enableNext else disableNext"></div>
+                    <ng-template #enableNext>
+                      <li class="page-item">
+                        <span class="page-link" (click)="nextPage()">Next</span>
+                      </li>
+                    </ng-template>
+                    <ng-template #disableNext>
+                      <li class="page-item disabled">
+                        <span class="page-link">Next</span>
+                      </li>
+                    </ng-template>
+                  </ul>
+                </nav>
               </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-primary" (click)="deleteMember()" data-dismiss="modal">Delete member</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+              <div style="margin-block: 10px; height: 40px;" class="btn-action">
+                <a href="#" class="btn btn-danger modal-third" data-toggle="modal" data-target="#exampleModal3">Delete</a>
+                <div class="modal fade" id="exampleModal3" tabindex="-1ó " role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel3">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        Are you sure to delete this member ?
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" (click)="deleteMember()" data-dismiss="modal">Delete member</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <a href="#" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">Block</a>
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        Are you sure to block this member ?
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" (click)="blockMember()" data-dismiss="modal">Block member</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <a href="#" data-toggle="modal" data-target="#exampleModal2" class="btn btn-success modal-second">Unblock</a>
+                <div class="modal fade" id="exampleModal2" tabindex="-1 " role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel2">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        Are you sure to unblock this member ?
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" (click)="unBlockMember()" data-dismiss="modal">Unblock member</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--        <a href="#" class="btn btn-success">Add new user</a>-->
               </div>
             </div>
           </div>
         </div>
-
-        <a href="#" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">Block</a>
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                Are you sure to block this member ?
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-primary" (click)="blockMember()" data-dismiss="modal">Block member</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <a href="#" data-toggle="modal" data-target="#exampleModal2" class="btn btn-success modal-second">Unblock</a>
-        <div class="modal fade" id="exampleModal2" tabindex="-1 " role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel2">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                Are you sure to unblock this member ?
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-primary" (click)="unBlockMember()" data-dismiss="modal">Unblock member</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
-        </div>
-<!--        <a href="#" class="btn btn-success">Add new user</a>-->
+        <app-footer-admin></app-footer-admin>
       </div>
     </div>
   </div>

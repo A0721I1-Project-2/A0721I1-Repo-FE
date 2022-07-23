@@ -117,9 +117,9 @@ export class ShowHomeComponent implements OnInit {
 
         for (let j = 0; j < countDownDate.length; j++) {
           // tslint:disable-next-line:only-arrow-functions no-shadowed-variable
-          (function (j) {
+          (function(j) {
             // tslint:disable-next-line:only-arrow-functions
-            const x = setInterval(function () {
+            const x = setInterval(function() {
               // console.log(countDownDate[j]);
               // Get today's date and time
               const now = new Date().getTime();
@@ -174,9 +174,9 @@ export class ShowHomeComponent implements OnInit {
 
         for (let j = 0; j < countDownDate.length; j++) {
           // tslint:disable-next-line:only-arrow-functions no-shadowed-variable
-          (function (j) {
+          (function(j) {
             // tslint:disable-next-line:only-arrow-functions
-            const x = setInterval(function () {
+            const x = setInterval(function() {
               // console.log(countDownDate[j]);
               // Get today's date and time
               const now = new Date().getTime();
@@ -264,9 +264,9 @@ export class ShowHomeComponent implements OnInit {
 
         for (let j = 0; j < countDownDate.length; j++) {
           // tslint:disable-next-line:only-arrow-functions no-shadowed-variable
-          (function (j) {
+          (function(j) {
             // tslint:disable-next-line:only-arrow-functions
-            const x = setInterval(function () {
+            const x = setInterval(function() {
               // console.log(countDownDate[j]);
               // Get today's date and time
               const now = new Date().getTime();
@@ -342,16 +342,23 @@ export class ShowHomeComponent implements OnInit {
     if (this.formSearch?.invalid) {
       if (this.formSearch.get('nameProduct').errors.required) {
         this.messageAlert.push('The product name to be searched cannot be empty');
+        document.getElementById('alert').hidden = false;
         this.showListProductAuction();
       }
       if (this.formSearch.get('nameProduct').errors.pattern) {
         this.messageAlert.push('The product name cannot contain special characters(!@#$%^&*)');
+        document.getElementById('alert').hidden = false;
         this.showListProductAuction();
       }
     } else {
-
       // @ts-ignore
-      $('#myModal').modal('hide');
+      // tslint:disable-next-line:only-arrow-functions
+      // $(document).ready(function() {
+      //   // @ts-ignore
+      //   $('#myModal').modal('hide');
+      // });
+      // $('#myModal').modal('hide');
+      document.getElementById('alert').hidden = true;
     }
     if (priceRange === '$0 – $5') {
       this.min = 0;
@@ -402,9 +409,9 @@ export class ShowHomeComponent implements OnInit {
 
           for (let j = 0; j < countDownDate.length; j++) {
             // tslint:disable-next-line:only-arrow-functions no-shadowed-variable
-            (function (j) {
+            (function(j) {
               // tslint:disable-next-line:only-arrow-functions
-              const x = setInterval(function () {
+              const x = setInterval(function() {
                 // console.log(countDownDate[j]);
                 // Get today's date and time
                 const now = new Date().getTime();
@@ -471,9 +478,9 @@ export class ShowHomeComponent implements OnInit {
 
           for (let j = 0; j < countDownDate.length; j++) {
             // tslint:disable-next-line:only-arrow-functions no-shadowed-variable
-            (function (j) {
+            (function(j) {
               // tslint:disable-next-line:only-arrow-functions
-              const x = setInterval(function () {
+              const x = setInterval(function() {
                 // console.log(countDownDate[j]);
                 // Get today's date and time
                 const now = new Date().getTime();
@@ -554,5 +561,9 @@ export class ShowHomeComponent implements OnInit {
     }
     // @ts-ignore
     console.log('số boxes còn lại = ' + $('.col-xl-3:hidden').length);
+  }
+
+  hide() {
+    document.getElementById('alert').hidden = true;
   }
 }
