@@ -67,7 +67,7 @@
       <div class="form-group row">
         <label class="col-sm-3 col-md-3 col-3 col-form-label">Picture:<i style="color: red">(*)</i></label>
         <div class="col-sm-7 col-md-7 col-7 picture">
-            <img *ngFor=" let img of imageProduct" style="height: 200px; width: 200px;" src="{{img.imageProduct}}">
+          <img *ngFor=" let img of imageProduct" style="height: 200px; width: 200px;" src="{{img.imageProduct}}">
           <br/>
           <div>
             <input type="file" id="imgProduct" name="imgProduct" multiple (change)="preview($event)"/>

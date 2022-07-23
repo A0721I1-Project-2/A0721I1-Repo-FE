@@ -9,10 +9,15 @@ import { HomeAdminComponent } from './home-admin/home-admin.component';
 
 
 @NgModule({
-  declarations: [HeaderAdminComponent, NavbarAdminComponent, FooterAdminComponent, HomeAdminComponent],
-  imports: [
-    CommonModule,
-    ControlAdminPageRoutingModule
-  ]
+    declarations: [HeaderAdminComponent, NavbarAdminComponent, FooterAdminComponent, HomeAdminComponent],
+  exports: [
+    HeaderAdminComponent,
+    NavbarAdminComponent,
+    FooterAdminComponent
+  ],
+    imports: [
+        CommonModule,
+        ControlAdminPageRoutingModule
+    ]
 })
 export class ControlAdminPageModule { }

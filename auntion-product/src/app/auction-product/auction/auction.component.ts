@@ -113,8 +113,8 @@ export class AuctionComponent implements OnInit {
     this.auctionProductService.getAuctionList(this.idProduct).subscribe((auctions: AuctionDTO[]) => {
       if (auctions != null) {
         this.auctionList = auctions;
-        this.currentPrice = auctions[0].price;
-        this.currentWinner = auctions[0].username;
+        this.currentPrice = auctions[0]?.price;
+        this.currentWinner = auctions[0]?.username;
       }
     });
   }
@@ -135,8 +135,8 @@ export class AuctionComponent implements OnInit {
       this.modalBackground = 'red';
       this.modalHidden = false;
       this.displayStyle = 'block';
-    } else if (newPrice % this.product.incrementPrice !== 0) {
-      this.modalBody = 'Auction Price must be divisible by the Price Step!';
+    } else if ((newPrice - this.currentPrice) % this.product.incrementPrice !== 0) {
+      this.modalBody = 'Auction Price must increase exponentially by the Price Step!';
       this.modalBackground = 'red';
       this.modalHidden = false;
       this.displayStyle = 'block';
@@ -250,16 +250,64 @@ export class AuctionComponent implements OnInit {
 
   auctionFinish() {
     const idMember = window.localStorage.getItem('id');
-    console.log('idMember: ' + idMember);
     this.isFinish = true;
     this.auctionProductService.getAuctionList(this.product.idProduct).subscribe((data: AuctionDTO[]) => {
-      console.log(data);
-      console.log(idMember);
-      if (data[0].memberId === Number(idMember)) {
+      if (data[0]?.memberId === Number(idMember)) {
         this.modalBody = 'You have successfully auctioned the product ' + this.product.nameProduct + '!';
         this.modalBackground = '#11B683';
         this.modalHidden = false;
         this.displayStyle = 'block';
+
+        const addProductPromise = this.auctionProductService.addProductToCard(Number(idMember), this.idProduct).toPromise();
+        addProductPromise.then(() => {
+          const y = setInterval(() => {
+
+            const productPromise = this.getProductById(this.idProduct).toPromise();
+            productPromise.then((dataProduct) => {
+              if (dataProduct.flagDelete) {
+                clearInterval(y);
+              } else {
+                const cartPromise = this.auctionProductService.getCardByMemberId(Number(idMember)).toPromise();
+                cartPromise.then((cartData) => {
+                  const paymentLink = 'http://localhost:4200/auction-product/auction/1';
+                  // tslint:disable-next-line:triple-equals
+                  if (cartData?.warning == '0') {
+                    console.log('im here');
+                    this.auctionProductService.sendPaymentEmail(this.member.emailMember, this.product.nameProduct).subscribe();
+                    let updateCart;
+                    updateCart = cartData;
+                    updateCart.warning = '1';
+                    this.auctionProductService.updateCart(updateCart).subscribe();
+                    // tslint:disable-next-line:triple-equals
+                  } else if (cartData?.warning == '1') {
+                    this.auctionProductService.sendPaymentEmail(this.member.emailMember, this.product.nameProduct).subscribe();
+                    let updateCart;
+                    updateCart = cartData;
+                    updateCart.warning = '2';
+                    this.auctionProductService.updateCart(updateCart).subscribe();
+                    // tslint:disable-next-line:triple-equals
+                  } else if (cartData?.warning == '2') {
+                    this.auctionProductService.sendPaymentEmail(this.member.emailMember, this.product.nameProduct).subscribe();
+                    let updateCart;
+                    updateCart = cartData;
+                    updateCart.warning = '3';
+                    this.auctionProductService.updateCart(updateCart).subscribe();
+                    // tslint:disable-next-line:triple-equals
+                  } else if (cartData?.warning == '4') {
+                    console.log('block member');
+                    clearInterval(y);
+                  }
+                }, (error) => {
+                  console.log('Promise rejected with ' + JSON.stringify(error));
+                });
+              }
+            }, (error) => {
+              console.log('Promise rejected with ' + JSON.stringify(error));
+            });
+          }, 6000);
+        }, (error) => {
+          console.log('Promise rejected with ' + JSON.stringify(error));
+        });
       }
     });
   }

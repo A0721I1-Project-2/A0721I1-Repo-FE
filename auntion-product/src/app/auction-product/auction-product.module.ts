@@ -10,11 +10,11 @@ import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [PostProductComponent, AuctionComponent],
-    imports: [
-        CommonModule,
-        AuctionProductRoutingModule,
-        HttpClientModule,
-        ReactiveFormsModule
-    ]
+  imports: [
+      CommonModule,
+      AuctionProductRoutingModule,
+      HttpClientModule,
+      ReactiveFormsModule
+  ]
 })
 export class AuctionProductModule { }

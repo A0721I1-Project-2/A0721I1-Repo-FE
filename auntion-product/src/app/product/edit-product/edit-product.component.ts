@@ -18,7 +18,7 @@ export class EditProductComponent implements OnInit {
 
   product: Product;
   typeProduct: TypeProduct[];
-  imageProduct: ImageProduct[];
+  imageProduct: ImageProduct;
   member: Member[];
   selectedImage: any;
   submitted = false;
@@ -100,7 +100,7 @@ export class EditProductComponent implements OnInit {
 
   getAll() {
     this.getTypeProduct();
-    this.getImageProduct();
+    // this.getImageProduct();
     this.getProduct();
   }
 
@@ -112,12 +112,12 @@ export class EditProductComponent implements OnInit {
   }
 
 
-  getImageProduct(){
-    this.productService.findImage().subscribe((data => {
-      this.imageProduct = data;
-      console.log(this.imageProduct);
-    }));
-  }
+  // getImageProduct(){
+  //   this.productService.findImage().subscribe((data => {
+  //     this.imageProduct = data;
+  //     console.log(this.imageProduct);
+  //   }));
+  // }
 
   onSubmit() {
     // if (this.selectedImage == null) {
@@ -147,7 +147,7 @@ export class EditProductComponent implements OnInit {
     this.productService.findByIdMember(this.editForm.get('idMember').value).subscribe(member => {
       this.product.members = member;
       console.log(this.product);
-      this.productService.updateProduct(this.product).subscribe(() => {
+      this.productService.editProduct(this.product).subscribe(() => {
         this.router.navigateByUrl('/product/list');
       });
     });

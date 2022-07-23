@@ -1,0 +1,31 @@
+p {
+  text-align: justify-all;
+}
+.footer p{
+  margin-bottom: 5px
+}
+span{
+  margin-bottom: 5px
+}
+h5{
+  text-align: center;
+}
+.th{
+  color: white;text-align: center
+}
+img{
+  height: 74%;
+  width: 69%;
+  float: LEFT;
+  margin-top: 8px;
+  margin-left: 40px;
+}
+.btn{
+  background: #11B683;
+  color: white
+}
+
+.btn:hover{
+  background: #ff3366;
+  color: white
+}
