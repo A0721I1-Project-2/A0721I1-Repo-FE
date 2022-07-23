@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  API_GETWAY: 'http://localhost:8081',
+  API_GETWAY: 'http://localhost:8082',
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   apiUrl: 'http://localhost:8080',
  /* recaptcha: {

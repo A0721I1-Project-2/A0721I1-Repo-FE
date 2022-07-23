@@ -3,9 +3,10 @@ import { PaymentService } from '../service/payment.service';
 import html2canvas from 'html2canvas';
 
 import jspdf from 'jspdf';
-import { finalize } from 'rxjs/operators';
-import { AngularFireStorage } from '@angular/fire/storage';
-import * as htmlToImage from 'html-to-image';
+
+
+import {finalize} from 'rxjs/operators';
+import {AngularFireStorage} from '@angular/fire/storage';
 import { Subscription } from 'rxjs';
 import { InvoiceDetail } from "../../model/InvoiceDetail";
 import { Payment } from "../../model/Payment";

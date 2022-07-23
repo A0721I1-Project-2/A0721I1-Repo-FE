@@ -11,6 +11,17 @@ h1{
     margin-right: 50px;
 }
 
+#main-content {
+  margin-left: 210px;
+  margin-top: 60px;
+}
+wrapper {
+  display: inline-block;
+  margin-top: 60px;
+  padding: 0px 15px 15px;
+  width: 100%;
+}
+
 ul, ol {
     margin: 0;
 }

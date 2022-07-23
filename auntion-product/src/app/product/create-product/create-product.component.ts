@@ -36,6 +36,14 @@ export class CreateProductComponent implements OnInit {
         this.getTypeProduct();
         this.formGroup.disable();
         this.getControl.idPoster.enable();
+      const hideNavHp = document.querySelector('#header');
+      const hideFooterHp = document.querySelector('.footer__container');
+// @ts-ignore
+// tslint:disable-next-line:no-unused-expression
+      hideNavHp.style.display = 'none';
+// @ts-ignore
+// tslint:disable-next-line:no-unused-expression
+      hideFooterHp.style.display = 'none';
     }
 
     private initForm(): void {
@@ -50,8 +58,8 @@ export class CreateProductComponent implements OnInit {
             startDate: [null, [Validators.required]],
             endDate: [null, [Validators.required]],
             productDescription: [null, [Validators.required]],
-            approvalStatus: [1],
-            biddingStatus: [1],
+            approvalStatus: [2],
+            biddingStatus: [2],
             cart: [1],
         })
 
@@ -69,7 +77,7 @@ export class CreateProductComponent implements OnInit {
             this.formGroup.enable();
             this.poster = res;
         }, error => {
-            alert('ID Poster khong ton tai')
+            alert('ID Poster does not exist')
             this.formGroup.disable();
             this.getControl.idPoster.enable();
         })
@@ -150,7 +158,7 @@ export class CreateProductComponent implements OnInit {
         })
         this.productService.create(formData).subscribe(res => {
             this.onChangeIdPost();
-            this.toastrService.success('them sản pham thành công')
+            this.toastrService.success('Add New Product is completed')
             this.router.navigate(["/product/list"])
         }, error => {
             this.toastrService.error(error?.error);
@@ -184,6 +192,12 @@ export class CreateProductComponent implements OnInit {
 
     public onDeleteImage(index: number): void {
         this.files = this.files.filter((file, i) => i !== index);
+    }
+
+    public resetForm(): void {
+        this.formGroup.reset();
+        this.formGroup.disable();
+        this.getControl.idPoster.enable();
     }
 
     public get getControl() {
