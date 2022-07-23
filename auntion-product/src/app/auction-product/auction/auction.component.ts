@@ -5,7 +5,6 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {AuctionDTO} from '../../model/auctionDTO';
 import {Member} from '../../model/Member';
 import {Account} from '../../model/Account';
-import {ImageProduct} from '../../model/ImageProduct';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
@@ -16,6 +15,8 @@ import {ActivatedRoute} from '@angular/router';
 export class AuctionComponent implements OnInit {
   idProduct: number;
   product: Product;
+  isLoadProduct = false;
+  isLoadImage = false;
   currentPrice: number;
   currentWinner: string;
   formAuction: FormGroup;
@@ -24,78 +25,81 @@ export class AuctionComponent implements OnInit {
   member: Member;
   account: Account;
   isFinish = false;
+  mainImage: any;
+  numberImage: any;
+  modalBody: any;
+  modalBackground: any;
+  modalHidden = true;
+  displayStyle = 'none';
 
   constructor(private auctionProductService: AuctionProductService, private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit(): void {
+    window.localStorage.setItem('id', '1');
     const idProduct = this.activatedRoute.snapshot.params.id;
     this.idProduct = idProduct;
     this.getMemberAndAccountIdFromLocalStore();
-    window.localStorage.setItem('id', '1');
     this.getAuctionList();
     this.formAuction = new FormGroup({
       currentBid: new FormControl()
     });
 
     const imagePromise = this.getImageByProductId(this.idProduct).toPromise();
-    imagePromise.then((data) => {
-      for (let i = 0; i < data.length; i++) {
-        this.arrayImage[i] = data[i].imageProduct;
+    imagePromise.then((dataImage) => {
+      console.log(dataImage);
+      for (let i = 0; i < dataImage.length; i++) {
+        this.arrayImage[i] = dataImage[i].imageProduct;
       }
-      (document.getElementById('mainImage') as HTMLImageElement).src = this.arrayImage[0];
-      document.getElementById('numbertext').innerText = '1/' + this.arrayImage.length;
-    }, (error) => {
-      console.log('Promise rejected with ' + JSON.stringify(error));
-    });
+      this.mainImage = dataImage[0].imageProduct;
+      this.numberImage = '1/' + dataImage.length;
+      this.isLoadImage = true;
 
-    const productPromise = this.getProductById(this.idProduct).toPromise();
-    productPromise.then((data) => {
-      // tslint:disable-next-line:prefer-const
-      let productTime;
-      productTime = this.product = data;
-      if (data.finalPrice === null) {
-        this.currentPrice = data.initialPrice;
-        this.formAuction.patchValue({currentBid: data.initialPrice});
-      } else {
-        this.currentPrice = data.finalPrice;
-        this.formAuction.patchValue({currentBid: data.finalPrice});
-      }
-
-      // (document.getElementById('mainImage') as HTMLImageElement).src = this.arrayImage[0];
-      // document.getElementById('numbertext').innerText = '1/' + this.arrayImage.length;
-
-      // Set the date we're counting down to
-      const countDownDate = new Date(this.product.endDate).getTime();
-      // Update the count down every 1 second
-      // tslint:disable-next-line:only-arrow-functions
-      const x = setInterval(function () {
-
-        // Get today's date and time
-        const now = new Date().getTime();
-
-        // Find the distance between now and the count down date
-        const distance = countDownDate - now;
-
-        // Time calculations for days, hours, minutes and seconds
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        // Display the result in the element with id="demo"
-        // document.getElementById('time-remain').innerHTML = days + 'd ' + hours + 'h '
-        //   + minutes + 'm ' + seconds + 's ';
-        productTime.remainingTime = days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's ';
-
-        // If the count down is finished, write some text
-        if (distance < 0) {
-          clearInterval(x);
-          document.getElementById('time-remain').innerHTML = 'Finished';
-          document.getElementById('winner').innerHTML = 'Winner';
-          document.getElementById('isFinish').click();
+      const productPromise = this.getProductById(this.idProduct).toPromise();
+      productPromise.then((dataProduct) => {
+        // tslint:disable-next-line:prefer-const
+        let productTime;
+        productTime = this.product = dataProduct;
+        this.isLoadProduct = true;
+        if (dataProduct.finalPrice === null) {
+          this.currentPrice = dataProduct.initialPrice;
+          this.formAuction.patchValue({currentBid: dataProduct.initialPrice});
+        } else {
+          this.currentPrice = dataProduct.finalPrice;
+          this.formAuction.patchValue({currentBid: dataProduct.finalPrice});
         }
-      }, 1000);
+
+        // Set the date we're counting down to
+        const countDownDate = new Date(this.product.endDate).getTime();
+        // Update the count down every 1 second
+        // tslint:disable-next-line:only-arrow-functions
+        const x = setInterval(function() {
+
+          // Get today's date and time
+          const now = new Date().getTime();
+
+          // Find the distance between now and the count down date
+          const distance = countDownDate - now;
+
+          // Time calculations for days, hours, minutes and seconds
+          const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+          productTime.remainingTime = days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's ';
+
+          // If the count down is finished, write some text
+          if (distance < 0) {
+            clearInterval(x);
+            productTime.remainingTime = 'Finished';
+            document.getElementById('winner').innerText = 'Winner: ';
+            document.getElementById('isFinish').click();
+          }
+        }, 1000);
+      }, (error) => {
+        console.log('Promise rejected with ' + JSON.stringify(error));
+      });
     }, (error) => {
       console.log('Promise rejected with ' + JSON.stringify(error));
     });
@@ -106,12 +110,11 @@ export class AuctionComponent implements OnInit {
   }
 
   getAuctionList() {
-    const id = window.localStorage.getItem('id');
-    this.auctionProductService.getAuctionList(Number(id)).subscribe((auctions: AuctionDTO[]) => {
+    this.auctionProductService.getAuctionList(this.idProduct).subscribe((auctions: AuctionDTO[]) => {
       if (auctions != null) {
         this.auctionList = auctions;
-        this.currentPrice = auctions[0].price;
-        this.currentWinner = auctions[0].username;
+        this.currentPrice = auctions[0]?.price;
+        this.currentWinner = auctions[0]?.username;
       }
     });
   }
@@ -122,22 +125,21 @@ export class AuctionComponent implements OnInit {
 
   auction() {
     const newPrice = Number((document.getElementById('price') as HTMLInputElement).value);
-    document.getElementById('modal-head').innerText = 'Auction Alert';
     if (this.isFinish === true) {
-      document.getElementById('modal-body').innerText = 'Auction of product ' + this.product.nameProduct + ' has finished!';
-      document.getElementById('modal-header').style.background = 'red';
-      document.getElementById('myModal').hidden = false;
-      document.getElementById('myModal').click();
+      this.modalBody = 'Auction of product ' + this.product.nameProduct + ' has finished!';
+      this.modalBackground = 'red';
+      this.modalHidden = false;
+      this.displayStyle = 'block';
     } else if (newPrice <= this.currentPrice) {
-      document.getElementById('modal-body').innerText = 'Auction Price must be greater than the Current Bid!';
-      document.getElementById('modal-header').style.background = 'red';
-      document.getElementById('myModal').hidden = false;
-      document.getElementById('myModal').click();
-    } else if (newPrice % this.product.incrementPrice !== 0) {
-      document.getElementById('modal-body').innerText = 'Auction Price must be divisible by the Price Step!';
-      document.getElementById('modal-header').style.background = 'red';
-      document.getElementById('myModal').hidden = false;
-      document.getElementById('myModal').click();
+      this.modalBody = 'Auction Price must be greater than the Current Bid!';
+      this.modalBackground = 'red';
+      this.modalHidden = false;
+      this.displayStyle = 'block';
+    } else if ((newPrice - this.currentPrice) % this.product.incrementPrice !== 0) {
+      this.modalBody = 'Auction Price must increase exponentially by the Price Step!';
+      this.modalBackground = 'red';
+      this.modalHidden = false;
+      this.displayStyle = 'block';
     } else {
       let currenDate;
       let currenDateTime;
@@ -165,10 +167,10 @@ export class AuctionComponent implements OnInit {
       };
       this.auctionProductService.createNewAuction(this.product.idProduct, newAuction).subscribe(() => {
         this.getAuctionList();
-        document.getElementById('modal-body').innerText = 'You have auctioned a product ' + this.product.nameProduct + '!';
-        document.getElementById('modal-header').style.background = '#11B683';
-        document.getElementById('myModal').hidden = false;
-        document.getElementById('myModal').click();
+        this.modalBody = 'You have auctioned a product ' + this.product.nameProduct + '!';
+        this.modalBackground = '#11B683';
+        this.modalHidden = false;
+        this.displayStyle = 'block';
       }, err => {
         console.log('err');
         console.log(err.error.message);
@@ -177,54 +179,45 @@ export class AuctionComponent implements OnInit {
   }
 
   nextImage() {
-    const mainImage = document.getElementById('mainImage') as HTMLImageElement;
     let image = '';
     let numberText;
     // tslint:disable-next-line:triple-equals
-    if (mainImage.src.indexOf((this.arrayImage)[this.arrayImage.length - 1]) == -1) {
+    if (this.mainImage.indexOf((this.arrayImage)[this.arrayImage.length - 1]) == -1) {
       for (let index = 0; index < this.arrayImage.length - 1; index++) {
         // tslint:disable-next-line:triple-equals
-        if (mainImage.src.indexOf((this.arrayImage)[index]) != -1) {
+        if (this.mainImage.indexOf((this.arrayImage)[index]) != -1) {
           image = (this.arrayImage)[index + 1];
           numberText = index + 2;
-          console.log(numberText);
           break;
         }
       }
-      mainImage.src = image;
-      document.getElementById('numbertext').innerText = numberText + '/' + this.arrayImage.length;
+      this.mainImage = image;
+      this.numberImage = numberText + '/' + this.arrayImage.length;
     } else {
-      mainImage.src = (this.arrayImage)[0];
-      document.getElementById('numbertext').innerText = 1 + '/' + this.arrayImage.length;
+      this.mainImage = this.arrayImage[0];
+      this.numberImage = 1 + '/' + this.arrayImage.length;
     }
   }
 
   prevImage() {
-    const src = (document.getElementById('mainImage') as HTMLImageElement).src;
     let image = '';
     let numberText;
     // tslint:disable-next-line:triple-equals
-    if (src.indexOf(this.arrayImage[0]) == -1) {
+    if (this.mainImage.indexOf(this.arrayImage[0]) == -1) {
       for (let index = 1; index < this.arrayImage.length; index++) {
         // tslint:disable-next-line:triple-equals
-        if (src.indexOf(this.arrayImage[index]) != -1) {
+        if (this.mainImage.indexOf(this.arrayImage[index]) != -1) {
           image = this.arrayImage[index - 1];
           numberText = index;
           break;
         }
       }
-      (document.getElementById('mainImage') as HTMLImageElement).src = image;
-      document.getElementById('numbertext').innerText = numberText + '/' + this.arrayImage.length;
+      this.mainImage = image;
+      this.numberImage = numberText + '/' + this.arrayImage.length;
     } else {
-      (document.getElementById('mainImage') as HTMLImageElement).src = this.arrayImage[this.arrayImage.length - 1];
-      document.getElementById('numbertext').innerText = this.arrayImage.length + '/' + this.arrayImage.length;
+      this.mainImage = this.arrayImage[this.arrayImage.length - 1];
+      this.numberImage = this.arrayImage.length + '/' + this.arrayImage.length;
     }
-  }
-
-  minusPrice() {
-    const currentPrice = (document.getElementById('price') as HTMLInputElement).value;
-    const price = Number(currentPrice) - this.product.incrementPrice;
-    (document.getElementById('price') as HTMLInputElement).value = String(price);
   }
 
   plusPrice() {
@@ -234,23 +227,22 @@ export class AuctionComponent implements OnInit {
   }
 
   changeSlide(index) {
-    (document.getElementById('mainImage') as HTMLImageElement).src = this.arrayImage[index];
-    document.getElementById('numbertext').innerText = (index + 1) + '/' + this.arrayImage.length;
+    this.mainImage = this.arrayImage[index];
+    this.numberImage = (index + 1) + '/' + this.arrayImage.length;
   }
 
   hide() {
-    document.getElementById('myModal').hidden = true;
+    this.modalHidden = true;
+    this.displayStyle = 'none';
   }
 
   getMemberAndAccountIdFromLocalStore() {
     const id = window.localStorage.getItem('id');
     const memberPromise = this.auctionProductService.getMemberById(Number(id)).toPromise();
     memberPromise.then((memberData) => {
+      console.log(memberData);
       this.member = memberData;
-      const accountPromise = this.auctionProductService.getAccountByMemberId(Number(id)).toPromise();
-      accountPromise.then((accountData) => {
-        this.account = accountData;
-      });
+      this.account = memberData.account;
     }, (error) => {
       console.log('Promise rejected with ' + JSON.stringify(error));
     });
@@ -258,17 +250,64 @@ export class AuctionComponent implements OnInit {
 
   auctionFinish() {
     const idMember = window.localStorage.getItem('id');
-    console.log('idMember: ' + idMember);
     this.isFinish = true;
     this.auctionProductService.getAuctionList(this.product.idProduct).subscribe((data: AuctionDTO[]) => {
-      console.log(data);
-      console.log(idMember);
-      if (data[0].memberId === Number(idMember)) {
-        document.getElementById('modal-head').innerText = 'Auction Alert';
-        document.getElementById('modal-body').innerText = 'You have successfully auctioned the product ' + this.product.nameProduct + '!';
-        document.getElementById('modal-header').style.background = '#11B683';
-        document.getElementById('myModal').hidden = false;
-        document.getElementById('myModal').click();
+      if (data[0]?.memberId === Number(idMember)) {
+        this.modalBody = 'You have successfully auctioned the product ' + this.product.nameProduct + '!';
+        this.modalBackground = '#11B683';
+        this.modalHidden = false;
+        this.displayStyle = 'block';
+
+        const addProductPromise = this.auctionProductService.addProductToCard(Number(idMember), this.idProduct).toPromise();
+        addProductPromise.then(() => {
+          const y = setInterval(() => {
+
+            const productPromise = this.getProductById(this.idProduct).toPromise();
+            productPromise.then((dataProduct) => {
+              if (dataProduct.flagDelete) {
+                clearInterval(y);
+              } else {
+                const cartPromise = this.auctionProductService.getCardByMemberId(Number(idMember)).toPromise();
+                cartPromise.then((cartData) => {
+                  const paymentLink = 'http://localhost:4200/auction-product/auction/1';
+                  // tslint:disable-next-line:triple-equals
+                  if (cartData?.warning == '0') {
+                    console.log('im here');
+                    this.auctionProductService.sendPaymentEmail(this.member.emailMember, this.product.nameProduct).subscribe();
+                    let updateCart;
+                    updateCart = cartData;
+                    updateCart.warning = '1';
+                    this.auctionProductService.updateCart(updateCart).subscribe();
+                    // tslint:disable-next-line:triple-equals
+                  } else if (cartData?.warning == '1') {
+                    this.auctionProductService.sendPaymentEmail(this.member.emailMember, this.product.nameProduct).subscribe();
+                    let updateCart;
+                    updateCart = cartData;
+                    updateCart.warning = '2';
+                    this.auctionProductService.updateCart(updateCart).subscribe();
+                    // tslint:disable-next-line:triple-equals
+                  } else if (cartData?.warning == '2') {
+                    this.auctionProductService.sendPaymentEmail(this.member.emailMember, this.product.nameProduct).subscribe();
+                    let updateCart;
+                    updateCart = cartData;
+                    updateCart.warning = '3';
+                    this.auctionProductService.updateCart(updateCart).subscribe();
+                    // tslint:disable-next-line:triple-equals
+                  } else if (cartData?.warning == '4') {
+                    console.log('block member');
+                    clearInterval(y);
+                  }
+                }, (error) => {
+                  console.log('Promise rejected with ' + JSON.stringify(error));
+                });
+              }
+            }, (error) => {
+              console.log('Promise rejected with ' + JSON.stringify(error));
+            });
+          }, 6000);
+        }, (error) => {
+          console.log('Promise rejected with ' + JSON.stringify(error));
+        });
       }
     });
   }

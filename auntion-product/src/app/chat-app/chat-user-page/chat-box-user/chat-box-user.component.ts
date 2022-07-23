@@ -24,11 +24,11 @@ export class ChatBoxUserComponent implements OnInit, OnChanges {
   messages: Observable<any>;
 
   constructor(private apiService: ApiService, private chatService: ChatService
-    , private router: Router) {
+    ,         private router: Router) {
   }
 
   ngOnInit(): void {
-    this.user = JSON.parse(window.localStorage.getItem('user'));
+    this.user = JSON.parse(window.localStorage.getItem('auth-user'));
 
     /* Get date now */
     this.now = this.chatService.getTimeStamp();
