@@ -1,6 +1,7 @@
 <div id="sidebar" class="nav-collapse">
-  <ul  class="sidebar-menu"  id="nav-accordion" >
-    <p class="centered"><a href="#"><img src="../../../assets/img/messi-profile.jpg" class="img-circle" width="80"></a></p>
+  <ul class="sidebar-menu" id="nav-accordion">
+    <p class="centered"><a href="#"><img src="../../../assets/img/messi-profile.jpg" class="img-circle" width="80"></a>
+    </p>
     <h5 class="centered">A0721I1 ADMIN</h5>
     <li class="mt">
       <a class="active" [routerLink]="['../']">
@@ -9,13 +10,13 @@
       </a>
     </li>
     <li class="sub-menu">
-      <a href="javascript:;">
+      <a routerLink="javascript:;">
         <i class="fa fa-desktop"></i>
         <span>Management</span>
       </a>
       <ul class="sub">
         <li><a href="#">Invoice Management</a></li>
-        <li><a href="#">Member Management</a></li>
+        <li><a [routerLink]="['./member/list']">Member Management</a></li>
         <li><a href="#">Product Management</a></li>
         <li><a href="#">General</a></li>
       </ul>
@@ -67,13 +68,6 @@
 <!--      <div class="navbar__admin-item active">-->
 <!--        <a [routerLink]="['../']"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>-->
 <!--      </div>-->
-
-
-    <div class="navbar__admin-item">
-
-    </div>
-
-
 <!--      <div class="navbar__admin-item">-->
 <!--        <a [routerLink]="['./']">Product Management</a>-->
 <!--      </div>-->

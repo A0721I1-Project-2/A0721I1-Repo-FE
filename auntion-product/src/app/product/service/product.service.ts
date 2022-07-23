@@ -1,19 +1,25 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {Product} from '../../model/Product';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import {map} from 'rxjs/operators';
 import {TypeProduct} from '../../model/TypeProduct';
 import {BiddingStatus} from '../../model/BiddingStatus';
+import {Product} from '../../model/Product';
 
 const API_URL = 'http://localhost:8080/manager/product/api';
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
+
   URL_API = 'http://localhost:8080/manager/product/api';
 
-  constructor(private http: HttpClient) {
+
+  constructor(private http: HttpClient) {}
+
+  public create(product): Observable<any> {
+    return this.http.post<any>(`${environment.API_GETWAY}/manager/product/api`, product);
   }
 
   //HieuDV

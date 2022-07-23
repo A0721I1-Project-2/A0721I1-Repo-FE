@@ -1,5 +1,7 @@
+
 import {Rank} from './Rank';
 import {Account} from './Account';
+
 
 export interface Member {
   idMember: number;
@@ -7,6 +9,7 @@ export interface Member {
   dateOfBirthMember: number;
   emailMember: string;
   addressMember: string;
+
   city: string;
   district: string;
   ward: string;
@@ -14,11 +17,11 @@ export interface Member {
   idCardMember: string;
   paypalMember: string;
   flagDelete: boolean;
-  account: Account;
+  account: any;
   invoiceList: any;
   point: number;
   paymentList: any;
-  rank: Rank;
+  rank: any;
   cart: any;
   products: any;
   checkedClause: boolean;

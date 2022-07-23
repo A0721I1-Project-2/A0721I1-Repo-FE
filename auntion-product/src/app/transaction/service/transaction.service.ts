@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {InvoiceDetail} from '../../model/InvoiceDetail';
-import {Observable} from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { InvoiceDetail } from '../../model/InvoiceDetail';
+import { Observable } from 'rxjs';
 
 const API_URL = 'http://localhost:8080/manager/api/';
 
@@ -34,6 +34,6 @@ export class TransactionService {
   }
 
   delete(id: any) {
-    return this.http.patch(API_URL + 'delete/' + id , {});
+    return this.http.patch(API_URL + 'delete/' + id, {});
   }
 }

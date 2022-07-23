@@ -8,6 +8,7 @@ import {Ward} from './ward';
 import {Account} from '../../model/Account';
 import {MemberDTO} from '../../model/MemberDTO';
 import {checkUsername} from './validate/ValidateUsername';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-sign-up-member',
@@ -118,6 +119,11 @@ export class SignUpMemberComponent implements OnInit {
         this.memberService.addNewAccount(this.accountCreate).subscribe(() => {
         }, () => {
         }, () => {
+          Swal.fire(
+            'Create success!',
+            '',
+            'success'
+          );
           this.route.navigateByUrl('/home');
         });
       }

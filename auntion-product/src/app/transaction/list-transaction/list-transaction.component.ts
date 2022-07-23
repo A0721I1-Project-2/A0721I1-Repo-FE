@@ -1,10 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {TransactionService} from '../service/transaction.service';
-import {InvoiceDetail} from '../../model/InvoiceDetail';
-import {FormControl, FormGroup} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Invoice} from '../../model/Invoice';
-import {Payment} from '../../model/Payment';
+import { Component, OnInit } from '@angular/core';
+import { TransactionService } from '../service/transaction.service';
+import { InvoiceDetail } from '../../model/InvoiceDetail';
+import { FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Invoice } from '../../model/Invoice';
+import { Payment } from '../../model/Payment';
 
 @Component({
   selector: 'app-list-transaction',
@@ -34,8 +34,8 @@ export class ListTransactionComponent implements OnInit {
   listIdInvoice: any[] = [];
 
   constructor(private transactionService: TransactionService,
-              private activatedRoute: ActivatedRoute,
-              private router: Router) {
+    private activatedRoute: ActivatedRoute,
+    private router: Router) {
 
   }
 

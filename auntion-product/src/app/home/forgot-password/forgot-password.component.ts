@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {HomeService} from '../service/home.service';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { HomeService } from '../service/home.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-forgot-password',
