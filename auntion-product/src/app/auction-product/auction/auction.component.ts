@@ -6,6 +6,7 @@ import {AuctionDTO} from '../../model/auctionDTO';
 import {Member} from '../../model/Member';
 import {Account} from '../../model/Account';
 import {ActivatedRoute} from '@angular/router';
+import {Cart} from '../../model/Cart';
 
 @Component({
   selector: 'app-auction',
@@ -31,6 +32,7 @@ export class AuctionComponent implements OnInit {
   modalBackground: any;
   modalHidden = true;
   displayStyle = 'none';
+  updateCard: Cart;
 
   constructor(private auctionProductService: AuctionProductService, private activatedRoute: ActivatedRoute) {
   }
@@ -142,7 +144,7 @@ export class AuctionComponent implements OnInit {
       this.displayStyle = 'block';
     } else {
       let currenDate;
-      let currenDateTime; 
+      let currenDateTime;
       currenDate = new Date();
       currenDateTime = `${
         currenDate.getFullYear().toString().padStart(4, '0')}/${
@@ -258,8 +260,29 @@ export class AuctionComponent implements OnInit {
         this.modalHidden = false;
         this.displayStyle = 'block';
 
-        const addProductPromise = this.auctionProductService.addProductToCard(Number(idMember), this.idProduct).toPromise();
-        addProductPromise.then(() => {
+        const addAuctionPromise = this.auctionProductService.addProductToCard(Number(idMember), this.idProduct).toPromise();
+        addAuctionPromise.then(() => {
+          const proPromise = this.getProductById(this.idProduct).toPromise();
+          proPromise.then((dataPro) => {
+            if (!dataPro.flagDelete) {
+              this.auctionProductService.sendPaymentEmail(this.member.emailMember, this.product.nameProduct).subscribe();
+              const cartPromis = this.auctionProductService.getCardByMemberId(Number(idMember)).toPromise();
+              cartPromis.then((cartDt) => {
+                // tslint:disable-next-line:triple-equals
+                if (cartDt?.warning == '0') {
+                  this.updateCard = cartDt;
+                  this.updateCard.warning = '1';
+                  this.updateCard.member = this.member;
+                  this.auctionProductService.updateCart(this.updateCard).subscribe();
+                }
+              }, (error) => {
+                console.log('Promise rejected with ' + JSON.stringify(error));
+              });
+            }
+          }, (error) => {
+            console.log('Promise rejected with ' + JSON.stringify(error));
+          });
+
           const y = setInterval(() => {
 
             const productPromise = this.getProductById(this.idProduct).toPromise();
@@ -271,29 +294,21 @@ export class AuctionComponent implements OnInit {
                 cartPromise.then((cartData) => {
                   const paymentLink = 'http://localhost:4200/auction-product/auction/1';
                   // tslint:disable-next-line:triple-equals
-                  if (cartData?.warning == '0') {
-                    console.log('im here');
+                  if (cartData?.warning == '1') {
                     this.auctionProductService.sendPaymentEmail(this.member.emailMember, this.product.nameProduct).subscribe();
-                    let updateCart;
-                    updateCart = cartData;
-                    updateCart.warning = '1';
-                    this.auctionProductService.updateCart(updateCart).subscribe();
-                    // tslint:disable-next-line:triple-equals
-                  } else if (cartData?.warning == '1') {
-                    this.auctionProductService.sendPaymentEmail(this.member.emailMember, this.product.nameProduct).subscribe();
-                    let updateCart;
-                    updateCart = cartData;
-                    updateCart.warning = '2';
-                    this.auctionProductService.updateCart(updateCart).subscribe();
+                    this.updateCard = cartData;
+                    this.updateCard.warning = '2';
+                    this.updateCard.member = this.member;
+                    this.auctionProductService.updateCart(this.updateCard).subscribe();
                     // tslint:disable-next-line:triple-equals
                   } else if (cartData?.warning == '2') {
                     this.auctionProductService.sendPaymentEmail(this.member.emailMember, this.product.nameProduct).subscribe();
-                    let updateCart;
-                    updateCart = cartData;
-                    updateCart.warning = '3';
-                    this.auctionProductService.updateCart(updateCart).subscribe();
+                    this.updateCard = cartData;
+                    this.updateCard.warning = '3';
+                    this.updateCard.member = this.member;
+                    this.auctionProductService.updateCart(this.updateCard).subscribe();
                     // tslint:disable-next-line:triple-equals
-                  } else if (cartData?.warning == '4') {
+                  } else if (cartData?.warning == '3') {
                     console.log('block member');
                     clearInterval(y);
                   }
@@ -304,9 +319,7 @@ export class AuctionComponent implements OnInit {
             }, (error) => {
               console.log('Promise rejected with ' + JSON.stringify(error));
             });
-          }, 6000);
-        }, (error) => {
-          console.log('Promise rejected with ' + JSON.stringify(error));
+          }, 21600000);
         });
       }
     });
