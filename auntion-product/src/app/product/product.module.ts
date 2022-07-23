@@ -7,13 +7,13 @@ import {ListProductComponent} from './list-product/list-product.component';
 import {ReviewProductComponent} from './review-product/review-product.component';
 import {EditProductComponent} from './edit-product/edit-product.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {AngularFireModule} from '@angular/fire';
+import {environment} from './environments/environment';
 import {HttpClientModule} from '@angular/common/http';
-
 import {AdminModule} from '../admin/admin.module';
 import { CoreModule } from '../shared/core.module';
 import {StatisticComponent} from './statistic/statistic.component';
 import {ControlAdminPageModule} from '../control-admin-page/control-admin-page.module';
-
 
 @NgModule({
   declarations: [StatisticComponent, ListProductComponent, ReviewProductComponent, EditProductComponent, CreateProductComponent],
