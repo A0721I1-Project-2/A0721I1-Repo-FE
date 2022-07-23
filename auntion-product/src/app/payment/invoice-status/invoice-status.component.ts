@@ -72,8 +72,6 @@ export class InvoiceStatusComponent implements OnInit {
         for (let i = 0; i < data.length; i++) {
           this.total += data[i].product.finalPrice;
           console.log(this.total)
-
-
         }
         console.log('check', this.invoice);
         this.getst();
