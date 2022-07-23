@@ -21,7 +21,7 @@
           <div class="table-responsive">
             <div class="table-wrapper">
               <div class="table-title">
-                <div class="modal-content" >
+                <div class="modal-content" style="margin-top: 112Px;">
                   <div class="col">
                     <div class="modal-header" >
                       <h1 class="modal-title text-center" style="font-weight: bolder"> Account Information</h1>
@@ -52,16 +52,16 @@
 
                         </tr>
                         <tr>
-                          <td>Current Password:<i style="color: red">(*)</i></td>
-                          <td>***************</td>
+                          <td>Rank:<i style="color: red">(*)</i></td>
+                          <td>{{profileViewMember.rank.nameRank}}</td>
                         </tr>
-                        <tr hidden>
-                          <td>New Password:<i style="color: red">(*)</i></td>
-                          <td>************</td>
+                        <tr>
+                          <td>Point:<i style="color: red">(*)</i></td>
+                          <td>{{profileViewMember.point}}</td>
                         </tr>
-                        <tr hidden>
-                          <td>Confirm Password:<i style="color: red">(*)</i></td>
-                          <td>************</td>
+                        <tr>
+                          <td>Paypal:<i style="color: red">(*)</i></td>
+                          <td>{{profileViewMember.paypalMember}}</td>
                         </tr>
                         <tr>
                           <td>ID card:<i style="color: red">(*)</i></td>
@@ -79,8 +79,8 @@
                     </div>
                   </div>
                   <div class="modal-footer">
-                    <a><button class="button btn col-xxl"><< Back</button></a>
-                    <a [routerLink]="'/member/edit/'"><button class="button btn col-xxl">Update Information</button></a>
+                    <a href="http://localhost:4200"><button class="button btn col-xxl"><< Back</button></a>
+                    <a [routerLink]="['/member/edit/' , idAccount]"><button class="button btn col-xxl">Update Information</button></a>
 <!--                    <button class="button btn col-xxl" hidden>Change Password</button>-->
                   </div>
                 </div>
