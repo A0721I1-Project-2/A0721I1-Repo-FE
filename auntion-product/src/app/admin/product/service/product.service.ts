@@ -1,26 +1,21 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import {map} from 'rxjs/operators';
-import {TypeProduct} from '../../model/TypeProduct';
-import {BiddingStatus} from '../../model/BiddingStatus';
-import {Product} from '../../model/Product';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {Product} from '../../../model/Product';
+import {map, min} from 'rxjs/operators';
+import {TypeProduct} from '../../../model/TypeProduct';
+import {BiddingStatus} from '../../../model/BiddingStatus';
 
 const API_URL = 'http://localhost:8080/manager/product/api';
+
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  URL_API = 'http://localhost:8080/manager/product/api';
-
-
-  constructor(private http: HttpClient) {}
-
-  public create(product): Observable<any> {
-    return this.http.post<any>(`${environment.API_GETWAY}/manager/product/api`, product);
-  }
+  constructor(private http: HttpClient) { }
 
   //HieuDV
   getAllProduct(page: number): Observable<Product[]> {
@@ -61,14 +56,15 @@ export class ProductService {
   delete(id: any) {
     return this.http.patch(API_URL + '/delete/' + id , {});
   }
+
   //BachLT
   statsProductFromDateToDate(startDay: any, endDay: any, biddingStatus: any): Observable<any> {
-    return this.http.get(this.URL_API + '/statistic/' + startDay + '&' + endDay + '&' + biddingStatus).pipe(
+    return this.http.get(API_URL + '/statistic/' + startDay + '&' + endDay + '&' + biddingStatus).pipe(
       map(result => result));
   }
 
-  //BachLT
+  //Bach
   statsProductAtCurrentMonth(month: number, biddingStatus: any): Observable<any> {
-    return this.http.get(this.URL_API + '/statistic/currentMonth&biddingStatus?currentMonth=' + month + '&biddingStatus=' + biddingStatus);
+    return this.http.get(API_URL + '/statistic/currentMonth&biddingStatus?currentMonth=' + month + '&biddingStatus=' + biddingStatus);
   }
 }

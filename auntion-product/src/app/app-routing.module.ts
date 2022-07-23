@@ -32,7 +32,7 @@ const routes: Routes = [
   },
   {
     path: 'product',
-    loadChildren: () => import('./product/product.module').then(module => module.ProductModule)
+    loadChildren: () => import('./admin/product/product.module').then(module => module.ProductModule)
   },
   {
     path: 'admin',
