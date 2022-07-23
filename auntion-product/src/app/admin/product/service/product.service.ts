@@ -3,6 +3,8 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Product} from '../../../model/Product';
 import {min} from 'rxjs/operators';
+import {TypeProduct} from '../../../model/TypeProduct';
+import {BiddingStatus} from '../../../model/BiddingStatus';
 
 const API_URL = 'http://localhost:8080/manager/product/api';
 
@@ -16,13 +18,16 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
   //HieuDV
-  getAll(page: number): Observable<Product[]> {
+  getAllProduct(page: number): Observable<Product[]> {
     return this.http.get<Product[]>(API_URL + '/list?page=' + page );
   }
 
-  //HieuDV
-  getAllNotPagination(): Observable<Product[]> {
-    return this.http.get<Product[]>(API_URL + '/list-not-pagination');
+  getAllTypeProduct(): Observable<TypeProduct[]> {
+    return this.http.get<TypeProduct[]>(API_URL + '/type');
+  }
+
+  getAllBiddingStatus(): Observable<BiddingStatus[]> {
+    return this.http.get<BiddingStatus[]>(API_URL + '/list-bidding-status');
   }
 
   //HieuDV
@@ -41,14 +46,6 @@ export class ProductService {
       '/' + minPrice + '/' + biddingStatus + '/' + page);
   }
 
-  //HieuDV
-  searchByNameTypeSellerPriceStatusNotPagination(name: string, typeProduct: number,
-                                                 sellerName: string, maxPrice: number,
-                                                 minPrice: number, biddingStatus: number,
-                                                 page: number): Observable<Product[]> {
-    return this.http.get<Product[]>(`${API_URL}/search-not-pagination?name=` + name + '&sellerName=' + sellerName + '&maxPrice=' + maxPrice +
-      '&minPrice=' + minPrice + '&biddingStatus=' + biddingStatus);
-  }
 
   //HieuDV
   updateProduct(product): Observable<Product> {

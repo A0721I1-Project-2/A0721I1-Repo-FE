@@ -5,6 +5,8 @@ import {ActivatedRoute} from '@angular/router';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {max, min} from 'rxjs/operators';
 import {consoleTestResultHandler} from 'tslint/lib/test';
+import {TypeProduct} from '../../../model/TypeProduct';
+import {BiddingStatus} from '../../../model/BiddingStatus';
 
 @Component({
   selector: 'app-list-product',
@@ -14,6 +16,8 @@ import {consoleTestResultHandler} from 'tslint/lib/test';
 export class ListProductComponent implements OnInit {
 
   productList: Product[] = [];
+  typeProductList: TypeProduct[] = [];
+  biddingStatusList: BiddingStatus[] = [];
   pageNumber = 0;
   totalPages: number;
   totalPagesArray: number[] = [];
@@ -25,6 +29,14 @@ export class ListProductComponent implements OnInit {
               private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    const hideNavHp = document.querySelector('#header');
+    const hideFooterHp = document.querySelector('.footer__container');
+// @ts-ignore
+// tslint:disable-next-line:no-unused-expression
+    hideNavHp.style.display = 'none';
+// @ts-ignore
+// tslint:disable-next-line:no-unused-expression
+    hideFooterHp.style.display = 'none';
     this.getAll();
     this.searchProduct = this.fb.group({
       nameProduct: [''],
@@ -36,7 +48,7 @@ export class ListProductComponent implements OnInit {
   }
 
   getAll() {
-    this.productService.getAll(0).subscribe(productList => {
+    this.productService.getAllProduct(0).subscribe(productList => {
       if (productList !== null ) {
         this.productList = productList['content'];
         this.totalPages = productList['totalPages'];
@@ -45,6 +57,12 @@ export class ListProductComponent implements OnInit {
       } else {
         this.notFoundStatus = true;
       }
+    });
+    this.productService.getAllTypeProduct().subscribe(typeProductList => {
+      this.typeProductList = typeProductList;
+    });
+    this.productService.getAllBiddingStatus().subscribe(biddingStatusList => {
+      this.biddingStatusList = biddingStatusList;
     })
   };
 
@@ -144,7 +162,7 @@ export class ListProductComponent implements OnInit {
   };
 
   showPage(page: number) {
-    this.productService.getAll(page).subscribe(productList => {
+    this.productService.getAllProduct(page).subscribe(productList => {
       if (productList !== null ) {
         this.productList = productList['content'];
         this.totalPages = productList['totalPages'];
