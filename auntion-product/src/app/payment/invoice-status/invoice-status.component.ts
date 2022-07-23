@@ -31,6 +31,7 @@ export class InvoiceStatusComponent implements OnInit {
   item = 0;
   address: string;
   today: Date;
+  paymentSave: any;
 
   constructor(
     private service: PaymentService,
@@ -39,6 +40,17 @@ export class InvoiceStatusComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (sessionStorage.getItem('testObject') !=null) {
+      this.service.savePayment(JSON.parse(sessionStorage.getItem('testObject'))).subscribe(
+        data => {
+          console.log("OK");
+          sessionStorage.removeItem('testObject');
+          this.ngOnInit();
+        }, error => {
+          console.log("NO OK");
+        }
+      )
+    }
     this.findAllStatusInvoice();
     // console.log('check img',this.invoice)
     this.today=new Date();
