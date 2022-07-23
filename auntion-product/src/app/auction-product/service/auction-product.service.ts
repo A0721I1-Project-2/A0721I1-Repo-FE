@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
 import {Product} from '../../model/Product';
 import {Member} from '../../model/Member';
-import {Account} from '../../model/Account';
 import {AuctionDTO} from '../../model/auctionDTO';
 import {ImageProduct} from '../../model/ImageProduct';
 import {Cart} from '../../model/Cart';
