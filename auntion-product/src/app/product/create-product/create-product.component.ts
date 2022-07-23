@@ -1,11 +1,13 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, ValidatorFn, Validators, ValidationErrors, FormControl } from "@angular/forms";
-import { Observable, of } from "rxjs";
 import { MemberService } from "src/app/member/service/member.service";
 import { TypeProductModel } from "src/app/type-product/models/type-product.model";
 import { TypeProductService } from "src/app/type-product/services/type-product.service";
 import { ProductFileModel } from "../models/product-file.model";
 import { ProductService } from "../service/product.service";
+import { Router } from "@angular/router";
+import { ToastrService } from "ngx-toastr";
+
 
 @Component({
     selector: 'create-product',
@@ -25,6 +27,8 @@ export class CreateProductComponent implements OnInit {
         private productService: ProductService,
         private typeProductService: TypeProductService,
         private memberService: MemberService,
+        private router: Router,
+        private toastrService: ToastrService,
     ) { }
 
     public ngOnInit(): void {
@@ -146,6 +150,10 @@ export class CreateProductComponent implements OnInit {
         })
         this.productService.create(formData).subscribe(res => {
             this.onChangeIdPost();
+            this.toastrService.success('them sản pham thành công')
+            this.router.navigate(["/product/list"])
+        }, error => {
+            this.toastrService.error(error?.error);
         })
     }
 
@@ -159,7 +167,7 @@ export class CreateProductComponent implements OnInit {
 
         const fileArray = Array.from(fileList);
         if (fileArray.some(file => {
-            return !['image/png', 'image/jpg','image/jpeg'].includes(file.type);
+            return !['image/png', 'image/jpg', 'image/jpeg'].includes(file.type);
         })) {
             return;
         }

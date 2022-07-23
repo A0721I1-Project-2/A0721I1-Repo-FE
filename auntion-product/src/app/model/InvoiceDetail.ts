@@ -1,5 +1,10 @@
+
+import {Invoice} from './Invoice';
+import {Product} from './Product';
+
 export interface InvoiceDetail {
   idInvoiceDetail: number;
-  invoice: any;
-  product: any;
+  invoice: Invoice;
+  product: Product;
+
 }

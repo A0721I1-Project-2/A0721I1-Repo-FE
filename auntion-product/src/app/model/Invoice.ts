@@ -1,3 +1,7 @@
+
+import {Payment} from './Payment';
+import {Member} from './Member';
+
 export interface Invoice {
   idInvoice: number;
   totalPrice: number;
@@ -7,4 +11,6 @@ export interface Invoice {
   member: any;
   invoiceDetailList: any;
   payment: any;
+  select: boolean;
+
 }

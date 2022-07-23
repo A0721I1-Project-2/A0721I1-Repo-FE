@@ -113,7 +113,7 @@
                         style="width: 205px; height: 205px">
                     <img src="https://bizweb.dktcdn.net/thumb/grande/100/175/988/products/chiron-baguette-cr7-3-copy-2.jpg?v=1653893197000"
                         style="width: 205px; height: 205px"> -->
-                    <div class="image-container d-flex" style="gap: 10px;">
+                    <div class="image-container d-flex" style="gap: 10px; overflow-y: auto;">
                         <img
                             style="width: 100px; height: 100px; cursor: pointer"
                             *ngFor="let file of files; index as i" [src]="file.base64 | safe:'resourceUrl'"

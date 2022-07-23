@@ -10,7 +10,8 @@ const routes: Routes = [
     component: PostProductComponent
   },
   {
-    path: 'auction',
+    // path: 'auction',
+    path: 'auction/:id',
     component: AuctionComponent
   }
 ];

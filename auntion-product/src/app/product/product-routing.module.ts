@@ -6,7 +6,6 @@ import {ReviewProductComponent} from './review-product/review-product.component'
 import {EditProductComponent} from './edit-product/edit-product.component';
 import { CreateProductComponent } from './create-product/create-product.component';
 
-
 const routes: Routes = [
   {
     path: 'statistic',

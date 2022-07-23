@@ -1,0 +1,44 @@
+<div class="home__container">
+    <div class="container">
+        <div class="screen-chat__container">
+            <div (click)="showScreenChat()" id="chatIcon" class="chat-icon hidden-chat">
+                <i class="chat-icon fa-solid fa-comments"></i>
+            </div>
+
+            <div id="screenChat" class="screen-chat hidden">
+                <div class="screen-chat__header-group">
+                    <div class="screen-chat__header">
+                        <div class="middle">
+                            <h3 class="title">Welcome to LiveChat</h3>
+                        </div>
+
+                        <div class="footer">
+                            <i (click)="closeBoxChat()" class="fa-solid fa-xmark"></i>
+                        </div>
+                    </div>
+
+                    <div class="screen-chat__admin">
+                        <div class="avatar-group">
+                            <img src="./assets/user/avatar.avif" alt="">
+
+                            <div class="active"></div>
+                        </div>
+
+                        <div class="info">
+                            <h3 class="name">Admin A0721I1</h3>
+                            <span class="position">Support Consultant</span>
+                        </div>
+                    </div>
+                </div>
+
+                <app-chat-box-user></app-chat-box-user>
+
+                <app-chat-form-user></app-chat-form-user>
+
+                <div class="screen-chat__footer-group">
+                    <p>Powered by <strong>A0721I1</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
