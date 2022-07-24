@@ -88,7 +88,13 @@ export class AuctionProductService {
     return this.httpClient.put('http://localhost:8080/manager/product/api/updateCart', cart);
   }
 
+  /* HuyNN */
   getAccountById(username: string) {
     return this.httpClient.get<Account>('http://localhost:8080/manager/product/api/getAccountByUsername/' + username);
+  }
+
+  /* HuyNN */
+  updateIdBindingStatus(idProduct, idBindingStatus) {
+    return this.httpClient.get('http://localhost:8080/manager/product/api/updateIdBindingStatus/' + idProduct + '/' + idBindingStatus);
   }
 }
