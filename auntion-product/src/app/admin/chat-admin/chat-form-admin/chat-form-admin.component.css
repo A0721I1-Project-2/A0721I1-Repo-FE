@@ -172,6 +172,10 @@
 
 /* Mobile and Tablet */
 @media (max-width: 1023px) {
+  .chat-bar__function .attachment-group label i,
+  .chat-bar__function .send-group i {
+    font-size: 1.2rem;
+  }
 }
 
 /* Tablet */

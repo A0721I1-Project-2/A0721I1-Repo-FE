@@ -15,22 +15,22 @@ export class EditMemberComponent implements OnInit {
   idAccount: number;
 
   editForm = this.fb.group({
-    idMember: ['', Validators.required],
-    nameMember: ['', Validators.required],
-    dateOfBirthMember: ['', Validators.required],
-    emailMember: ['', Validators.required],
-    addressMember: ['', Validators.required],
-    phoneMember: ['', Validators.required],
-    idCardMember: ['', Validators.required],
-    paypalMember: ['', Validators.required],
-    flagDelete: ['', Validators.required],
-    account: ['', Validators.required],
-    invoiceList: ['', Validators.required],
-    point: ['', Validators.required],
-    paymentList: ['', Validators.required],
-    rank: ['', Validators.required],
-    cart: ['', Validators.required],
-    products: ['', Validators.required],
+    idMember: [''],
+    nameMember: [''],
+    dateOfBirthMember: [''],
+    emailMember: [''],
+    addressMember: [''],
+    phoneMember: [''],
+    idCardMember: [''],
+    paypalMember: [''],
+    flagDelete: [''],
+    account: [''],
+    invoiceList: [''],
+    point: [''],
+    paymentList: [''],
+    rank: ['', ],
+    cart: ['', ],
+    products: [''],
   });
 
   constructor(private fb: FormBuilder, private service: MemberService,
@@ -40,9 +40,9 @@ export class EditMemberComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       const id = Number(paramMap.get('id'));
+      console.log(id)
       this.service.findByIdAccount(id).subscribe(next => {
         this.member = next;
-        console.log(this.member);
         this.editForm.patchValue({
           idAccount: this.member.account.idAccount,
           idMember: this.member.idMember,
@@ -61,35 +61,36 @@ export class EditMemberComponent implements OnInit {
           rank: this.member.rank,
           cart: this.member.cart,
           products: this.member.products,
-        })
-        this.editForm.get('account').setValue(this.member.account.idAccount, {onlySelf: true});
-      })
-    })
+        }
+        );
+        // this.editForm.get('idAccount').setValue(this.member.account.idAccount, {onlySelf: true});
+      });
+    });
   }
 
   editSubmit() {
-    console.log('aaa');
-    if (this.editForm.valid) {
-      console.log('bbbb');
       this.member = this.editForm.value;
-      console.log(this.member);
-      for (let i = 0; i < this.idAccount; i++) {
-        // tslint:disable-next-line:triple-equals
-        if ((this.member.account.idAccount) == (this.idAccount)) {
-          this.member.account.idAccount = this.idAccount;
-        }
-      }
+      console.log( this.member.nameMember   );
+      // for (let i = 0; i < this.idAccount; i++) {
+      //   // tslint:disable-next-line:triple-equals
+      //   if ((this.member.account.idAccount) == (this.idAccount)) {
+      //     this.member.account.idAccount = this.idAccount;
+      //   }
+      // }
       this.service.editMember(this.member).subscribe(
         () => {
-        },
-        () => {
-        },
-        () => {
+          // console.log('Hello ba dan')
           this.service.message = 'Chỉnh sửa thành công ' + this.member.nameMember;
-          this.router.navigateByUrl('/member/profile/' + this.idAccount);
+          // this.router.navigateByUrl('/member/profile/' + this.member.account.idAccount);
+          this.router.navigate(['/member/profile' , this.member.account.idAccount]);
+        },
+        () => {
+        },
+        () => {
+
         },
       );
     }
-  }
+
 
 }

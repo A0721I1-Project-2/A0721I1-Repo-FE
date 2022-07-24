@@ -1,1 +1,132 @@
-<p>post-product works!</p>
+
+<div class="register-form mt-3 mb-3" style="padding-top: 120px">
+  <div class="container">
+    <div class="row">
+      <div class="main-page col-md-8 col-12 col-sm-6">
+        <form class="p-4" [formGroup]="formCreate" (ngSubmit)="createProduct()">
+          <div class="row">
+            <div class="text-tittle-page col-12 text-center">
+              <h2 class="tittle-page1" style="color: #11b683">Post Product</h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6 col-sm-12 col-md-10">
+              <div class="form-group">
+                <label> Product Name:<a style="color: red"> (*)</a> </label>
+                <input type="text" class="form-control" formControlName="nameProduct">
+<!--                <p style="color: red">Product name cannot be blank !</p>-->
+                <div *ngFor="let validation of VALIDATION_MESSAGE.nameProduct" class="text-danger">
+                  <div *ngIf="formCreate.get('nameProduct').hasError(validation.type) && (formCreate.get('nameProduct').dirty || formCreate.get('nameProduct').touched)"
+                       class="error-message">
+                    {{validation.message}}</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label> Begin Price:<a style="color: red"> (*)</a> </label>
+                <input type="text" class="form-control"  formControlName="beginPrice" pattern="^[0-9]+$">
+<!--                <p style="color: red">Begin Price cannot be blank !</p>-->
+                <div *ngFor="let validation of VALIDATION_MESSAGE.beginPrice" class="text-danger" >
+                  <div *ngIf="formCreate.get('beginPrice').hasError(validation.type) && (formCreate.get('beginPrice').dirty || formCreate.get('beginPrice').touched)"
+                       class="error-message">
+                    {{validation.message}}</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label> Money For Once Auction:<a style="color: red"> (*)</a></label>
+                <input type="text" class="form-control" formControlName="incrementPrice" pattern="^[0-9]+$">
+
+<!--                <p style="color: red">Money For Once Auction cannot be blank !</p>-->
+                <div *ngFor="let validation of VALIDATION_MESSAGE.incrementPrice" class="text-danger">
+                  <div *ngIf="formCreate.get('incrementPrice').hasError(validation.type) && (formCreate.get('incrementPrice').dirty || formCreate.get('incrementPrice').touched)"
+                       class="error-message">
+                    {{validation.message}}</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label> Detail Information: <a style="color: red"> (*)</a></label>
+                <textarea type="textarea" class="form-control" formControlName="productDescription" rows="5"></textarea>
+<!--                <p style="color: red">Detail Information cannot be blank !</p>-->
+                <div *ngFor="let validation of VALIDATION_MESSAGE.productDescription" class="text-danger">
+                  <div *ngIf="formCreate.get('productDescription').hasError(validation.type) && (formCreate.get('productDescription').dirty || formCreate.get('productDescription').touched)"
+                       class="error-message">
+                    {{validation.message}}</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label> Product Type: <a style="color: red"> (*)</a></label>
+                <select id="select-typeProduct" class="form-control" formControlName="typeProduct">
+                  <option value="" selected hidden>Please select </option>
+                  <option *ngFor="let item of typeProduct" class="option" value="{{item.idProductType}}"><p>{{item.nameProductType}}</p>
+                  </option>
+                </select>
+                <div *ngFor="let validation of VALIDATION_MESSAGE.typeProduct" class="text-danger">
+                  <div *ngIf="formCreate.get('typeProduct').hasError(validation.type) && (formCreate.get('typeProduct').dirty || formCreate.get('typeProduct').touched)"
+                       class="error-message">
+                    {{validation.message}}</div>
+                </div>
+<!--                <p style="color: red">Please select product type!</p>-->
+              </div>
+
+              <div class="form-group">
+                <label> Start Time: <a style="color: red"> (*)</a></label>
+<!--               <input type="datetime-local"  step="1" class="form-control" placeholder="Enter start date" required="" type>-->
+                <input  class="form-control"  step="1" required="" formControlName="startTime"  type="datetime-local" >
+                <div *ngFor="let validation of VALIDATION_MESSAGE.startTime" class="text-danger">
+                  <div *ngIf="formCreate.get('startTime').hasError(validation.type) && (formCreate.get('startTime').dirty || formCreate.get('startTime').touched)"
+                       class="error-message">
+                    {{validation.message}}</div>
+                </div>
+
+              </div>
+              <div class="form-group">
+                <label> End Time:<a style="color: red"> (*)</a></label>
+                <input  class="form-control"  step="1" formControlName="endTime" placeholder="Enter end date" required="" type="datetime-local" formaction="MM-dd-yyyy-HH-mm" >
+                <div *ngFor="let validation of VALIDATION_MESSAGE.endTime" class="text-danger">
+                  <div *ngIf="formCreate.get('endTime').hasError(validation.type) && (formCreate.get('endTime').dirty || formCreate.get('endTime').touched)"
+                       class="error-message">
+                    {{validation.message}}</div>
+                </div>
+                <div *ngFor="let validation of VALIDATION_MESSAGE.endTime" class="text-danger">
+                  <div *ngIf="formCreate.get('endTime').hasError(validation.type) && (formCreate.get('endTime').dirty || formCreate.get('endTime').touched)|| getControl.endTime.invalid && getControl.endTime.touched"
+                       class="error-message">
+                    {{validation.message1}}</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label> Images <a style="color: red"> (*)</a></label>
+                <div>
+                  <img (click)="showImage()" *ngFor="let url of urls" [src]="url" class="rounded mb-3" width="180">
+                </div>
+                <input accept=".jpg" type="file" multiple (change)="preview($event)" required="">
+<!--                <div *ngFor="let validation of VALIDATION_MESSAGE.image" class="text-danger">-->
+<!--                <input accept=".jpg" type="file" formControlName="image" multiple (change)="preview($event)" required="">-->
+<!--                <div *ngFor="let validation of VALIDATION_MESSAGE.image" class="text-danger">-->
+<!--                  <div *ngIf="formCreate.get('image').hasError(validation.type) && (formCreate.get('image').dirty || formCreate.get('image').touched)"-->
+<!--                       class="error-message">-->
+<!--                    {{validation.message}}</div>-->
+<!--                </div>-->
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="submit"  class="form__group_button_edit" data-toggle="modal" data-target="#exampleModalLong1" value=" Register">
+            <input type="reset" class="form__group_button_retype" value="ReType">
+          </div>
+        </form>
+      </div>
+      <div class="return-page col-md-4 col-12 col-sm-6">
+        <div class="text-center" style="margin-top: 80px">
+<!--          <img src="../post-product/img/11zon_cropped%20(1).png" height="145" width="148"/>-->
+          <h1>Welcome !</h1>
+          <p><b>Your products after registration will be censored and auctioned on the website!</b></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
