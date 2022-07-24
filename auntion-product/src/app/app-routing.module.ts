@@ -1,4 +1,4 @@
- import {NgModule} from '@angular/core';
+import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 
 
@@ -23,7 +23,7 @@ const routes: Routes = [
     path: 'transaction',
     loadChildren: () => import('./transaction/transaction.module').then(module => module.TransactionModule)
   },
-    {
+  {
     path: 'payment',
     loadChildren: () => import('./payment/payment.module').then(module => module.PaymentModule)
   },

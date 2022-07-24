@@ -38,6 +38,4 @@ export class LoginService {
     window.localStorage.clear();
     window.sessionStorage.clear();
   }
-
-
 }

@@ -10,6 +10,7 @@ import {AuctionDTO} from '../../model/auctionDTO';
   styleUrls: ['./product-detail.component.css']
 })
 export class ProductDetailComponent implements OnInit {
+
   product: Product;
   arrayImage: string[] = [];
   id: any;
@@ -22,7 +23,7 @@ export class ProductDetailComponent implements OnInit {
   constructor(private homeService: HomeService, private route: ActivatedRoute) {
     this.id = this.route.snapshot.paramMap.get('id');
     this.getProductDetail();
-    console.log(this.product)
+    console.log(this.product);
   }
 
   ngOnInit(): void {
@@ -48,7 +49,7 @@ export class ProductDetailComponent implements OnInit {
         this.checkAvailable = 1;
         const id = this.id;
         const countDownDate = new Date(this.product.endDate).getTime();
-        let product = this.product =data;
+        let product = this.product = data;
         // tslint:disable-next-line:only-arrow-functions
         const x = setInterval(function() {
           const now = new Date().getTime();
@@ -82,7 +83,7 @@ export class ProductDetailComponent implements OnInit {
     });
   }
 
-  getAuctionHighest(){
+  getAuctionHighest() {
     this.homeService.getAuctionList(this.id).subscribe((auctions: AuctionDTO[]) => {
       if (auctions != null) {
         this.winner = auctions[0].username;

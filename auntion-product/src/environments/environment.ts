@@ -5,7 +5,9 @@
 
 export const environment = {
   production: false,
-   firebaseConfig : {
+
+  API_GETWAY: 'http://localhost:8080',
+  firebaseConfig: {
     apiKey: 'AIzaSyCXbO7_RtR7KFi5WPYcGJHtYAcMhy0_3SY',
     authDomain: 'update-c1ca8.firebaseapp.com',
     projectId: 'update-c1ca8',
@@ -15,11 +17,10 @@ export const environment = {
     measurementId: 'G-1HYNDBS3CK'
   },
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  apiUrl: 'http://localhost:8080',
- /* recaptcha: {
-    siteKey: '6LcotukgAAAAAOZWmgjxeoTBKYTN5kgJoq01-wXh',
-  }*/
-
+  apiUrl: 'http://localhost:8080'
+  /* recaptcha: {
+     siteKey: '6LcotukgAAAAAOZWmgjxeoTBKYTN5kgJoq01-wXh',
+   }*/
 };
 
 /*

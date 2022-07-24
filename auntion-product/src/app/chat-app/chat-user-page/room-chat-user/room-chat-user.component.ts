@@ -13,6 +13,7 @@ export class RoomChatUserComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log(JSON.parse(window.localStorage.getItem('auth-user')));
   }
 
   /* Close box chat */

@@ -184,6 +184,13 @@
 /*!*!* XX-Large devices (larger desktops, 1400px and up) *!*!*/
 /*!*@media (min-width: 1400px) {*!*/
 
+/*}
+/*_____________________________________________________________________________________________________________*/
+
+
+/* Index:
+Line 60: button config
+=======
 /*!*}*/
 /*!*_____________________________________________________________________________________________________________*!*/
 
@@ -400,7 +407,7 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
 
 .notify-row .badge {
   position: absolute;
-  right: -10px;
+  right: 3px;
   top: -10px;
   z-index: 100;
 }

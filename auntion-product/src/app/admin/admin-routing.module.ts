@@ -5,14 +5,14 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 /* Moi người điền link mình tại đây */
 const routes: Routes = [
   {
-    path: '',
+    path: 'dashboard', // HauLST thêm để tránh trùng link với trang chủ
     component: DashboardComponent
   }, {
     path: 'chat-page',
     loadChildren: () => import('./chat-admin/chat-admin.module').then(module => module.ChatAdminModule)
   }, {
     path: 'product',
-    loadChildren: () => import('../product/product.module').then(module => module.ProductModule)
+    loadChildren: () => import('./product/product.module').then(module => module.ProductModule)
   },
   {
     path: 'member',
@@ -21,9 +21,6 @@ const routes: Routes = [
   {
     path: 'transaction',
     loadChildren: () => import('./transaction/transaction.module').then(module => module.TransactionModule)
-  }, {
-    path: 'member',
-    loadChildren: () => import('../member/member.module').then(module => module.MemberModule)
   }
 ];
 

@@ -32,7 +32,8 @@ export class ListTransactionComponent implements OnInit {
   idInvoiceChecked: any;
   listIdInvoice: any[] = [];
 
-  constructor(private transactionService: TransactionService) {}
+  constructor(private transactionService: TransactionService) {
+  }
 
   ngOnInit(): void {
     const hideNavHp = document.querySelector('#header');
@@ -174,7 +175,7 @@ export class ListTransactionComponent implements OnInit {
         '',
         'error'
       );
-    }else {
+    } else {
       for (let i = 0; i < this.listIdInvoice.length; i++) {
         this.transactionService.delete(this.listIdInvoice[i]).subscribe(() => {
           Swal.fire(

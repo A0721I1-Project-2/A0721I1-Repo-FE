@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {HomeService} from '../service/home.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import Swal from "sweetalert2";
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-forgot-password',
