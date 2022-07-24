@@ -7,6 +7,7 @@ import {AuctionProductService} from '../service/auction-product.service';
 import {TypeProduct} from '../../model/TypeProduct';
 import {FileUpload} from '../../model/FileUpload';
 import Swal from 'sweetalert2';
+import {ApiService} from '../../chat-app/services/api.service';
 
 @Component({
   selector: 'app-post-product',
@@ -25,10 +26,14 @@ export class PostProductComponent implements OnInit {
   urls = [];
   selectedFiles: any;
 
+  /* User after login */
+  user: any;
+
   currentImageUpload: FileUpload;
   currentImagesUpload: File[] = [];
 
-  constructor(private firebaseService: FirebaseService, private productService: AuctionProductService) {
+  constructor(private firebaseService: FirebaseService, private apiService: ApiService,
+              private productService: AuctionProductService) {
   }
 
   VALIDATION_MESSAGE = {
@@ -62,6 +67,11 @@ export class PostProductComponent implements OnInit {
   };
 
   ngOnInit(): void {
+    /* Get user after login */
+    this.user = JSON.parse(window.localStorage.getItem('auth-user'));
+    console.log(this.user);
+
+
     // @ts-ignore
     this.formCreate = new FormGroup({
       nameProduct: new FormControl('', Validators.required),
@@ -87,37 +97,46 @@ export class PostProductComponent implements OnInit {
   createProduct() {
     /* Get properties in form */
     this.productCreate = this.formCreate.value;
-    if (this.formCreate.invalid) {
-      return;
-    } else {
-      const typeProductId = this.formCreate.get('typeProduct').value;
-      this.productService.getTypeProductById(typeProductId).subscribe(typeProduct => {
-        this.productCreate.typeProduct = typeProduct;
-        this.productService.createProduct(this.productCreate).subscribe(data => {
-          /* Tránh lỗi vòng lặp */
-          this.currentImagesUpload = [];
-          /* Lấy và đẩy từng file vào 1 mảng */
-          for (let i = 0; i < this.selectedFiles.length; i++) {
-            console.log(this.selectedFiles.item(i));
-            this.currentImagesUpload.push(this.selectedFiles.item(i));
-          }
+    const userId = this.user.id;
 
-          /* push từng file */
-          // tslint:disable-next-line:prefer-for-of
-          for (let i = 0; i < this.currentImagesUpload.length; i++) {
-            this.currentImageUpload = new FileUpload(this.currentImagesUpload[i]);
+    this.apiService.getMemberByAccountId(userId).subscribe(account => {
+      console.log(account);
 
-            /* Lưu trên firebase */
-            this.firebaseService.pushImgToStorage(this.currentImageUpload, data);
-          }
+      this.productCreate.members = account;
+      if (this.formCreate.invalid) {
+        return;
+      } else {
+        const typeProductId = this.formCreate.get('typeProduct').value;
+        this.productService.getTypeProductById(typeProductId).subscribe(typeProduct => {
+          this.productCreate.typeProduct = typeProduct;
+
+          console.log(this.productCreate);
+          this.productService.createProduct(this.productCreate).subscribe(data => {
+            /* Tránh lỗi vòng lặp */
+            this.currentImagesUpload = [];
+            /* Lấy và đẩy từng file vào 1 mảng */
+            for (let i = 0; i < this.selectedFiles.length; i++) {
+              console.log(this.selectedFiles.item(i));
+              this.currentImagesUpload.push(this.selectedFiles.item(i));
+            }
+
+            /* push từng file */
+            // tslint:disable-next-line:prefer-for-of
+            for (let i = 0; i < this.currentImagesUpload.length; i++) {
+              this.currentImageUpload = new FileUpload(this.currentImagesUpload[i]);
+
+              /* Lưu trên firebase */
+              this.firebaseService.pushImgToStorage(this.currentImageUpload, data);
+            }
+          });
         });
-      });
-      Swal.fire(
-        'The product is being approved!!',
-        'You clicked the button!',
-        'success'
-      );
-    }
+        Swal.fire(
+          'The product is being approved!!',
+          'You clicked the button!',
+          'success'
+        );
+      }
+    });
   }
 
   preview(event: any) {
@@ -145,7 +164,6 @@ export class PostProductComponent implements OnInit {
 
   private customvValidateEnDate(): ValidatorFn {
     return (form): ValidationErrors => {
-
       const endTime = form.value;
       const startTime = this.getControl.startTime.value;
       if (endTime < startTime) {
@@ -157,7 +175,6 @@ export class PostProductComponent implements OnInit {
 
   private customvValidateStartDate(): ValidatorFn {
     return (form): ValidationErrors => {
-
       const startTime = form.value;
       const endTime = this.getControl.endDate.value;
       if (endTime < startTime) {
@@ -169,6 +186,7 @@ export class PostProductComponent implements OnInit {
 
   showImage() {
   }
+
   public get getControl() {
     return this.formCreate.controls;
   }

@@ -11,13 +11,11 @@ import {environment} from '../environments/environment';
 import {ToastrModule} from 'ngx-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {TransactionModule} from './transaction/transaction.module';
-// @ts-ignore
 import {NgxCaptchaModule} from 'ngx-captcha';
 import {ChatUserPageModule} from './chat-app/chat-user-page/chat-user-page.module';
 import {HomeModule} from './home/home.module';
-
-import {AngularFireModule} from "@angular/fire";
 import {DatePipe} from '@angular/common';
+import {AngularFireModule} from "@angular/fire";
 
 @NgModule({
   declarations: [
@@ -31,6 +29,7 @@ import {DatePipe} from '@angular/common';
     BrowserAnimationsModule,
     FormsModule,
     AngularFireDatabaseModule,
+    AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule ,
     AngularFireAuthModule,
@@ -48,7 +47,8 @@ import {DatePipe} from '@angular/common';
     TransactionModule,
     ChatUserPageModule,
     HomeModule,
-    BrowserAnimationsModule],
+    BrowserAnimationsModule
+  ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
 })

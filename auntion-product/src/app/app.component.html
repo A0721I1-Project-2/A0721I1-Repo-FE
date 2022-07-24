@@ -1,21 +1,12 @@
-<<<<<<< HEAD
 <div class="container-app">
-<!--    <div *ngIf="path !=='http://localhost:4200/login/authentication'">-->
+  <div *ngIf="path !=='http://localhost:4200/login/authentication'">
 
-<!--        <app-header-unlogin></app-header-unlogin>-->
-<!--        <app-header></app-header>-->
-<!--        <app-room-chat-user></app-room-chat-user>-->
-<!--    </div>-->
-    <router-outlet></router-outlet>
-<!--    <div *ngIf="path !=='http://localhost:4200/login/authentication'">-->
-<!--        <app-footer class="app-footer"></app-footer>-->
-<!--    </div>-->
+    <app-header-unlogin></app-header-unlogin>
+    <app-header></app-header>
+  </div>
+  <router-outlet></router-outlet>
+  <div *ngIf="path !=='http://localhost:4200/login/authentication'">
+    <app-footer class="app-footer"></app-footer>
+    <app-room-chat-user></app-room-chat-user>
+  </div>
 </div>
-=======
-
-<app-header></app-header>
-<app-header-unlogin></app-header-unlogin>
-<app-room-chat-user></app-room-chat-user>
-<router-outlet></router-outlet>
-<app-footer class="app-footer"></app-footer>
->>>>>>> 41211da595432286f6a434dadbc87ec3e5220091
