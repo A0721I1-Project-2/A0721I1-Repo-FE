@@ -15,4 +15,5 @@ export interface Payment {
   transport: any;
   cart: any;
   product: any;
+  total:any;
 }
