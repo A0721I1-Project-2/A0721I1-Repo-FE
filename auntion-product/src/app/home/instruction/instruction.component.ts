@@ -10,6 +10,7 @@ import { Topic } from 'src/app/model/Topic';
   styleUrls: ['./instruction.component.css']
 })
 export class InstructionComponent implements OnInit {
+
   questions: Question[];
   topics: Topic[];
 

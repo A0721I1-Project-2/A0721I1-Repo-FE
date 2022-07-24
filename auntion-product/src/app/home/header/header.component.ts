@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
-import {ShareService} from '../../login/service/share.service';
+import { Router } from '@angular/router';
+import { ShareService } from '../../login/service/share.service';
 import swal from 'sweetalert';
-import {Member} from '../../model/Member';
-import {TokenStorageService} from '../../login/service/token-storage.service';
-import {MemberService} from '../../member/service/member.service';
-import {Role} from '../../model/Role';
+import { Member } from '../../model/Member';
+import { TokenStorageService } from '../../login/service/token-storage.service';
+import { MemberService } from '../../member/service/member.service';
+import { Role } from '../../model/Role';
 
 @Component({
   selector: 'app-header',
@@ -14,15 +14,12 @@ import {Role} from '../../model/Role';
 })
 export class HeaderComponent implements OnInit {
 
-
-  // employee: Employee;
-  member: Member;
-  // role: Role;
   idUser: number;
   isLogin = false;
   roles: [];
   username: string;
   token: string;
+  member: any;
 
 
   constructor(
@@ -53,28 +50,28 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-      swal({
+    swal({
       title: 'Sign-out',
       text: 'Are you sure Logout',
       icon: 'warning',
       buttons: ['Close', true],
       dangerMode: true,
     })
-        .then((willSignOut) => {
-          if (willSignOut) {
-            swal('Logout success !', {
-              icon: 'success',
-            });
+      .then((willSignOut) => {
+        if (willSignOut) {
+          swal('Logout success !', {
+            icon: 'success',
+          });
+          setTimeout(() => {
+            this.tokenStorageService.signOut();
+            this.ngOnInit();
+            this.router.navigateByUrl('/home');
             setTimeout(() => {
-              this.tokenStorageService.signOut();
-              this.ngOnInit();
-              this.router.navigateByUrl('/home');
-              setTimeout(() => {
-                window.location.reload();
-              }, 50);
-            }, 700);
-          } else {}
-        });
+              window.location.reload();
+            }, 50);
+          }, 700);
+        } else { }
+      });
     // if (window.confirm('Bạn có chắc là muốn đăng xuất ra khỏi hệ thống ?')){
     //   this.tokenStorageService.signOut();
     //   this.ngOnInit();
@@ -82,7 +79,7 @@ export class HeaderComponent implements OnInit {
   }
 
   getPositionById() {
-    if (this.tokenStorageService.getUser()){
+    if (this.tokenStorageService.getUser()) {
       this.idUser = this.tokenStorageService.getUser().id;
       console.log(this.idUser);
       this.memberService.findByIdUser(this.idUser).subscribe(

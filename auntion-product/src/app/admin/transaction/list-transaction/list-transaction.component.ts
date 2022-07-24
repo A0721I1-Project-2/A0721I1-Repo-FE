@@ -1,10 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {TransactionService} from '../service/transaction.service';
 import {FormControl, FormGroup} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
 import {InvoiceDetail} from '../../../model/InvoiceDetail';
 import {Invoice} from '../../../model/Invoice';
-import {Payment} from '../../../model/Payment';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -27,22 +25,25 @@ export class ListTransactionComponent implements OnInit {
   total = 0;
   Status = 'Status';
 
-  address: string;
   street: string;
-  ward: string;
-  district: string;
-  city: string;
-
-  payments: Payment [];
 
   /* Initial properties for delete invoice */
   idInvoice: any;
   idInvoiceChecked: any;
   listIdInvoice: any[] = [];
 
-  constructor(private transactionService: TransactionService) {}
+  constructor(private transactionService: TransactionService) {
+  }
 
   ngOnInit(): void {
+    const hideNavHp = document.querySelector('#header');
+    const hideFooterHp = document.querySelector('.footer__container');
+// @ts-ignore
+// tslint:disable-next-line:no-unused-expression
+    hideNavHp.style.display = 'none';
+// @ts-ignore
+// tslint:disable-next-line:no-unused-expression
+    hideFooterHp.style.display = 'none';
     this.transactionService.getAll(this.pageNumber).subscribe((data: any) => {
       this.invoiceDetail = data.content;
     });
@@ -174,7 +175,7 @@ export class ListTransactionComponent implements OnInit {
         '',
         'error'
       );
-    }else {
+    } else {
       for (let i = 0; i < this.listIdInvoice.length; i++) {
         this.transactionService.delete(this.listIdInvoice[i]).subscribe(() => {
           Swal.fire(
