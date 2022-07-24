@@ -117,7 +117,7 @@
 }
 
 
-@media screen and (max-width: 1420px) {
+@media screen and (max-width: 1460px) {
   .search-user-list {
     border: 1px solid #dee2e6;
     padding-inline: 10px;
@@ -132,12 +132,12 @@
     padding-inline: 16px;
     margin-inline: 25px;
     margin-block: 5px;
-    width: 95%;
+    width: 45%;
   }
 
   .search-user-list select {
     padding-inline: 13px;
-    margin-inline: 25px;
+    margin-left: 25px;
     margin-block: 5px;
     width: 95%;
   }
@@ -186,3 +186,5 @@
     width: 100%;
   }
 }
+
+@media screen and (max-width: 1270px) {}
