@@ -5,6 +5,8 @@ import {PostProductComponent} from './post-product/post-product.component';
 import {AuctionComponent} from './auction/auction.component';
 import {HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
+import {AngularFireModule} from "@angular/fire";
+import {environment} from "./environments/environment";
 
 
 @NgModule({
@@ -13,7 +15,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     CommonModule,
     AuctionProductRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule ,
+    AngularFireModule.initializeApp(environment.firebaseProduct)
   ]
 })
 export class AuctionProductModule {
