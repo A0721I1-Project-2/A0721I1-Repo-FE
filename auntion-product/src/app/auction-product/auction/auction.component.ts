@@ -264,7 +264,9 @@ export class AuctionComponent implements OnInit {
   auctionFinish() {
     this.isFinish = true;
     this.auctionProductService.getAuctionList(this.product.idProduct).subscribe((data: AuctionDTO[]) => {
-      if (data[0]?.memberId === this.member.idMember) {
+      if (data.length === 0) {
+        this.auctionProductService.updateIdBindingStatus(this.idProduct, 1).subscribe();
+      } else if (data[0]?.memberId === this.member.idMember) {
         this.modalBody = 'You have successfully auctioned the product ' + this.product.nameProduct + '!';
         this.modalBackground = '#11B683';
         this.modalHidden = false;
