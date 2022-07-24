@@ -27,6 +27,7 @@ import {AngularFireModule} from "@angular/fire";
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    AngularFireAuthModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     BrowserAnimationsModule,
@@ -43,6 +44,7 @@ import {AngularFireModule} from "@angular/fire";
       progressAnimation: 'increasing',
       preventDuplicates: true
     }),
+    AngularFireAuthModule,
     TransactionModule,
     ChatUserPageModule,
     HomeModule,

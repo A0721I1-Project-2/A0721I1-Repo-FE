@@ -36,11 +36,6 @@ export class ChatService {
   sendMessage(message: any, fileUpload: any, accountId: any) {
     const timeStamp = this.getTimeStamp();
 
-    /* Create new path for admin and user */
-    let path = `messages/${accountId}`;
-
-    console.log(this.account);
-
     this.chatMessages = this.getMessages(accountId);
 
     if (fileUpload == null) {
