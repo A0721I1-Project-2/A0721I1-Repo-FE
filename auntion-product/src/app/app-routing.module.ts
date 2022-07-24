@@ -1,5 +1,7 @@
+
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
 
 
 
@@ -34,17 +36,17 @@ const routes: Routes = [
     path: 'product',
     loadChildren: () => import('./admin/product/product.module').then(module => module.ProductModule)
   },
-  {
-    path: 'admin',
-    loadChildren: () => import('./control-admin-page/control-admin-page.module').then(module => module.ControlAdminPageModule)
-  },
+  // {
+  //   path: 'admin',
+  //   loadChildren: () => import('./control-admin-page/control-admin-page.module').then(module => module.ControlAdminPageModule)
+  // },
   // { path: 'login',
   //   loadChildren: () => import('./login/login.module').then(module => module.LoginModule)
   // },
-  // {
-  //   path: 'admin',
-  //   loadChildren: () => import('./admin/admin.module').then(module => module.AdminModule)
-  // }
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(module => module.AdminModule)
+  }
 ];
 
 @NgModule({

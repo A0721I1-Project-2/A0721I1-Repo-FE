@@ -123,13 +123,13 @@
             <i style="color: red">*</i>
           </label>
           <div class="col-sm-7">
-            <input type="datetime-local" step="1" formaction="MM-dd-yyyy-HH-mm" class="form-control" formControlName="startDate">
+            <input type="datetime-local" step="1"  class="form-control" formControlName="startDate">
             <div *ngIf="(getControl.startDate.dirty || getControl.startDate.touched) && getControl.startDate.invalid">
               <div *ngIf="getControl.startDate.errors.required" style="color: red;">
                 Not Empty
               </div>
 
-              <div *ngIf="getControl.startDate.errors.invalid">
+              <div *ngIf="getControl.startDate.errors.invalid" style="color: red;">
                 Start date must be smaller than End date
               </div>
             </div>
@@ -141,13 +141,13 @@
             <i style="color: red">*</i>
           </label>
           <div class="col-sm-7">
-            <input type="datetime-local" step="1" formaction="MM-dd-yyyy-HH-mm" class="form-control" formControlName="endDate">
+            <input type="datetime-local" step="1"  class="form-control" formControlName="endDate">
             <div *ngIf="(getControl.endDate.dirty || getControl.endDate.touched) && getControl.endDate.invalid">
               <div *ngIf="getControl.endDate.errors.required" style="color: red;">
                 Not Empty
               </div>
 
-              <div *ngIf="getControl.endDate.errors.invalid">
+              <div *ngIf="getControl.endDate.errors.invalid" style="color: red;">
                 End date must be bigger than Start date
               </div>
             </div>
