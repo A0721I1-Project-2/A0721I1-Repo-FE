@@ -31,6 +31,7 @@
   flex-direction: row;
   justify-content: space-around;
   flex-flow: wrap;
+
 }
 
 .btn-pagination a {
@@ -43,17 +44,10 @@ th {
   text-align: center;
 }
 
-hr {
-  background: #11b683;
-  height: 1px;
-  margin-top: 70px;
-  margin-bottom: 50px;
-}
-
-
 
 h1 {
   color: #11b683;
+  margin-bottom: 30px;
 }
 
 .title {
@@ -69,6 +63,8 @@ label {
 .btn {
   background: #11b683;
   color: white;
+  border-radius: 25px;
+  margin-left: 10px;
 }
 
 .btn:hover {
@@ -82,10 +78,10 @@ table {
 }
 
 .content {
-  margin-top: 60px;
+  margin: 15px 0 40px 0;
+
 }
 
-button,
 select,
 input {
   border-radius: 25px;
