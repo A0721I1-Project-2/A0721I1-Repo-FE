@@ -161,8 +161,8 @@ a {
 
 .btn:hover {
   cursor: pointer;
-  color: var(--grad-clr1);
-  background-color: white;
+  color: #fff;
+  background-color: #11b683;
   transition: 0.5s ease all;
   border: 1px solid var(--grad-clr1);
 }

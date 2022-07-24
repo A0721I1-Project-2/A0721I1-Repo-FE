@@ -89,6 +89,8 @@ export class HeaderComponent implements OnInit {
         (data) => {
           this.member = data;
           console.log(data);
+          // Quang theem sessionStrorage de lay id_member
+          sessionStorage.setItem('id_member', String(this.member.idMember));
         }
       );
     }
