@@ -8,6 +8,7 @@ import {TypeProduct} from '../../model/TypeProduct';
 import {FileUpload} from '../../model/FileUpload';
 import Swal from 'sweetalert2';
 import {ApiService} from '../../chat-app/services/api.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-post-product',
@@ -32,7 +33,7 @@ export class PostProductComponent implements OnInit {
   currentImageUpload: FileUpload;
   currentImagesUpload: File[] = [];
 
-  constructor(private firebaseService: FirebaseService, private apiService: ApiService,
+  constructor(private firebaseService: FirebaseService, private apiService: ApiService, private router: Router,
               private productService: AuctionProductService) {
   }
 
@@ -135,6 +136,7 @@ export class PostProductComponent implements OnInit {
           'You clicked the button!',
           'success'
         );
+        this.router.navigateByUrl('/home');
       }
     });
   }
