@@ -10,6 +10,7 @@ import {Member} from '../../model/Member';
 import {AuctionDTO} from '../../model/auctionDTO';
 import {ImageProduct} from '../../model/ImageProduct';
 import {Cart} from '../../model/Cart';
+import {Account} from '../../model/Account';
 
 @Injectable({
   providedIn: 'root'
