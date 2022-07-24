@@ -14,11 +14,11 @@ export interface Member {
   idCardMember: string;
   paypalMember: string;
   flagDelete: boolean;
-  account: Account;
+  account: any;
   invoiceList: any;
   point: number;
   paymentList: any;
-  rank: Rank;
+  rank: any;
   cart: any;
   products: any;
   checkedClause: boolean;

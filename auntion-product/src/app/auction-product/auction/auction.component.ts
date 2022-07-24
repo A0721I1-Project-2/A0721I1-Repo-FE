@@ -3,11 +3,11 @@ import {AuctionProductService} from '../service/auction-product.service';
 import {Product} from '../../model/Product';
 import {FormControl, FormGroup} from '@angular/forms';
 import {AuctionDTO} from '../../model/auctionDTO';
-import {Member} from '../../model/Member';
-import {Account} from '../../model/Account';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Cart} from '../../model/Cart';
 import {TokenStorageService} from '../../login/service/token-storage.service';
+import {Member} from '../../model/Member';
+import {Account} from '../../model/Account';
 
 @Component({
   selector: 'app-auction',

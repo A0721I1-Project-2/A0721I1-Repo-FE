@@ -1,3 +1,4 @@
+
 import {Payment} from './Payment';
 import {Member} from './Member';
 
@@ -7,8 +8,9 @@ export interface Invoice {
   dateCreated: string;
   idStatusInvoice: boolean;
   flagDelete: boolean;
-  member: Member;
+  member: any;
   invoiceDetailList: any;
-  payment: Payment;
+  payment: any;
   select: boolean;
+
 }

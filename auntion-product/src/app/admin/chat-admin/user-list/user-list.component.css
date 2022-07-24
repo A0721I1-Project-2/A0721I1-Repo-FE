@@ -101,7 +101,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: end;
+  align-items: flex-end;
 }
 
 .user-list__item .notification p {
@@ -160,18 +160,13 @@
 }
 
 /* X-Large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {
-
-}
+@media (min-width: 1200px) {}
 
 /* X-Large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {
-
-}
+@media (min-width: 1200px) {}
 
 /* XX-Large devices (larger desktops, 1400px and up) */
-@media (min-width: 1400px) {
-}
+@media (min-width: 1400px) {}
 
 
 /* Scroll bar */
@@ -194,4 +189,3 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
-

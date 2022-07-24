@@ -41,7 +41,7 @@
           </div>
           <br>
           <div class="product__auctioneer">
-            <span>Auctioneer:  &#160; {{product.members.nameMember}}</span>
+            <span>Auctioneer:  &#160; {{product.member.nameMember}}</span>
           </div>
           <br/>
           <div class="product__auctioneer">
@@ -51,7 +51,7 @@
           <div class="product__auctioneer">
             <h5 *ngIf="checkAvailable==1">Current highest bidder:</h5>
             <h5 *ngIf="checkAvailable==0">Winner:</h5>
-            <p >{{winner}}</p>
+            <p>{{winner}}</p>
           </div>
           <br>
           <div class="product__auction-info">
@@ -99,9 +99,10 @@
           <h4 class="product__description-title">Information Receive</h4>
           <div class="info">
             <span><i class="fa-solid fa-location-arrow"></i>&#160; Address </span>
-            <p>{{product.members.addressMember}}</p>
+            <!-- Updated BachLT            -->
+            <p>{{product.member.addressMember}}</p>
             <span><i class="fa-solid fa-phone-flip"></i> &#160;Phone Number</span>
-            <p>{{product.members.phoneMember}}</p>
+            <p>{{product.member.phoneMember}}</p>
             <span><i class="fa-solid fa-truck"></i> &#160;Shipping services</span>
             <p>Shipping services offers value-added services such as collection and
               delivery options, delivery

@@ -11,8 +11,6 @@ import { EditMemberComponent } from './edit-member/edit-member.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {AdminModule} from '../admin/admin.module';
 
-
-
 @NgModule({
   declarations: [ SignUpMemberComponent, ProfileMemberComponent, EditMemberComponent, ListMemberComponent],
   imports: [
