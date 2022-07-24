@@ -37,11 +37,11 @@
         <div class="product__auction">
           <div class="displayflex">
             <span>Time remain: &#160;&#160;</span>
-            <span class="product__auction-time" id="{{'time-remain-'+id}}"></span>
+            <span class="product__auction-time" id="{{'time-remain-'+id}}">{{product.remainingTime}}</span>
           </div>
           <br>
           <div class="product__auctioneer">
-            <span>Auctioneer:  &#160; {{product.members[0].nameMember}}</span>
+            <span>Auctioneer:  &#160; {{product.members.nameMember}}</span>
           </div>
           <br/>
           <div class="product__auctioneer">
@@ -99,9 +99,9 @@
           <h4 class="product__description-title">Information Receive</h4>
           <div class="info">
             <span><i class="fa-solid fa-location-arrow"></i>&#160; Address </span>
-            <p>{{product.members[0].addressMember}}</p>
+            <p>{{product.members.addressMember}}</p>
             <span><i class="fa-solid fa-phone-flip"></i> &#160;Phone Number</span>
-            <p>{{product.members[0].phoneMember}}</p>
+            <p>{{product.members.phoneMember}}</p>
             <span><i class="fa-solid fa-truck"></i> &#160;Shipping services</span>
             <p>Shipping services offers value-added services such as collection and
               delivery options, delivery
