@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ProductService} from '../service/product.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Product} from '../../../model/Product';
+import {Product} from '../../model/Product';
+
 
 @Component({
   selector: 'app-review-product',

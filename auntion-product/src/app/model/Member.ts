@@ -1,7 +1,5 @@
-
 import {Rank} from './Rank';
 import {Account} from './Account';
-
 
 export interface Member {
   idMember: number;
@@ -9,7 +7,6 @@ export interface Member {
   dateOfBirthMember: number;
   emailMember: string;
   addressMember: string;
-
   city: string;
   district: string;
   ward: string;
