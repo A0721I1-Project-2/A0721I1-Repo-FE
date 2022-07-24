@@ -41,8 +41,8 @@ export class PostProductComponent implements OnInit {
     nameProduct: [
       {type: 'required', message: 'Product name cannot be blank !'}
     ],
-    beginPrice: [
-      {type: 'required', message: 'Begin Price cannot be blank !'},
+    initialPrice: [
+      {type: 'required', message: 'initial Price cannot be blank !'},
       {type: 'pattern', message: 'Please enter the correct integer format !'}
     ],
     incrementPrice: [
@@ -55,10 +55,10 @@ export class PostProductComponent implements OnInit {
     typeProduct: [
       {type: 'required', message: 'Please select product type!'},
     ],
-    startTime: [
+    startDate: [
       {type: 'required', message: 'Please select a date! '}
     ],
-    endTime: [
+    endDate: [
       {type: 'required', message: 'Please select a date!'},
       {type: 'error', message1: 'The end date must be greater than the start date!'}
     ],
@@ -75,18 +75,18 @@ export class PostProductComponent implements OnInit {
 
     // @ts-ignore
     this.formCreate = new FormGroup({
-      nameProduct: new FormControl('', Validators.required),
-      beginPrice: new FormControl('', Validators.required),
-      incrementPrice: new FormControl('', Validators.required),
-      productDescription: new FormControl('', Validators.required),
-      typeProduct: new FormControl('', Validators.required),
-      startTime: new FormControl('', Validators.required),
-      endTime: new FormControl('', Validators.required),
-      // image: new FormControl('', Validators.required)
-    }
-      );
+        nameProduct: new FormControl('', Validators.required),
+        initialPrice: new FormControl('', Validators.required),
+        incrementPrice: new FormControl('', Validators.required),
+        productDescription: new FormControl('', Validators.required),
+        typeProduct: new FormControl('', Validators.required),
+        startDate: new FormControl('', Validators.required),
+        endDate: new FormControl('', Validators.required),
+        // image: new FormControl('', Validators.required)
+      }
+    );
     // this.getControl.startTime.setValidators([this.customvValidateStartDate()]);
-    this.getControl.endTime.setValidators([this.customvValidateEnDate()]);
+    this.getControl.endDate.setValidators([this.customvValidateEnDate()]);
     this.productService.getAllTypeProduct().subscribe(data => {
       this.typeProduct = data;
       console.log(data);
@@ -103,7 +103,7 @@ export class PostProductComponent implements OnInit {
     this.apiService.getMemberByAccountId(userId).subscribe(account => {
       console.log(account);
 
-      this.productCreate.members = account;
+      this.productCreate.member = account;
       if (this.formCreate.invalid) {
         return;
       } else {
@@ -166,10 +166,10 @@ export class PostProductComponent implements OnInit {
 
   private customvValidateEnDate(): ValidatorFn {
     return (form): ValidationErrors => {
-      const endTime = form.value;
-      const startTime = this.getControl.startTime.value;
-      if (endTime < startTime) {
-        return { invalid: true };
+      const endDate = form.value;
+      const startDate = this.getControl.startDate.value;
+      if (endDate < startDate) {
+        return {invalid: true};
       }
       return null;
     };
@@ -177,10 +177,10 @@ export class PostProductComponent implements OnInit {
 
   private customvValidateStartDate(): ValidatorFn {
     return (form): ValidationErrors => {
-      const startTime = form.value;
+      const startDate = form.value;
       const endTime = this.getControl.endDate.value;
-      if (endTime < startTime) {
-        return { invalid: true };
+      if (endTime < startDate) {
+        return {invalid: true};
       }
       return null;
     };

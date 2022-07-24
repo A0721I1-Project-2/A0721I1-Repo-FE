@@ -1,11 +1,10 @@
+import {Account} from './../../model/Account';
+import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-
-
-import {environment} from '../../../environments/environment';
+import {Observable} from 'rxjs';
+import {environment} from 'src/environments/environment';
 import {Address} from '../sign-up-member/address';
 import {MemberDTO} from '../../model/MemberDTO';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
 import {Member} from '../../model/Member';
 import {Rank} from '../../model/Rank';
 
@@ -13,15 +12,23 @@ import {Rank} from '../../model/Rank';
 const API_ADDRESS = 'http://localhost:3000/address';
 const URL_API_MEM = 'http://localhost:8080/profile/';
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class MemberService {
+
   public URL_API_DETAIL = 'http://localhost:8080/api/account';
+  API_URL = 'http://localhost:8080';
+  private alertMessage: String;
+  message: string;
 
+  constructor(
+    private httpClient: HttpClient
+  ) {
+  }
 
-  constructor(private httpClient: HttpClient) {
+  public checkId(id: string) {
+    return this.httpClient.get<void>(`${this.API_URL}/getMemberById/` + id);
   }
 
   // HauNT
@@ -29,14 +36,6 @@ export class MemberService {
     // @ts-ignore
     return this.httpClient.get(this.URL_API_DETAIL + '/detail/' + idUser);
   }
-
-  API_URL = 'http://localhost:8080';
-
-
-  /*// bin code */
-  // tslint:disable-next-line:ban-types
-  private alertMessage: String;
-  message: string;
 
   // tslint:disable-next-line:ban-types
   get messAlert(): String {
@@ -98,9 +97,6 @@ export class MemberService {
 
   // SonLT Edit-Member
   editMember(member: Member): Observable<Member> {
-    return this.httpClient.patch<Member>(URL_API_MEM + 'edit' , member);
+    return this.httpClient.patch<Member>(URL_API_MEM + 'edit', member);
   }
-
-
-
 }

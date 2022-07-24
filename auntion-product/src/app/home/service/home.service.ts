@@ -6,6 +6,7 @@ import {Observable} from 'rxjs';
 import {Product} from '../../model/Product';
 import {ImageProduct} from '../../model/ImageProduct';
 import {AuctionDTO} from '../../model/auctionDTO';
+import { Account } from 'src/app/model/Account';
 
 const URL_HOME_API = 'http://localhost:8080/manager/product/api';
 const URL_ACCOUNT_API = 'http://localhost:8080/api/account';
@@ -26,7 +27,8 @@ export class HomeService {
 
   // VinhTQ
   changePassword(password: string, token: string): Observable<string> {
-    return this.httpClient.post<string>(URL_ACCOUNT_API + '/change-password?token=' + token + '&password=' + password, {});
+    // @ts-ignore
+    return this.httpClient.post<string>(URL_ACCOUNT_API + '/change-password?token=' + token + '&password=' + password, {}, {responseType: 'text'});
   }
 
   // VinhTQ
