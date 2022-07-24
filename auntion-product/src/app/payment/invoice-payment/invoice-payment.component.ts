@@ -8,9 +8,9 @@ import jspdf from 'jspdf';
 import {finalize} from 'rxjs/operators';
 import {AngularFireStorage} from '@angular/fire/storage';
 import { Subscription } from 'rxjs';
-import { InvoiceDetail } from "../../model/InvoiceDetail";
-import { Payment } from "../../model/Payment";
-import { Router } from "@angular/router";
+import { InvoiceDetail } from '../../model/InvoiceDetail';
+import { Payment } from '../../model/Payment';
+import { Router } from '@angular/router';
 
 
 

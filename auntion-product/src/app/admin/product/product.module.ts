@@ -1,4 +1,3 @@
-import { CreateProductComponent } from './create-product/create-product.component';
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
@@ -7,30 +6,26 @@ import {ListProductComponent} from './list-product/list-product.component';
 import {ReviewProductComponent} from './review-product/review-product.component';
 import {EditProductComponent} from './edit-product/edit-product.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import {AngularFireModule} from '@angular/fire';
-import {environment} from './environments/environment';
 import {HttpClientModule} from '@angular/common/http';
-import {AdminModule} from '../admin/admin.module';
-import { CoreModule } from '../shared/core.module';
-import {StatisticComponent} from './statistic/statistic.component';
-import {ControlAdminPageModule} from '../control-admin-page/control-admin-page.module';
+
+import {AdminModule} from '../admin.module';
+
+
 
 @NgModule({
-  declarations: [StatisticComponent, ListProductComponent, ReviewProductComponent, EditProductComponent, CreateProductComponent],
+  declarations: [ ListProductComponent, ReviewProductComponent, EditProductComponent],
 
   exports: [
 
   ],
 
   imports: [
-
-    CoreModule,
+    AdminModule,
     CommonModule,
     ProductRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    ControlAdminPageModule,
-
+    AdminModule,
   ]
 })
 export class ProductModule {
