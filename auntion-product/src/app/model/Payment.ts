@@ -18,4 +18,5 @@ export interface Payment {
   invoiceList: any;
 
   product: any;
+  total:any;
 }

@@ -26,6 +26,7 @@ export class EditProductComponent implements OnInit {
   imgVip1 = 'https://firebasestorage.googleapis.com/v0/b/sprint2-1452b.appspot.com/o/david-van-dijk-3LTht2nxd34-unsplash.jpg?alt=media&token=d942e43a-9263-471a-9f8a-baae85f8badc';
 
   editForm: FormGroup | any;
+
   constructor(
     private fb: FormBuilder,
     private productService: ProductService,
@@ -37,24 +38,31 @@ export class EditProductComponent implements OnInit {
 
 
   ngOnInit(): void {
+    const hideNavHp = document.querySelector('#header');
+    const hideFooterHp = document.querySelector('.footer__container');
+// @ts-ignore
+// tslint:disable-next-line:no-unused-expression
+    hideNavHp.style.display = 'none';
+// @ts-ignore
+// tslint:disable-next-line:no-unused-expression
+    hideFooterHp.style.display = 'none';
     this.getTypeProduct();
     this.getProduct();
   }
 
-  getProduct(){
+  getProduct() {
     this.activatedRoute.paramMap.subscribe((paraMap: ParamMap) => {
-      const id = 1;
-      // const id = Number(paraMap.get('id'));
+      const id = Number(paraMap.get('id'));
       this.productService.findById(id).subscribe(
         next => {
           this.product = next;
           console.log(this.product);
-          this.imageProduct =  next.imageProductList;
+          this.imageProduct = next.imageProductList;
           console.log(this.imageProduct);
           this.editForm.patchValue({
             idProduct: this.product.idProduct,
-            codeProduct:   this.product.codeProduct,
-            createDay :  this.product.createDay,
+            codeProduct: this.product.codeProduct,
+            createDay: this.product.createDay,
             finalPrice: this.product.finalPrice,
             flagDelete: this.product.flagDelete,
             remainingTime: this.product.remainingTime,
@@ -62,8 +70,8 @@ export class EditProductComponent implements OnInit {
             biddingStatus: this.product.biddingStatus,
             cart: this.product.cart,
             nameProduct: this.product.nameProduct,
-            idMember: this.product.members.idMember,
-            nameMember: this.product.members.nameMember,
+            idMember: this.product.member.idMember,
+            nameMember: this.product.member.nameMember,
             typeProduct: this.product.typeProduct,
             imageProduct: this.product.imageProductList.imageProduct,
             initialPrice: this.product.initialPrice,
@@ -72,10 +80,13 @@ export class EditProductComponent implements OnInit {
             endDate: this.product.endDate,
             productDescription: this.product.productDescription,
           });
+        },
+        error => {
+          console.log(error);
         });
     });
     this.editForm = this.fb.group({
-      idProduct: [this.product.idProduct, Validators.required],
+      idProduct: ['', Validators.required],
       codeProduct: ['', Validators.required],
       createDay: ['', Validators.required],
       finalPrice: ['', Validators.required],
@@ -145,7 +156,7 @@ export class EditProductComponent implements OnInit {
     this.product = this.editForm.value;
     console.log(this.product);
     this.productService.findByIdMember(this.editForm.get('idMember').value).subscribe(member => {
-      this.product.members = member;
+      this.product.member = member;
       console.log(this.product);
       this.productService.editProduct(this.product).subscribe(() => {
         this.router.navigateByUrl('/product/list');

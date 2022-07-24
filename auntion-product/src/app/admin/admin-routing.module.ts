@@ -21,9 +21,6 @@ const routes: Routes = [
   {
     path: 'transaction',
     loadChildren: () => import('./transaction/transaction.module').then(module => module.TransactionModule)
-  }, {
-    path: 'member',
-    loadChildren: () => import('../member/member.module').then(module => module.MemberModule)
   }
 ];
 

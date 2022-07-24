@@ -173,6 +173,10 @@ export class StatisticComponent implements OnInit {
   }
 
   report() {
+    this.message = null;
+    console.log("ban đầu: " + this.products);
+    const newProducts: any[] = [];
+    console.log("lúc sau: " + newProducts);
     this.statsBegin = this.statsGroup.get('statsBegin').value;
     this.statsEnd = this.statsGroup.get('statsEnd').value;
     // console.log(this.datePipe.transform(this.statsBeginDate, 'yyyy-MM-dd'));
@@ -183,13 +187,10 @@ export class StatisticComponent implements OnInit {
         this.statsEnd, 3).subscribe(items => {
           for (const i in items) {
             console.log('item: ' + items[i]);
-            if (this.products.find((test) => test.idProduct === items[i].idProduct) === undefined) {
-              this.products.push(items[i]);
-            }
-
+            newProducts.push(items[i]);
           }
-          console.log('products:' + this.products);
-          getDataProduct(this.labelArr, this.dataArr, this.count, this.products);
+          console.log('products:' + newProducts);
+          getDataProduct(this.labelArr, this.dataArr, this.count, newProducts);
           console.log('Array products name in x Axis: ' + this.labelArr);
           console.log('Array products finalPrice in y Axis: ' + this.dataArr);
           if (this.myChart != null) {
@@ -213,7 +214,12 @@ export class StatisticComponent implements OnInit {
                 },
                 y: {
                   beginAtZero: true,
-                  display: true
+                  display: true,
+                  ticks: {
+                    callback(value) {
+                      return value + 'USD';
+                    }
+                  }
                 }
               }, plugins: {
                 title: {
