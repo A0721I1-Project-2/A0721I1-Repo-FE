@@ -30,7 +30,6 @@ export class ApiService {
 
   /* Get account by id */
   getAccountById(accountId: number): Observable<Account> {
-    console.log(accountId);
     return this.httpClient.get<Account>(`${BASE_PATH_ACCOUNT}/account/id=${accountId}`);
   }
 
