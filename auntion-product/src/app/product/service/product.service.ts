@@ -43,7 +43,7 @@ export class ProductService {
 
 
   public create(product): Observable<any> {
-    return this.http.post<any>(`${environment.API_GETWAY}/manager/product/api`, product);
+    return this.http.post<any>(`${URL_API}/manager/product/api`, product);
   }
 
   getAllProduct(page: number): Observable<Product[]> {

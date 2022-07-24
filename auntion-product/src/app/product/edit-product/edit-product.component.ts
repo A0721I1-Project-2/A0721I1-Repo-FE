@@ -71,8 +71,8 @@ export class EditProductComponent implements OnInit {
             biddingStatus: this.product.biddingStatus,
             cart: this.product.cart,
             nameProduct: this.product.nameProduct,
-            idMember: this.product.members.idMember,
-            nameMember: this.product.members.nameMember,
+            idMember: this.product.member.idMember,
+            nameMember: this.product.member.nameMember,
             typeProduct: this.product.typeProduct,
             imageProduct: this.product.imageProductList.imageProduct,
             initialPrice: this.product.initialPrice,
@@ -157,7 +157,7 @@ export class EditProductComponent implements OnInit {
     this.product = this.editForm.value;
     console.log(this.product);
     this.productService.findByIdMember(this.editForm.get('idMember').value).subscribe(member => {
-      this.product.members = member;
+      this.product.member = member;
       console.log(this.product);
       this.productService.editProduct(this.product).subscribe(() => {
         this.router.navigateByUrl('/product/list');

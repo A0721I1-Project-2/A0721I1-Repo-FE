@@ -1,98 +1,102 @@
 <app-header-admin></app-header-admin>
 <app-navbar-admin></app-navbar-admin>
 <!-- Đây là component để chính -->
-<div class="container-fluid">
-  <h2>Product Review</h2>
-  <div class="horizontal-line"></div>
-  <div class="align-items-center justify-content-center">
-    <div style="padding-inline: 30px">
-      <table class="table" style="font-size: 16px">
-        <tr>
-          <td class="attributes">Product Name</td>
-          <td>{{product.nameProduct}}</td>
-        </tr>
-        <tr>
-          <td colspan="2" class="attributes">Seller Information</td>
-        </tr>
-        <tr>
-          <td class="attributes" style="padding-left: 50px;">ID</td>
-          <td>{{product.members.idMember}}</td>
-        </tr>
-        <tr>
-          <td class="attributes" style="padding-left: 50px;">Full Name</td>
-          <td>{{product.members.nameMember}}</td>
-        </tr>
-        <tr>
-          <td class="attributes" style="padding-left: 50px;">Email</td>
-          <td>{{product.members.emailMember}}</td>
-        </tr>
-        <tr>
-          <td class="attributes">Product Type</td>
-          <td>{{product.typeProduct.nameProductType}}</td>
-        </tr>
-        <tr>
-          <td class="attributes">Initial Price</td>
-          <td>{{product.initialPrice}}</td>
-        </tr>
-        <tr>
-          <td class="attributes">Price Increment</td>
-          <td>{{product.incrementPrice}}</td>
-        </tr>
-        <tr>
-          <td colspan="2" class="attributes">Product Images</td>
-        </tr>
-        <tr>
-          <td colspan="2">
-            <div class="row">
-              <div class="col">
-                <img class="demo cursor thumbnail"
-                     src="https://www.passiongadgets.com/images/watermarked/1/detailed/31/75262234_2527455720844478_2356800270739963904_o.jpg"
-                     style="width:100%; height: auto" alt="The Woods">
-              </div>
-              <div class="col">
-                <img class="demo cursor thumbnail"
-                     src="https://drivebikes.sg/wp-content/uploads/2021/05/DSC00362-scaled.jpg"
-                     style="width:100%; height: auto" alt="Cinque Terre">
-              </div>
-              <div class="col">
-                <img class="demo cursor thumbnail"
-                     src="https://media.karousell.com/media/photos/products/2020/7/30/venom_2_ebike_electric_bicycle_1596107473_19f531d0_progressive"
-                     style="width:100%; height: auto" alt="Mountains and fjords">
-              </div>
-              <div class="col">
-                <img class="demo cursor thumbnail"
-                     src="https://cdn.shopify.com/s/files/1/0043/0597/7417/products/Venom2_-Electric-Bicycle_1024x1024.jpg?v=1631372951"
-                     style="width:100%; height: auto" alt="Northern Lights">
-              </div>
-              <div class="col">
-                <img class="demo cursor thumbnail"
-                     src="https://minimotors.sg/wp-content/uploads/2019/11/Venom-2-Frame-Design.jpg"
-                     style="width:auto; height: 214px" alt="Nature and sunrise">
-              </div>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td class="attributes">Bidding Start Time</td>
-          <td>{{product.startDate}}</td>
-        </tr>
-        <tr>
-          <td class="attributes">Bidding End Time</td>
-          <td>{{product.endDate}}</td>
-        </tr>
-        <tr>
-          <td class="attributes">Description</td>
-          <td>{{product.productDescription}}</td>
-        </tr>
-      </table>
-      <div style="margin-bottom: 20px;display: flex;justify-content: center;">
-        <button type="button" class="btn" style="margin: 0 10px;" (click)="approveProduct()">Approve</button>
-        <button type="button" class="btn" style="margin: 0 10px;" (click)="rejectProduct()">Reject</button>
-        <button type="button" class="btn" style="margin: 0 10px;"><a [routerLink]="['/product/list']">Back</a></button>
+<section id="main-content">
+  <section class="wrapper">
+    <div class="container-fluid">
+      <h2>Product Review</h2>
+      <div class="horizontal-line"></div>
+      <div class="align-items-center justify-content-center">
+        <div style="padding-inline: 30px">
+          <table class="table" style="font-size: 16px">
+            <tr>
+              <td class="attributes">Product Name</td>
+              <td>{{product.nameProduct}}</td>
+            </tr>
+            <tr>
+              <td colspan="2" class="attributes">Seller Information</td>
+            </tr>
+            <tr>
+              <td class="attributes" style="padding-left: 50px;">ID</td>
+              <td>{{product.member.idMember}}</td>
+            </tr>
+            <tr>
+              <td class="attributes" style="padding-left: 50px;">Full Name</td>
+              <td>{{product.member.nameMember}}</td>
+            </tr>
+            <tr>
+              <td class="attributes" style="padding-left: 50px;">Email</td>
+              <td>{{product.member.emailMember}}</td>
+            </tr>
+            <tr>
+              <td class="attributes">Product Type</td>
+              <td>{{product.typeProduct.nameProductType}}</td>
+            </tr>
+            <tr>
+              <td class="attributes">Initial Price</td>
+              <td>{{product.initialPrice}}</td>
+            </tr>
+            <tr>
+              <td class="attributes">Price Increment</td>
+              <td>{{product.incrementPrice}}</td>
+            </tr>
+            <tr>
+              <td colspan="2" class="attributes">Product Images</td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <div class="row">
+                  <div class="col">
+                    <img class="demo cursor thumbnail"
+                         src="https://www.passiongadgets.com/images/watermarked/1/detailed/31/75262234_2527455720844478_2356800270739963904_o.jpg"
+                         style="width:100%; height: auto" alt="The Woods">
+                  </div>
+                  <div class="col">
+                    <img class="demo cursor thumbnail"
+                         src="https://drivebikes.sg/wp-content/uploads/2021/05/DSC00362-scaled.jpg"
+                         style="width:100%; height: auto" alt="Cinque Terre">
+                  </div>
+                  <div class="col">
+                    <img class="demo cursor thumbnail"
+                         src="https://media.karousell.com/media/photos/products/2020/7/30/venom_2_ebike_electric_bicycle_1596107473_19f531d0_progressive"
+                         style="width:100%; height: auto" alt="Mountains and fjords">
+                  </div>
+                  <div class="col">
+                    <img class="demo cursor thumbnail"
+                         src="https://cdn.shopify.com/s/files/1/0043/0597/7417/products/Venom2_-Electric-Bicycle_1024x1024.jpg?v=1631372951"
+                         style="width:100%; height: auto" alt="Northern Lights">
+                  </div>
+                  <div class="col">
+                    <img class="demo cursor thumbnail"
+                         src="https://minimotors.sg/wp-content/uploads/2019/11/Venom-2-Frame-Design.jpg"
+                         style="width:auto; height: 214px" alt="Nature and sunrise">
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="attributes">Bidding Start Time</td>
+              <td>{{product.startDate}}</td>
+            </tr>
+            <tr>
+              <td class="attributes">Bidding End Time</td>
+              <td>{{product.endDate}}</td>
+            </tr>
+            <tr>
+              <td class="attributes">Description</td>
+              <td>{{product.productDescription}}</td>
+            </tr>
+          </table>
+          <div style="margin-bottom: 20px;display: flex;justify-content: center;">
+            <button type="button" class="btn" style="margin: 0 10px;" (click)="approveProduct()">Approve</button>
+            <button type="button" class="btn" style="margin: 0 10px;" (click)="rejectProduct()">Reject</button>
+            <button type="button" class="btn" style="margin: 0 10px;"><a [routerLink]="['/product/list']">Back</a>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  <app-footer-admin></app-footer-admin>
-</div>
+  </section>
+</section>
 <app-footer-admin></app-footer-admin>
 

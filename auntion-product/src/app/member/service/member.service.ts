@@ -1,12 +1,12 @@
-import { Account } from './../../model/Account';
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { Address } from '../sign-up-member/address';
-import { MemberDTO } from '../../model/MemberDTO';
-import { Member } from '../../model/Member';
-import { Rank } from '../../model/Rank';
+import {Account} from './../../model/Account';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {environment} from 'src/environments/environment';
+import {Address} from '../sign-up-member/address';
+import {MemberDTO} from '../../model/MemberDTO';
+import {Member} from '../../model/Member';
+import {Rank} from '../../model/Rank';
 
 
 const API_ADDRESS = 'http://localhost:3000/address';
@@ -24,11 +24,11 @@ export class MemberService {
 
   constructor(
     private httpClient: HttpClient
-  ) { }
+  ) {
+  }
 
   public checkId(id: string) {
-    return this.httpClient.get<void>(`${environment.API_GETWAY}/getMemberById/`+id
-    )
+    return this.httpClient.get<void>(`${this.API_URL}/getMemberById/` + id);
   }
 
   // HauNT
@@ -97,6 +97,6 @@ export class MemberService {
 
   // SonLT Edit-Member
   editMember(member: Member): Observable<Member> {
-    return this.httpClient.patch<Member>(URL_API_MEM + 'edit' , member);
+    return this.httpClient.patch<Member>(URL_API_MEM + 'edit', member);
   }
 }
