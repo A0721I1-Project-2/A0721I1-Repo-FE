@@ -91,8 +91,8 @@ export class PaymentService {
 
   constructor(private httpClient: HttpClient) { }
   // tslint:disable-next-line:variable-name
-  public postImagePDFAndSendEmail(UrlImgInvoice: string): Observable<string> {
-    return this.httpClient.get<string>(this.urlSendEmai + '?img=' + UrlImgInvoice);
+  public postImagePDFAndSendEmail(UrlImgInvoice: string,email: string): Observable<string> {
+    return this.httpClient.get<string>(this.urlSendEmai + '?img=' + UrlImgInvoice + '&mail=' +  email);
   }
   findAllStatusInvoice(): Observable<InvoiceDetail[]> {
     return this.httpClient.get<InvoiceDetail[]>(API_STATUS + '/status');
