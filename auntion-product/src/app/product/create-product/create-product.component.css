@@ -10,7 +10,7 @@ line 3 : edited by admin*/
   margin-top: 60px;
 }
 
-wrapper {
+.wrapper {
   display: inline-block;
   margin-top: 60px;
   padding: 0px 15px 15px;
@@ -38,11 +38,11 @@ p {
   margin: 0;
 }
 
-html, body {
-  font-family: 'Lato', sans-serif;
-  font-size: 100%;
-  background: #fff;
-}
+/*html, body {*/
+/*  font-family: 'Lato', sans-serif;*/
+/*  font-size: 100%;*/
+/*  background: #fff;*/
+/*}*/
 
 .form__group_button_check {
   padding: 5px 10px;
