@@ -32,6 +32,7 @@ export class InvoicePaymentComponent implements OnInit {
   today: Date;
   Paymethod: string;
   Trsanpot: string;
+  email: string;
   constructor(private paymentService: PaymentService, @Inject(AngularFireStorage) private storage: AngularFireStorage
   ,private service: PaymentService, private router: Router,) { }
   ngOnInit(): void {
@@ -62,7 +63,7 @@ export class InvoicePaymentComponent implements OnInit {
           fileRef.getDownloadURL().subscribe((url) => {
            this.url1 = url;
            console.log(this.url1);
-           this.paymentService.postImagePDFAndSendEmail(this.url1).subscribe();
+            this.paymentService.postImagePDFAndSendEmail(this.url1, this.email).subscribe();
           });
         })
       ).subscribe();
@@ -81,7 +82,7 @@ export class InvoicePaymentComponent implements OnInit {
       (data) => {
         console.log(data);
         this.invoice = data;
-
+        this.email = data[0].invoice.payment.emailReceiver;
         this.address = data[0].invoice.payment.addressReceiver;
         this.feeTransport = data[0].invoice.payment.transport.feeTransport;
         console.log(this.feeTransport)
