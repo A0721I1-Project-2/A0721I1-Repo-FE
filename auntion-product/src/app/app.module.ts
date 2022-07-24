@@ -28,11 +28,8 @@ import {AngularFireModule} from "@angular/fire";
     ReactiveFormsModule,
     BrowserAnimationsModule,
     FormsModule,
+    AngularFireAuthModule,
     AngularFireDatabaseModule,
-    AngularFireAuthModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireDatabaseModule ,
-    AngularFireAuthModule,
     NgxCaptchaModule,
     ToastrModule.forRoot({
       // positionClass: 'toast-top-right',
@@ -42,7 +39,6 @@ import {AngularFireModule} from "@angular/fire";
       progressAnimation: 'increasing',
       preventDuplicates: true
     }),
-    AngularFireDatabaseModule,
     AngularFireAuthModule,
     TransactionModule,
     ChatUserPageModule,
