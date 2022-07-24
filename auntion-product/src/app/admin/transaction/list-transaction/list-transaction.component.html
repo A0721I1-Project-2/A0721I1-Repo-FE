@@ -4,7 +4,7 @@
   </div>
   <div class="content__admin-container" style="margin-top: 57px">
     <div class="row">
-      <div class="d-none-m-b col-md-2 p-r-0">
+      <div class="d-none-m-b col-md-2 p-r-0" style="margin-right: -65px">
         <app-navbar-admin></app-navbar-admin>
       </div>
 
@@ -12,7 +12,6 @@
         <!-- Đây là component để chính -->
         <div class="content" style="padding-inline: 100px;">
           <h1>Transaction Management</h1>
-          <hr>
           <div>
             <div class="responsive-search">
             <form [formGroup]="searchTransaction" (ngSubmit)="search()">
@@ -160,9 +159,10 @@
           </div>
         </div>
 
-        <!-- Footer -->
-        <app-footer-admin></app-footer-admin>
+
       </div>
     </div>
   </div>
 </div>
+<!-- Footer -->
+<app-footer-admin></app-footer-admin>

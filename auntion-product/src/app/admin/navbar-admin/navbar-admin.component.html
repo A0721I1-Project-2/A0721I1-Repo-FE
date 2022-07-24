@@ -1,5 +1,5 @@
 <div id="sidebar" class="nav-collapse">
-  <ul  class="sidebar-menu"  id="nav-accordion" >
+  <ul  class="sidebar-menu"  id="nav-accordion" style="margin-top: 88px;">
     <p class="centered"><a href="#"><img src="../../../assets/img/messi-profile.jpg" class="img-circle" width="80"></a></p>
     <h5 class="centered">A0721I1 ADMIN</h5>
     <li class="mt">
@@ -16,6 +16,7 @@
       <ul class="sub">
         <li><a href="#">Invoice Management</a></li>
         <li><a [routerLink]="['./member/list']">Member Management</a></li>
+        <li><a [routerLink]="['./transaction/list']">Transaction Management</a></li>
         <li><a href="#">Product Management</a></li>
         <li><a href="#">General</a></li>
       </ul>
@@ -87,13 +88,3 @@
 <!--    </div>-->
 <!--  </div>-->
 </div>
-<script>
-  const hideNavHp = document.querySelector('#header');
-  const hideFooterHp = document.querySelector('.footer__container');
-  // @ts-ignore
-  // tslint:disable-next-line:no-unused-expression
-  hideNavHp.style.display = 'none';
-  // @ts-ignore
-  // tslint:disable-next-line:no-unused-expression
-  hideFooterHp.style.display = 'none';
-</script>
