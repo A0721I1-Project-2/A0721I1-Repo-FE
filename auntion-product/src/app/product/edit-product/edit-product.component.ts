@@ -52,8 +52,7 @@ export class EditProductComponent implements OnInit {
 
   getProduct() {
     this.activatedRoute.paramMap.subscribe((paraMap: ParamMap) => {
-      const id = 1;
-      // const id = Number(paraMap.get('id'));
+      const id = Number(paraMap.get('id'));
       this.productService.findById(id).subscribe(
         next => {
           this.product = next;

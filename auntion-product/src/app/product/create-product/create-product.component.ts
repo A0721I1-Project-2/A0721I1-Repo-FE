@@ -47,12 +47,28 @@ export class CreateProductComponent implements OnInit {
     hideFooterHp.style.display = 'none';
   }
 
+  // private initForm(): void {
+  //   this.formGroup = this.fb.group({
+  //     codeProduct: [null, [Validators.required]],
+  //     nameProduct: [null, [Validators.required]],
+  //     idPoster: [null, [Validators.required]],
+  //     posterInformation: [null, [Validators.required]],
+  //     typeProduct: [null, [Validators.required]],
+  //     initialPrice: [null, [Validators.required]],
+  //     moneyAuction: [null, [Validators.required]],
+  //     startDate: [null, [Validators.required]],
+  //     endDate: [null, [Validators.required]],
+  //     productDescription: [null, [Validators.required]],
+  //     approvalStatus: [2],
+  //     biddingStatus: [2],
+  //     cart: [1],
+  //   });
+
   private initForm(): void {
     this.formGroup = this.fb.group({
       codeProduct: [null, [Validators.required]],
       nameProduct: [null, [Validators.required]],
       idPoster: [null, [Validators.required]],
-      posterInformation: [null, [Validators.required]],
       typeProduct: [null, [Validators.required]],
       initialPrice: [null, [Validators.required]],
       moneyAuction: [null, [Validators.required]],
