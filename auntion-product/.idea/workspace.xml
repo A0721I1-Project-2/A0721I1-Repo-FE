@@ -1,7 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="44db2026-8f4e-4e30-afa1-3f42a1e8de19" name="Default Changelist" comment="" />
+    <list default="true" id="44db2026-8f4e-4e30-afa1-3f42a1e8de19" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/app/auction-product/post-product/img/11zon_cropped (1).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/auction-product/service/firebase.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/auction-product/service/img-product-service.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/model/FileUpload.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/admin/footer-admin/footer-admin.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/admin/footer-admin/footer-admin.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/admin/navbar-admin/navbar-admin.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/admin/navbar-admin/navbar-admin.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/admin/product/edit-product/edit-product.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/admin/product/edit-product/edit-product.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/admin/product/review-product/review-product.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/admin/product/review-product/review-product.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/admin/transaction/list-transaction/list-transaction.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/admin/transaction/list-transaction/list-transaction.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/admin/transaction/list-transaction/list-transaction.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/admin/transaction/list-transaction/list-transaction.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/admin/transaction/list-transaction/list-transaction.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/admin/transaction/list-transaction/list-transaction.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/auction-product/auction-product.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/auction-product/auction-product.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/auction-product/auction/auction.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/auction-product/auction/auction.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/auction-product/post-product/post-product.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/auction-product/post-product/post-product.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/auction-product/post-product/post-product.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/auction-product/post-product/post-product.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/auction-product/post-product/post-product.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/auction-product/post-product/post-product.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/auction-product/service/auction-product.service.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/auction-product/service/auction-product.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/auction-product/service/auction-product.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/chat-app/services/api.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chat-app/services/api.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/home/header/header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/home/header/header.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/home/product-detail/product-detail.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/home/product-detail/product-detail.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/member/edit-member/edit-member.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/member/edit-member/edit-member.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/member/profile-member/profile-member.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/member/profile-member/profile-member.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/member/sign-up-member/sign-up-member.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/member/sign-up-member/sign-up-member.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/model/Account.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/model/Account.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/model/ImageProduct.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/model/ImageProduct.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/model/Product.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/model/Product.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/product/edit-product/edit-product.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/product/edit-product/edit-product.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/product/list-product/list-product.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/product/list-product/list-product.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/product/list-product/list-product.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/product/list-product/list-product.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/product/review-product/review-product.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/product/review-product/review-product.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/environments/environment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/environments/environment.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../package-lock.json" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -95,7 +134,8 @@
       <workItem from="1658622282355" duration="8841000" />
       <workItem from="1658633869369" duration="4808000" />
       <workItem from="1658652221757" duration="8985000" />
-      <workItem from="1658662330067" duration="682000" />
+      <workItem from="1658662330067" duration="2884000" />
+      <workItem from="1658665561053" duration="2373000" />
     </task>
     <servers />
   </component>
@@ -112,22 +152,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1658625943418" />
-    <state width="1345" height="268" key="GridCell.Tab.0.bottom" timestamp="1658662692608">
+    <state width="1345" height="175" key="GridCell.Tab.0.bottom" timestamp="1658669253550">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="268" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1658662692608" />
-    <state width="1345" height="268" key="GridCell.Tab.0.center" timestamp="1658662692607">
+    <state width="1345" height="175" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1658669253550" />
+    <state width="1345" height="175" key="GridCell.Tab.0.center" timestamp="1658669253550">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="268" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1658662692607" />
-    <state width="1345" height="268" key="GridCell.Tab.0.left" timestamp="1658662692607">
+    <state width="1345" height="175" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1658669253550" />
+    <state width="1345" height="175" key="GridCell.Tab.0.left" timestamp="1658669253550">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="268" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1658662692607" />
-    <state width="1345" height="268" key="GridCell.Tab.0.right" timestamp="1658662692607">
+    <state width="1345" height="175" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1658669253550" />
+    <state width="1345" height="175" key="GridCell.Tab.0.right" timestamp="1658669253550">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="268" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1658662692607" />
+    <state width="1345" height="175" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1658669253550" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -2,14 +2,25 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+
 export const environment = {
   production: false,
+
   API_GETWAY: 'http://localhost:8080',
+  firebaseConfig: {
+    apiKey: 'AIzaSyCXbO7_RtR7KFi5WPYcGJHtYAcMhy0_3SY',
+    authDomain: 'update-c1ca8.firebaseapp.com',
+    projectId: 'update-c1ca8',
+    storageBucket: 'update-c1ca8.appspot.com',
+    messagingSenderId: '689903295833',
+    appId: '1:689903295833:web:a44df5a3a7d6afceebc048',
+    measurementId: 'G-1HYNDBS3CK'
+  },
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   apiUrl: 'http://localhost:8080'
- /* recaptcha: {
-    siteKey: '6LcotukgAAAAAOZWmgjxeoTBKYTN5kgJoq01-wXh',
-  }*/
+  /* recaptcha: {
+     siteKey: '6LcotukgAAAAAOZWmgjxeoTBKYTN5kgJoq01-wXh',
+   }*/
 };
 
 /*

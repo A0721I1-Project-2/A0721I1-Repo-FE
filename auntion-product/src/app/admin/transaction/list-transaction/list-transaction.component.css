@@ -1,5 +1,5 @@
 #main-content {
-  /*margin-left: 210px;*/
+  margin-left: 210px;
 }
 
 .wrapper {
@@ -46,6 +46,7 @@
   flex-direction: row;
   justify-content: space-around;
   flex-flow: wrap;
+
 }
 
 .btn-pagination a {
@@ -68,6 +69,7 @@ hr {
 
 h1 {
   color: #11b683;
+  margin-bottom: 30px;
 }
 
 .title {
@@ -83,6 +85,8 @@ label {
 .btn {
   background: #11b683;
   color: white;
+  border-radius: 25px;
+  margin-left: 10px;
 }
 
 .btn:hover {
@@ -98,9 +102,9 @@ table {
 .content {
   margin-top: 60px;
   margin-left: 210px;
+  /*margin: 15 px 0 40 px 0;*/
 }
 
-button,
 select,
 input {
   border-radius: 25px;
