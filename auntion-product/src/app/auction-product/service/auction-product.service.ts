@@ -21,8 +21,8 @@ export class AuctionProductService {
   }
 
   /* HuyNN */
-  getMemberById(id: number) {
-    return this.httpClient.get<Member>('http://localhost:8080/getMemberById/' + id);
+  getMemberByIdAccount(idAccount: number) {
+    return this.httpClient.get<Member>('http://localhost:8080/manager/product/api/getMemberByIdAccount/' + idAccount);
   }
 
   /* HuyNN */
@@ -55,7 +55,13 @@ export class AuctionProductService {
     // tslint:disable-next-line:max-line-length
     return this.httpClient.get('http://localhost:8080/manager/product/api/sendPaymentEmail/' + email + '/' + nameProduct);
   }
+
+  /* HuyNN */
   updateCart(cart: Cart) {
     return this.httpClient.put('http://localhost:8080/manager/product/api/updateCart', cart);
+  }
+
+  getAccountById(username: string) {
+    return this.httpClient.get<Account>('http://localhost:8080/manager/product/api/getAccountByUsername/' + username);
   }
 }
