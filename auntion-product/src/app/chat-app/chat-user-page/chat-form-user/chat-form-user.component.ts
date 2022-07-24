@@ -11,8 +11,6 @@ import {Account} from "../../../model/Account";
 })
 export class ChatFormUserComponent implements OnInit , AfterViewChecked {
 
-  @ViewChild('scrollBottom') private scrollBottom: ElementRef;
-
   /* To select file */
   selectedFiles: FileList;
   currentFileUpload: FileUpload;
@@ -37,13 +35,9 @@ export class ChatFormUserComponent implements OnInit , AfterViewChecked {
   constructor(private chatService: ChatService, private fb: FormBuilder) {
   }
 
-  ngAfterViewChecked() {
-    this.scrollToBottom();
-  }
-
   ngOnInit(): void {
     /* Get data user */
-    this.user = JSON.parse(window.localStorage.getItem('user'));
+    this.user = JSON.parse(window.localStorage.getItem('auth-user'));
 
     /* Form Chat */
     this.formChat = this.fb.group({
@@ -90,16 +84,7 @@ export class ChatFormUserComponent implements OnInit , AfterViewChecked {
           });
       }
     }
-    this.scrollToBottom();
     this.formChat.reset();
-  }
-
-  scrollToBottom(): void {
-    try {
-      this.scrollBottom.nativeElement.scrollBottom = this.scrollBottom.nativeElement.scrollHeight;
-    } catch(err) {
-      console.log(err);
-    }
   }
 
   selectFile(event: any) {
@@ -136,5 +121,8 @@ export class ChatFormUserComponent implements OnInit , AfterViewChecked {
   /* Close file */
   closeFile() {
     this.uploadSrc = null;
+  }
+
+  ngAfterViewChecked(): void {
   }
 }

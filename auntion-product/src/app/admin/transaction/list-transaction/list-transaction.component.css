@@ -20,8 +20,17 @@
 
 
 .clearfix {
-  position: absolute;
-  right: 5%;
+  display: flex;
+  justify-content: right;
+}
+
+.container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-flow: wrap;
 }
 
 .btn-pagination a {
@@ -41,21 +50,10 @@ hr {
   margin-bottom: 50px;
 }
 
-.total-revenue {
-  border-left: 1px solid Silver;
-  border-top: 1px solid Silver;
-  border-right: 1px solid Silver;
-  border-bottom: 1px solid Silver;
-  margin: 0;
-  padding: 10px;
-}
+
 
 h1 {
   color: #11b683;
-}
-
-label {
-  display: inline-block;
 }
 
 .title {
@@ -70,6 +68,7 @@ label {
 
 .btn {
   background: #11b683;
+  color: white;
 }
 
 .btn:hover {
@@ -79,7 +78,6 @@ label {
 table {
   overflow:hidden;
   overflow-y: scroll;
-  /*max-width: fit-content;*/
   min-width: max-content;
 }
 
@@ -87,52 +85,211 @@ table {
   margin-top: 60px;
 }
 
-.total-revenue {
-  margin-left: 65%;
-}
-
-/* Mobile: with < 740px */
-@media only screen and (max-width: 46.188rem) {
-  .clearfix {
-    position: absolute;
-    right: 6%;
-  }
-
-  .total-revenue {
-    margin-left: 65%;
-  }
-}
-
 button,
 select,
 input {
   border-radius: 25px;
+  margin-left: 10px;
 }
 
 
-/* Tablet: with >= 740px and with < 1024px */
-@media only screen and (min-width: 46.25rem) and (max-width: 63.938rem) {
-  .clearfix {
-    position: absolute;
-    right: 10%;
+.search-top {
+  display: flex;
+  padding-bottom: 15px;
+  justify-content: center;
+
+}
+
+.search-bot {
+  display: flex;
+  padding-bottom: 15px;
+  justify-content: center;
+}
+
+.search-bot input {
+  width: 30%;
+}
+
+.total-revenue {
+  display: flex;
+  justify-content: center;
+  border-left: 1px solid Silver;
+  border-top: 1px solid Silver;
+  border-right: 1px solid Silver;
+  border-bottom: 1px solid Silver;
+  margin-left: 71%;
+}
+
+/* tablet: with < 1700px */
+@media only screen and (max-width: 106.25rem) {
+  .total-revenue {
+    display: flex;
+    justify-content: center;
+    border-left: 1px solid Silver;
+    border-top: 1px solid Silver;
+    border-right: 1px solid Silver;
+    border-bottom: 1px solid Silver;
+    margin-left: 71%;
+  }
+}
+
+/* Mobile: with < 740px */
+@media only screen and (max-width: 46.188rem) {
+
+  select,
+  input {
+    margin-bottom: 10px;
+  }
+
+  .search-top {
+    display: flex;
+    padding-bottom: 15px;
+    height: auto;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    flex-flow: wrap;
+  }
+
+  .search-top input {
+    width: 45%;
+  }
+
+  .search-top select {
+    width: 45%;
+  }
+
+  .search-top .btn-top {
+    width: 95%;
+  }
+
+  .search-bot {
+    display: flex;
+    padding-bottom: 15px;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .search-bot input {
+    width: 100%;
   }
 
   .total-revenue {
-    margin-left: 50%;
+    display: flex;
+    justify-content: center;
+    border-left: 1px solid Silver;
+    border-top: 1px solid Silver;
+    border-right: 1px solid Silver;
+    border-bottom: 1px solid Silver;
+    margin-left: 71%;
   }
 }
 
-/*Laptop: < 1024px */
-@media only screen and (max-width: 85.313rem) {
-  .clearfix {
-    position: absolute;
-    right: 12.5%;
+/* Tablet: with < 1010px */
+
+@media only screen and (max-width: 63.125rem) {
+
+  select,
+  input {
+    margin-bottom: 10px;
   }
 
-  .total-revenue {
-    margin-left: 34%;
+  .search-top {
+    display: flex;
+    padding-bottom: 15px;
+    height: auto;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    flex-flow: wrap;
   }
+
+  .search-top input {
+    width: 45%;
+  }
+
+  .search-top select {
+    width: 45%;
+  }
+
+  .search-top .btn-top {
+    width: 95%;
+  }
+
+  .search-bot {
+    ddisplay: flex;
+    padding-bottom: 15px;
+    height: auto;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    flex-flow: wrap;
+  }
+
+  .search-bot input {
+    width: 45%;
+  }
+
+  .search-bot select {
+    width: 45%;
+  }
+
+  .search-bot .btn-bot {
+    width: 95%;
+  }
+
 }
+
+/* Mobile: with < 600px */
+@media only screen and (max-width: 37.5rem) {
+
+  select,
+  input {
+    margin-bottom: 10px;
+  }
+
+  .search-top {
+    display: flex;
+    padding-bottom: 15px;
+    height: auto;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    flex-flow: wrap;
+  }
+
+  .search-top input {
+    width: 100%;
+  }
+
+  .search-top select {
+    width: 100%;
+  }
+
+  .search-top .btn-top {
+    width: 95%;
+  }
+
+  .search-bot {
+    ddisplay: flex;
+    padding-bottom: 15px;
+    height: auto;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    flex-flow: wrap;
+  }
+
+  .search-bot input {
+    width: 100%;
+  }
+
+  .search-bot select {
+    width: 100%;
+  }
+
+  .search-bot .btn-bot {
+    width: 95%;
+  }
+
+}
+
+
 
 
 .page-item .page-link {

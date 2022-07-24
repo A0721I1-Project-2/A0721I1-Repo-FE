@@ -28,7 +28,7 @@ export class ChatBoxUserComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    this.user = JSON.parse(window.localStorage.getItem('user'));
+    this.user = JSON.parse(window.localStorage.getItem('auth-user'));
 
     /* Get date now */
     this.now = this.chatService.getTimeStamp();
