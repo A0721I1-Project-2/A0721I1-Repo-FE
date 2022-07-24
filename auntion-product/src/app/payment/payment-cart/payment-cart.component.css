@@ -12,6 +12,15 @@
   margin: 0 auto;
   z-index: 1;
 }
+.test-limit {
+  display: -webkit-box;
+  height: 2.6em;
+  line-height: 1.3em;
+  -webkit-box-orient: vertical;    overflow: hidden;
+  text-overflow: ellipsis;
+  width: 200px;
+  -webkit-line-clamp: 1;
+}
 .multi_step_form #msform .tittle {
   text-align: center;
 }
