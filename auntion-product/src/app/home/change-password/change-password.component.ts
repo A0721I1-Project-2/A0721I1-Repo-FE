@@ -13,6 +13,7 @@ export class ChangePasswordComponent implements OnInit {
   changePasswordForm: FormGroup;
   message: string;
   token: string;
+  public showPassword: boolean = false;
 
   constructor(private homeService: HomeService, private route: ActivatedRoute) {
     this.token = this.route.snapshot.paramMap.get('token');
@@ -30,13 +31,14 @@ export class ChangePasswordComponent implements OnInit {
     this.homeService.changePassword(password, this.token).subscribe(data => {
       this.message = data;
       Swal.fire(
-        'Create success!',
+        'Change password successfully!',
         '',
         'success'
       );
     });
     console.log(this.message);
   }
+
 }
 
 function identityConfirmPassword(control: AbstractControl) {

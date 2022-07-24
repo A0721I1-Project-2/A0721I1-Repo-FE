@@ -39,15 +39,14 @@ export class ChatService {
     /* Create new path for admin and user */
     let path = `messages/${accountId}`;
 
+    console.log(this.account);
+
     this.chatMessages = this.getMessages(accountId);
 
     if (fileUpload == null) {
       fileUpload = null;
       this.isFile = null;
     }
-
-    console.log(message);
-    console.log(this.isFile);
 
     /* Get username by account Id */
     this.chatMessages.push({
@@ -172,9 +171,6 @@ export class ChatService {
 
   constructor(private db: AngularFireDatabase, private storage: AngularFireStorage
     , private apiService: ApiService, private connectFirebaseService: ConnectFirebaseService) {
-    this.account = JSON.parse(window.localStorage.getItem('user'));
-    if (this.account == null) {
-      this.account = JSON.parse(window.localStorage.getItem('admin'));
-    }
+    this.account = JSON.parse(window.localStorage.getItem('auth-user'));
   }
 }

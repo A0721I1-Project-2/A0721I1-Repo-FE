@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HomeService} from '../service/home.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-forgot-password',
@@ -32,7 +33,11 @@ export class ForgotPasswordComponent implements OnInit {
       if (check !== null) {
         this.homeService.processForgotPasswordForm(username, email).subscribe(data => {
         });
-        this.message = 'We have sent a link to change the password. Please open email to check';
+        Swal.fire(
+          'We have sent a link to change the password. Please open email to check',
+          '',
+          'success'
+        );
       } else {
         this.message = 'Wrong username or email';
       }

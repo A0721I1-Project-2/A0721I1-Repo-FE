@@ -1,4 +1,6 @@
 import {Injectable} from '@angular/core';
+
+
 import {environment} from '../../../environments/environment';
 import {Address} from '../sign-up-member/address';
 import {MemberDTO} from '../../model/MemberDTO';
@@ -9,18 +11,27 @@ import {Rank} from '../../model/Rank';
 
 
 const API_ADDRESS = 'http://localhost:3000/address';
-const URL_API = 'http://localhost:8080/profile/';
+const URL_API_MEM = 'http://localhost:8080/profile/';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class MemberService {
+  public URL_API_DETAIL = 'http://localhost:8080/api/account';
 
-  API_URL = 'http://localhost:8080';
 
   constructor(private httpClient: HttpClient) {
   }
+
+  // HauNT
+  findByIdUser(idUser: number): Observable<Member> {
+    // @ts-ignore
+    return this.httpClient.get(this.URL_API_DETAIL + '/detail/' + idUser);
+  }
+
+  API_URL = 'http://localhost:8080';
+
 
   /*// bin code */
   // tslint:disable-next-line:ban-types
@@ -81,16 +92,15 @@ export class MemberService {
 
 
   // SonLT View-Member
-  findByIdAccount(idAccount: number): Observable<Member> {
-    return this.httpClient.get<Member>(URL_API + 10);
+  findByIdAccount(member: any): Observable<Member> {
+    return this.httpClient.get<Member>(this.API_URL + '/profile/' + member);
   }
 
   // SonLT Edit-Member
-  editMember(member: Member): Observable<void> {
-    // @ts-ignore
-    return this.httpClient.put(URL_API + '/edit/' + 10, member);
+  editMember(member: Member): Observable<Member> {
+    return this.httpClient.patch<Member>(URL_API_MEM + 'edit' , member);
   }
 
 
-}
 
+}

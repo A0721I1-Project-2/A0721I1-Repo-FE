@@ -1,14 +1,14 @@
 <!--<script src="src/assets/js/remaining-time-home.js"></script>-->
 <div id="main">
-<!--  <div id="slider">-->
-<!--    <div class="text-slider">-->
-<!--      <h2 class="heading-text">AUCTION</h2>-->
-<!--      <p class="des-text">Online Auction is where everyone goes to shop, sell,-->
-<!--        and give, while discovering variety and affordability.</p>-->
+  <!--  <div id="slider">-->
+  <!--    <div class="text-slider">-->
+  <!--      <h2 class="heading-text">AUCTION</h2>-->
+  <!--      <p class="des-text">Online Auction is where everyone goes to shop, sell,-->
+  <!--        and give, while discovering variety and affordability.</p>-->
 
-<!--      <a href="" class="btn btn-register-slider">REGISTER NOW</a>-->
-<!--    </div>-->
-<!--  </div>-->
+  <!--      <a href="" class="btn btn-register-slider">REGISTER NOW</a>-->
+  <!--    </div>-->
+  <!--  </div>-->
   <div id="slider" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
@@ -72,29 +72,35 @@
         </button>
       </form>
 
-
-      <!-- Start Modal -->
-      <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-           aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle" style="color: orange">Warning</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body" style="text-align: left">
-              <p style="font-weight: bold; color: red" *ngFor="let c of messageAlert">{{c}}</p>
-              <p>Please re-enter. Thanks!</p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-          </div>
-        </div>
+      <div class="alert alert-warning" id="alert" role="alert" hidden>
+        <h4 class="alert-heading">Warning!</h4>
+        <button type="button" class="close" (click)="hide()">&times;</button>
+        <p style="font-weight: bold; color: red" *ngFor="let c of messageAlert">{{c}}</p>
       </div>
-      <!-- End Modal -->
+
+
+      <!--      &lt;!&ndash; Start Modal &ndash;&gt;-->
+      <!--      <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"-->
+      <!--           aria-hidden="true">-->
+      <!--        <div class="modal-dialog modal-dialog-centered" role="document">-->
+      <!--          <div class="modal-content">-->
+      <!--            <div class="modal-header">-->
+      <!--              <h5 class="modal-title" id="exampleModalLongTitle" style="color: orange">Warning</h5>-->
+      <!--              <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+      <!--                <span aria-hidden="true">&times;</span>-->
+      <!--              </button>-->
+      <!--            </div>-->
+      <!--            <div class="modal-body" style="text-align: left">-->
+      <!--              <p style="font-weight: bold; color: red" *ngFor="let c of messageAlert">{{c}}</p>-->
+      <!--              <p>Please re-enter. Thanks!</p>-->
+      <!--            </div>-->
+      <!--            <div class="modal-footer">-->
+      <!--              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+      <!--            </div>-->
+      <!--          </div>-->
+      <!--        </div>-->
+      <!--      </div>-->
+      <!--      &lt;!&ndash; End Modal &ndash;&gt;-->
 
     </div>
     <div class="sortProduct ">
@@ -165,12 +171,12 @@
                 <div>TIME LEFT: <span style="color: #fff;">{{product.remainingTime}}</span></div>
               </div>
               <div class="product-image">
-                <a [routerLink]="['../product-detail/',product.idProduct]"><img [src]="product.imageProductList[0].imageProduct" alt="Flycame"
-                                 onError="this.src='./assets/home-header/image/Image_not_available.png'"></a>
+                <a [routerLink]="['/home/product-detail/',product.idProduct]"><img [src]="product.imageProductList[0].imageProduct" alt="Flycame"
+                                                                                   onError="this.src='./assets/home-header/image/Image_not_available.png'"></a>
               </div>
               <div class="product-title">
                 <h5>
-                  <a [routerLink]="['../product-detail/',product.idProduct]">{{product.nameProduct}}</a>
+                  <a [routerLink]="['/home/product-detail/',product.idProduct]">{{product.nameProduct}}</a>
                 </h5>
               </div>
               <div class="product-price">
@@ -197,7 +203,3 @@
 
   </div>
 </div>
-
-
-
-
