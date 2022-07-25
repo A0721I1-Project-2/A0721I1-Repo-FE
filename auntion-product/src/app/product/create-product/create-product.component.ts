@@ -77,7 +77,7 @@ export class CreateProductComponent implements OnInit {
       productDescription: [null, [Validators.required]],
       approvalStatus: [2],
       biddingStatus: [2],
-      cart: [1],
+      cart: [2],
     });
 
     this.getControl.startDate.setValidators([Validators.required, this.customvValidateStartDate()]);
