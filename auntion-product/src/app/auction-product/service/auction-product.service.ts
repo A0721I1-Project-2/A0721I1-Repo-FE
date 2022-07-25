@@ -1,16 +1,14 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
-
+import {HttpClient} from '@angular/common/http';
 import {Product} from '../../model/Product';
 import {TypeProduct} from '../../model/TypeProduct';
-
 const API_URL = 'http://localhost:8080/manager/product/api';
 import {Member} from '../../model/Member';
 import {AuctionDTO} from '../../model/auctionDTO';
 import {ImageProduct} from '../../model/ImageProduct';
 import {Cart} from '../../model/Cart';
-import {Account} from '../../model/Account';
+import {Account} from "../../model/Account";
 
 @Injectable({
   providedIn: 'root'
@@ -96,5 +94,10 @@ export class AuctionProductService {
   /* HuyNN */
   updateIdBindingStatus(idProduct, idBindingStatus) {
     return this.httpClient.get('http://localhost:8080/manager/product/api/updateIdBindingStatus/' + idProduct + '/' + idBindingStatus);
+  }
+
+  /* HuyNN */
+  blockMemberAndAccount(idMember, idAccount) {
+    return this.httpClient.get('http://localhost:8080/manager/product/api/blockMemberAndAccount/' + idMember + '/' + idAccount);
   }
 }

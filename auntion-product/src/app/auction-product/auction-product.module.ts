@@ -15,7 +15,7 @@ import {environment} from "./environments/environment";
     CommonModule,
     AuctionProductRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule ,
+    ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseProduct)
   ]
 })

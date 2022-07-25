@@ -5,9 +5,10 @@ import {environment} from 'src/environments/environment';
 import {map} from 'rxjs/operators';
 import {TypeProduct} from '../../../model/TypeProduct';
 import {BiddingStatus} from '../../../model/BiddingStatus';
+import {Product} from '../../../model/Product';
 import {ImageProduct} from '../../../model/ImageProduct';
 import {Member} from '../../../model/Member';
-import {Product} from '../../../model/Product';
+
 
 const URL_API = 'http://localhost:8080/manager/product/api';
 
