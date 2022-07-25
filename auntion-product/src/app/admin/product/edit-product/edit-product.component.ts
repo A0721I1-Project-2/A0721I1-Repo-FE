@@ -1,14 +1,13 @@
 import {Component, Inject, OnInit} from '@angular/core';
+import {Product} from '../../../model/Product';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {ProductService} from '../service/product.service';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {AngularFireStorage} from '@angular/fire/storage';
-import {finalize} from 'rxjs/operators';
-import {Product} from '../../../model/Product';
 import {TypeProduct} from '../../../model/TypeProduct';
 import {ImageProduct} from '../../../model/ImageProduct';
+import {finalize} from 'rxjs/operators';
 import {Member} from '../../../model/Member';
-import {ProductService} from '../../../product/service/product.service';
-
 
 @Component({
   selector: 'app-edit-product',
@@ -53,8 +52,7 @@ export class EditProductComponent implements OnInit {
 
   getProduct() {
     this.activatedRoute.paramMap.subscribe((paraMap: ParamMap) => {
-      const id = 1;
-      // const id = Number(paraMap.get('id'));
+      const id = Number(paraMap.get('id'));
       this.productService.findById(id).subscribe(
         next => {
           this.product = next;
