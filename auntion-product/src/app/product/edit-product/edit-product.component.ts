@@ -8,6 +8,7 @@ import {TypeProduct} from '../../model/TypeProduct';
 import {ImageProduct} from '../../model/ImageProduct';
 import {finalize} from 'rxjs/operators';
 import {Member} from '../../model/Member';
+import {MemberService} from '../../member/service/member.service';
 
 @Component({
   selector: 'app-edit-product',
@@ -26,10 +27,12 @@ export class EditProductComponent implements OnInit {
   imgVip1 = 'https://firebasestorage.googleapis.com/v0/b/sprint2-1452b.appspot.com/o/david-van-dijk-3LTht2nxd34-unsplash.jpg?alt=media&token=d942e43a-9263-471a-9f8a-baae85f8badc';
 
   editForm: FormGroup | any;
+  poster: any;
 
   constructor(
     private fb: FormBuilder,
     private productService: ProductService,
+    private memberService: MemberService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
     @Inject(AngularFireStorage) private storage: AngularFireStorage
@@ -68,7 +71,6 @@ export class EditProductComponent implements OnInit {
             remainingTime: this.product.remainingTime,
             approvalStatus: this.product.approvalStatus,
             biddingStatus: this.product.biddingStatus,
-            cart: this.product.cart,
             nameProduct: this.product.nameProduct,
             idMember: this.product.member.idMember,
             nameMember: this.product.member.nameMember,
@@ -89,20 +91,19 @@ export class EditProductComponent implements OnInit {
       idProduct: ['', Validators.required],
       codeProduct: ['', Validators.required],
       createDay: ['', Validators.required],
-      finalPrice: ['', Validators.required],
-      flagDelete: ['', Validators.required],
-      remainingTime: ['', Validators.required],
-      approvalStatus: ['', Validators.required],
-      biddingStatus: ['', Validators.required],
-      cart: ['', Validators.required],
+      finalPrice: [''],
+      flagDelete: [''],
+      remainingTime: [''],
+      approvalStatus: [''],
+      biddingStatus: [''],
       nameProduct: ['', Validators.required],
       idMember: ['', Validators.required],
       nameMember: ['', Validators.required],
       typeProduct: ['', Validators.required],
-      imageProduct: ['', Validators.required],
+      imageProduct: [''],
       initialPrice: ['', Validators.required],
       incrementPrice: ['', Validators.required],
-      imgProduct: ['', Validators.required],
+      imgProduct: [''],
       startDate: ['', Validators.required],
       endDate: ['', Validators.required],
       productDescription: ['', Validators.required]
@@ -180,4 +181,8 @@ export class EditProductComponent implements OnInit {
     };
 
   }
+  public get getControl() {
+    return this.editForm.controls;
+  }
+
 }

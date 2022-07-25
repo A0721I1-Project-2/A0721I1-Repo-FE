@@ -21,13 +21,13 @@
       <div class="form-group row ">
         <label class="col-sm-3 col-md-3 col-3 col-form-label">ID Poster:<i style="color: red">(*)</i>
         </label>
-        <div class="col-sm-5 col-md-5 col-5">
-          <input formControlName="idMember" type="text" class="form-control" readonly>
+        <div class="col-sm-7 col-md-7 col-7">
+          <input formControlName="idMember" type="text" class="form-control" readonly >
         </div>
-        <div class="col-sm-2 col-md-2 col-2">
-          <button type="button" class="form__group_button_check">Check <i class='bx bx-loader-alt'></i>
-          </button>
-        </div>
+<!--        <div class="col-sm-2 col-md-2 col-2">-->
+<!--          <button type="button" class="form__group_button_check">Check <i class='bx bx-loader-alt'></i>-->
+<!--          </button>-->
+<!--        </div>-->
       </div>
 
       <div class="form-group row">
@@ -71,6 +71,7 @@
         <label class="col-sm-3 col-md-3 col-3 col-form-label">Picture:<i style="color: red">(*)</i></label>
         <div class="col-sm-7 col-md-7 col-7 picture">
           <img *ngFor=" let img of imageProduct" style="height: 200px; width: 200px;" src="{{img.imageProduct}}">
+
           <br/>
           <div>
             <input type="file" id="imgProduct" name="imgProduct" multiple (change)="preview($event)"/>
@@ -102,6 +103,16 @@
                     <textarea type="textarea" class="form-control" rows="4" style="resize:none"
                               formControlName="productDescription">
                     </textarea>
+          <p *ngIf="(editForm.get('productDescription').hasError('required')
+              && editForm.get('productDescription').touched)">
+            <i style="color: red">Detail product cannot be blank !</i>
+          </p>
+<!--          <div-->
+<!--            *ngIf="(getControl.productDescription.dirty || getControl.productDescription.touched) && getControl.productDescription.invalid">-->
+<!--            <div *ngIf="getControl.productDescription.errors.required" style="color: red;">-->
+<!--              Not Empty-->
+<!--            </div>-->
+<!--          </div>-->
         </div>
       </div>
 
@@ -109,7 +120,7 @@
         <div class="col-sm-3  col-3">
         </div>
         <div class="col-sm-2  col-2">
-          <button type="submit" class="form__group_button_edit">
+          <button type="submit" class="form__group_button_edit" [disabled]="editForm.invalid">
             Update <i class='bx bx-edit'></i>
           </button>
         </div>
