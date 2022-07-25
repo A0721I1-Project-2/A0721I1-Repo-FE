@@ -32,7 +32,6 @@ import {AngularFireModule} from "@angular/fire";
     AngularFireAuthModule,
     BrowserAnimationsModule,
     AngularFireDatabaseModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule ,
     AngularFireAuthModule,
     NgxCaptchaModule,
