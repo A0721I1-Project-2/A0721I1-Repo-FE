@@ -110,7 +110,7 @@ export class StatisticComponent implements OnInit {
     console.log(localDate);
     const month = localDate.getMonth() + 1;
     console.log(month);
-    this.productService.statsProductAtCurrentMonth(month, 1).subscribe(
+    this.productService.statsProductAtCurrentMonth(month, 3).subscribe(
       items => {
         for (const i in items) {
           console.log('item: ' + items[i]);
@@ -174,9 +174,9 @@ export class StatisticComponent implements OnInit {
 
   report() {
     this.message = null;
-    console.log("ban đầu: " + this.products);
+    console.log('ban đầu: ' + this.products);
     const newProducts: any[] = [];
-    console.log("lúc sau: " + newProducts);
+    console.log('lúc sau: ' + newProducts);
     this.statsBegin = this.statsGroup.get('statsBegin').value;
     this.statsEnd = this.statsGroup.get('statsEnd').value;
     // console.log(this.datePipe.transform(this.statsBeginDate, 'yyyy-MM-dd'));
