@@ -1,5 +1,6 @@
 export interface Payment {
   idPayment: number;
+  fullNameReceiver: string;
   firstNameReceiver: string;
   lastNameReceiver: string;
   city: string;
@@ -14,6 +15,8 @@ export interface Payment {
   paymentMethod: any;
   transport: any;
   cart: any;
+  invoiceList: any;
+
   product: any;
   total:any;
 }

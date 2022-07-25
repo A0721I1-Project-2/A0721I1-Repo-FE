@@ -1,7 +1,8 @@
 export interface Question {
   idQuestion: number;
-  content: string;
+  Content: string;
   answer: string;
+  content: string;
   code:string;
   topic: any;
 }

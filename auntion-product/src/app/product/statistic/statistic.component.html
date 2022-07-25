@@ -1,18 +1,19 @@
 <app-header-admin></app-header-admin>
 <app-navbar-admin></app-navbar-admin>
-<div *ngIf="message != null">
-  <div id="noti" class="alert alert-warning alert-dismissible fade show" role="alert">
-    <h4 class="alert-heading text-danger bol font-weight-bold" >Alert!!</h4>
-    <p *ngIf="message != null">{{message}}</p>
-    <button type="button" class="close" (click)="hide()" aria-label="Close">
-      <span>&times;</span>
-    </button>
-    <hr>
-  </div>
-</div>
+
 <div class="container">
   <section id="main-content" style="padding: 20px">
     <section class="wrapper">
+      <div *ngIf="message != null">
+        <div id="noti" class="alert alert-warning alert-dismissible fade show" role="alert">
+          <h4 class="alert-heading text-danger bol font-weight-bold">Alert!!</h4>
+          <p *ngIf="message != null">{{message}}</p>
+          <button type="button" class="close" (click)="hide()" aria-label="Close">
+            <span>&times;</span>
+          </button>
+          <hr>
+        </div>
+      </div>
       <h3><i class="fa fa-angle-right"></i>Statistics</h3>
       <form (ngSubmit)="report()" [formGroup]="statsGroup">
         <div class="row mt">
@@ -32,8 +33,10 @@
                        class="form-control" formControlName="statsBegin"/>
                 <!--                      <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>-->
               </div>
-              <p class="w3-panel w3-red" *ngIf="statsGroup.get('statsBegin').hasError('required')">ou need to fill
-                begin-date in</p>
+              <div
+                *ngIf="statsGroup.get(['statsBegin']).invalid && (statsGroup.get(['statsBegin']).touched || statsGroup.get(['statsBegin']).dirty)">
+                <p class="text-danger" *ngIf="statsGroup.get('statsBegin').hasError('required')">Begin-date required</p>
+              </div>
               <!--                    <mat-form-field>-->
               <!--                      <input matInput id="fromDate" class="form-control" formControlName="statsBegin"-->
               <!--                             [matDatepicker]="picker" placeholder="Choose a begin date">-->
@@ -52,8 +55,10 @@
 
                 <!--                      <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>-->
               </div>
-              <p class="w3-panel w3-red" *ngIf="statsGroup.get('statsEnd').hasError('required')">You need to fill
-                end-date in</p>
+              <div
+                *ngIf="statsGroup.get(['statsEnd']).invalid && (statsGroup.get(['statsEnd']).touched || statsGroup.get(['statsEnd']).dirty)">
+                <p class="text-danger" *ngIf="statsGroup.get('statsEnd').hasError('required')">End-date required</p>
+              </div>
             </div>
           </div>
         </div>
