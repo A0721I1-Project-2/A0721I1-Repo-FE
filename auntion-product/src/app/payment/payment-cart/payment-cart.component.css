@@ -2,6 +2,17 @@
 .multi_step_form {
   display: block;
 }
+.test-limit {
+  display: -webkit-box;
+  height: 2.6em;
+  line-height: 1.3em;
+  /* -webkit-line-clamp: 2; */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 200px;
+  -webkit-line-clamp: 1;
+}
 .multi_step_form #msform {
   text-align: center;
   position: relative;

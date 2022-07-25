@@ -56,11 +56,11 @@
                                     <img class=" img-fluid" src="{{product.imageProductList[0].imageProduct}}" width="62" height="62">
                                     <div style="padding-left: 15px" class="media-body  my-auto">
                                       <div class="row ">
-                                        <div class="col-auto"><p class="mb-0"><b>{{product.nameProduct}}</b></p><small class="text-muted">{{product.productDescription}}</small></div>
+                                        <div class="col-auto"><p class="mb-0"><b>{{product.nameProduct}}</b></p><small class="text-muted test-limit">{{product.productDescription}}</small></div>
                                       </div>
                                     </div>
                                   </div>
-                                </div>
+                                </div>s
                                 <div class=" pl-0 flex-sm-col col-auto  my-auto "><p><b>{{product.finalPrice}}$</b></p></div>
                               </div>
                               <i *ngIf="product.length == 0" class="more" style="color: red; font-size: 11px;">Please choose product payment!</i>
@@ -299,13 +299,13 @@
                 <div class="container">
                   <div class="row" style="padding-bottom: 25px;">
                     <div class="col-12">
-                      <div class="font-weight-light pay-total-title" style=" text-align: left!important;">You're buying from:   <b style="color: black; font-size: 18px;">{{lastName}}</b></div>
+                      <div class="font-weight-light pay-total-title" style=" text-align: left!important;">Recipient's name:   <b style="color: black; font-size: 18px;">{{lastName}}</b></div>
                     </div>
                   </div>
                   <div class="row " *ngFor="let item of product">
                     <div class="col-4 justify-content-center justify-content-center">
                       <div style="width: 60%" class="pay-total-img">
-                        <img src="https://thumbs.dreamstime.com/b/new-iphone-features-all-screen-design-99917162.jpg"></div>
+                        <img src="{{item.imageProductList[0].imageProduct}}"></div>
                     </div>
                     <div class="col-8">
                                     <span>
