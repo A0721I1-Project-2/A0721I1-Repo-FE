@@ -22,7 +22,6 @@
     <list default="true" id="fd47a7b0-564c-4d1f-86fc-3f2755c448e7" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_07_2022_1_22_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_07_2022_1_22_PM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/auntion-product/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/auntion-product/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/auntion-product/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/auntion-product/package.json" afterDir="false" />
@@ -68,7 +67,7 @@
       <option name="presentableId" value="Default" />
       <updated>1658733494552</updated>
       <workItem from="1658733496185" duration="39000" />
-      <workItem from="1658733543199" duration="702000" />
+      <workItem from="1658733543199" duration="2523000" />
     </task>
     <servers />
   </component>

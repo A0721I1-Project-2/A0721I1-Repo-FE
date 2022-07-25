@@ -36,13 +36,16 @@ export class PostProductComponent implements OnInit {
   constructor(private firebaseService: FirebaseService, private apiService: ApiService, private router: Router,
               private productService: AuctionProductService) {
   }
-
   VALIDATION_MESSAGE = {
+    codeProduct: [
+      {type: 'required', message: ' Product Code cannot be blank !'},
+      {type: 'pattern', message: 'Please enter the correct format PRXXX !'}
+    ],
     nameProduct: [
       {type: 'required', message: 'Product name cannot be blank !'}
     ],
     initialPrice: [
-      {type: 'required', message: 'initial Price cannot be blank !'},
+      {type: 'required', message: 'Initial Price cannot be blank !'},
       {type: 'pattern', message: 'Please enter the correct integer format !'}
     ],
     incrementPrice: [
@@ -75,6 +78,7 @@ export class PostProductComponent implements OnInit {
 
     // @ts-ignore
     this.formCreate = new FormGroup({
+        codeProduct: new FormControl('', Validators.required),
         nameProduct: new FormControl('', Validators.required),
         initialPrice: new FormControl('', Validators.required),
         incrementPrice: new FormControl('', Validators.required),
@@ -169,7 +173,7 @@ export class PostProductComponent implements OnInit {
       const endDate = form.value;
       const startDate = this.getControl.startDate.value;
       if (endDate < startDate) {
-        return {invalid: true};
+        return { invalid: true };
       }
       return null;
     };
@@ -177,10 +181,10 @@ export class PostProductComponent implements OnInit {
 
   private customvValidateStartDate(): ValidatorFn {
     return (form): ValidationErrors => {
-      const startDate = form.value;
+      const startTime = form.value;
       const endTime = this.getControl.endDate.value;
-      if (endTime < startDate) {
-        return {invalid: true};
+      if (endTime < startTime) {
+        return { invalid: true };
       }
       return null;
     };
@@ -193,5 +197,3 @@ export class PostProductComponent implements OnInit {
     return this.formCreate.controls;
   }
 }
-
-
