@@ -1,6 +1,3 @@
-import {Rank} from './Rank';
-import {Account} from './Account';
-
 export interface Member {
   idMember: number;
   nameMember: string;
