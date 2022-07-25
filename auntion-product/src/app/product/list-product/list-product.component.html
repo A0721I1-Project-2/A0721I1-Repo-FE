@@ -1,16 +1,6 @@
-<div class="chat-admin__container" style="overflow: hidden">
-  <div class="header__admin">
-    <app-header-admin></app-header-admin>
-  </div>
-  <div class="content__admin-container">
-    <div class="row">
-      <div class="d-none-m-b col-md-2 p-r-0" style="margin-top: 57px" >
-        <app-navbar-admin></app-navbar-admin>
-      </div>
-
-      <div class="col-12 col-md-10 p-l-0">
-        <!-- Đây là component để chính -->
-        <div class="container-fluid">
+<app-header-admin></app-header-admin>
+<app-navbar-admin></app-navbar-admin>
+<div class="container-fluid">
           <h2>Product Management</h2>
           <div class="horizontal-line"></div>
           <form (ngSubmit)="search()" [formGroup]="searchProduct">
@@ -146,9 +136,9 @@
                       Do you want to delete this product with ID: {{i}} ?
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn" data-dismiss="modal" style="background: white; color: #11b683; border-color:#11b683">Close</button>
                       <button type="button" class="btn" data-dismiss="modal" (click)="deleteInvoice()"
-                              style="background: white; color: #11b683; border-color:#11b683">Yes, Delete it!
+                              >Yes, Delete it!
                       </button>
                     </div>
                   </div>
@@ -201,9 +191,4 @@
           </div>
           </ng-template>
         </div>
-        <app-footer-admin></app-footer-admin>
-      </div>
-    </div>
-  </div>
-</div>
-
+<app-footer-admin></app-footer-admin>
