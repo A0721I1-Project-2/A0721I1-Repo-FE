@@ -62,13 +62,12 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Address} from '../payment-cart/address';
-import {Product} from '../../model/Product';
-import {Member} from '../../model/Member';
+
 import {Transport} from '../../model/Transport';
 import {PaymentMethod} from '../../model/PaymentMethod';
 import {Cart} from '../../model/Cart';
 import {Payment} from '../../model/Payment';
-import {InvoiceDetail} from "../../model/InvoiceDetail";
+import {InvoiceDetail} from '../../model/InvoiceDetail';
 const API_ADDRESS = 'http://localhost:3000/address';
 const API_URL = 'http://localhost:8080/manager/payment/api/';
 const API_STATUS = 'http://localhost:8080/manager/invoice-status/api';
@@ -79,7 +78,7 @@ const API_STATUS = 'http://localhost:8080/manager/invoice-status/api';
 export class PaymentService {
   urlSendEmai = 'http://localhost:8080/manager/invoice-status/api/sendMail';
 
-  private _payment:Payment;
+  private _payment: Payment;
 
   get getPayment(): Payment {
     return this._payment;
@@ -91,7 +90,7 @@ export class PaymentService {
 
   constructor(private httpClient: HttpClient) { }
   // tslint:disable-next-line:variable-name
-  public postImagePDFAndSendEmail(UrlImgInvoice: string,email: string): Observable<string> {
+  public postImagePDFAndSendEmail(UrlImgInvoice: string, email: string): Observable<string> {
     return this.httpClient.get<string>(this.urlSendEmai + '?img=' + UrlImgInvoice + '&mail=' +  email);
   }
   findAllStatusInvoice(): Observable<InvoiceDetail[]> {
