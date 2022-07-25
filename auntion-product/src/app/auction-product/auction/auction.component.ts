@@ -3,9 +3,11 @@ import {AuctionProductService} from '../service/auction-product.service';
 import {Product} from '../../model/Product';
 import {FormControl, FormGroup} from '@angular/forms';
 import {AuctionDTO} from '../../model/auctionDTO';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Cart} from '../../model/Cart';
+import {TokenStorageService} from '../../login/service/token-storage.service';
 import {Member} from '../../model/Member';
 import {Account} from '../../model/Account';
-import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-auction',
@@ -31,12 +33,13 @@ export class AuctionComponent implements OnInit {
   modalBackground: any;
   modalHidden = true;
   displayStyle = 'none';
+  updateCard: Cart;
 
-  constructor(private auctionProductService: AuctionProductService, private activatedRoute: ActivatedRoute) {
+  // tslint:disable-next-line:max-line-length
+  constructor(private auctionProductService: AuctionProductService, private activatedRoute: ActivatedRoute, public tokenStorageService: TokenStorageService, private router: Router) {
   }
 
   ngOnInit(): void {
-    window.localStorage.setItem('id', '1');
     const idProduct = this.activatedRoute.snapshot.params.id;
     this.idProduct = idProduct;
     this.getMemberAndAccountIdFromLocalStore();
@@ -47,7 +50,6 @@ export class AuctionComponent implements OnInit {
 
     const imagePromise = this.getImageByProductId(this.idProduct).toPromise();
     imagePromise.then((dataImage) => {
-      console.log(dataImage);
       for (let i = 0; i < dataImage.length; i++) {
         this.arrayImage[i] = dataImage[i].imageProduct;
       }
@@ -152,7 +154,7 @@ export class AuctionComponent implements OnInit {
         currenDate.getMinutes().toString().padStart(2, '0')}:${
         currenDate.getSeconds().toString().padStart(2, '0')}`;
 
-      this.currentWinner = this.account.username;
+      this.currentWinner = this.account?.username;
       this.currentPrice = newPrice;
       // @ts-ignore
       // tslint:disable-next-line:max-line-length
@@ -237,29 +239,62 @@ export class AuctionComponent implements OnInit {
   }
 
   getMemberAndAccountIdFromLocalStore() {
-    const id = window.localStorage.getItem('id');
-    const memberPromise = this.auctionProductService.getMemberById(Number(id)).toPromise();
-    memberPromise.then((memberData) => {
-      console.log(memberData);
-      this.member = memberData;
-      this.account = memberData.account;
-    }, (error) => {
-      console.log('Promise rejected with ' + JSON.stringify(error));
-    });
+    let username;
+    if (this.tokenStorageService.getUser()) {
+      username = this.tokenStorageService.getUser().username;
+    }
+    if (username !== null) {
+      const accountPromise = this.auctionProductService.getAccountById(username).toPromise();
+      accountPromise.then((accountData) => {
+        this.account = accountData;
+        const memberPromise = this.auctionProductService.getMemberByIdAccount(accountData.idAccount).toPromise();
+        memberPromise.then((memberData) => {
+          this.member = memberData;
+        }, (error) => {
+          console.log('Promise rejected with ' + JSON.stringify(error));
+        });
+      }, (error) => {
+        console.log('Promise rejected with ' + JSON.stringify(error));
+      });
+    } else {
+      console.log('username = null');
+    }
   }
 
   auctionFinish() {
-    const idMember = window.localStorage.getItem('id');
     this.isFinish = true;
     this.auctionProductService.getAuctionList(this.product.idProduct).subscribe((data: AuctionDTO[]) => {
-      if (data[0]?.memberId === Number(idMember)) {
+      if (data.length === 0) {
+        this.auctionProductService.updateIdBindingStatus(this.idProduct, 1).subscribe();
+      } else if (data[0]?.memberId === this.member.idMember) {
         this.modalBody = 'You have successfully auctioned the product ' + this.product.nameProduct + '!';
         this.modalBackground = '#11B683';
         this.modalHidden = false;
         this.displayStyle = 'block';
 
-        const addProductPromise = this.auctionProductService.addProductToCard(Number(idMember), this.idProduct).toPromise();
-        addProductPromise.then(() => {
+        const addAuctionPromise = this.auctionProductService.addProductToCard(this.member.idMember, this.idProduct).toPromise();
+        addAuctionPromise.then(() => {
+          const proPromise = this.getProductById(this.idProduct).toPromise();
+          proPromise.then((dataPro) => {
+            if (!dataPro.flagDelete) {
+              const cartPromis = this.auctionProductService.getCardByMemberId(this.member.idMember).toPromise();
+              cartPromis.then((cartDt) => {
+                // tslint:disable-next-line:triple-equals
+                if (cartDt?.warning == '0') {
+                  this.auctionProductService.sendPaymentEmail(this.member.emailMember, this.product.nameProduct).subscribe();
+                  this.updateCard = cartDt;
+                  this.updateCard.warning = '1';
+                  this.updateCard.member = this.member;
+                  this.auctionProductService.updateCart(this.updateCard).subscribe();
+                }
+              }, (error) => {
+                console.log('Promise rejected with ' + JSON.stringify(error));
+              });
+            }
+          }, (error) => {
+            console.log('Promise rejected with ' + JSON.stringify(error));
+          });
+
           const y = setInterval(() => {
 
             const productPromise = this.getProductById(this.idProduct).toPromise();
@@ -267,34 +302,27 @@ export class AuctionComponent implements OnInit {
               if (dataProduct.flagDelete) {
                 clearInterval(y);
               } else {
-                const cartPromise = this.auctionProductService.getCardByMemberId(Number(idMember)).toPromise();
+                const cartPromise = this.auctionProductService.getCardByMemberId(this.member.idMember).toPromise();
                 cartPromise.then((cartData) => {
-                  const paymentLink = 'http://localhost:4200/auction-product/auction/1';
                   // tslint:disable-next-line:triple-equals
-                  if (cartData?.warning == '0') {
-                    console.log('im here');
+                  if (cartData?.warning == '1') {
                     this.auctionProductService.sendPaymentEmail(this.member.emailMember, this.product.nameProduct).subscribe();
-                    let updateCart;
-                    updateCart = cartData;
-                    updateCart.warning = '1';
-                    this.auctionProductService.updateCart(updateCart).subscribe();
-                    // tslint:disable-next-line:triple-equals
-                  } else if (cartData?.warning == '1') {
-                    this.auctionProductService.sendPaymentEmail(this.member.emailMember, this.product.nameProduct).subscribe();
-                    let updateCart;
-                    updateCart = cartData;
-                    updateCart.warning = '2';
-                    this.auctionProductService.updateCart(updateCart).subscribe();
+                    this.updateCard = cartData;
+                    this.updateCard.warning = '2';
+                    this.updateCard.member = this.member;
+                    this.auctionProductService.updateCart(this.updateCard).subscribe();
                     // tslint:disable-next-line:triple-equals
                   } else if (cartData?.warning == '2') {
                     this.auctionProductService.sendPaymentEmail(this.member.emailMember, this.product.nameProduct).subscribe();
-                    let updateCart;
-                    updateCart = cartData;
-                    updateCart.warning = '3';
-                    this.auctionProductService.updateCart(updateCart).subscribe();
+                    this.updateCard = cartData;
+                    this.updateCard.warning = '3';
+                    this.updateCard.member = this.member;
+                    this.auctionProductService.updateCart(this.updateCard).subscribe();
                     // tslint:disable-next-line:triple-equals
-                  } else if (cartData?.warning == '4') {
-                    console.log('block member');
+                  } else if (cartData?.warning == '3') {
+                    this.auctionProductService.updateIdBindingStatus(this.idProduct, 4).subscribe();
+                    this.auctionProductService.blockMemberAndAccount(this.member.idMember, this.account.idAccount).subscribe();
+                    console.log('Block member and account!');
                     clearInterval(y);
                   }
                 }, (error) => {
@@ -304,9 +332,8 @@ export class AuctionComponent implements OnInit {
             }, (error) => {
               console.log('Promise rejected with ' + JSON.stringify(error));
             });
-          }, 6000);
-        }, (error) => {
-          console.log('Promise rejected with ' + JSON.stringify(error));
+          }, 21600000);
+          // }, 60000);
         });
       }
     });

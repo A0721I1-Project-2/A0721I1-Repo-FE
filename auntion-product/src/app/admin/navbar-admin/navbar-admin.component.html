@@ -4,7 +4,7 @@
     </p>
     <h5 class="centered">A0721I1 ADMIN</h5>
     <li class="mt">
-      <a class="active" [routerLink]="['/admin']">
+      <a class="active" [routerLink]="['/admin/dashboard']">
         <i class="fa fa-dashboard"></i>
         <span>Dashboard</span>
       </a>
@@ -14,51 +14,59 @@
         <i class="fa fa-desktop"></i>
         <span>Management</span>
       </a>
-<!--      <ul class="sub">-->
-<!--        <li><a href="#">Invoice Management</a></li>-->
-<!--        <li><a [routerLink]="['./member/list']">Member Management</a></li>-->
-<!--        <li><a href="#">Product Management</a></li>-->
-<!--        <li><a href="#">General</a></li>-->
-<!--      </ul>-->
+      <!--      <ul class="sub">-->
+      <!--        <li><a href="#">Invoice Management</a></li>-->
+      <!--        <li><a [routerLink]="['./member/list']">Member Management</a></li>-->
+      <!--        <li><a href="#">Product Management</a></li>-->
+      <!--        <li><a href="#">General</a></li>-->
+      <!--      </ul>-->
     </li>
     <li class="sub-menu">
-      <a [routerLink]="['/product/list']">Product Management</a>
+      <a [routerLink]="['/admin/product/list']"><i class="fa-brands fa-product-hunt"></i>Product Management</a>
     </li>
     <li class="sub-menu">
-      <a [routerLink]="['/member/list']">Member Management</a>
+      <a [routerLink]="['/admin/member/list']"><i class="fa-solid fa-people-group"></i>Member Management</a>
     </li>
+
     <li class="sub-menu">
-      <a [routerLink]="['/transaction/list']">Transaction Management</a>
+      <a [routerLink]="['/admin/transaction/list']"><i class="fa-brands fa-bitcoin"></i>Transaction Management</a>
+      <!--      <ul class="sub">-->
+      <!--        <li><a href="#">Invoice Management</a></li>-->
+      <!--        <li><a [routerLink]="['./member/list']">Member Management</a></li>-->
+      <!--        <li><a href="#">Product Management</a></li>-->
+      <!--        <li><a href="#">General</a></li>-->
+      <!--      </ul>-->
     </li>
+
     <li>
-      <a [routerLink]="['/chat-page']">
-        <i class="fa fa-envelope"></i>
+      <a [routerLink]="['/admin/chat-page']">
+        <!--        <i class="fa fa-envelope"></i>-->
+        <i class="fa fa-comments-o"></i>
         <span>Admin Consultant</span>
         <span class="label label-theme pull-right mail-info">2</span>
       </a>
     </li>
     <li class="sub-menu">
-      <a [routerLink]="['/product/statistic']">
+      <a [routerLink]="['/admin/product/statistic']">
         <i class=" fa fa-bar-chart-o"></i>
         <span>Charts</span>
       </a>
     </li>
+    <!--    <li class="sub-menu">-->
+    <!--      <a href="javascript:;">-->
+    <!--        <i class="fa fa-comments-o"></i>-->
+    <!--        <span>Chat Room</span>-->
+    <!--      </a>-->
+    <!--      <ul class="sub">-->
+    <!--        <li><a href="#">Lobby</a></li>-->
+    <!--        <li><a href="#"> Chat Room</a></li>-->
+    <!--      </ul>-->
+    <!--    </li>-->
     <li class="sub-menu">
-      <a href="javascript:;">
-        <i class="fa fa-comments-o"></i>
-        <span>Chat Room</span>
-      </a>
-      <ul class="sub">
-        <li><a href="#">Lobby</a></li>
-        <li><a href="#"> Chat Room</a></li>
-      </ul>
-    </li>
-    <li>
       <a href="#">
         <i class="fa fa-map-marker"></i>
         <span>Google Maps</span>
       </a>
     </li>
-
   </ul>
 </div>

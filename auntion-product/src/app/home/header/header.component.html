@@ -25,7 +25,7 @@
                 d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
         </svg>
         <span class="name-account">
-          {{member.account.username}}
+          {{member.account?.username}}
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
                class="bi bi-caret-down-fill" viewBox="0 0 16 16">
                             <path
@@ -81,7 +81,7 @@
           <!--                        <path-->
           <!--                                d="M9.972 2.508a.5.5 0 0 0-.16-.556l-.178-.129a5.009 5.009 0 0 0-2.076-.783C6.215.862 4.504 1.229 2.84 3.133H1.786a.5.5 0 0 0-.354.147L.146 4.567a.5.5 0 0 0 0 .706l2.571 2.579a.5.5 0 0 0 .708 0l1.286-1.29a.5.5 0 0 0 .146-.353V5.57l8.387 8.873A.5.5 0 0 0 14 14.5l1.5-1.5a.5.5 0 0 0 .017-.689l-9.129-8.63c.747-.456 1.772-.839 3.112-.839a.5.5 0 0 0 .472-.334z"/>-->
           <!--                    </svg>-->
-          <img src="./assets/home-header/image/auction%202.svg" style="width: 20px; height: 20px"> Auction
+          <img src="./assets/home-header/image/auction%202.svg" style="width: 20px; height: 20px"> <a routerLink="/auction-product/post-product">Auction</a>
         </a>
         <div class="history-header-div" style="display: inline-block;">
           <a class="history-header" href="">

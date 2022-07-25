@@ -1,0 +1,128 @@
+Index: auntion-product/src/app/transaction/list-transaction/list-transaction.component.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><p>list-transaction works!</p>\r\n
+===================================================================
+diff --git a/auntion-product/src/app/transaction/list-transaction/list-transaction.component.html b/auntion-product/src/app/transaction/list-transaction/list-transaction.component.html
+--- a/auntion-product/src/app/transaction/list-transaction/list-transaction.component.html	
++++ b/auntion-product/src/app/transaction/list-transaction/list-transaction.component.html	
+@@ -1,1 +1,0 @@
+-<p>list-transaction works!</p>
+Index: auntion-product/src/app/app.component.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><button routerLink=\"/home/show-home\">show-home</button>\r\n<button routerLink=\"/home/instruction\">instruction</button>\r\n<button routerLink=\"/home/product-detail\">product-detail</button>\r\n<button routerLink=\"/home/forgot-password\">forgot-password</button>\r\n<br>\r\n<button routerLink=\"/auction-product/post-product\">post-product</button>\r\n<button routerLink=\"/auction-product/auction\">auction</button>\r\n<br>\r\n<button routerLink=\"/member/list\">list-member</button>\r\n<button routerLink=\"/member/sign-up\">sign-up-member</button>\r\n<br>\r\n<button routerLink=\"/transaction/list\">list-transaction</button>\r\n<br>\r\n<button routerLink=\"/payment/invoice\">invoice</button>\r\n<br>\r\n<button routerLink=\"/product/statistic\">statistic</button>\r\n<button routerLink=\"/product/list\">list-product</button>\r\n<button routerLink=\"/product/review\">review-product</button>\r\n<button routerLink=\"/product/edit\">edit-product</button>\r\n\r\n<router-outlet></router-outlet>\r\n
+===================================================================
+diff --git a/auntion-product/src/app/app.component.html b/auntion-product/src/app/app.component.html
+--- a/auntion-product/src/app/app.component.html	
++++ b/auntion-product/src/app/app.component.html	
+@@ -1,21 +1,22 @@
+-<button routerLink="/home/show-home">show-home</button>
+-<button routerLink="/home/instruction">instruction</button>
+-<button routerLink="/home/product-detail">product-detail</button>
+-<button routerLink="/home/forgot-password">forgot-password</button>
+-<br>
+-<button routerLink="/auction-product/post-product">post-product</button>
+-<button routerLink="/auction-product/auction">auction</button>
+-<br>
+-<button routerLink="/member/list">list-member</button>
+-<button routerLink="/member/sign-up">sign-up-member</button>
+-<br>
+-<button routerLink="/transaction/list">list-transaction</button>
+-<br>
+-<button routerLink="/payment/invoice">invoice</button>
+-<br>
+-<button routerLink="/product/statistic">statistic</button>
+-<button routerLink="/product/list">list-product</button>
+-<button routerLink="/product/review">review-product</button>
+-<button routerLink="/product/edit">edit-product</button>
++<!--<button routerLink="/home/show-home">show-home</button>-->
++<!--<button routerLink="/home/instruction">instruction</button>-->
++<!--<button routerLink="/home/product-detail">product-detail</button>-->
++<!--<button routerLink="/home/forgot-password">forgot-password</button>-->
++<!--<br>-->
++<!--<button routerLink="/auction-product/post-product">post-product</button>-->
++<!--<button routerLink="/auction-product/auction">auction</button>-->
++<!--<br>-->
++<!--<button routerLink="/member/list">list-member</button>-->
++<!--<button routerLink="/member/sign-up">sign-up-member</button>-->
++<!--<br>-->
++<!--<button routerLink="/transaction/list">list-transaction</button>-->
++<!--<br>-->
++<!--<button routerLink="/payment/invoice">invoice</button>-->
++<!--<br>-->
++<!--<button routerLink="/product/statistic">statistic</button>-->
++<!--<button routerLink="/product/list">list-product</button>-->
++<!--<button routerLink="/product/review">review-product</button>-->
++<!--<button routerLink="/product/edit">edit-product</button>-->
+ 
+-<router-outlet></router-outlet>
++<!--<router-outlet></router-outlet>-->
++<app-list-transaction></app-list-transaction>
+Index: auntion-product/src/app/transaction/transaction.module.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import { NgModule } from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\n\r\nimport { TransactionRoutingModule } from './transaction-routing.module';\r\nimport { ListTransactionComponent } from './list-transaction/list-transaction.component';\r\n\r\n\r\n@NgModule({\r\n  declarations: [ListTransactionComponent],\r\n  imports: [\r\n    CommonModule,\r\n    TransactionRoutingModule\r\n  ]\r\n})\r\nexport class TransactionModule { }\r\n
+===================================================================
+diff --git a/auntion-product/src/app/transaction/transaction.module.ts b/auntion-product/src/app/transaction/transaction.module.ts
+--- a/auntion-product/src/app/transaction/transaction.module.ts	
++++ b/auntion-product/src/app/transaction/transaction.module.ts	
+@@ -6,10 +6,13 @@
+ 
+ 
+ @NgModule({
+-  declarations: [ListTransactionComponent],
+-  imports: [
+-    CommonModule,
+-    TransactionRoutingModule
+-  ]
++    declarations: [ListTransactionComponent],
++    exports: [
++        ListTransactionComponent
++    ],
++    imports: [
++        CommonModule,
++        TransactionRoutingModule
++    ]
+ })
+ export class TransactionModule { }
+Index: auntion-product/src/app/app.module.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import { BrowserModule } from '@angular/platform-browser';\r\nimport { NgModule } from '@angular/core';\r\n\r\nimport { AppRoutingModule } from './app-routing.module';\r\nimport { AppComponent } from './app.component';\r\nimport {HttpClient, HttpClientModule} from '@angular/common/http';\r\nimport {FormsModule, ReactiveFormsModule} from '@angular/forms';\r\nimport {AngularFireModule} from '@angular/fire';\r\nimport {AngularFireDatabaseModule} from '@angular/fire/database';\r\nimport {AngularFireAuthModule} from '@angular/fire/auth';\r\n\r\n@NgModule({\r\n  declarations: [\r\n    AppComponent\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    AppRoutingModule,\r\n    HttpClientModule,\r\n    ReactiveFormsModule,\r\n    FormsModule,\r\n    AngularFireDatabaseModule ,\r\n    AngularFireAuthModule\r\n  ],\r\n  providers: [],\r\n  bootstrap: [AppComponent]\r\n})\r\nexport class AppModule { }\r\n
+===================================================================
+diff --git a/auntion-product/src/app/app.module.ts b/auntion-product/src/app/app.module.ts
+--- a/auntion-product/src/app/app.module.ts	
++++ b/auntion-product/src/app/app.module.ts	
+@@ -8,20 +8,22 @@
+ import {AngularFireModule} from '@angular/fire';
+ import {AngularFireDatabaseModule} from '@angular/fire/database';
+ import {AngularFireAuthModule} from '@angular/fire/auth';
++import {TransactionModule} from "./transaction/transaction.module";
+ 
+ @NgModule({
+   declarations: [
+     AppComponent
+   ],
+-  imports: [
+-    BrowserModule,
+-    AppRoutingModule,
+-    HttpClientModule,
+-    ReactiveFormsModule,
+-    FormsModule,
+-    AngularFireDatabaseModule ,
+-    AngularFireAuthModule
+-  ],
++    imports: [
++        BrowserModule,
++        AppRoutingModule,
++        HttpClientModule,
++        ReactiveFormsModule,
++        FormsModule,
++        AngularFireDatabaseModule,
++        AngularFireAuthModule,
++        TransactionModule
++    ],
+   providers: [],
+   bootstrap: [AppComponent]
+ })

@@ -1,10 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {TransactionService} from '../service/transaction.service';
 import {FormControl, FormGroup} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
 import {InvoiceDetail} from '../../../model/InvoiceDetail';
 import {Invoice} from '../../../model/Invoice';
-import {Payment} from '../../../model/Payment';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -27,13 +25,7 @@ export class ListTransactionComponent implements OnInit {
   total = 0;
   Status = 'Status';
 
-  address: string;
   street: string;
-  ward: string;
-  district: string;
-  city: string;
-
-  payments: Payment [];
 
   /* Initial properties for delete invoice */
   idInvoice: any;

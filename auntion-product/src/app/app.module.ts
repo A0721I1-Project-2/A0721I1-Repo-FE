@@ -6,13 +6,17 @@ import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFireAuthModule} from '@angular/fire/auth';
+import {environment} from '../environments/environment';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgxCaptchaModule} from 'ngx-captcha';
 import {ToastrModule} from 'ngx-toastr';
 import {TransactionModule} from './admin/transaction/transaction.module';
 import {ChatUserPageModule} from './chat-app/chat-user-page/chat-user-page.module';
 import {DatePipe} from '@angular/common';
+import {AngularFireModule} from '@angular/fire';
 import {HomeModule} from './home/home.module';
+import {AdminModule} from './admin/admin.module';
+
 
 @NgModule({
   declarations: [
@@ -24,10 +28,18 @@ import {HomeModule} from './home/home.module';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     BrowserAnimationsModule,
     AngularFireDatabaseModule,
+    BrowserAnimationsModule,
+    AngularFireDatabaseModule,
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
     NgxCaptchaModule,
     ToastrModule.forRoot({
       // positionClass: 'toast-top-right',
@@ -37,9 +49,11 @@ import {HomeModule} from './home/home.module';
       progressAnimation: 'increasing',
       preventDuplicates: true
     }),
+    AngularFireAuthModule,
     TransactionModule,
     ChatUserPageModule,
     HomeModule,
+    AdminModule
   ],
 
   providers: [DatePipe],
