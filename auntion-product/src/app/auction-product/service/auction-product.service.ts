@@ -95,4 +95,9 @@ export class AuctionProductService {
   updateIdBindingStatus(idProduct, idBindingStatus) {
     return this.httpClient.get('http://localhost:8080/manager/product/api/updateIdBindingStatus/' + idProduct + '/' + idBindingStatus);
   }
+
+  /* HuyNN */
+  blockMemberAndAccount(idMember, idAccount) {
+    return this.httpClient.get('http://localhost:8080/manager/product/api/blockMemberAndAccount/' + idMember + '/' + idAccount);
+  }
 }

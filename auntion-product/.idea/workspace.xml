@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
 <<<<<<< HEAD
+<<<<<<< HEAD
     <list default="true" id="44db2026-8f4e-4e30-afa1-3f42a1e8de19" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.component.html" afterDir="false" />
@@ -14,6 +15,10 @@
 =======
     <list default="true" id="560b3e21-ab8c-4f97-8903-fd8734714392" name="Changes" comment="" />
 >>>>>>> c33742a3f50aeb8ebd8dcafb20e737a98aad305e
+=======
+    <list default="true" id="44db2026-8f4e-4e30-afa1-3f42a1e8de19" name="Default Changelist" comment="" />
+    <list id="560b3e21-ab8c-4f97-8903-fd8734714392" name="Changes" comment="" />
+>>>>>>> a98b6448249f7e64293968623a20acaccaf2f3c6
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -149,20 +154,26 @@
       <workItem from="1658568086206" duration="4200000" />
       <workItem from="1658595814493" duration="5574000" />
       <workItem from="1658632614331" duration="14155000" />
+<<<<<<< HEAD
       <workItem from="1658668026422" duration="6392000" />
 >>>>>>> origin/dev
+=======
+      <workItem from="1658668026422" duration="6848000" />
+      <workItem from="1658712820324" duration="429000" />
+      <workItem from="1658714434299" duration="8813000" />
+>>>>>>> a98b6448249f7e64293968623a20acaccaf2f3c6
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-<<<<<<< HEAD
-    <option name="version" value="2" />
+    <option name="version" value="3" />
     <option name="exactExcludedFiles">
       <list>
         <option value="$PROJECT_DIR$/src/assets/js/style.js" />
       </list>
     </option>
   </component>
+<<<<<<< HEAD
   <component name="Vcs.Log.Tabs.Properties">
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
@@ -188,6 +199,8 @@
     </state>
     <state width="1345" height="206" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1658682628668" />
   </component>
+=======
+>>>>>>> a98b6448249f7e64293968623a20acaccaf2f3c6
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -213,8 +226,5 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-=======
-    <option name="version" value="3" />
->>>>>>> c33742a3f50aeb8ebd8dcafb20e737a98aad305e
   </component>
 </project>
