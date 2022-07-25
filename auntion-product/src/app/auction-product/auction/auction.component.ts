@@ -332,8 +332,8 @@ export class AuctionComponent implements OnInit {
             }, (error) => {
               console.log('Promise rejected with ' + JSON.stringify(error));
             });
-          // }, 21600000);
-          }, 60000);
+          }, 21600000);
+          // }, 60000);
         });
       }
     });
