@@ -2,8 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Pipe, PipeTransform} from '@angular/core';
 import {DatePipe} from '@angular/common';
-import {Product} from '../../model/Product';
-import {ProductService} from '../service/product.service';
+import {Product} from '../../../model/Product';
 import {error} from '@angular/compiler/src/util';
 import {Router} from '@angular/router';
 import {Chart} from 'chart.js';
@@ -59,6 +58,7 @@ Chart.register(
   Tooltip
 );
 import {registerables} from 'chart.js';
+import {ProductService} from '../service/product.service';
 
 @Component({
   selector: 'app-statistic',

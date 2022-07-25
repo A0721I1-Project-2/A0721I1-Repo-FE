@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="aa5a2a24-815b-4b06-bbaa-c751e8fc0dae" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/auntion-product/src/app/admin/product/create-product/create-product.component.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auntion-product/src/app/admin/product/create-product/create-product.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auntion-product/src/app/admin/product/create-product/create-product.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auntion-product/src/app/admin/product/statistic/statistic.component.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auntion-product/src/app/admin/product/statistic/statistic.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auntion-product/src/app/admin/product/statistic/statistic.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auntion-product/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/auntion-product/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auntion-product/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/auntion-product/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auntion-product/src/app/admin/chat-admin/chat-admin-home/chat-admin-home.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/auntion-product/src/app/admin/chat-admin/chat-admin-home/chat-admin-home.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auntion-product/src/app/admin/footer-admin/footer-admin.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/auntion-product/src/app/admin/footer-admin/footer-admin.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auntion-product/src/app/admin/header-admin/header-admin.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/auntion-product/src/app/admin/header-admin/header-admin.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auntion-product/src/app/admin/header-admin/header-admin.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/auntion-product/src/app/admin/header-admin/header-admin.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auntion-product/src/app/admin/navbar-admin/navbar-admin.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/auntion-product/src/app/admin/navbar-admin/navbar-admin.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auntion-product/src/app/admin/product/edit-product/edit-product.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auntion-product/src/app/admin/product/edit-product/edit-product.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auntion-product/src/app/admin/product/list-product/list-product.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/auntion-product/src/app/admin/product/list-product/list-product.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auntion-product/src/app/admin/product/list-product/list-product.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/auntion-product/src/app/admin/product/list-product/list-product.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auntion-product/src/app/admin/product/product-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auntion-product/src/app/admin/product/product-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auntion-product/src/app/admin/product/product.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auntion-product/src/app/admin/product/product.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auntion-product/src/app/admin/product/review-product/review-product.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/auntion-product/src/app/admin/product/review-product/review-product.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auntion-product/src/app/admin/product/review-product/review-product.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/auntion-product/src/app/admin/product/review-product/review-product.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auntion-product/src/app/admin/product/review-product/review-product.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auntion-product/src/app/admin/product/review-product/review-product.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auntion-product/src/app/admin/product/service/product.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auntion-product/src/app/admin/product/service/product.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auntion-product/src/app/admin/transaction/list-transaction/list-transaction.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/auntion-product/src/app/admin/transaction/list-transaction/list-transaction.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auntion-product/src/app/admin/transaction/list-transaction/list-transaction.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/auntion-product/src/app/admin/transaction/list-transaction/list-transaction.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auntion-product/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auntion-product/src/app/app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auntion-product/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/auntion-product/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auntion-product/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auntion-product/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auntion-product/src/app/auction-product/auction-product.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auntion-product/src/app/auction-product/auction-product.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auntion-product/src/app/auction-product/auction/auction.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auntion-product/src/app/auction-product/auction/auction.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auntion-product/src/app/auction-product/service/auction-product.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auntion-product/src/app/auction-product/service/auction-product.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auntion-product/src/app/model/Account.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auntion-product/src/app/model/Account.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auntion-product/src/app/model/Member.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auntion-product/src/app/model/Member.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auntion-product/src/app/product/create-product/create-product.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/auntion-product/src/app/product/create-product/create-product.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auntion-product/src/app/product/create-product/create-product.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auntion-product/src/app/product/create-product/create-product.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auntion-product/src/app/product/list-product/list-product.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/auntion-product/src/app/product/list-product/list-product.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auntion-product/src/app/product/statistic/statistic.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auntion-product/src/app/product/statistic/statistic.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auntion-product/src/app/transaction/list-transaction/list-transaction.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auntion-product/src/app/transaction/list-transaction/list-transaction.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auntion-product/src/app/transaction/list-transaction/list-transaction.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auntion-product/src/app/transaction/list-transaction/list-transaction.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auntion-product/src/app/transaction/service/transaction.service.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auntion-product/src/app/transaction/service/transaction.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auntion-product/src/app/transaction/transaction-routing.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auntion-product/src/app/transaction/transaction.module.ts" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="2CGGBE9I2ggNmw5B7lVL7c0LOs2" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2020.3.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="aa5a2a24-815b-4b06-bbaa-c751e8fc0dae" name="Default Changelist" comment="" />
+      <created>1658421370959</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1658421370959</updated>
+      <workItem from="1658421372021" duration="105000" />
+      <workItem from="1658422423681" duration="94000" />
+      <workItem from="1658716536005" duration="474000" />
+      <workItem from="1658717084595" duration="425000" />
+      <workItem from="1658718406181" duration="485000" />
+      <workItem from="1658719228116" duration="309000" />
+      <workItem from="1658719565058" duration="68000" />
+      <workItem from="1658719834184" duration="57000" />
+      <workItem from="1658722639753" duration="532000" />
+      <workItem from="1658723239547" duration="1612000" />
+      <workItem from="1658724979120" duration="948000" />
+      <workItem from="1658726473248" duration="1388000" />
+      <workItem from="1658728501843" duration="1368000" />
+      <workItem from="1658730008817" duration="158000" />
+      <workItem from="1658730231230" duration="173000" />
+      <workItem from="1658730459917" duration="764000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+    <option name="exactExcludedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/auntion-product/src/assets/js/style.js" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+</project>

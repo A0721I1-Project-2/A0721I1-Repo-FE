@@ -2,12 +2,14 @@
   width: 100%;
   height: 100%;
 }
-
+#main-content{
+  margin-left: 120px;
+}
 
 .wrapper {
   display: inline-block;
   margin-top: 60px;
-  padding-left: 15px;
+  /*padding-left: 15px;*/
   padding-right: 15px;
   padding-bottom: 15px;
   padding-top: 0px;
