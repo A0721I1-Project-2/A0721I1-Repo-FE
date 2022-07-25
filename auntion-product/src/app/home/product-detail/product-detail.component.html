@@ -49,9 +49,9 @@
           </div>
           <br/>
           <div class="product__auctioneer">
-            <h5 *ngIf="checkAvailable==1">Current highest bidder:</h5>
-            <h5 *ngIf="checkAvailable==0">Winner:</h5>
-            <p>{{winner}}</p>
+            <span *ngIf="checkAvailable==1">Current highest bidder: &#160;</span>
+            <span *ngIf="checkAvailable==0">Winner: &#160;</span>
+            <span>{{winner}}</span>
           </div>
           <br>
           <div class="product__auction-info">
