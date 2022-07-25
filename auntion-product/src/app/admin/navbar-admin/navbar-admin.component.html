@@ -36,6 +36,21 @@
         <li><a href="#">Product Management</a></li>
         <li><a href="#">General</a></li>
       </ul>
+<!--      <ul class="sub">-->
+<!--        <li><a href="#">Invoice Management</a></li>-->
+<!--        <li><a [routerLink]="['./member/list']">Member Management</a></li>-->
+<!--        <li><a href="#">Product Management</a></li>-->
+<!--        <li><a href="#">General</a></li>-->
+<!--      </ul>-->
+    </li>
+    <li class="sub-menu">
+      <a [routerLink]="['/product/list']">Product Management</a>
+    </li>
+    <li class="sub-menu">
+      <a [routerLink]="['/member/list']">Member Management</a>
+    </li>
+    <li class="sub-menu">
+      <a [routerLink]="['/admin/transaction/list']">Transaction Management</a>
     </li>
     <li>
       <a [routerLink]="['/chat-page']">
