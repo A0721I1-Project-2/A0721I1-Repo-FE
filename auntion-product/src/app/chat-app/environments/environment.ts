@@ -5,13 +5,13 @@
 export const environment = {
   production: false ,
   firebase: {
-    apiKey: 'AIzaSyCsYOnk2LEDn8DYjTpuWCdipAbt3U3pUVc',
-    authDomain: 'chatappsprint2.firebaseapp.com',
-    databaseURL: 'https://chatappsprint2-default-rtdb.firebaseio.com',
-    projectId: 'chatappsprint2',
-    storageBucket: 'chatappsprint2.appspot.com',
-    messagingSenderId: '471282388582',
-    appId: '1:471282388582:web:21e1cc26e135259e68e7a7'
+    apiKey: "AIzaSyCsYOnk2LEDn8DYjTpuWCdipAbt3U3pUVc",
+    authDomain: "chatappsprint2.firebaseapp.com",
+    databaseURL: "https://chatappsprint2-default-rtdb.firebaseio.com",
+    projectId: "chatappsprint2",
+    storageBucket: "chatappsprint2.appspot.com",
+    messagingSenderId: "471282388582",
+    appId: "1:471282388582:web:21e1cc26e135259e68e7a7"
   }
 };
 

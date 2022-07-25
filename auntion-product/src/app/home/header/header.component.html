@@ -1,8 +1,8 @@
 <div id="main" *ngIf="isLogin">
   <div id="header">
     <div id="logo-header">
-      <a class="logo" href="">
-        <svg id="justify-header" xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor"
+      <a class="logo" href="javascript:void(0)">
+        <svg (click)="showNavbarMobile()" id="justify-header" xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor"
              class="bi bi-list" viewBox="0 0 16 16">
           <path fill-rule="evenodd"
                 d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
@@ -125,6 +125,15 @@
       </div>
       <!-- Kết thúc đoạn code gd thành công      -->
     </div>
+
+    <!-- Header in mobile -->
+    <ul id="navbarMobile" [ngClass]="isShow?'show':null" class="header__on-mobile">
+      <li><a routerLink="/home">HOME</a></li>
+      <li><a routerLink="/home/instruction">HOW IT WORKS</a></li>
+      <li><a routerLink="/home/about-us">ABOUT US</a></li>
+      <li><a routerLink="/home/contact-us">CONTACT US</a></li>
+    </ul>
+
     <ul id="navbar">
       <li><a routerLink="/home">HOME</a></li>
       <li><a routerLink="/home/instruction">HOW IT WORKS</a></li>

@@ -21,6 +21,7 @@ export class HeaderComponent implements OnInit {
   token: string;
   member: any;
 
+  isShow = false;
 
   constructor(
     public tokenStorageService: TokenStorageService,
@@ -91,5 +92,9 @@ export class HeaderComponent implements OnInit {
         }
       );
     }
+  }
+
+  showNavbarMobile() {
+    this.isShow = !this.isShow;
   }
 }
