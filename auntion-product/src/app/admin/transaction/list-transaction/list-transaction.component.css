@@ -1,5 +1,5 @@
 #main-content {
-  /*margin-left: 210px;*/
+  margin-left: 210px;
 }
 
 .wrapper {
@@ -58,6 +58,7 @@ td,
 th {
   text-align: center;
 }
+
 
 h1 {
   color: #11b683;

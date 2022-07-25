@@ -3,6 +3,7 @@ export interface Account {
   username: string;
   password: string;
   isBlock: boolean;
+  // isBlock: boolean;
   block: boolean;
   last_login: string;
   flagDelete: boolean;

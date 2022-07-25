@@ -26,6 +26,7 @@ import {HomeModule} from './home/home.module';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    AngularFireAuthModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
@@ -33,6 +34,10 @@ import {HomeModule} from './home/home.module';
     AngularFireAuthModule,
     BrowserAnimationsModule,
     AngularFireDatabaseModule,
+    BrowserAnimationsModule,
+    AngularFireDatabaseModule,
+    AngularFireDatabaseModule ,
+    AngularFireAuthModule,
     NgxCaptchaModule,
     ToastrModule.forRoot({
       // positionClass: 'toast-top-right',
@@ -42,6 +47,8 @@ import {HomeModule} from './home/home.module';
       progressAnimation: 'increasing',
       preventDuplicates: true
     }),
+    AngularFireAuthModule,
+    TransactionModule,
     ChatUserPageModule,
     HomeModule,
   ],

@@ -3,11 +3,11 @@ import {AuctionProductService} from '../service/auction-product.service';
 import {Product} from '../../model/Product';
 import {FormControl, FormGroup} from '@angular/forms';
 import {AuctionDTO} from '../../model/auctionDTO';
-import {Member} from '../../model/Member';
-import {Account} from '../../model/Account';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Cart} from '../../model/Cart';
 import {TokenStorageService} from '../../login/service/token-storage.service';
+import {Member} from '../../model/Member';
+import {Account} from '../../model/Account';
 
 @Component({
   selector: 'app-auction',
@@ -264,7 +264,9 @@ export class AuctionComponent implements OnInit {
   auctionFinish() {
     this.isFinish = true;
     this.auctionProductService.getAuctionList(this.product.idProduct).subscribe((data: AuctionDTO[]) => {
-      if (data[0]?.memberId === this.member.idMember) {
+      if (data.length === 0) {
+        this.auctionProductService.updateIdBindingStatus(this.idProduct, 1).subscribe();
+      } else if (data[0]?.memberId === this.member.idMember) {
         this.modalBody = 'You have successfully auctioned the product ' + this.product.nameProduct + '!';
         this.modalBackground = '#11B683';
         this.modalHidden = false;

@@ -32,7 +32,7 @@ export class InvoiceStatusComponent implements OnInit {
   address: string;
   today: Date;
   paymentSave: any;
-
+  seen = {};
   constructor(
     private service: PaymentService,
     private router: Router,
@@ -62,7 +62,17 @@ export class InvoiceStatusComponent implements OnInit {
     this.service.findAllStatusInvoice().subscribe(
       (data) => {
         console.log(data);
+        // tslint:disable-next-line:prefer-for-of
+        // for (let i = 0; i < data.length; i++) {
+        //   // @ts-ignore
+        //   if (!(data[i] in this.seen)) {
+        //     this.invoice.push(data[i]);
+        //     // @ts-ignore
+        //     this.seen[data[i]] = true;
+        //   }
+        // }
         this.invoice = data;
+        console.log(this.invoice);
 
         this.address = data[0].invoice.payment.addressReceiver;
         this.feeTransport = data[0].invoice.payment.transport.feeTransport;
