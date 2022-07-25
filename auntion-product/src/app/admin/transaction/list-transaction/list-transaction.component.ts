@@ -1,10 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {TransactionService} from '../service/transaction.service';
 import {FormControl, FormGroup} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
 import {InvoiceDetail} from '../../../model/InvoiceDetail';
 import {Invoice} from '../../../model/Invoice';
-import {Payment} from '../../../model/Payment';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-list-transaction',
@@ -26,30 +25,27 @@ export class ListTransactionComponent implements OnInit {
   total = 0;
   Status = 'Status';
 
-  address: string;
   street: string;
-  ward: string;
-  district: string;
-  city: string;
-
-  payments: Payment [];
 
   /* Initial properties for delete invoice */
   idInvoice: any;
   idInvoiceChecked: any;
   listIdInvoice: any[] = [];
 
-  constructor(private transactionService: TransactionService,
-              private activatedRoute: ActivatedRoute,
-              private router: Router) {
-
-
+  constructor(private transactionService: TransactionService) {
   }
 
   ngOnInit(): void {
+    const hideNavHp = document.querySelector('#header');
+    const hideFooterHp = document.querySelector('.footer__container');
+// @ts-ignore
+// tslint:disable-next-line:no-unused-expression
+    hideNavHp.style.display = 'none';
+// @ts-ignore
+// tslint:disable-next-line:no-unused-expression
+    hideFooterHp.style.display = 'none';
     this.transactionService.getAll(this.pageNumber).subscribe((data: any) => {
       this.invoiceDetail = data.content;
-      this.findSum(this.invoiceDetail);
     });
 
     this.searchTransaction = new FormGroup({
@@ -69,8 +65,6 @@ export class ListTransactionComponent implements OnInit {
         this.totalPagination = (Math.round(this.listTransactionNotPagination.length / 5)) + 1;
       }
     });
-
-    // console.log(this.totalPage.length);
     this.showPage(this.pageNumber);
   }
 
@@ -110,7 +104,6 @@ export class ListTransactionComponent implements OnInit {
       this.searchTransaction.value.nameProduct, this.searchTransaction.value.status
     ).subscribe((data: any) => {
       this.invoiceDetail = data.content;
-      this.findSum(this.invoiceDetail);
       this.setPage(data.totalPages);
     });
   }
@@ -176,9 +169,20 @@ export class ListTransactionComponent implements OnInit {
   /* Delete invoice */
 
   deleteInvoice() {
-    if (this.listIdInvoice.length > 0) {
+    if (this.listIdInvoice.length === 0) {
+      Swal.fire(
+        'you must select before delete',
+        '',
+        'error'
+      );
+    } else {
       for (let i = 0; i < this.listIdInvoice.length; i++) {
         this.transactionService.delete(this.listIdInvoice[i]).subscribe(() => {
+          Swal.fire(
+            'Delete Transaction successfully',
+            '',
+            'success'
+          );
           this.ngOnInit();
         });
       }

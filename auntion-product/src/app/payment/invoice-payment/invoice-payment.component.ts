@@ -1,17 +1,14 @@
-import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
-import { PaymentService } from '../service/payment.service';
+import {Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
+import {PaymentService} from '../service/payment.service';
 import html2canvas from 'html2canvas';
 
 import jspdf from 'jspdf';
-
-
 import {finalize} from 'rxjs/operators';
 import {AngularFireStorage} from '@angular/fire/storage';
-import { Subscription } from 'rxjs';
-import { InvoiceDetail } from "../../model/InvoiceDetail";
-import { Payment } from "../../model/Payment";
-import { Router } from "@angular/router";
-
+import {Subscription} from 'rxjs';
+import {InvoiceDetail} from '../../model/InvoiceDetail';
+import {Payment} from '../../model/Payment';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -35,11 +32,15 @@ export class InvoicePaymentComponent implements OnInit {
   today: Date;
   Paymethod: string;
   Trsanpot: string;
+  email: string;
+
   constructor(private paymentService: PaymentService, @Inject(AngularFireStorage) private storage: AngularFireStorage
-    , private service: PaymentService, private router: Router,) { }
+    , private service: PaymentService, private router: Router,) {
+  }
+
   ngOnInit(): void {
     this.today = new Date();
-    console.log(this.today)
+    console.log(this.today);
     this.findAllStatusInvoice();
   }
 
@@ -48,7 +49,7 @@ export class InvoicePaymentComponent implements OnInit {
     const data = document.getElementById('pdfTable');
     console.log(data);
     html2canvas(data).then(canvas => {
-      const contentDataURL = canvas.toDataURL('image/jpeg', 1.0)
+      const contentDataURL = canvas.toDataURL('image/jpeg', 1.0);
       console.log(contentDataURL);
       const pdf = new jspdf('l', 'cm', 'a4');
       pdf.addImage(contentDataURL, 'jpg', 0, 0, 29.7, 21.0);
@@ -61,13 +62,13 @@ export class InvoicePaymentComponent implements OnInit {
       const fileRef = this.storage.ref(nameImg);
       this.storage.upload(nameImg, file).snapshotChanges().pipe(
         finalize
-          (() => {
-            fileRef.getDownloadURL().subscribe((url) => {
-              this.url1 = url;
-              console.log(this.url1);
-              this.paymentService.postImagePDFAndSendEmail(this.url1).subscribe();
-            });
-          })
+        (() => {
+          fileRef.getDownloadURL().subscribe((url) => {
+            this.url1 = url;
+            console.log(this.url1);
+            this.paymentService.postImagePDFAndSendEmail(this.url1, this.email).subscribe();
+          });
+        })
       ).subscribe();
     });
     ///
@@ -75,8 +76,9 @@ export class InvoicePaymentComponent implements OnInit {
   }
 
   scroll() {
-    window.scroll(0, 0)
+    window.scroll(0, 0);
   }
+
   /////
 
   findAllStatusInvoice() {
@@ -84,22 +86,20 @@ export class InvoicePaymentComponent implements OnInit {
       (data) => {
         console.log(data);
         this.invoice = data;
-
+        this.email = data[0].invoice.payment.emailReceiver;
         this.address = data[0].invoice.payment.addressReceiver;
         this.feeTransport = data[0].invoice.payment.transport.feeTransport;
-        console.log(this.feeTransport)
+        console.log(this.feeTransport);
         this.invoiceDetail = data[0].invoice.payment;
         this.Paymethod = this.invoiceDetail.paymentMethod.namePaymentMethod;
-        this.Trsanpot = this.invoiceDetail.transport.nameTransport
-        console.log(this.invoiceDetail.paymentMethod.namePaymentMethod)
-        console.log(this.Trsanpot)
+        this.Trsanpot = this.invoiceDetail.transport.nameTransport;
+        console.log(this.invoiceDetail.paymentMethod.namePaymentMethod);
+        console.log(this.Trsanpot);
         // this.PaymentMethod = data[0].
         console.log(this.invoice);
         for (let i = 0; i < data.length; i++) {
           this.total += data[i].product.finalPrice;
-          console.log(this.total)
-
-
+          console.log(this.total);
         }
         console.log('check', this.invoice);
       },

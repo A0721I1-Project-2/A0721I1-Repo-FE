@@ -1,18 +1,21 @@
-import { NgModule } from "@angular/core";
-import { AppComponent } from "./app.component";
-import { BrowserModule } from "@angular/platform-browser";
-import { AppRoutingModule } from "./app-routing.module";
-import { HttpClientModule } from "@angular/common/http";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { AngularFireDatabaseModule } from "@angular/fire/database";
-import { AngularFireAuthModule } from "@angular/fire/auth";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { NgxCaptchaModule } from "ngx-captcha";
-import { ToastrModule } from "ngx-toastr";
-import { TransactionModule } from "./admin/transaction/transaction.module";
-import { ChatUserPageModule } from "./chat-app/chat-user-page/chat-user-page.module";
-import { DatePipe } from "@angular/common";
-import { HomeModule } from "./home/home.module";
+import {NgModule} from '@angular/core';
+import {AppComponent} from './app.component';
+import {BrowserModule} from '@angular/platform-browser';
+import {AppRoutingModule} from './app-routing.module';
+import {HttpClientModule} from '@angular/common/http';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
+import {AngularFireAuthModule} from '@angular/fire/auth';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {environment} from '../environments/environment';
+import {NgxCaptchaModule} from 'ngx-captcha';
+import {ToastrModule} from 'ngx-toastr';
+import {TransactionModule} from './admin/transaction/transaction.module';
+import {ChatUserPageModule} from './chat-app/chat-user-page/chat-user-page.module';
+import {DatePipe} from '@angular/common';
+import {HomeModule} from './home/home.module';
+import {AngularFireModule} from "@angular/fire";
+
 
 @NgModule({
   declarations: [
@@ -24,10 +27,13 @@ import { HomeModule } from "./home/home.module";
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    AngularFireAuthModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     BrowserAnimationsModule,
     AngularFireDatabaseModule,
+    AngularFireDatabaseModule ,
+    AngularFireAuthModule,
     NgxCaptchaModule,
     ToastrModule.forRoot({
       // positionClass: 'toast-top-right',
@@ -37,6 +43,7 @@ import { HomeModule } from "./home/home.module";
       progressAnimation: 'increasing',
       preventDuplicates: true
     }),
+    AngularFireAuthModule,
     TransactionModule,
     ChatUserPageModule,
     HomeModule,

@@ -79,10 +79,20 @@ const API_STATUS = 'http://localhost:8080/manager/invoice-status/api';
 export class PaymentService {
   urlSendEmai = 'http://localhost:8080/manager/invoice-status/api/sendMail';
 
+  private _payment:Payment;
+
+  get getPayment(): Payment {
+    return this._payment;
+  }
+
+  set setPayment(value: Payment) {
+    this._payment = value;
+  }
+
   constructor(private httpClient: HttpClient) { }
   // tslint:disable-next-line:variable-name
-  public postImagePDFAndSendEmail(UrlImgInvoice: string): Observable<string> {
-    return this.httpClient.get<string>(this.urlSendEmai + '?img=' + UrlImgInvoice);
+  public postImagePDFAndSendEmail(UrlImgInvoice: string,email: string): Observable<string> {
+    return this.httpClient.get<string>(this.urlSendEmai + '?img=' + UrlImgInvoice + '&mail=' +  email);
   }
   findAllStatusInvoice(): Observable<InvoiceDetail[]> {
     return this.httpClient.get<InvoiceDetail[]>(API_STATUS + '/status');
@@ -108,7 +118,7 @@ export class PaymentService {
   createPayment(payment: Payment): Observable<string>{
     return this.httpClient.post<string>(API_URL + 'authorize_payment', payment);
   }
-  savePayment(parse: any): Observable<Payment> {
+  savePayment(parse: Payment): Observable<Payment> {
     return this.httpClient.post<Payment>(API_URL + 'savePayment', parse);
   }
 }
