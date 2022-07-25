@@ -5,7 +5,7 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 /* Moi người điền link mình tại đây */
 const routes: Routes = [
   {
-    path: '',
+    path: 'dashboard', // HauLST thêm để tránh trùng link với trang chủ
     component: DashboardComponent
   }, {
     path: 'chat-page',

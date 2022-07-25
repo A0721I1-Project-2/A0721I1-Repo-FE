@@ -33,7 +33,6 @@ import {AdminModule} from './admin/admin.module';
     AngularFireAuthModule,
     BrowserAnimationsModule,
     AngularFireDatabaseModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule ,
     AngularFireAuthModule,
     NgxCaptchaModule,

@@ -1,44 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="44db2026-8f4e-4e30-afa1-3f42a1e8de19" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.module.ts" afterDir="false" />
+<<<<<<< HEAD
+=======
+      <change beforePath="$PROJECT_DIR$/src/app/member/list-member/list-member.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/member/list-member/list-member.component.css" afterDir="false" />
+>>>>>>> origin/dev
     </list>
+=======
+    <list default="true" id="560b3e21-ab8c-4f97-8903-fd8734714392" name="Changes" comment="" />
+>>>>>>> c33742a3f50aeb8ebd8dcafb20e737a98aad305e
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectId" id="2CEu9hbq7eNBksV8BgIBIWLFB1y" />
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/package.json" />
+  </component>
+  <component name="ProjectId" id="2Bqain8KyKQ2GvYxxwC0Yk2J9tk" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/app/admin/product" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.path.for.package.tslint" value="project" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="ts.external.directory.path" value="C:\Users\DE\Desktop\sprint2\FE-sprint2\A0721I1-Repo-FE\auntion-product\node_modules\typescript\lib" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/codegym/A0721I2-NguyenNhatHuy/module6/Project-2/fond-end/A0721I1-Repo-FE/auntion-product&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\codegym\\A0721I2-NguyenNhatHuy\\module6\\Project-2\\fond-end\\A0721I1-Repo-FE\\auntion-product\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\DE\Desktop\sprint2\FE-sprint2\A0721I1-Repo-FE\auntion-product\src\app\admin\product" />
-      <recent name="C:\Users\DE\Desktop\sprint2\FE-sprint2\A0721I1-Repo-FE\auntion-product\src\app\product\service" />
-      <recent name="C:\Users\DE\Desktop\sprint2\FE-sprint2\A0721I1-Repo-FE\auntion-product\src\assets\js" />
-      <recent name="C:\Users\DE\Desktop\sprint2\FE-sprint2\A0721I1-Repo-FE\auntion-product\src\assets" />
-      <recent name="C:\Users\DE\Desktop\sprint2\FE-sprint2\A0721I1-Repo-FE\auntion-product\src\assets\home-header" />
+      <recent name="D:\codegym\A0721I2-NguyenNhatHuy\module6\Project-2\fond-end\A0721I1-Repo-FE\auntion-product\src\assets\img" />
+      <recent name="D:\codegym\A0721I2-NguyenNhatHuy\module6\Project-2\fond-end\A0721I1-Repo-FE\auntion-product\img" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\codegym\A0721I2-NguyenNhatHuy\module6\Project-2\fond-end\A0721I1-Repo-FE\auntion-product\src\app\auction-product\auction\img" />
     </key>
   </component>
   <component name="RunManager" selected="npm.Angular CLI Server">
@@ -71,15 +93,14 @@
       <method v="2" />
     </configuration>
   </component>
-  <component name="SvnConfiguration">
-    <configuration />
-  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="44db2026-8f4e-4e30-afa1-3f42a1e8de19" name="Default Changelist" comment="" />
-      <created>1658379915653</created>
+      <changelist id="560b3e21-ab8c-4f97-8903-fd8734714392" name="Changes" comment="" />
+      <created>1657636211370</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
+<<<<<<< HEAD
       <updated>1658379915653</updated>
       <workItem from="1658379916909" duration="790000" />
       <workItem from="1658419174386" duration="4635000" />
@@ -102,16 +123,48 @@
       <workItem from="1658662330067" duration="2884000" />
       <workItem from="1658665561053" duration="13558000" />
       <workItem from="1658715539878" duration="1331000" />
+=======
+      <updated>1657636211370</updated>
+      <workItem from="1657636216998" duration="4311000" />
+      <workItem from="1657690632008" duration="2569000" />
+      <workItem from="1657709445947" duration="9332000" />
+      <workItem from="1657851865879" duration="9715000" />
+      <workItem from="1657873681474" duration="6078000" />
+      <workItem from="1657883260888" duration="10452000" />
+      <workItem from="1658063728651" duration="592000" />
+      <workItem from="1658110784682" duration="4368000" />
+      <workItem from="1658132462201" duration="4478000" />
+      <workItem from="1658144775028" duration="3530000" />
+      <workItem from="1658151138937" duration="817000" />
+      <workItem from="1658201020101" duration="1162000" />
+      <workItem from="1658221453102" duration="7175000" />
+      <workItem from="1658239341428" duration="6847000" />
+      <workItem from="1658307720136" duration="3549000" />
+      <workItem from="1658316894322" duration="6583000" />
+      <workItem from="1658373784864" duration="11207000" />
+      <workItem from="1658390834641" duration="16578000" />
+      <workItem from="1658458994092" duration="4124000" />
+      <workItem from="1658473410615" duration="6516000" />
+      <workItem from="1658487229644" duration="3988000" />
+      <workItem from="1658568086206" duration="4200000" />
+      <workItem from="1658595814493" duration="5574000" />
+      <workItem from="1658632614331" duration="14155000" />
+      <workItem from="1658668026422" duration="6392000" />
+>>>>>>> origin/dev
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
+<<<<<<< HEAD
     <option name="version" value="2" />
     <option name="exactExcludedFiles">
       <list>
         <option value="$PROJECT_DIR$/src/assets/js/style.js" />
       </list>
     </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1658625943418">
@@ -160,5 +213,8 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+=======
+    <option name="version" value="3" />
+>>>>>>> c33742a3f50aeb8ebd8dcafb20e737a98aad305e
   </component>
 </project>
