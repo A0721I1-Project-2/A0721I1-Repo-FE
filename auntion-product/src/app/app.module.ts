@@ -14,7 +14,7 @@ import {TransactionModule} from './admin/transaction/transaction.module';
 import {ChatUserPageModule} from './chat-app/chat-user-page/chat-user-page.module';
 import {DatePipe} from '@angular/common';
 import {HomeModule} from './home/home.module';
-import {AngularFireModule} from "@angular/fire";
+import {AngularFireModule} from '@angular/fire';
 
 
 @NgModule({
@@ -32,7 +32,6 @@ import {AngularFireModule} from "@angular/fire";
     AngularFireAuthModule,
     BrowserAnimationsModule,
     AngularFireDatabaseModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule ,
     AngularFireAuthModule,
     NgxCaptchaModule,

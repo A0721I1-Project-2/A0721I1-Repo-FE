@@ -277,11 +277,11 @@ export class AuctionComponent implements OnInit {
           const proPromise = this.getProductById(this.idProduct).toPromise();
           proPromise.then((dataPro) => {
             if (!dataPro.flagDelete) {
-              this.auctionProductService.sendPaymentEmail(this.member.emailMember, this.product.nameProduct).subscribe();
               const cartPromis = this.auctionProductService.getCardByMemberId(this.member.idMember).toPromise();
               cartPromis.then((cartDt) => {
                 // tslint:disable-next-line:triple-equals
                 if (cartDt?.warning == '0') {
+                  this.auctionProductService.sendPaymentEmail(this.member.emailMember, this.product.nameProduct).subscribe();
                   this.updateCard = cartDt;
                   this.updateCard.warning = '1';
                   this.updateCard.member = this.member;
@@ -304,7 +304,6 @@ export class AuctionComponent implements OnInit {
               } else {
                 const cartPromise = this.auctionProductService.getCardByMemberId(this.member.idMember).toPromise();
                 cartPromise.then((cartData) => {
-                  const paymentLink = 'http://localhost:4200/auction-product/auction/1';
                   // tslint:disable-next-line:triple-equals
                   if (cartData?.warning == '1') {
                     this.auctionProductService.sendPaymentEmail(this.member.emailMember, this.product.nameProduct).subscribe();
@@ -321,7 +320,9 @@ export class AuctionComponent implements OnInit {
                     this.auctionProductService.updateCart(this.updateCard).subscribe();
                     // tslint:disable-next-line:triple-equals
                   } else if (cartData?.warning == '3') {
-                    console.log('block member');
+                    this.auctionProductService.updateIdBindingStatus(this.idProduct, 4).subscribe();
+                    this.auctionProductService.blockMemberAndAccount(this.member.idMember, this.account.idAccount).subscribe();
+                    console.log('Block member and account!');
                     clearInterval(y);
                   }
                 }, (error) => {
@@ -332,6 +333,7 @@ export class AuctionComponent implements OnInit {
               console.log('Promise rejected with ' + JSON.stringify(error));
             });
           }, 21600000);
+          // }, 60000);
         });
       }
     });
