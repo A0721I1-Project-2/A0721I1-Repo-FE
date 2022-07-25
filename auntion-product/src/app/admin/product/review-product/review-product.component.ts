@@ -52,14 +52,14 @@ export class ReviewProductComponent implements OnInit {
   approveProduct() {
     this.product.approvalStatus.idApprovalStatus = 2;
     this.productService.updateProduct(this.product).subscribe(() => {
-      this.router.navigateByUrl('/product/list').then(r => alert('Approved successfully!'))
+      this.router.navigateByUrl('/product/list').then(r => alert('Approved successfully!'));
     });
   }
 
   rejectProduct() {
     this.product.approvalStatus.idApprovalStatus = 3;
     this.productService.updateProduct(this.product).subscribe(() => {
-      this.router.navigateByUrl('/product/list').then(r => alert('Feedback sent successfully!'))
+      this.router.navigateByUrl('/product/list').then(r => alert('Feedback sent successfully!'));
     });
   }
 }

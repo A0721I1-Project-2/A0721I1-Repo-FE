@@ -49,7 +49,7 @@ export class ProductDetailComponent implements OnInit {
         this.checkAvailable = 1;
         const id = this.id;
         const countDownDate = new Date(this.product.endDate).getTime();
-        let product = this.product = data;
+        const product = this.product = data;
         // tslint:disable-next-line:only-arrow-functions
         const x = setInterval(function() {
           const now = new Date().getTime();
