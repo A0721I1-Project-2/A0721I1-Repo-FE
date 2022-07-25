@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { TransactionService } from '../service/transaction.service';
-import { InvoiceDetail } from '../../model/InvoiceDetail';
-import { FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Invoice } from '../../model/Invoice';
-import { Payment } from '../../model/Payment';
+import {Component, OnInit} from '@angular/core';
+import {TransactionService} from '../service/transaction.service';
+import {InvoiceDetail} from '../../model/InvoiceDetail';
+import {FormControl, FormGroup} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Invoice} from '../../model/Invoice';
+import {Payment} from '../../model/Payment';
 
 @Component({
   selector: 'app-list-transaction',
@@ -34,12 +34,20 @@ export class ListTransactionComponent implements OnInit {
   listIdInvoice: any[] = [];
 
   constructor(private transactionService: TransactionService,
-    private activatedRoute: ActivatedRoute,
-    private router: Router) {
+              private activatedRoute: ActivatedRoute,
+              private router: Router) {
 
   }
 
   ngOnInit(): void {
+    const hideNavHp = document.querySelector('#header');
+    const hideFooterHp = document.querySelector('.footer__container');
+// @ts-ignore
+// tslint:disable-next-line:no-unused-expression
+    hideNavHp.style.display = 'none';
+// @ts-ignore
+// tslint:disable-next-line:no-unused-expression
+    hideFooterHp.style.display = 'none';
     this.transactionService.getAll(this.pageNumber).subscribe((data: any) => {
       this.invoiceDetail = data.content;
       this.findSum(this.invoiceDetail);

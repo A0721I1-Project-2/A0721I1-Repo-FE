@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ProductService} from '../service/product.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Product} from '../../../model/Product';
+import {Product} from '../../model/Product';
+
 
 @Component({
   selector: 'app-review-product',
@@ -18,17 +19,28 @@ export class ReviewProductComponent implements OnInit {
   constructor(private productService: ProductService,
               private fb: FormBuilder,
               private activatedRoute: ActivatedRoute,
-              private router: Router) { }
+              private router: Router) {
+  }
 
   ngOnInit(): void {
+    const hideNavHp = document.querySelector('#header');
+    const hideFooterHp = document.querySelector('.footer__container');
+// @ts-ignore
+// tslint:disable-next-line:no-unused-expression
+    hideNavHp.style.display = 'none';
+// @ts-ignore
+// tslint:disable-next-line:no-unused-expression
+    hideFooterHp.style.display = 'none';
     this.activatedRoute.paramMap.subscribe((paramMap) => {
       this.id = +paramMap.get('id');
       this.getProduct(this.id);
+      console.log(this.id);
+      console.log(this.getProduct(this.id));
     });
   }
 
   getProduct(id: number) {
-    return this.productService.findByID(id).subscribe( product => {
+    return this.productService.findByID(id).subscribe(product => {
       this.product = product;
       // this.reviewProductForm = this.fb.group( {
       //   idProduct: [product.idProduct],
@@ -52,14 +64,14 @@ export class ReviewProductComponent implements OnInit {
   approveProduct() {
     this.product.approvalStatus.idApprovalStatus = 2;
     this.productService.updateProduct(this.product).subscribe(() => {
-      this.router.navigateByUrl('/product/list').then(r => alert('Approved successfully!'))
+      this.router.navigateByUrl('/product/list').then(r => alert('Approved successfully!'));
     });
   }
 
   rejectProduct() {
     this.product.approvalStatus.idApprovalStatus = 3;
     this.productService.updateProduct(this.product).subscribe(() => {
-      this.router.navigateByUrl('/product/list').then(r => alert('Feedback sent successfully!'))
+      this.router.navigateByUrl('/product/list').then(r => alert('Feedback sent successfully!'));
     });
   }
 }

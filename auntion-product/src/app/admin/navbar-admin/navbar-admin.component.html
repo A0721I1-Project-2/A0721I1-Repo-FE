@@ -4,34 +4,48 @@
     </p>
     <h5 class="centered">A0721I1 ADMIN</h5>
     <li class="mt">
-      <a class="active" [routerLink]="['../']">
+      <a class="active" [routerLink]="['/admin']">
         <i class="fa fa-dashboard"></i>
         <span>Dashboard</span>
       </a>
     </li>
     <li class="sub-menu">
-      <a routerLink="javascript:;">
+      <a href="javascript:void(0)">
         <i class="fa fa-desktop"></i>
         <span>Management</span>
       </a>
+      <!--      <ul class="sub">-->
+      <!--        <li><a href="#">Invoice Management</a></li>-->
+      <!--        <li><a [routerLink]="['./member/list']">Member Management</a></li>-->
+      <!--        <li><a href="#">Product Management</a></li>-->
+      <!--        <li><a href="#">General</a></li>-->
+      <!--      </ul>-->
+    </li>
+    <li class="sub-menu">
+      <a [routerLink]="['/admin/product/list']">Product Management</a>
+    </li>
+    <li class="sub-menu">
+      <a [routerLink]="['/admin/member/list']">Member Management</a>
+    </li>
+    <li class="sub-menu">
+      <a [routerLink]="['/admin/transaction/list']">Transaction Management</a>
       <ul class="sub">
         <li><a href="#">Invoice Management</a></li>
         <li><a [routerLink]="['./member/list']">Member Management</a></li>
+        <li><a [routerLink]="['./transaction/list']">Transaction Management</a></li>
         <li><a href="#">Product Management</a></li>
         <li><a href="#">General</a></li>
       </ul>
     </li>
-
-
     <li>
-      <a [routerLink]="['./chat-page']">
+      <a [routerLink]="['/chat-page']">
         <i class="fa fa-envelope"></i>
         <span>Admin Consultant</span>
         <span class="label label-theme pull-right mail-info">2</span>
       </a>
     </li>
     <li class="sub-menu">
-      <a [routerLink]="['./product/statistic']">
+      <a [routerLink]="['/product/statistic']">
         <i class=" fa fa-bar-chart-o"></i>
         <span>Charts</span>
       </a>
@@ -52,38 +66,5 @@
         <span>Google Maps</span>
       </a>
     </li>
-    <li class="sub-menu">
-      <a [routerLink]="['/product/list']">Product Management</a>
-    </li>
   </ul>
-<!--  <div class="navbar__admin-container">-->
-<!--    <div class="navbar__admin-header">-->
-<!--      <p class="centered"><a href="#"><img src="../../../assets/img/messi-profile.jpg" class="img-circle"-->
-<!--                                           width="80"></a>-->
-<!--      </p>-->
-<!--      <h5 class="centered">A0721I1 ADMIN</h5>-->
-<!--    </div>-->
-
-<!--    <div class="navbar__admin-list">-->
-<!--      <div class="navbar__admin-item active">-->
-<!--        <a [routerLink]="['../']"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>-->
-<!--      </div>-->
-<!--      <div class="navbar__admin-item">-->
-<!--        <a [routerLink]="['./']">Product Management</a>-->
-<!--      </div>-->
-<!--      <div class="navbar__admin-item">-->
-<!--        <a [routerLink]="['./']">Invoice Management</a>-->
-<!--      </div>-->
-<!--      <div class="navbar__admin-item">-->
-<!--        <a [routerLink]="['./transaction']">Transaction Management</a>-->
-<!--      </div>-->
-<!--      <div class="navbar__admin-item">-->
-<!--        <a [routerLink]="['./admin/product/statistic']">-->
-<!--          <i class=" fa fa-bar-chart-o"></i>-->
-<!--          <span>Statistic</span>-->
-<!--        </a>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
 </div>
-
