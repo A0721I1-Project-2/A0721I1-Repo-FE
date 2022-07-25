@@ -24,7 +24,7 @@
                   <option value="true">Success</option>
                   <option value="false">Failed</option>
                 </select>
-                <button class="btn btn-top">
+                <button class="btn btn-top" id="btn">
                   Search
                 </button>
               </div>
@@ -109,7 +109,7 @@
 
             <button class="btn" data-toggle="modal" id="idCheckbox" data-target="#deleteModal"  style="border-radius: 5px!important; margin: 5px 0 0 0" >Delete</button>
             <div class="total-revenue">
-              <h3 class="text">Total Revenue: {{total}} USD</h3>
+              <h3 class="text" id="total">Total Revenue: {{total}} USD</h3>
             </div>
 
             <!--        Pagination-->
@@ -159,10 +159,9 @@
           </div>
         </div>
 
-
+        <!-- Footer -->
+        <app-footer-admin></app-footer-admin>
       </div>
     </div>
   </div>
 </div>
-<!-- Footer -->
-<app-footer-admin></app-footer-admin>
