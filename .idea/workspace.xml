@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="82237588-4a00-451f-90d3-173d50d70711" name="Changes" comment="" />
+    <list default="true" id="82237588-4a00-451f-90d3-173d50d70711" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/A0721I1-Repo-FE.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/A0721I1-Repo-FE.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auntion-product/src/app/home/change-password/change-password.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/auntion-product/src/app/home/change-password/change-password.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auntion-product/src/app/home/change-password/change-password.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/auntion-product/src/app/home/change-password/change-password.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auntion-product/src/app/home/forgot-password/forgot-password.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/auntion-product/src/app/home/forgot-password/forgot-password.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auntion-product/src/app/home/forgot-password/forgot-password.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/auntion-product/src/app/home/forgot-password/forgot-password.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auntion-product/src/app/home/product-detail/product-detail.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/auntion-product/src/app/home/product-detail/product-detail.component.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -63,6 +71,7 @@
       <workItem from="1658663535888" duration="8178000" />
       <workItem from="1658685269018" duration="385000" />
       <workItem from="1658715513209" duration="2365000" />
+      <workItem from="1658725280127" duration="1691000" />
     </task>
     <servers />
   </component>
