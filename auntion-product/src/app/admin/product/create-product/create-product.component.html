@@ -121,13 +121,13 @@
             <label class="col-sm-3 col-form-label" style="padding: 10px 20px 10px 40px;">Increament Price: <i
               style="color: red">*</i></label>
             <div class="col-sm-7 price-step">
-              <input type="text" class="form-control" formControlName="moneyAuction">
-              <div
-                *ngIf="(getControl.incrementPrice.dirty || getControl.incrementPrice.touched) && getControl.incrementPrice.invalid">
-                <div *ngIf="getControl.incrementPrice.errors.required" style="color: red;">
-                  Not Empty
-                </div>
-              </div>
+              <input type="text" class="form-control" formControlName="incrementPrice">
+<!--              <div-->
+<!--                *ngIf="(getControl.incrementPrice.dirty || getControl.incrementPrice.touched) && getControl.incrementPrice.invalid">-->
+<!--                <div *ngIf="getControl.incrementPrice.errors.required" style="color: red;">-->
+<!--                  Not Empty-->
+<!--                </div>-->
+<!--              </div>-->
             </div>
           </div>
 
