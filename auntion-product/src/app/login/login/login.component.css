@@ -30,9 +30,19 @@ body {
   margin-top: 150px;
 }
 .form-login{
-  min-height: 100vh;
+  max-height: 100vh;
   background-color: #243B55;
   z-index: 210000;
+}
+.form-login::before{
+  content: "";
+  background-color: #243B55;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+  position: absolute;
 }
 
 .container {

@@ -1,1 +1,175 @@
-<p>invoice-payment works!</p>
+<div class="container-fluid" style="background: rgb(243, 246, 253);margin-top: 198px;
+}">
+  <div class="row" id="pdfTable" #pdfTable>
+    <div class="col-2"></div>
+    <div class="col-8" style="text-align: center;border: 2px solid #11B683;border-radius: 20px;background: white">
+      <div class="row" style="background: #11B683;border-bottom: 2px solid #11B683;border-radius: 16px; margin-top: -1px; margin-right: -16px;">
+        <div class="col-4">
+          <img src="./assets/image/logo-default-173x55 copy.png" alt="logo"
+        >
+        </div>
+        <div class="col-4" style="font-size: 3rem; text-align: center;color: white">Invoice</div>
+        <div class="col-4"></div>
+      </div>
+      <hr style="margin-top: 10px;border: 0.4px solid #11B683">
+      <div >
+        <div class="col-4"><h5>
+          Company:A0721I1 Auction</h5></div>
+        <div class="col-4"></div>
+        <div class="col-4"></div>
+      </div>
+      <div class="row">
+        <div class="col-4">
+          <p>Address: Nguyen Tat Thanh street</p>
+          <p>CiTy: Da Nang</p>
+        </div>
+        <div class="col-4">
+          <p>Phone: 090505050505</p>
+          <p>Fax:+0843234322</p>
+        </div>
+        <div class="col-4">
+          <p>Email: A0721I1@Codegym.com</p>
+          <p>Web Page:A0721I1Auction.com </p>
+        </div>
+      </div>
+      <hr style="margin-top: 10px;border: 0.4px solid #11B683">
+      <div>
+        <div class="col-4"><h5>Receiver</h5></div>
+        <div class="col-4"></div>
+        <div class="col-4"></div>
+      </div>
+      <div class="row">
+        <div class="col-4">
+          <p><span>Name:</span><span>{{invoiceDetail.fullNameReceiver}}</span></p>
+          <p>Nation : Việt Nam</p>
+          <p><span>Address:</span><span>{{invoiceDetail.addressReceiver}}</span></p>
+        </div>
+        <div class="col-4">
+          <p><span>Phone:</span><span>{{invoiceDetail.phoneReceiver}}</span></p>
+          <p>Fax:+8412312312</p>
+          <p><span>Email:</span><span>{{invoiceDetail.emailReceiver}}</span></p>
+        </div>
+        <div class="col-4">
+          <p><span>Invoice number :</span><span>{{invoiceDetail.idPayment}}</span></p>
+          <p>Responsible Entity:A0721I1 Auction </p>
+          <p><span>Invoice date : </span><span>{{today | date:'yyyy-MM-dd'}}</span></p>
+        </div>
+      </div>
+      <hr style="margin-top: 10px;border: 0.4px solid #11B683">
+      <div class="row">
+        <div class="col-4">
+          <p>Delivery unit</p>
+          <p>{{Trsanpot}}</p>
+        </div>
+        <div class="col-4">
+          <p>Payment methods</p>
+          <p>{{Paymethod}}</p>
+        </div>
+        <div class="col-4">
+          <p>Payments</p>
+          <p>Online</p>
+        </div>
+      </div>
+      <hr style="margin-top: 10px;border: 0.4px solid #11B683">
+      <div class="row" style="margin-top: 10px">
+        <div class="col-2"></div>
+        <div class="col-8"><h5><b>Detail</b></h5></div>
+        <div class="col-2"></div>
+      </div>
+      <div class="row">
+        <div class=col-12>
+          <div class="content" style="padding-inline: 18px;">
+            <div >
+              <table class="table table-bordered" style="margin-top: 1rem;text-align: center">
+                <thead style="background: #11B683">
+                <tr>
+                  <th scope="col" class="th">No</th>
+                  <th scope="col" class="th">Product code</th>
+                  <th scope="col" class="th">Product Name</th>
+                  <th scope="col" class="th">Status</th>
+                  <th scope="col" class="th">Auction Day</th>
+                  <th scope="col" class="th">Amount(Item)</th>
+                  <th scope="col" class="th">Price (USD)</th>
+                  <th scope="col" class="th">Money (USD)</th>
+                </tr>
+                </thead>
+                <tbody >
+                <tr *ngFor= "let invoiceDetail  of invoice, index as i">
+                  <th scope="row">{{i}}</th>
+                  <td>{{invoiceDetail.product.codeProduct}}</td>
+                  <td>{{invoiceDetail.product.nameProduct}}</td>
+                  <td scope="col">{{invoiceDetail.product.productDescription}}</td>
+                  <td scope="col">{{invoiceDetail.product.endDate | date:"yyyy/MM/dd"}}</td>
+                  <td>1</td>
+                  <td>{{invoiceDetail.product.finalPrice | number}}</td>
+                  <td>{{invoiceDetail.product.finalPrice | number}}</td>
+                </tr>
+                <tr>
+                  <th scope="row"></th>
+                  <td></td>
+                  <td>Delivery charges</td>
+                  <td scope="col"></td>
+                  <td scope="col"></td>
+                  <td></td>
+                  <td>{{feeTransport | number}}</td>
+                  <td>{{feeTransport | number}}</td>
+                </tr>
+                <tr>
+                  <th scope="row"></th>
+                  <td></td>
+                  <td>Total</td>
+                  <td scope="col"></td>
+                  <td scope="col"></td>
+                  <td></td>
+                  <td>{{total + feeTransport | number}}</td>
+                  <td>{{total + feeTransport | number}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr style="margin-top: 10px;border: 0.4px solid #11B683">
+      <div class="row">
+        <div class="col-2"><img
+          src="https://banner2.cleanpng.com/20180314/rfe/kisspng-warning-sign-clip-art-warning-icons-5aa8e9248a4310.0579562415210191725663.jpg"
+          alt="" style="height: 88%;width: 89%;float: right;margin-top: 11px"></div>
+        <div class="col-10">
+          <p style="margin-bottom: 5px;padding-top: 14px">If you pay the incorrect amount, the product received is not correct in the invoice, then
+            contact
+            Contact our company:</p>
+          <p>Phone: 090505050505 Email: A0721I1@Codegym.com</p>
+        </div>
+
+      </div>
+      <hr style="margin-top: 10px;border: 0.4px solid #11B683">
+      <div class="row">
+        <div class="col-3 footer">
+          <p >Payment Address</p>
+          <p >Payment transferred to: Tp bank</p>
+          <p >STK: 131231231</p>
+          <p >Company: A0721I1 Auction</p>
+        </div>
+        <div class="col-6">
+          <h2 style="margin-top: 37px;">Exchange of intentions, soul</h2>
+        </div>
+        <div class="col-3 footer" >
+          <p >Other Information</p>
+          <p >Certification license ISO2007</p>
+          <p >Hotline: 0905121321</p>
+          <p >Mail: A0721I1@Codegym.com</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-2"></div>
+
+  </div>
+  <div class="row">
+    <div class="col-10"></div>
+    <div class="col-2" style="text-align: right;margin-bottom: 10px">
+      <button class="btn"  (click)="print()" style="margin-right: 15px"> PrintPDF</button>
+      <a routerLink="/home" (click)="scroll()"><button class="btn" > Cancel </button></a>
+    </div>
+  </div>
+</div>

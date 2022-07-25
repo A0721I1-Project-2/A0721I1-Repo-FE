@@ -12,11 +12,15 @@ const routes: Routes = [
     component: SignUpMemberComponent
   },
   {
+    path: 'profile/:id',
+    component: ProfileMemberComponent
+  },
+  {
     path: 'profile',
     component: ProfileMemberComponent
   },
   {
-    path: 'edit',
+    path: 'edit/:id',
     component: EditMemberComponent
   },
   {

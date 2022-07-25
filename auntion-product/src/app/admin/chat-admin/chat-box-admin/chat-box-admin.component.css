@@ -113,3 +113,75 @@
   color: var(--primary-color) !important;
 }
 
+.chat-box__middle {
+  height: 550px;
+  overflow-y: scroll;
+}
+
+/* Scroll bar */
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Responsive */
+/* Mobile */
+@media (max-width: 739px) {
+  .d-none-m-b {
+    display: none;
+  }
+}
+
+/* Mobile and Tablet */
+@media (max-width: 1023px) {
+  .chat-box__item .text-chat {
+    max-width: 220px !important;
+  }
+}
+
+/* Tablet */
+@media (min-width: 740px) and (max-width: 1023px) {
+  .chat-box__middle {
+    height: 300px;
+    overflow-y: scroll;
+  }
+}
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .chat-box__middle {
+    height: 400px;
+    overflow-y: scroll;
+  }
+}
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .chat-box__middle {
+    height: 550px;
+    overflow-y: scroll;
+  }
+}
+
+/* XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) {
+  .chat-box__middle {
+    height: 550px;
+    overflow-y: scroll;
+  }
+}

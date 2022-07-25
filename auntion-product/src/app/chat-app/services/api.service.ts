@@ -6,6 +6,7 @@ import {Account} from "../../model/Account";
 
 const BASE_PATH_MEMBER = "http://localhost:8080/api/member";
 const BASE_PATH_ACCOUNT = "http://localhost:8080/api/account";
+const BASE_PATH = "http://localhost:8080";
 
 @Injectable({
   providedIn: 'root'
@@ -24,11 +25,12 @@ export class ApiService {
 
   /* Get member by account id */
   getMemberByAccountId(accountId: number): Observable<Member> {
-    return this.httpClient.get<Member>(`${BASE_PATH_MEMBER}/account=${accountId}`);
+    return this.httpClient.get<Member>(`${BASE_PATH}/account=${accountId}`);
   }
 
   /* Get account by id */
   getAccountById(accountId: number): Observable<Account> {
+    console.log(accountId);
     return this.httpClient.get<Account>(`${BASE_PATH_ACCOUNT}/account/id=${accountId}`);
   }
 

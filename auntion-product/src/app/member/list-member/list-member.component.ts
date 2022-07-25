@@ -1,9 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import Swal from 'sweetalert2';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Member} from '../../model/Member';
 import {Rank} from '../../model/Rank';
 import {MemberService} from '../service/member.service';
+// @ts-ignore
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-list-member',
@@ -14,6 +16,7 @@ export class ListMemberComponent implements OnInit {
 
   number: number;
   memberList: Member[] = [];
+  memberListAction: Member[] = [];
   member: Member;
   rankList: Rank[] = [];
   rank: Rank;
