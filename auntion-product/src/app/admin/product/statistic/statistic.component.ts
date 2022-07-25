@@ -268,6 +268,8 @@ export class StatisticComponent implements OnInit {
 }
 
 function getDataProduct(labelArr: any[], dataArr: any[], length: number, source: Product[]) {
+  dataArr = [];
+  labelArr = [];
   length = 0;
   source.forEach(val => {
     labelArr.push(val.nameProduct);
