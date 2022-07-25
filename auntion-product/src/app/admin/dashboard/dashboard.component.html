@@ -1,5 +1,6 @@
 <app-header-admin></app-header-admin>
 <app-navbar-admin></app-navbar-admin>
+<div class="container">
 <section id="main-content">
   <section class="wrapper">
     <div class="row">
@@ -20,19 +21,19 @@
               <div class="grey-header">
                 <h5>SERVER LOAD</h5>
               </div>
-              <canvas id="serverstatus01" height="120" width="120"></canvas>
-              <script>
-                var doughnutData = [{
-                  value: 70,
-                  color: "#ff6b6b"
-                },
-                  {
-                    value: 30,
-                    color: "#fdfdfd"
-                  }
-                ];
-                var myDoughnut = new Chart(document.getElementById("serverstatus01").getContext("2d")).Doughnut(doughnutData);
-              </script>
+              <!--              <canvas id="serverstatus01" height="120" width="120"></canvas>-->
+              <!--              <script>-->
+              <!--                var doughnutData = [{-->
+              <!--                  value: 70,-->
+              <!--                  color: "#ff6b6b"-->
+              <!--                },-->
+              <!--                  {-->
+              <!--                    value: 30,-->
+              <!--                    color: "#fdfdfd"-->
+              <!--                  }-->
+              <!--                ];-->
+              <!--                var myDoughnut = new Chart(document.getElementById("serverstatus01").getContext("2d")).Doughnut(doughnutData);-->
+              <!--              </script>-->
               <p class="mt"><b>Usage Increase:</b><br/>21%</p>
 
             </div>
@@ -44,19 +45,19 @@
               <div class="darkblue-header">
                 <h5>DROPBOX STATICS</h5>
               </div>
-              <canvas id="serverstatus02" height="120" width="120"></canvas>
-              <script>
-                var doughnutData = [{
-                  value: 60,
-                  color: "#1c9ca7"
-                },
-                  {
-                    value: 40,
-                    color: "#f68275"
-                  }
-                ];
-                var myDoughnut = new Chart(document.getElementById("serverstatus02").getContext("2d")).Doughnut(doughnutData);
-              </script>
+              <!--              <canvas id="serverstatus02" height="120" width="120"></canvas>-->
+              <!--              <script>-->
+              <!--                var doughnutData = [{-->
+              <!--                  value: 60,-->
+              <!--                  color: "#1c9ca7"-->
+              <!--                },-->
+              <!--                  {-->
+              <!--                    value: 40,-->
+              <!--                    color: "#f68275"-->
+              <!--                  }-->
+              <!--                ];-->
+              <!--                var myDoughnut = new Chart(document.getElementById("serverstatus02").getContext("2d")).Doughnut(doughnutData);-->
+              <!--              </script>-->
               <p>July 6, 2022</p>
               <p class="mt"><i class="fa fa-hdd-o"></i> 17 GB<br/>
                 <span> 60% Used </span>
@@ -101,19 +102,19 @@
               </div>
               <div class="row">
                 <div class="col-md-3 centered hidden-sm hidden-xs">
-                  <img src="../../../assets/img/ui-danro.jpg" class="img-circle" width="65">
+                  <img src="../../../assets/img/ui-danro.jpg" class="img-circle" width="65" style="margin-left: 15px">
                 </div>
                 <div class="col-md-9">
                   <h5><a href="#" class="text-danger">Hau LST</a> sent you a message.</h5>
                   <p class="small">3 hours ago</p>
                   <p class="message">Payment reminder. How many times have you heard “I forgot” or “I don’t check my
                     email often” as...</p>
-                  <form class="form-inline" role="form">
+<!--                  <form class="form-inline" role="form" action="#">-->
                     <div class="form-group">
                       <input type="text" class="form-control" id="exampleInputText" placeholder="Reply Hau">
                     </div>
                     <button type="submit" class="btn btn-default">Send</button>
-                  </form>
+<!--                  </form>-->
                 </div>
               </div>
             </div>
@@ -222,4 +223,5 @@
     <!-- /row -->
   </section>
 </section>
+</div>
 <app-footer-admin></app-footer-admin>

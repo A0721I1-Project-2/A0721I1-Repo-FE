@@ -1,14 +1,16 @@
-import {Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
-import {PaymentService} from '../service/payment.service';
+import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
+import { PaymentService } from '../service/payment.service';
 import html2canvas from 'html2canvas';
 
 import jspdf from 'jspdf';
+
+
 import {finalize} from 'rxjs/operators';
 import {AngularFireStorage} from '@angular/fire/storage';
 import { Subscription } from 'rxjs';
-import {InvoiceDetail} from "../../model/InvoiceDetail";
-import {Payment} from "../../model/Payment";
-import {Router} from "@angular/router";
+import { InvoiceDetail } from '../../model/InvoiceDetail';
+import { Payment } from '../../model/Payment';
+import { Router } from '@angular/router';
 
 
 
@@ -18,7 +20,8 @@ import {Router} from "@angular/router";
   styleUrls: ['./invoice-payment.component.css']
 })
 export class InvoicePaymentComponent implements OnInit {
-///pdf
+
+  ///pdf
   private url1: string;
   ///
   private subscription: Subscription | undefined;
@@ -33,7 +36,7 @@ export class InvoicePaymentComponent implements OnInit {
   Paymethod: string;
   Trsanpot: string;
   constructor(private paymentService: PaymentService, @Inject(AngularFireStorage) private storage: AngularFireStorage
-  ,private service: PaymentService, private router: Router,) { }
+    , private service: PaymentService, private router: Router,) { }
   ngOnInit(): void {
     this.today = new Date();
     console.log(this.today)
@@ -54,17 +57,17 @@ export class InvoicePaymentComponent implements OnInit {
       ///
       const file = pdf.output('blob');
       const filePath = Date.now().toString();
-      const nameImg = '/A0721I123432' + filePath + '.pdf' ;
+      const nameImg = '/A0721I123432' + filePath + '.pdf';
       const fileRef = this.storage.ref(nameImg);
       this.storage.upload(nameImg, file).snapshotChanges().pipe(
         finalize
-        (() => {
-          fileRef.getDownloadURL().subscribe((url) => {
-           this.url1 = url;
-           console.log(this.url1);
-           this.paymentService.postImagePDFAndSendEmail(this.url1).subscribe();
-          });
-        })
+          (() => {
+            fileRef.getDownloadURL().subscribe((url) => {
+              this.url1 = url;
+              console.log(this.url1);
+              this.paymentService.postImagePDFAndSendEmail(this.url1).subscribe();
+            });
+          })
       ).subscribe();
     });
     ///
@@ -72,7 +75,7 @@ export class InvoicePaymentComponent implements OnInit {
   }
 
   scroll() {
-    window.scroll(0,0)
+    window.scroll(0, 0)
   }
   /////
 
@@ -106,5 +109,4 @@ export class InvoicePaymentComponent implements OnInit {
       },
     );
   }
-
 }

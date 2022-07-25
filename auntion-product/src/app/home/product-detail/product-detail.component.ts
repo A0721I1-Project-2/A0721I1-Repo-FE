@@ -10,6 +10,7 @@ import {AuctionDTO} from '../../model/auctionDTO';
   styleUrls: ['./product-detail.component.css']
 })
 export class ProductDetailComponent implements OnInit {
+
   product: Product;
   arrayImage: string[] = [];
   id: any;

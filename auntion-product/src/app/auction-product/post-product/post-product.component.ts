@@ -103,7 +103,7 @@ export class PostProductComponent implements OnInit {
     this.apiService.getMemberByAccountId(userId).subscribe(account => {
       console.log(account);
 
-      this.productCreate.members = account;
+      this.productCreate.member = account;
       if (this.formCreate.invalid) {
         return;
       } else {

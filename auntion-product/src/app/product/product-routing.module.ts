@@ -1,27 +1,31 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import {StatisticComponent} from './statistic/statistic.component';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
 import {ListProductComponent} from './list-product/list-product.component';
 import {ReviewProductComponent} from './review-product/review-product.component';
 import {EditProductComponent} from './edit-product/edit-product.component';
-
+import {CreateProductComponent} from './create-product/create-product.component';
+import {StatisticComponent} from './statistic/statistic.component';
 
 const routes: Routes = [
-  {
-    path: 'statistic',
-    component: StatisticComponent
-  },
   {
     path: 'list',
     component: ListProductComponent
   },
   {
-    path: 'review',
+    path: 'review/:id',
     component: ReviewProductComponent
   },
   {
-    path: 'edit',
+    path: 'edit/:id',
     component: EditProductComponent
+  },
+  {
+    path: 'create',
+    component: CreateProductComponent
+  },
+  {
+    path: 'statistic',
+    component: StatisticComponent
   }
 ];
 
@@ -29,4 +33,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ProductRoutingModule { }
+export class ProductRoutingModule {
+}

@@ -1,5 +1,5 @@
 
-import {Component, DoCheck, OnChanges, OnInit} from '@angular/core';
+import { Component, DoCheck, OnChanges, OnInit } from '@angular/core';
 
 
 @Component({
@@ -8,7 +8,7 @@ import {Component, DoCheck, OnChanges, OnInit} from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent implements OnInit, DoCheck, OnChanges{
+export class AppComponent implements OnInit, DoCheck, OnChanges {
   path = '';
   title = 'auntion-product';
   isUser: boolean = false;
@@ -26,7 +26,7 @@ export class AppComponent implements OnInit, DoCheck, OnChanges{
     this.getPath();
   }
 
-  getPath(){
+  getPath() {
     this.path = window.location.href;
     // console.log(this.path);
   }

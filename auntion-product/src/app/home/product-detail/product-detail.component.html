@@ -41,7 +41,8 @@
           </div>
           <br>
           <div class="product__auctioneer">
-            <span>Auctioneer:  &#160; {{product.members[0].nameMember}}</span>
+          <!-- Updated BachLT            -->
+            <span>Auctioneer:  &#160; {{product.member[0].nameMember}}</span>
           </div>
           <br/>
           <div class="product__auctioneer">
@@ -99,9 +100,11 @@
           <h4 class="product__description-title">Information Receive</h4>
           <div class="info">
             <span><i class="fa-solid fa-location-arrow"></i>&#160; Address </span>
-            <p>{{product.members[0].addressMember}}</p>
+            <!-- Updated BachLT            -->
+            <p>{{product.member[0].addressMember}}</p>
             <span><i class="fa-solid fa-phone-flip"></i> &#160;Phone Number</span>
-            <p>{{product.members[0].phoneMember}}</p>
+            <!-- Updated BachLT            -->
+            <p>{{product.member[0].phoneMember}}</p>
             <span><i class="fa-solid fa-truck"></i> &#160;Shipping services</span>
             <p>Shipping services offers value-added services such as collection and
               delivery options, delivery

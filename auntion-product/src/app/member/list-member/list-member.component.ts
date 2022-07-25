@@ -5,6 +5,7 @@ import {Rank} from '../../model/Rank';
 import {MemberService} from '../service/member.service';
 // @ts-ignore
 import Swal from 'sweetalert2';
+import { Account } from 'src/app/model/Account';
 
 
 @Component({
