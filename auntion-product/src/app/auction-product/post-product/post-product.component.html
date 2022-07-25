@@ -17,17 +17,23 @@
                 <div *ngFor="let validation of VALIDATION_MESSAGE.codeProduct" class="text-danger">
                   <div *ngIf="formCreate.get('codeProduct').hasError(validation.type) && (formCreate.get('codeProduct').dirty || formCreate.get('codeProduct').touched)"
                        class="error-message">
-                    {{validation.message}}</div>
+                    {{validation.message}}
+                  </div>
+                </div>
+                <div *ngIf="formCreate.get('codeProduct').errors?.checkCodeProduct" style="color: red">
+                  Product Code is exist!
                 </div>
               </div>
               <div class="form-group">
                 <label> Product Name:<a style="color: red"> (*)</a> </label>
-                <input type="text" class="form-control" formControlName="nameProduct">
+                <input type="text" class="form-control" formControlName="nameProduct" >
                 <!--                <p style="color: red">Product name cannot be blank !</p>-->
                 <div *ngFor="let validation of VALIDATION_MESSAGE.nameProduct" class="text-danger">
                   <div *ngIf="formCreate.get('nameProduct').hasError(validation.type) && (formCreate.get('nameProduct').dirty || formCreate.get('nameProduct').touched)"
                        class="error-message">
                     {{validation.message}}</div>
+                </div>
+                <div *ngIf="formCreate.get('nameProduct').errors?.pattern">
                 </div>
               </div>
               <div class="form-group">
