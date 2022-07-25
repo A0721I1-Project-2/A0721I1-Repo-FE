@@ -1,8 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
+<<<<<<< HEAD
+    <list default="true" id="44db2026-8f4e-4e30-afa1-3f42a1e8de19" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.module.ts" afterDir="false" />
+<<<<<<< HEAD
+=======
+      <change beforePath="$PROJECT_DIR$/src/app/member/list-member/list-member.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/member/list-member/list-member.component.css" afterDir="false" />
+>>>>>>> origin/dev
+    </list>
+=======
+    <list default="true" id="560b3e21-ab8c-4f97-8903-fd8734714392" name="Changes" comment="" />
+>>>>>>> c33742a3f50aeb8ebd8dcafb20e737a98aad305e
+=======
     <list default="true" id="44db2026-8f4e-4e30-afa1-3f42a1e8de19" name="Default Changelist" comment="" />
     <list id="560b3e21-ab8c-4f97-8903-fd8734714392" name="Changes" comment="" />
+>>>>>>> a98b6448249f7e64293968623a20acaccaf2f3c6
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -89,6 +105,30 @@
       <created>1657636211370</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
+<<<<<<< HEAD
+      <updated>1658379915653</updated>
+      <workItem from="1658379916909" duration="790000" />
+      <workItem from="1658419174386" duration="4635000" />
+      <workItem from="1658456914378" duration="147000" />
+      <workItem from="1658461359273" duration="4213000" />
+      <workItem from="1658467351169" duration="3242000" />
+      <workItem from="1658473885895" duration="4720000" />
+      <workItem from="1658479421163" duration="2106000" />
+      <workItem from="1658482175186" duration="208000" />
+      <workItem from="1658486629057" duration="10205000" />
+      <workItem from="1658544819072" duration="1081000" />
+      <workItem from="1658555397559" duration="1555000" />
+      <workItem from="1658563637105" duration="1422000" />
+      <workItem from="1658565316318" duration="1099000" />
+      <workItem from="1658566453980" duration="1376000" />
+      <workItem from="1658567866523" duration="16955000" />
+      <workItem from="1658622282355" duration="8841000" />
+      <workItem from="1658633869369" duration="4808000" />
+      <workItem from="1658652221757" duration="8985000" />
+      <workItem from="1658662330067" duration="2884000" />
+      <workItem from="1658665561053" duration="13558000" />
+      <workItem from="1658715539878" duration="1331000" />
+=======
       <updated>1657636211370</updated>
       <workItem from="1657636216998" duration="4311000" />
       <workItem from="1657690632008" duration="2569000" />
@@ -114,9 +154,14 @@
       <workItem from="1658568086206" duration="4200000" />
       <workItem from="1658595814493" duration="5574000" />
       <workItem from="1658632614331" duration="14155000" />
+<<<<<<< HEAD
+      <workItem from="1658668026422" duration="6392000" />
+>>>>>>> origin/dev
+=======
       <workItem from="1658668026422" duration="6848000" />
       <workItem from="1658712820324" duration="429000" />
       <workItem from="1658714434299" duration="8813000" />
+>>>>>>> a98b6448249f7e64293968623a20acaccaf2f3c6
     </task>
     <servers />
   </component>
@@ -128,6 +173,34 @@
       </list>
     </option>
   </component>
+<<<<<<< HEAD
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1658625943418">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1658625943418" />
+    <state width="1345" height="206" key="GridCell.Tab.0.bottom" timestamp="1658682628669">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1345" height="206" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1658682628669" />
+    <state width="1345" height="206" key="GridCell.Tab.0.center" timestamp="1658682628668">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1345" height="206" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1658682628668" />
+    <state width="1345" height="206" key="GridCell.Tab.0.left" timestamp="1658682628667">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1345" height="206" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1658682628667" />
+    <state width="1345" height="206" key="GridCell.Tab.0.right" timestamp="1658682628668">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1345" height="206" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1658682628668" />
+  </component>
+=======
+>>>>>>> a98b6448249f7e64293968623a20acaccaf2f3c6
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>

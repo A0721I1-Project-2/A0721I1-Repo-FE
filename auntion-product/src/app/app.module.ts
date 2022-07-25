@@ -13,8 +13,10 @@ import {ToastrModule} from 'ngx-toastr';
 import {TransactionModule} from './admin/transaction/transaction.module';
 import {ChatUserPageModule} from './chat-app/chat-user-page/chat-user-page.module';
 import {DatePipe} from '@angular/common';
-import {AngularFireModule} from "@angular/fire";
+import {AngularFireModule} from '@angular/fire';
 import {HomeModule} from './home/home.module';
+import {AdminModule} from './admin/admin.module';
+
 
 @NgModule({
   declarations: [
@@ -30,13 +32,13 @@ import {HomeModule} from './home/home.module';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireDatabaseModule ,
+    AngularFireDatabaseModule,
     AngularFireAuthModule,
     BrowserAnimationsModule,
     AngularFireDatabaseModule,
     BrowserAnimationsModule,
     AngularFireDatabaseModule,
-    AngularFireDatabaseModule ,
+    AngularFireDatabaseModule,
     AngularFireAuthModule,
     NgxCaptchaModule,
     ToastrModule.forRoot({
@@ -51,6 +53,7 @@ import {HomeModule} from './home/home.module';
     TransactionModule,
     ChatUserPageModule,
     HomeModule,
+    AdminModule
   ],
 
   providers: [DatePipe],
