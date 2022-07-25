@@ -15,6 +15,7 @@ import {ChatUserPageModule} from './chat-app/chat-user-page/chat-user-page.modul
 import {DatePipe} from '@angular/common';
 import {HomeModule} from './home/home.module';
 import {AngularFireModule} from "@angular/fire";
+import {AdminModule} from './admin/admin.module';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import {AngularFireModule} from "@angular/fire";
     TransactionModule,
     ChatUserPageModule,
     HomeModule,
+    AdminModule
   ],
 
   providers: [DatePipe],
