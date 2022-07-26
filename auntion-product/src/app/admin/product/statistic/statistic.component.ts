@@ -80,11 +80,13 @@ export class StatisticComponent implements OnInit {
   statsGroup: FormGroup;
   statsBegin: string;
   statsEnd: string;
-  products: any[] = [];
-  labelArr: any[] = [];
-  dataArr: any[] = [];
-  defaultLabelArr: any[] = [];
-  defaultDataArr: any[] = [];
+  products: any[];
+  curMonthProduct: any[];
+  reportProduct: any[];
+  labelArr: any[];
+  dataArr: any[];
+  defaultLabelArr: any[];
+  defaultDataArr: any[];
   count: number;
   keyword: string;
 
@@ -92,6 +94,7 @@ export class StatisticComponent implements OnInit {
   private locale;
 
   ngOnInit(): void {
+
     const hideNavHp = document.querySelector('#header');
     const hideFooterHp = document.querySelector('.footer__container');
     // @ts-ignore
@@ -101,6 +104,10 @@ export class StatisticComponent implements OnInit {
     // tslint:disable-next-line:no-unused-expression
     hideFooterHp.style.display = 'none';
 
+    this.keyword = '';
+    this.products = [];
+    this.defaultLabelArr = [];
+    this.defaultDataArr = [];
     this.statsBegin = this.datePipe.transform('', 'yyyy-MM-dd');
     this.statsEnd = this.datePipe.transform('', 'yyyy-MM-dd');
     this.statsGroup = this.formBuilder.group({
@@ -120,7 +127,13 @@ export class StatisticComponent implements OnInit {
         }
         // Async
         console.log('products:' + this.products);
-        getDataProduct(this.defaultLabelArr, this.defaultDataArr, this.count, this.products);
+        // getDataProduct(this.defaultLabelArr, this.defaultDataArr, this.count, this.products);
+        this.products.forEach(val => {
+          this.defaultLabelArr.push(val.nameProduct);
+          console.log('name_product: ' + val.nameProduct);
+          this.defaultDataArr.push(val.finalPrice);
+          length++;
+        });
         console.log('datas:' + this.defaultDataArr);
         this.myChart = new Chart('myChart', {
             type: 'bar',
@@ -176,11 +189,11 @@ export class StatisticComponent implements OnInit {
 
   report() {
     this.message = null;
-    console.log('ban đầu: ' + this.products);
-    const newProducts: any[] = [];
-    console.log('lúc sau: ' + newProducts);
+    this.reportProduct = [];
+    this.labelArr = [];
+    this.dataArr = [];
     this.keyword = this.statsGroup.get('keyword').value;
-    console.log(this.keyword);
+    // console.log('keyword:' + typeof this.keyword);
     this.statsBegin = this.statsGroup.get('statsBegin').value;
     this.statsEnd = this.statsGroup.get('statsEnd').value;
     // console.log(this.datePipe.transform(this.statsBeginDate, 'yyyy-MM-dd'));
@@ -189,20 +202,27 @@ export class StatisticComponent implements OnInit {
     if (this.datePipe.transform(this.statsBegin, 'yyyy-MM-dd') <= this.datePipe.transform(this.statsEnd, 'yyyy-MM-dd')) {
       this.productService.statsProductFromDateToDate(this.statsBegin,
         this.statsEnd, 3).subscribe(items => {
-          for (const i in items) {
-            console.log('item: ' + items[i]);
-            if (this.keyword != null) {
-              console.log(true);
-              newProducts.filter((product: Product) => product.nameProduct.includes(this.keyword)).push(items[i]);
-            } else {
-              newProducts.push(items[i]);
+          // tslint:disable-next-line:triple-equals
+          if (this.keyword != '') {
+            for (const i in items) {
+              // this.reportProduct.filter((product: Product) => product.nameProduct.includes(this.keyword)).push(items[i]);
+              this.reportProduct.push(items[i]);
             }
-
+            this.reportProduct = this.reportProduct.filter(product => product.nameProduct.includes(this.keyword));
+          } else {
+            for (const i in items) {
+              this.reportProduct.push(items[i]);
+            }
           }
-          console.log('products:' + newProducts);
-          getDataProduct(this.labelArr, this.dataArr, this.count, newProducts);
-          console.log('Array products name in x Axis: ' + this.labelArr);
-          console.log('Array products finalPrice in y Axis: ' + this.dataArr);
+          this.reportProduct.forEach(val => {
+            this.labelArr.push(val.nameProduct);
+            // console.log('name_product: ' + val.nameProduct);
+            this.dataArr.push(val.finalPrice);
+          });
+          // console.log('Report products:' + this.reportProduct);
+          // getDataProduct(this.labelArr, this.dataArr, this.count, newProducts);
+          // console.log('Array products name in x Axis: ' + this.labelArr);
+          // console.log('Array products finalPrice in y Axis: ' + this.dataArr);
           if (this.myChart != null) {
             this.myChart.destroy();
           }
@@ -249,6 +269,7 @@ export class StatisticComponent implements OnInit {
         }
       );
     } else {
+      // The alert message warning if the start date is later than end date
       this.message = 'Start date is later than end date';
       Swal.fire(
         'Please set start date is sooner than end date',
@@ -260,12 +281,7 @@ export class StatisticComponent implements OnInit {
     console.log('Array products finalPrice in y Axis: ' + this.dataArr); // empty
   }
 
-  hide() {
-    document.getElementById('noti').hidden = true;
-    this.message = null;
-  }
-
-
+  // This function want to get color for decorating work
   getRandomColor() {
     const letters = '0123456789ABCDEF'.split('');
     let color = '#';
@@ -283,8 +299,8 @@ export class StatisticComponent implements OnInit {
 }
 
 function getDataProduct(labelArr: any[], dataArr: any[], length: number, source: Product[]) {
-  // dataArr = [];
-  // labelArr = [];
+  dataArr = [];
+  labelArr = [];
   length = 0;
   source.forEach(val => {
     labelArr.push(val.nameProduct);
@@ -293,6 +309,7 @@ function getDataProduct(labelArr: any[], dataArr: any[], length: number, source:
     length++;
   });
   console.log(length);
+
 }
 
 
