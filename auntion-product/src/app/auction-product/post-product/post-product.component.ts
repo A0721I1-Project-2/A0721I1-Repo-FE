@@ -29,20 +29,24 @@ export class PostProductComponent implements OnInit {
 
   /* User after login */
   user: any;
-
+  messageAlert: string[];
   currentImageUpload: FileUpload;
   currentImagesUpload: File[] = [];
 
   constructor(private firebaseService: FirebaseService, private apiService: ApiService, private router: Router,
               private productService: AuctionProductService) {
   }
-
   VALIDATION_MESSAGE = {
-    nameProduct: [
-      {type: 'required', message: 'Product name cannot be blank !'}
+    codeProduct: [
+      {type: 'required', message: ' Product Code cannot be blank !'},
+      {type: 'pattern', message: 'Please enter the correct format PRXXX !'}
     ],
-    beginPrice: [
-      {type: 'required', message: 'Begin Price cannot be blank !'},
+    nameProduct: [
+      {type: 'required', message: 'Product name cannot be blank !'},
+      {type: 'maxlength', message: 'No more than 60 characters!'},
+    ],
+    initialPrice: [
+      {type: 'required', message: 'Initial Price cannot be blank !'},
       {type: 'pattern', message: 'Please enter the correct integer format !'}
     ],
     incrementPrice: [
@@ -55,10 +59,10 @@ export class PostProductComponent implements OnInit {
     typeProduct: [
       {type: 'required', message: 'Please select product type!'},
     ],
-    startTime: [
+    startDate: [
       {type: 'required', message: 'Please select a date! '}
     ],
-    endTime: [
+    endDate: [
       {type: 'required', message: 'Please select a date!'},
       {type: 'error', message1: 'The end date must be greater than the start date!'}
     ],
@@ -74,19 +78,21 @@ export class PostProductComponent implements OnInit {
 
 
     // @ts-ignore
+    // @ts-ignore
     this.formCreate = new FormGroup({
-      nameProduct: new FormControl('', Validators.required),
-      beginPrice: new FormControl('', Validators.required),
+        codeProduct: new FormControl('', [Validators.required]),
+        nameProduct: new FormControl('', [Validators.required, Validators.maxLength(60)]),
+        initialPrice: new FormControl('', Validators.required),
       incrementPrice: new FormControl('', Validators.required),
       productDescription: new FormControl('', Validators.required),
       typeProduct: new FormControl('', Validators.required),
-      startTime: new FormControl('', Validators.required),
-      endTime: new FormControl('', Validators.required),
+      startDate: new FormControl('', Validators.required),
+      endDate: new FormControl('', Validators.required),
       // image: new FormControl('', Validators.required)
     }
       );
     // this.getControl.startTime.setValidators([this.customvValidateStartDate()]);
-    this.getControl.endTime.setValidators([this.customvValidateEnDate()]);
+    this.getControl.endDate.setValidators([this.customvValidateEnDate()]);
     this.productService.getAllTypeProduct().subscribe(data => {
       this.typeProduct = data;
       console.log(data);
@@ -96,6 +102,7 @@ export class PostProductComponent implements OnInit {
   }
 
   createProduct() {
+    this.messageAlert = [];
     /* Get properties in form */
     this.productCreate = this.formCreate.value;
     const userId = this.user.id;
@@ -105,7 +112,9 @@ export class PostProductComponent implements OnInit {
 
       this.productCreate.members = account;
       if (this.formCreate.invalid) {
-        return;
+        if (this.formCreate.get('codeProduct')?.errors?.checkCodeProduct) {
+          this.messageAlert.push('Product code ' + this.formCreate.value.codeProduct + ' đã tồn tại!');
+        }
       } else {
         const typeProductId = this.formCreate.get('typeProduct').value;
         this.productService.getTypeProductById(typeProductId).subscribe(typeProduct => {
@@ -120,7 +129,6 @@ export class PostProductComponent implements OnInit {
               console.log(this.selectedFiles.item(i));
               this.currentImagesUpload.push(this.selectedFiles.item(i));
             }
-
             /* push từng file */
             // tslint:disable-next-line:prefer-for-of
             for (let i = 0; i < this.currentImagesUpload.length; i++) {
@@ -166,9 +174,9 @@ export class PostProductComponent implements OnInit {
 
   private customvValidateEnDate(): ValidatorFn {
     return (form): ValidationErrors => {
-      const endTime = form.value;
-      const startTime = this.getControl.startTime.value;
-      if (endTime < startTime) {
+      const endDate = form.value;
+      const startDate = this.getControl.startDate.value;
+      if (endDate < startDate) {
         return { invalid: true };
       }
       return null;

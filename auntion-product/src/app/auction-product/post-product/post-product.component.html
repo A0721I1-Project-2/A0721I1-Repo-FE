@@ -12,21 +12,37 @@
           <div class="row">
             <div class="col-lg-6 col-sm-12 col-md-10">
               <div class="form-group">
+                <label> Product Code:<a style="color: red"> (*)</a> </label>
+                <input type="text" class="form-control" formControlName="codeProduct" pattern="^PR[0-9]{3}$">
+                <!--                <p style="color: red">Product name cannot be blank !</p>-->
+                <div *ngFor="let validation of VALIDATION_MESSAGE.codeProduct" class="text-danger">
+                  <div *ngIf="formCreate.get('codeProduct').hasError(validation.type) && (formCreate.get('codeProduct').dirty || formCreate.get('codeProduct').touched)"
+                       class="error-message">
+                    {{validation.message}}
+                  </div>
+                </div>
+<!--                <div *ngIf="formCreate.get('codeProduct').errors?.checkCodeProduct" style="color: red">-->
+<!--                  Product Code đã tồn tại !-->
+<!--                </div>-->
+              </div>
+              <div class="form-group">
                 <label> Product Name:<a style="color: red"> (*)</a> </label>
-                <input type="text" class="form-control" formControlName="nameProduct">
+                <input type="text" class="form-control" formControlName="nameProduct" >
 <!--                <p style="color: red">Product name cannot be blank !</p>-->
                 <div *ngFor="let validation of VALIDATION_MESSAGE.nameProduct" class="text-danger">
                   <div *ngIf="formCreate.get('nameProduct').hasError(validation.type) && (formCreate.get('nameProduct').dirty || formCreate.get('nameProduct').touched)"
                        class="error-message">
                     {{validation.message}}</div>
                 </div>
+                <div *ngIf="formCreate.get('nameProduct').errors?.pattern">
+                </div>
               </div>
               <div class="form-group">
-                <label> Begin Price:<a style="color: red"> (*)</a> </label>
-                <input type="text" class="form-control"  formControlName="beginPrice" pattern="^[0-9]+$">
+                <label> Initial Price:<a style="color: red"> (*)</a> </label>
+                <input type="text" class="form-control"  formControlName="initialPrice" pattern="^[0-9]+$">
 <!--                <p style="color: red">Begin Price cannot be blank !</p>-->
-                <div *ngFor="let validation of VALIDATION_MESSAGE.beginPrice" class="text-danger" >
-                  <div *ngIf="formCreate.get('beginPrice').hasError(validation.type) && (formCreate.get('beginPrice').dirty || formCreate.get('beginPrice').touched)"
+                <div *ngFor="let validation of VALIDATION_MESSAGE.initialPrice" class="text-danger" >
+                  <div *ngIf="formCreate.get('initialPrice').hasError(validation.type) && (formCreate.get('initialPrice').dirty || formCreate.get('initialPrice').touched)"
                        class="error-message">
                     {{validation.message}}</div>
                 </div>
@@ -44,6 +60,7 @@
               </div>
               <div class="form-group">
                 <label> Detail Information: <a style="color: red"> (*)</a></label>
+
                 <textarea type="textarea" class="form-control" formControlName="productDescription" rows="5"></textarea>
 <!--                <p style="color: red">Detail Information cannot be blank !</p>-->
                 <div *ngFor="let validation of VALIDATION_MESSAGE.productDescription" class="text-danger">
@@ -72,9 +89,9 @@
               <div class="form-group">
                 <label> Start Time: <a style="color: red"> (*)</a></label>
 <!--               <input type="datetime-local"  step="1" class="form-control" placeholder="Enter start date" required="" type>-->
-                <input  class="form-control"  step="1" required="" formControlName="startTime"  type="datetime-local" >
-                <div *ngFor="let validation of VALIDATION_MESSAGE.startTime" class="text-danger">
-                  <div *ngIf="formCreate.get('startTime').hasError(validation.type) && (formCreate.get('startTime').dirty || formCreate.get('startTime').touched)"
+                <input  class="form-control"  step="1" required="" formControlName="startDate"  type="datetime-local" formaction="yyyy-MM-dd HH:mm:ss" >
+                <div *ngFor="let validation of VALIDATION_MESSAGE.startDate" class="text-danger">
+                  <div *ngIf="formCreate.get('startDate').hasError(validation.type) && (formCreate.get('startDate').dirty || formCreate.get('startDate').touched)"
                        class="error-message">
                     {{validation.message}}</div>
                 </div>
@@ -82,14 +99,14 @@
               </div>
               <div class="form-group">
                 <label> End Time:<a style="color: red"> (*)</a></label>
-                <input  class="form-control"  step="1" formControlName="endTime" placeholder="Enter end date" required="" type="datetime-local" formaction="MM-dd-yyyy-HH-mm" >
-                <div *ngFor="let validation of VALIDATION_MESSAGE.endTime" class="text-danger">
-                  <div *ngIf="formCreate.get('endTime').hasError(validation.type) && (formCreate.get('endTime').dirty || formCreate.get('endTime').touched)"
+                <input  class="form-control"  step="1" formControlName="endDate" placeholder="Enter end date" required="" type="datetime-local" formaction="yyyy-MM-dd HH:mm:ss"  >
+                <div *ngFor="let validation of VALIDATION_MESSAGE.endDate" class="text-danger">
+                  <div *ngIf="formCreate.get('endDate').hasError(validation.type) && (formCreate.get('endDate').dirty || formCreate.get('endDate').touched)"
                        class="error-message">
                     {{validation.message}}</div>
                 </div>
-                <div *ngFor="let validation of VALIDATION_MESSAGE.endTime" class="text-danger">
-                  <div *ngIf="formCreate.get('endTime').hasError(validation.type) && (formCreate.get('endTime').dirty || formCreate.get('endTime').touched)|| getControl.endTime.invalid && getControl.endTime.touched"
+                <div *ngFor="let validation of VALIDATION_MESSAGE.endDate" class="text-danger">
+                  <div *ngIf="formCreate.get('endDate').hasError(validation.type) && (formCreate.get('endDate').dirty || formCreate.get('endDate').touched)|| getControl.endDate.invalid && getControl.endDate.touched"
                        class="error-message">
                     {{validation.message1}}</div>
                 </div>
