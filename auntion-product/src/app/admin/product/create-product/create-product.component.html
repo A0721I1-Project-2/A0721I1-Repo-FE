@@ -118,16 +118,16 @@
           </div>
 
           <div class="form-group row">
-            <label class="col-sm-3 col-form-label" style="padding: 10px 20px 10px 40px;">Money For Once Auction: <i
+            <label class="col-sm-3 col-form-label" style="padding: 10px 20px 10px 40px;">Increament Price: <i
               style="color: red">*</i></label>
             <div class="col-sm-7 price-step">
-              <input type="number" class="form-control" value="100.000" formControlName="moneyAuction">
-              <div
-                *ngIf="(getControl.moneyAuction.dirty || getControl.moneyAuction.touched) && getControl.moneyAuction.invalid">
-                <div *ngIf="getControl.moneyAuction.errors.required" style="color: red;">
-                  Not Empty
-                </div>
-              </div>
+              <input type="text" class="form-control" formControlName="incrementPrice">
+<!--              <div-->
+<!--                *ngIf="(getControl.incrementPrice.dirty || getControl.incrementPrice.touched) && getControl.incrementPrice.invalid">-->
+<!--                <div *ngIf="getControl.incrementPrice.errors.required" style="color: red;">-->
+<!--                  Not Empty-->
+<!--                </div>-->
+<!--              </div>-->
             </div>
           </div>
 

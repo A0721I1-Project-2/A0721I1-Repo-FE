@@ -9,6 +9,7 @@ import {Product} from '../../../model/Product';
 import {ImageProduct} from '../../../model/ImageProduct';
 import {Member} from '../../../model/Member';
 
+
 const URL_API = 'http://localhost:8080/manager/product/api';
 
 @Injectable({

@@ -71,7 +71,7 @@ export class CreateProductComponent implements OnInit {
       idPoster: [null, [Validators.required]],
       typeProduct: [null, [Validators.required]],
       initialPrice: [null, [Validators.required]],
-      moneyAuction: [null, [Validators.required]],
+      incrementPrice: [],
       startDate: [null, [Validators.required]],
       endDate: [null, [Validators.required]],
       productDescription: [null, [Validators.required]],
