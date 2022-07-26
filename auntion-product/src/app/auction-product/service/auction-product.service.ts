@@ -100,4 +100,8 @@ export class AuctionProductService {
   blockMemberAndAccount(idMember, idAccount) {
     return this.httpClient.get('http://localhost:8080/manager/product/api/blockMemberAndAccount/' + idMember + '/' + idAccount);
   }
+//  Thao
+  checkId(id: string): Observable<Product[]> {
+    return this.httpClient.get<Product[]>(API_URL + '/checkId?id=' + id);
+  }
 }
