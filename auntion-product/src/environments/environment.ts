@@ -5,7 +5,6 @@
 
 export const environment = {
   production: false,
-
   API_GETWAY: 'http://localhost:8080',
   firebaseConfig: {
     apiKey: 'AIzaSyCXbO7_RtR7KFi5WPYcGJHtYAcMhy0_3SY',
