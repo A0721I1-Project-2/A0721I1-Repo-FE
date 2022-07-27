@@ -20,9 +20,9 @@
           </p>
           <div class="infield">
             <p for="password"><i class="fa-solid fa-lock"></i>Password</p>
-            <input type="password" placeholder="" id="passIn" formControlName="password"
-                   [type]="show ? 'text' : 'password'"/>
-            <i class="fa-solid fa-eye-slash showPass" (click)="showPsw()"></i>
+            <input type="password" placeholder="" id="passIn" formControlName="password">
+            <!--                   [type]="show ? 'text' : 'password'"/>-->
+            <i class="fa-solid fa-eye-slash showPass" (click)="showPsw()" id="icon"></i>
             <i class="bi bi-eye-slash"></i>
             <label></label>
           </div>
