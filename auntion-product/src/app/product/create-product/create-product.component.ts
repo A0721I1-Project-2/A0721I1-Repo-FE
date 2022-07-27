@@ -10,7 +10,7 @@ import {ToastrService} from 'ngx-toastr';
 
 
 @Component({
-  selector: 'create-product',
+  selector: 'app-create-product',
   templateUrl: './create-product.component.html',
   styleUrls: ['./create-product.component.css']
 })
@@ -47,22 +47,7 @@ export class CreateProductComponent implements OnInit {
     hideFooterHp.style.display = 'none';
   }
 
-  // private initForm(): void {
-  //   this.formGroup = this.fb.group({
-  //     codeProduct: [null, [Validators.required]],
-  //     nameProduct: [null, [Validators.required]],
-  //     idPoster: [null, [Validators.required]],
-  //     posterInformation: [null, [Validators.required]],
-  //     typeProduct: [null, [Validators.required]],
-  //     initialPrice: [null, [Validators.required]],
-  //     moneyAuction: [null, [Validators.required]],
-  //     startDate: [null, [Validators.required]],
-  //     endDate: [null, [Validators.required]],
-  //     productDescription: [null, [Validators.required]],
-  //     approvalStatus: [2],
-  //     biddingStatus: [2],
-  //     cart: [1],
-  //   });
+
 
   private initForm(): void {
     this.formGroup = this.fb.group({
@@ -71,13 +56,14 @@ export class CreateProductComponent implements OnInit {
       idPoster: [null, [Validators.required]],
       typeProduct: [null, [Validators.required]],
       initialPrice: [null, [Validators.required]],
-      moneyAuction: [null, [Validators.required]],
+      incrementPrice: [null, [Validators.required]],
       startDate: [null, [Validators.required]],
       endDate: [null, [Validators.required]],
       productDescription: [null, [Validators.required]],
-      approvalStatus: [2],
-      biddingStatus: [2],
-      cart: [1],
+
+      // approvalStatus: [2],
+      // biddingStatus: [2],
+      // cart: [2],
     });
 
     this.getControl.startDate.setValidators([Validators.required, this.customvValidateStartDate()]);
@@ -136,8 +122,10 @@ export class CreateProductComponent implements OnInit {
 
   public submit(): void {
     const recusive = (form: FormGroup) => {
+      // tslint:disable-next-line:forin no-shadowed-variable
       for (const i in form.controls) {
         const value = form.controls[i].value;
+
 
         if (typeof value === 'string') {
           if (Boolean(value)) {
@@ -203,7 +191,8 @@ export class CreateProductComponent implements OnInit {
       const url = URL.createObjectURL(file);
       this.files.push({
         base64: url,
-        file: file,
+        file,
+
       });
     });
 

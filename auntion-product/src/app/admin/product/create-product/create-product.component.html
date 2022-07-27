@@ -14,7 +14,7 @@
               <i style="color: red">*</i>
             </label>
             <div class="col-sm-7">
-              <input type="text" class="form-control" formControlName="codeProduct" placeholder="spoon">
+              <input type="text" class="form-control" formControlName="codeProduct" placeholder="PR001">
               <div
                 *ngIf="(getControl.codeProduct.dirty || getControl.codeProduct.touched) && getControl.codeProduct.invalid">
                 <div *ngIf="getControl.codeProduct.errors.required" style="color: red;">
@@ -50,40 +50,10 @@
             </div>
             <div class="col-sm-2">
               <button type="button" class="form__group_button_check" (click)="check()">Check <i
-                class='bx bx-loader-alt'></i></button>
+                class='bx bx-loader-alt' ></i></button>
             </div>
           </div>
 
-
-          <!--          <div class="form-group row">-->
-          <!--            <label class="col-sm-3 col-form-label" style="padding: 10px 20px 10px 40px;">Poster Information:-->
-          <!--              <i style="color: red">*</i>-->
-          <!--            </label>-->
-          <!--            <div class="col-sm-7">-->
-          <!--              <textarea type="textarea" class="form-control" rows="4" placeholder="refugees"-->
-          <!--                        formControlName="posterInformation"></textarea>-->
-          <!--              <div-->
-          <!--                *ngIf="(getControl.posterInformation.dirty || getControl.posterInformation.touched) && getControl.posterInformation.invalid">-->
-          <!--                <div *ngIf="getControl.posterInformation.errors.required" style="color: red;">-->
-          <!--                  Not Empty-->
-          <!--                </div>-->
-          <!--              </div>-->
-          <!--            </div>-->
-          <!--          </div>-->
-
-          <!--        <div class="form-group row">-->
-          <!--          <label class="col-sm-3 col-form-label" style="padding: 10px 20px 10px 40px;">Poster Information:-->
-          <!--            <i style="color: red">*</i>-->
-          <!--          </label>-->
-          <!--          <div class="col-sm-7">-->
-          <!--            <textarea type="textarea" class="form-control" rows="4" placeholder="refugees" formControlName="posterInformation"></textarea>-->
-          <!--            <div *ngIf="(getControl.posterInformation.dirty || getControl.posterInformation.touched) && getControl.posterInformation.invalid">-->
-          <!--              <div *ngIf="getControl.posterInformation.errors.required" style="color: red;">-->
-          <!--                Not Empty-->
-          <!--              </div>-->
-          <!--            </div>-->
-          <!--          </div>-->
-          <!--        </div>-->
 
           <div class="form-group row">
             <label class="col-sm-3 col-form-label" style="padding: 10px 20px 10px 40px;">Category:
@@ -118,16 +88,18 @@
           </div>
 
           <div class="form-group row">
-            <label class="col-sm-3 col-form-label" style="padding: 10px 20px 10px 40px;">Increament Price: <i
+
+            <label class="col-sm-3 col-form-label" style="padding: 10px 20px 10px 40px;">IncrementPrice: <i
               style="color: red">*</i></label>
             <div class="col-sm-7 price-step">
-              <input type="text" class="form-control" formControlName="incrementPrice">
-<!--              <div-->
-<!--                *ngIf="(getControl.incrementPrice.dirty || getControl.incrementPrice.touched) && getControl.incrementPrice.invalid">-->
-<!--                <div *ngIf="getControl.incrementPrice.errors.required" style="color: red;">-->
-<!--                  Not Empty-->
-<!--                </div>-->
-<!--              </div>-->
+              <input type="number" class="form-control" value="100.000" formControlName="incrementPrice">
+              <div
+                *ngIf="(getControl.incrementPrice.dirty || getControl.incrementPrice.touched) && getControl.incrementPrice.invalid">
+                <div *ngIf="getControl.incrementPrice.errors.required" style="color: red;">
+                  Number & Not Empty
+                </div>
+              </div>
+
             </div>
           </div>
 
@@ -168,7 +140,7 @@
                   Not Empty
                 </div>
 
-                <div *ngIf="getControl.startDate.errors.invalid">
+                <div *ngIf="getControl.startDate.errors.invalid" style="color: red">
                   Start date must be smaller than End date
                 </div>
               </div>
@@ -187,7 +159,7 @@
                   Not Empty
                 </div>
 
-                <div *ngIf="getControl.endDate.errors.invalid">
+                <div *ngIf="getControl.endDate.errors.invalid" style="color: red">
                   End date must be bigger than Start date
                 </div>
               </div>
@@ -220,7 +192,7 @@
               <input type="button" (click)="resetForm()" class="form__group_button_retype" value="Reset">
             </div>
             <div class="col-sm-2">
-              <a class="form__group_button_cancel text-white" [routerLink]="'/product/list'">Cancel</a>
+              <a class="form__group_button_cancel text-white" [routerLink]="'/admin/product/list'">Cancel</a>
             </div>
           </div>
         </fieldset>

@@ -154,8 +154,10 @@ export class ListProductComponent implements OnInit {
 
   deleteInvoice() {
     if (this.listIdSelectedProduct.length > 0) {
+      // tslint:disable-next-line:prefer-for-of
       for (let i = 0; i < this.listIdSelectedProduct.length; i++) {
         this.productService.delete(this.listIdSelectedProduct[i]).subscribe(() => {
+          this.listIdSelectedProduct = [];
           this.ngOnInit();
         });
       }

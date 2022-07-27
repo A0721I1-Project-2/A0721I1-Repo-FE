@@ -22,6 +22,7 @@ export const environment = {
     messagingSenderId: '471282388582',
     appId: '1:471282388582:web:21e1cc26e135259e68e7a7'
   },
+
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   apiUrl: 'http://localhost:8080'
   /* recaptcha: {
