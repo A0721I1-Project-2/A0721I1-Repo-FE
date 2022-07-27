@@ -38,11 +38,11 @@ export class PostProductComponent implements OnInit {
               private productService: AuctionProductService) {
   }
   VALIDATION_MESSAGE = {
-    codeProduct: [
-      {type: 'required', message: ' Product Code cannot be blank !'},
-      {type: 'pattern', message: 'Please enter the correct format PRXXX !'},
-      {type: 'required', message1: 'TTT !'}
-    ],
+    // codeProduct: [
+    //   {type: 'required', message: ' Product Code cannot be blank !'},
+    //   {type: 'pattern', message: 'Please enter the correct format PRXXX !'},
+    //   {type: 'required', message1: 'TTT !'}
+    // ],
     nameProduct: [
       {type: 'required', message: 'Product name cannot be blank !'},
       {type: 'maxlength', message: 'No more than 60 characters!'},
@@ -82,7 +82,7 @@ export class PostProductComponent implements OnInit {
     // @ts-ignore
     // @ts-ignore
     this.formCreate = new FormGroup({
-        codeProduct: new FormControl('', [Validators.required], [checkCodeProduct(this.productService)]),
+        // codeProduct: new FormControl('', [Validators.required], [checkCodeProduct(this.productService)]),
         nameProduct: new FormControl('', [Validators.required, Validators.maxLength(60)]),
         initialPrice: new FormControl('', Validators.required),
         incrementPrice: new FormControl('', Validators.required),
@@ -114,9 +114,10 @@ export class PostProductComponent implements OnInit {
 
       this.productCreate.member = account;
       if (this.formCreate.invalid) {
-        if (this.formCreate.get('codeProduct')?.errors?.checkCodeProduct) {
-          this.messageAlert.push('Product code ' + this.formCreate.value.codeProduct + ' đã tồn tại!');
-        }
+        // if (this.formCreate.get('codeProduct')?.errors?.checkCodeProduct) {
+        //   this.messageAlert.push('Product code ' + this.formCreate.value.codeProduct + ' đã tồn tại!');
+        // }
+        return;
       } else {
         const typeProductId = this.formCreate.get('typeProduct').value;
         this.productService.getTypeProductById(typeProductId).subscribe(typeProduct => {

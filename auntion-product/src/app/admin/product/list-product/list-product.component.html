@@ -1,36 +1,33 @@
 <app-header-admin></app-header-admin>
 <app-navbar-admin></app-navbar-admin>
+<link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
 <!-- Đây là component để chính -->
 <section id="main-content">
   <section class="wrapper">
     <div class="container-fluid">
       <h2>Product Management</h2>
-<!--      <div class="horizontal-line"></div>-->
+      <!--      <div class="horizontal-line"></div>-->
       <form (ngSubmit)="search()" [formGroup]="searchProduct">
-        <div class="d-flex align-items-center justify-content-center">
-          <div class="row" style="margin: 30px">
+        <div class="">
+          <!--          <div class="row" style="margin: 30px">-->
+          <!--            <div class="col">-->
+          <div class="row">
             <div class="col">
-              <input [defaultValue]="" type="text" class="form-control ml-3" placeholder="Product Name"
+              <input [defaultValue]="" type="text" class="form-control" placeholder="Product Name"
                      formControlName="nameProduct">
             </div>
             <div class="col">
-              <select class="custom-select form-control ml-3" formControlName="typeProduct">
+              <select class="form-control" formControlName="typeProduct">
                 <option value="" disabled selected hidden>Product Type</option>
                 <option *ngFor="let typeProduct of typeProductList"
                         value="{{typeProduct.nameProductType}}">{{typeProduct.nameProductType}}</option>
-                <!--                    <option value="Electronics">Electronics</option>-->
-                <!--                    <option value="Fashion">Fashion</option>-->
-                <!--                    <option value="Home & Living">Home & Living</option>-->
-                <!--                    <option value="Health & Beauty">Health & Beauty</option>-->
-                <!--                    <option value="Automotive">Automotive</option>-->
-                <!--                    <option value="Computing">Computing</option>-->
               </select>
             </div>
             <div class="col">
-              <input type="text" class="form-control ml-3" placeholder="Seller" formControlName="sellerName">
+              <input type="text" class="form-control" placeholder="Seller" formControlName="sellerName">
             </div>
             <div class="col">
-              <select class="custom-select form-control ml-3" formControlName="priceRange">
+              <select class="form-control" formControlName="priceRange">
                 <option value="" disabled selected hidden>Price</option>
                 <option value="0 - 100 USD">0 - 100 USD</option>
                 <option value="100 - 500 USD">100 - 500 USD</option>
@@ -40,23 +37,23 @@
               </select>
             </div>
             <div class="col">
-              <select class="custom-select form-control ml-3" formControlName="biddingStatus">
+              <select class="form-control" formControlName="biddingStatus">
                 <option value="" disabled selected hidden>Bidding Status</option>
                 <option *ngFor="let biddingStatus of biddingStatusList"
                         value="{{biddingStatus.nameBiddingStatus}}">{{biddingStatus.nameBiddingStatus}}</option>
-                <!--                    <option value="Not Bid Yet">Not Bid Yet</option>-->
-                <!--                    <option value="In Bidding">In Bidding</option>-->
-                <!--                    <option value="Successful Bid">Successful Bid</option>-->
-                <!--                    <option value="Failed Bid">Failed Bid</option>-->
               </select>
             </div>
-            <div class="col-1">
+          </div>
+          <div class="row" style="margin: 10px 0;
+    display: flex;
+    justify-content: center;">
+            <div>
               <button type="submit" class="btn">
-                Search
+                Search    <svg style="margin-top: -6px;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+              </svg>
               </button>
-            </div>
-            <div class="col-1">
-              <button class="btn" (click)="ngOnInit()">
+              <button class="btn" style="margin: 0 5px" (click)="ngOnInit()">
                 Show all
               </button>
             </div>
@@ -97,11 +94,11 @@
               <th scope="row">{{i + 1}}</th>
               <td>{{product.codeProduct}}</td>
               <td>{{product.nameProduct}}</td>
-              <td>{{product.typeProduct.nameProductType}}</td>
-              <td>{{product.member.nameMember}}</td>
+              <td>{{product.typeProduct.nameProductType | titlecase}}</td>
+              <td>{{product.member.nameMember | titlecase}}</td>
               <td>{{product.initialPrice}}</td>
-              <td>{{product.approvalStatus.nameApprovalStatus}}</td>
-              <td>{{product.biddingStatus.nameBiddingStatus}}</td>
+              <td>{{product.approvalStatus.nameApprovalStatus | titlecase}}</td>
+              <td>{{product.biddingStatus.nameBiddingStatus | titlecase}}</td>
               <td style="overflow: hidden;
                 white-space: nowrap;
                 text-overflow: ellipsis;
@@ -181,7 +178,6 @@
                 </div>
               </div>
             </div>
-
             <!--              Pagination-->
             <div style="float: right">
               <ul class="pagination">
@@ -196,7 +192,6 @@
                     <span class="page-link">Previous</span>
                   </li>
                 </ng-template>
-
                 <div *ngFor="let page of totalPagesArray; index as i">
                   <div *ngIf="pageNumber == i; then isCurrentPage else notCurrentPage"></div>
                   <ng-template #isCurrentPage>
@@ -210,7 +205,6 @@
                     </li>
                   </ng-template>
                 </div>
-
                 <div *ngIf="pageNumber < totalPagesArray.length - 1; then enableNext else disableNext"></div>
                 <ng-template #enableNext>
                   <li class="page-item">
@@ -231,5 +225,3 @@
   </section>
 </section>
 <app-footer-admin></app-footer-admin>
-
-
