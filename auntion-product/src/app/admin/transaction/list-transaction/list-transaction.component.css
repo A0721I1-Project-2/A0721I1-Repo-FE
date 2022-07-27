@@ -14,7 +14,7 @@
 
 
 .p-r-0 {
-  padding-right: 0px !important;
+  padding: 0px !important;
 }
 
 .p-l-0 {
@@ -121,7 +121,7 @@ input {
 }
 
 .total-revenue {
-  display: flex;
+  display: none;
   justify-content: center;
   border-left: 1px solid Silver;
   border-top: 1px solid Silver;
@@ -133,7 +133,7 @@ input {
 /* tablet: with < 1700px */
 @media only screen and (max-width: 106.25rem) {
   .total-revenue {
-    display: flex;
+    display: none;
     justify-content: center;
     border-left: 1px solid Silver;
     border-top: 1px solid Silver;
@@ -141,6 +141,59 @@ input {
     border-bottom: 1px solid Silver;
     margin-left: 71%;
   }
+}
+
+/* tablet: with < 1120px */
+@media only screen and (max-width: 70rem) {
+  .total-revenue {
+    display: none;
+    justify-content: center;
+    border-left: 1px solid Silver;
+    border-top: 1px solid Silver;
+    border-right: 1px solid Silver;
+    border-bottom: 1px solid Silver;
+    margin-left: 71%;
+  }
+
+  /*.content {*/
+  /*  margin-left: 50px;*/
+  /*}*/
+}
+
+/* tablet: with < 1025 */
+@media only screen and (max-width: 64.063rem) {
+  .total-revenue {
+    display: none;
+    justify-content: center;
+    border-left: 1px solid Silver;
+    border-top: 1px solid Silver;
+    border-right: 1px solid Silver;
+    border-bottom: 1px solid Silver;
+    margin-left: 71%;
+  }
+
+  /*.content {*/
+  /*  margin-left: 50px;*/
+  /*  !*display: flex;*!*/
+  /*  !*justify-content: center;*!*/
+  /*}*/
+}
+
+/* tablet: with < 810 */
+@media only screen and (max-width: 50.625rem) {
+  .total-revenue {
+    display: none;
+    justify-content: center;
+    border-left: 1px solid Silver;
+    border-top: 1px solid Silver;
+    border-right: 1px solid Silver;
+    border-bottom: 1px solid Silver;
+    margin-left: 71%;
+  }
+
+  /*.content {*/
+  /*  margin-left: 60px;*/
+  /*}*/
 }
 
 /* Mobile: with < 740px */
@@ -184,7 +237,7 @@ input {
   }
 
   .total-revenue {
-    display: flex;
+    display: none;
     justify-content: center;
     border-left: 1px solid Silver;
     border-top: 1px solid Silver;

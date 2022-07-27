@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {TransactionService} from '../service/transaction.service';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {InvoiceDetail} from '../../../model/InvoiceDetail';
 import {Invoice} from '../../../model/Invoice';
 import Swal from 'sweetalert2';
@@ -12,32 +12,48 @@ import Swal from 'sweetalert2';
 })
 export class ListTransactionComponent implements OnInit {
 
-  totalPagination: number;
-  emptyForm = false;
-  pageNumber = 0;
   public searchTransaction: FormGroup;
   listTransactionNotPagination: InvoiceDetail[];
   invoiceDetail: InvoiceDetail[] = [];
-  totalPage: number[] = [];
   invoice: Invoice[] = [];
+
+
+  // pagination
+  totalPagination: number;
+  emptyForm = false;
+  pageNumber = 0;
+  totalPage: number[] = [];
+
+  // total revenue
   result = 0;
   item;
   total = 0;
-  Status = 'Status';
 
-  street: string;
+  // selected status
+  Status = 'Status';
 
   /* Initial properties for delete invoice */
   idInvoice: any;
   idInvoiceChecked: any;
   listIdInvoice: any[] = [];
 
+  // search not pound
+  searchNotFound = false;
+
   constructor(private transactionService: TransactionService) {
   }
 
+  VALIDATE_MESSAGES = {
+    contentSearch: [
+      {type: 'pattern', message: 'Tên không đúng định dạng'},
+    ]
+  };
+
   ngOnInit(): void {
+    // this.deleteAfter30Days();
     const hideNavHp = document.querySelector('#header');
     const hideFooterHp = document.querySelector('.footer__container');
+
 // @ts-ignore
 // tslint:disable-next-line:no-unused-expression
     hideNavHp.style.display = 'none';
@@ -79,7 +95,6 @@ export class ListTransactionComponent implements OnInit {
 
   search() {
     this.total = 0;
-
     if (this.searchTransaction.value.nameSeller === '' || this.searchTransaction.value.nameSeller === undefined) {
       this.searchTransaction.value.nameSeller = 'null';
     }
@@ -103,18 +118,39 @@ export class ListTransactionComponent implements OnInit {
     this.transactionService.search(this.searchTransaction.value.nameSeller, this.searchTransaction.value.nameBuyer,
       this.searchTransaction.value.nameProduct, this.searchTransaction.value.status
     ).subscribe((data: any) => {
-      this.invoiceDetail = data.content;
-      this.setPage(data.totalPages);
+      if (data == null) {
+        this.searchNotFound = true;
+        console.log(this.searchNotFound);
+      }else {
+        this.searchNotFound = false;
+        this.invoiceDetail = data.content;
+        this.setPage(data.totalPages);
+      }
     });
   }
 
   searchDate() {
-    this.transactionService.searchDate(this.searchTransaction.value.startDate, this.searchTransaction.value.endDate)
-      .subscribe((data: any) => {
-        this.invoiceDetail = data.content;
-        this.findSum(this.invoiceDetail);
-        this.setPage(data.totalPages);
-      });
+    this.total = 0;
+    if (this.searchTransaction.value.startDate <= this.searchTransaction.value.endDate) {
+      this.transactionService.searchDate(this.searchTransaction.value.startDate, this.searchTransaction.value.endDate)
+        .subscribe((data: any) => {
+          if (data === null) {
+            this.searchNotFound = true;
+          }else {
+            this.searchNotFound = false;
+            this.invoiceDetail = data.content;
+            this.findSum(this.invoiceDetail);
+            this.setPage(data.totalPages);
+          }
+        });
+    }else {
+      Swal.fire(
+        'The start date must be less than the end date. Please re-enter',
+        '',
+        'error'
+      );
+    }
+
   }
 
   nextPage() {
@@ -145,8 +181,10 @@ export class ListTransactionComponent implements OnInit {
     this.showPage(this.pageNumber);
   }
 
+  // sum total
   findSum(data) {
     this.item = data;
+    console.log(this.invoiceDetail);
     for (let i = 0; i < data.length; i++) {
       this.result = this.item[i].product.finalPrice + this.item[i].invoice.payment.feeService;
       this.total += this.result;
@@ -154,7 +192,7 @@ export class ListTransactionComponent implements OnInit {
   }
 
 
-  /* */
+  /* add id checked */
   onChangeDelete($event: any) {
     this.idInvoice = $event.target.value;
     this.idInvoiceChecked = $event.target.checked;
@@ -183,9 +221,21 @@ export class ListTransactionComponent implements OnInit {
             '',
             'success'
           );
+          this.listIdInvoice = [];
           this.ngOnInit();
+
         });
       }
     }
   }
+
+  // show total revenue
+  showTotal() {
+      // @ts-ignore
+    const  o = (document.querySelector('.total-revenue').style.display = 'flex');
+  }
+
+  // deleteAfter30Days() {
+  //   this.transactionService.deleteAfter30Days().subscribe();
+  // }
 }

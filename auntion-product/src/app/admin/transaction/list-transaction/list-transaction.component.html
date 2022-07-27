@@ -2,13 +2,13 @@
   <div class="header__admin">
     <app-header-admin></app-header-admin>
   </div>
-  <div class="content__admin-container" style="margin-top: 57px">
+  <div class="content__admin-container container-fluid" style="margin-top: 57px">
     <div class="row">
-      <div class="d-none-m-b col-md-2 p-r-0" style="margin-right: -65px">
+      <div class="d-block-m-b col-xl-2 col-md-2 col-lg-2 p-r-0" >
         <app-navbar-admin></app-navbar-admin>
       </div>
 
-      <div class="col-12 col-md-10 p-l-0">
+      <div class="col-xl-10 col-md-10 col-lg-10 col-sm-12 col-12 p-l-0">
         <!-- Đây là component để chính -->
         <div class="content" style="padding-inline: 100px;">
           <h1>Transaction Management</h1>
@@ -30,7 +30,7 @@
                   </button>
                 </div>
               </form>
-              <form [formGroup]="searchTransaction" (ngSubmit)="searchDate()">
+              <form id="loadTotal" [formGroup]="searchTransaction" (ngSubmit)="searchDate()" >
                 <div class="search-bot" style="padding-bottom: 15px">
                   <input class="form-control" type="text" placeholder="Starting Date" formControlName="startDate"
                          onfocus="(this.type='date')"
@@ -38,13 +38,15 @@
                   <input class="form-control" type="text" placeholder="Ending Date" formControlName="endDate"
                          onfocus="(this.type='date')"
                          onblur="(this.type='text')">
-                  <button class="btn btn-bot">
+                  <button class="btn btn-bot" (click)="showTotal()">
                     Search
                   </button>
                 </div>
               </form>
             </div>
-            <div class="table-responsive">
+            <h3 *ngIf="searchNotFound == true; else elseBlock" style="display: flex; justify-content: center">Not Found!</h3>
+            <ng-template #elseBlock>
+            <div class="table-responsive" >
               <table class="table table table-striped" style="margin-top: 1rem;">
                 <thead>
                 <tr class="title">
@@ -85,6 +87,7 @@
                 </tbody>
               </table>
             </div>
+            </ng-template>
             <!-- Modal Delete -->
             <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                  aria-hidden="true">
@@ -167,4 +170,4 @@
   </div>
 </div>
 <!-- Footer -->
-<app-footer-admin></app-footer-admin>
+<app-footer-admin ></app-footer-admin>
