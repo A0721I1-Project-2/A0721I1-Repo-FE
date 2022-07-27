@@ -14,7 +14,7 @@ export class LoginService {
 
   isLoggedIn: boolean;
   isRole: number;
-
+  API_ACCOUNT_BLOCK = 'http://localhost:8080/api/account/accountBlock';
   readonly URL_LOGIN = 'http://localhost:8080/authenticate';
 
   constructor(private httpClient: HttpClient) {}
@@ -37,5 +37,10 @@ export class LoginService {
   logout() {
     window.localStorage.clear();
     window.sessionStorage.clear();
+  }
+  // HauNT
+  checkAccountBlock(username: string): Observable<Account[]>{
+    console.log(this.API_ACCOUNT_BLOCK + '/' + username);
+    return this.httpClient.get<Account[]>(this.API_ACCOUNT_BLOCK + '/' + username);
   }
 }
