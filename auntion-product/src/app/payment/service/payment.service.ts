@@ -68,6 +68,8 @@ import {PaymentMethod} from '../../model/PaymentMethod';
 import {Cart} from '../../model/Cart';
 import {Payment} from '../../model/Payment';
 import {InvoiceDetail} from '../../model/InvoiceDetail';
+import { Product } from 'src/app/model/Product';
+import { Member } from 'src/app/model/Member';
 const API_ADDRESS = 'http://localhost:3000/address';
 const API_URL = 'http://localhost:8080/manager/payment/api/';
 const API_STATUS = 'http://localhost:8080/manager/invoice-status/api';

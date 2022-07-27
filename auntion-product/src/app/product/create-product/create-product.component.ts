@@ -10,7 +10,7 @@ import {ToastrService} from 'ngx-toastr';
 
 
 @Component({
-  selector: 'create-product',
+  selector: 'app-create-product',
   templateUrl: './create-product.component.html',
   styleUrls: ['./create-product.component.css']
 })
@@ -122,6 +122,7 @@ export class CreateProductComponent implements OnInit {
 
   public submit(): void {
     const recusive = (form: FormGroup) => {
+      // tslint:disable-next-line:forin no-shadowed-variable
       for (const i in form.controls) {
         const value = form.controls[i].value;
 
@@ -190,7 +191,7 @@ export class CreateProductComponent implements OnInit {
       const url = URL.createObjectURL(file);
       this.files.push({
         base64: url,
-        file: file,
+        file,
 
       });
     });

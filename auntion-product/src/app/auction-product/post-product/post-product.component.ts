@@ -9,6 +9,7 @@ import {FileUpload} from '../../model/FileUpload';
 import Swal from 'sweetalert2';
 import {ApiService} from '../../chat-app/services/api.service';
 import {Router} from '@angular/router';
+import {checkCodeProduct} from './validate.service';
 
 @Component({
   selector: 'app-post-product',
@@ -29,7 +30,7 @@ export class PostProductComponent implements OnInit {
 
   /* User after login */
   user: any;
-
+  messageAlert: string[];
   currentImageUpload: FileUpload;
   currentImagesUpload: File[] = [];
 
@@ -39,10 +40,12 @@ export class PostProductComponent implements OnInit {
   VALIDATION_MESSAGE = {
     codeProduct: [
       {type: 'required', message: ' Product Code cannot be blank !'},
-      {type: 'pattern', message: 'Please enter the correct format PRXXX !'}
+      {type: 'pattern', message: 'Please enter the correct format PRXXX !'},
+      {type: 'required', message1: 'TTT !'}
     ],
     nameProduct: [
-      {type: 'required', message: 'Product name cannot be blank !'}
+      {type: 'required', message: 'Product name cannot be blank !'},
+      {type: 'maxlength', message: 'No more than 60 characters!'},
     ],
     initialPrice: [
       {type: 'required', message: 'Initial Price cannot be blank !'},
@@ -77,9 +80,10 @@ export class PostProductComponent implements OnInit {
 
 
     // @ts-ignore
+    // @ts-ignore
     this.formCreate = new FormGroup({
-        codeProduct: new FormControl('', Validators.required),
-        nameProduct: new FormControl('', Validators.required),
+        codeProduct: new FormControl('', [Validators.required], [checkCodeProduct(this.productService)]),
+        nameProduct: new FormControl('', [Validators.required, Validators.maxLength(60)]),
         initialPrice: new FormControl('', Validators.required),
         incrementPrice: new FormControl('', Validators.required),
         productDescription: new FormControl('', Validators.required),
@@ -100,6 +104,7 @@ export class PostProductComponent implements OnInit {
   }
 
   createProduct() {
+    this.messageAlert = [];
     /* Get properties in form */
     this.productCreate = this.formCreate.value;
     const userId = this.user.id;
@@ -109,7 +114,9 @@ export class PostProductComponent implements OnInit {
 
       this.productCreate.member = account;
       if (this.formCreate.invalid) {
-        return;
+        if (this.formCreate.get('codeProduct')?.errors?.checkCodeProduct) {
+          this.messageAlert.push('Product code ' + this.formCreate.value.codeProduct + ' đã tồn tại!');
+        }
       } else {
         const typeProductId = this.formCreate.get('typeProduct').value;
         this.productService.getTypeProductById(typeProductId).subscribe(typeProduct => {
