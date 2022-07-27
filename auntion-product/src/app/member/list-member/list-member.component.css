@@ -20,9 +20,13 @@
 
 /* Responsive */
 /* Mobile */
-@media (max-width: 739px) {
+@media (max-width: 1150px) {
   .d-none-m-b {
     display: none;
+  }
+
+  .content__admin-container .row {
+    justify-content: center;
   }
 }
 
