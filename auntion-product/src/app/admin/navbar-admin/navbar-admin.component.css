@@ -82,6 +82,7 @@ ul.top-menu > li > .logout {
 
 #sidebar ul li {
   position: relative;
+  list-style: none;
 }
 
 #sidebar .sub-menu > .sub li {
@@ -112,7 +113,9 @@ ul.top-menu > li > .logout {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
 }
-
+#sidebar {
+  display: block;
+}
 /*---*/
 
 .nav-collapse.collapse {

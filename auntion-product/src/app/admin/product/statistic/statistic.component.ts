@@ -2,8 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Pipe, PipeTransform} from '@angular/core';
 import {DatePipe} from '@angular/common';
-import {Product} from '../../model/Product';
-import {ProductService} from '../service/product.service';
+import {Product} from '../../../model/Product';
 import {error} from '@angular/compiler/src/util';
 import {Router} from '@angular/router';
 import {Chart} from 'chart.js';
@@ -59,6 +58,7 @@ Chart.register(
   Tooltip
 );
 import {registerables} from 'chart.js';
+import {ProductService} from '../service/product.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -299,6 +299,8 @@ export class StatisticComponent implements OnInit {
 }
 
 function getDataProduct(labelArr: any[], dataArr: any[], length: number, source: Product[]) {
+  dataArr = [];
+  labelArr = [];
   length = 0;
   source.forEach(val => {
     labelArr.push(val.nameProduct);
@@ -307,6 +309,8 @@ function getDataProduct(labelArr: any[], dataArr: any[], length: number, source:
     length++;
   });
   console.log(length);
+
 }
+
 
 

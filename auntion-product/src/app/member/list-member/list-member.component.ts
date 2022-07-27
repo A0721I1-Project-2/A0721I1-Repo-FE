@@ -90,7 +90,6 @@ export class ListMemberComponent implements OnInit {
     if (addressMember.trim() === '') {
       addressMember = 'null';
     }
-    console.log(nameMember, emailMember, phoneNumberMember, nameRankMember, addressMember);
     if (nameMember === 'null' && emailMember === 'null' && phoneNumberMember === 'null'
       && nameRankMember === 'null' && addressMember === 'null') {
       this.emptyForm = true;
@@ -98,10 +97,18 @@ export class ListMemberComponent implements OnInit {
     this.service.searchMember(nameMember, emailMember, phoneNumberMember,
       nameRankMember, addressMember, this.pageNumber).subscribe((data: any) => {
       this.memberList = data.content;
+      if (this.memberList.length === 0){
+        console.log(this.memberList);
+        Swal.fire(
+          'Can\'t find members',
+          '',
+          'error'
+        );
+        this.showMember(0);
+      }
       this.setPage(data.totalPages);
       console.log(this.memberList);
     });
-    // this.showMember(this.pageNumber);
   }
 
   getAllRank(){

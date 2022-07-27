@@ -1,5 +1,8 @@
+
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
+import {AuthGuardService} from './login/service/auth-guard.service';
+
 
 
 const routes: Routes = [
@@ -20,10 +23,6 @@ const routes: Routes = [
     loadChildren: () => import('./member/member.module').then(module => module.MemberModule)
   },
   {
-    path: 'transaction',
-    loadChildren: () => import('./transaction/transaction.module').then(module => module.TransactionModule)
-  },
-  {
     path: 'payment',
     loadChildren: () => import('./payment/payment.module').then(module => module.PaymentModule)
   },
@@ -35,9 +34,11 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () => import('./login/login.module').then(module => module.LoginModule)
   },
+
   {
     path: 'admin',
-    loadChildren: () => import('./admin/admin.module').then(module => module.AdminModule)
+    loadChildren: () => import('./admin/admin.module').then(module => module.AdminModule),
+    canActivate: [AuthGuardService], data: {roles: ['ROLE_MANAGER'] && ['ROLE_MEMBER'] }
   }
 ];
 

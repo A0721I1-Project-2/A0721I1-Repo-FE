@@ -23,6 +23,13 @@
   margin: 35px 0px;
   line-height: 60px;
 }
+#test{
+  border:3px solid #11b683;
+  width:200px;
+  height:200px;
+  overflow-x:hidden;
+  overflow-y:auto;
+}
 
 /*.register-form .form-control {
     border: none;

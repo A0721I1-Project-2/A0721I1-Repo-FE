@@ -4,7 +4,7 @@
 <div class="container mt-5 mb-5">
 
   <div>
-    <form [formGroup]="editForm" *ngIf="editForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="editForm" *ngIf="editForm" (ngSubmit)="editProduct()">
 
       <div class="services-top">
         <h1>Update Product</h1>
@@ -14,20 +14,24 @@
         <label class="col-sm-3 col-md-3 col-3 col-form-label">Product Name:<i style="color: red">(*)</i>
         </label>
         <div class="col-sm-7 col-md-7 col-7">
-          <input formControlName="nameProduct" type="text" class="form-control">
+          <input formControlName="nameProduct" type="text" class="form-control" [(ngModel)]="nameProductClear">
+
+          <p *ngIf="(editForm.get('nameProduct').hasError('required') && editForm.get('nameProduct').touched)">
+            <i style="color: red">Product name cannot be blank!</i>
+          </p>
         </div>
       </div>
 
       <div class="form-group row ">
         <label class="col-sm-3 col-md-3 col-3 col-form-label">ID Poster:<i style="color: red">(*)</i>
         </label>
-        <div class="col-sm-5 col-md-5 col-5">
-          <input formControlName="idMember" type="text" class="form-control" readonly>
+        <div class="col-sm-7 col-md-7 col-7">
+          <input formControlName="idMember" type="text" class="form-control" readonly >
         </div>
-        <div class="col-sm-2 col-md-2 col-2">
-          <button type="button" class="form__group_button_check">Check <i class='bx bx-loader-alt'></i>
-          </button>
-        </div>
+<!--        <div class="col-sm-2 col-md-2 col-2">-->
+<!--          <button type="button" class="form__group_button_check">Check <i class='bx bx-loader-alt'></i>-->
+<!--          </button>-->
+<!--        </div>-->
       </div>
 
       <div class="form-group row">
@@ -47,6 +51,10 @@
             <option *ngFor="let index of typeProduct" [ngValue]="index"
                     [selected]="index.idProductType === editForm.controls.typeProduct.value.idProductType">{{index.nameProductType}}
             </option>
+            <p style="color: red" *ngIf="(editForm.get('typeProduct').hasError('required')
+              && editForm.get('typeProduct').touched)">
+              <i>Category product cannot be blank!</i>
+            </p>
           </select>
         </div>
       </div>
@@ -54,23 +62,34 @@
       <div class="form-group row">
         <label class="col-3 col-form-label">Initial Price:<i style="color: red">(*)</i></label>
         <div class="col-7 start-price">
-          <input type="text" class="form-control" formControlName="initialPrice">
+          <input type="text" class="form-control" formControlName="initialPrice" [(ngModel)]="initialPriceClear">
           <i class='bx bxs-dollar-circle bx-md'></i>
+          <p *ngIf="(editForm.get('initialPrice').hasError('required')
+              && editForm.get('initialPrice').touched)">
+            <i style="color: red">Initial Price cannot be blank!</i>
+          </p>
         </div>
       </div>
 
       <div class="form-group row">
         <label class="col-sm-3 col-md-3 col-3 col-form-label">Increment Price:<i style="color: red">(*)</i></label>
         <div class="col-sm-7 col-md-7 col-7 price-step">
-          <input type="text" class="form-control" formControlName="incrementPrice">
+          <input type="text" class="form-control" formControlName="incrementPrice"  [(ngModel)]="incrementPriceClear">
           <i class='bx bxs-dollar-circle bx-md'></i>
+          <p *ngIf="(editForm.get('incrementPrice').hasError('required')
+              && editForm.get('incrementPrice').touched)">
+            <i style="color: red">Increment Price cannot be blank!</i>
+          </p>
         </div>
       </div>
 
       <div class="form-group row">
         <label class="col-sm-3 col-md-3 col-3 col-form-label">Picture:<i style="color: red">(*)</i></label>
         <div class="col-sm-7 col-md-7 col-7 picture">
-          <img *ngFor=" let img of imageProduct" style="height: 200px; width: 200px;" src="{{img.imageProduct}}">
+          <div>
+            <img *ngFor=" let img of imageProduct" style="height: 200px; width: 200px;" src="{{img.imageProduct}}">
+            <img (click)="showImage()" *ngFor="let url of urls" [src]="url" class="rounded mb-3" width="180">
+          </div>
           <br/>
           <div>
             <input type="file" id="imgProduct" name="imgProduct" multiple (change)="preview($event)"/>
@@ -83,7 +102,11 @@
         <label class="col-sm-3 col-md-3 col-3 col-form-label">Start Time:<i style="color: red">(*)</i>
         </label>
         <div class="col-sm-7 col-md-7 col-7">
-          <input type="datetime-local" class="form-control" step="1" formControlName="startDate">
+          <input type="datetime-local" class="form-control" step="1" formControlName="startDate" [(ngModel)]="startDateClear">
+          <p *ngIf="(editForm.get('startDate').hasError('required')
+              && editForm.get('startDate').touched)">
+            <i style="color: red">Please select a date!</i>
+          </p>
         </div>
       </div>
 
@@ -91,7 +114,17 @@
         <label class="col-sm-3  col-md-3 col-3 col-form-label">End Time:<i style="color: red">(*)</i>
         </label>
         <div class="col-sm-7 col-md-7 col-7">
-          <input type="datetime-local" step="1" class="form-control" formControlName="endDate">
+          <input type="datetime-local" step="1" class="form-control" formControlName="endDate" [(ngModel)]="endDateClear">
+          <p *ngIf="(editForm.get('endDate').hasError('required')
+              && editForm.get('endDate').touched)">
+            <i style="color: red">Please select a date!</i>
+          </p>
+          <div *ngFor="let validation of VALIDATION_MESSAGE.endDate" class="text-danger">
+            <div
+              *ngIf="editForm.get('endDate').hasError(validation.type) && (editForm.get('endDate').dirty || editForm.get('endDate').touched)|| getControl.endDate.invalid && getControl.endDate.touched"
+              class="error-message">
+              {{validation.message1}}</div>
+          </div>
         </div>
       </div>
 
@@ -100,8 +133,12 @@
         </label>
         <div class="col-sm-7 col-md-7 col-7">
                     <textarea type="textarea" class="form-control" rows="4" style="resize:none"
-                              formControlName="productDescription">
+                              formControlName="productDescription" [(ngModel)]="productDescriptionClear">
                     </textarea>
+          <p *ngIf="(editForm.get('productDescription').hasError('required')
+              && editForm.get('productDescription').touched)">
+            <i style="color: red">Detail product cannot be blank !</i>
+          </p>
         </div>
       </div>
 
@@ -109,25 +146,73 @@
         <div class="col-sm-3  col-3">
         </div>
         <div class="col-sm-2  col-2">
-          <button type="submit" class="form__group_button_edit">
+          <button type="button" class="form__group_button_edit" data-toggle="modal" data-target="#exampleModalUpdate">
             Update <i class='bx bx-edit'></i>
           </button>
         </div>
+
         <div class="col-sm-2 col-2">
-          <button type="submit" class="form__group_button_retype">
+          <button type="button" class="form__group_button_retype" data-toggle="modal" data-target="#exampleModalRetype">
             Retype <i class='bx bxs-eraser'></i>
           </button>
-
         </div>
+
         <div class="col-sm-2 col-2 ">
-          <button type="submit" class="form__group_button_cancel" routerLink="/product/list">
+          <button type="submit" class="form__group_button_cancel" routerLink="/admin/product/list">
             Back <i class='bx bx-arrow-back'></i>
           </button>
-
         </div>
+
         <div class="col-sm-3  col-3">
         </div>
       </div>
+
+      <!--          MODAL UPDATE-->
+      <div class="modal fade" id="exampleModalUpdate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel" style="color: #04AA6D">Update</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Do You Want to Edit Product Information ?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="form__group_button_edit" data-toggle="modal" data-target="#exampleModalUpdate" [disabled]="editForm.invalid">
+                Update <i class='bx bx-edit'></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--          MODAL RETYPE-->
+      <div class="modal fade" id="exampleModalRetype" tabindex="-1" aria-labelledby="exampleModalLabelReType" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabelReType">Retype</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Do You Want To Delete All Existing Product Information?
+            </div>
+            <div class="modal-footer">
+              <button type="button"  class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button  (click)="handleClear()" type="button" class="form__group_button_retype" data-toggle="modal" data-target="#exampleModalRetype">
+                Retype <i class='bx bxs-eraser'></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </form>
   </div>
 </div>

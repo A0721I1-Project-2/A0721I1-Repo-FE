@@ -31,6 +31,7 @@ export class ChatFormUserComponent implements OnInit , AfterViewChecked {
 
   /* To show error message */
   showNotiError = false;
+  isUser: boolean;
 
   constructor(private chatService: ChatService, private fb: FormBuilder) {
   }
@@ -44,6 +45,7 @@ export class ChatFormUserComponent implements OnInit , AfterViewChecked {
       message: ['', Validators.required]
     });
   }
+
 
   /* Send message */
   send() {

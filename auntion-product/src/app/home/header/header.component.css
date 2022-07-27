@@ -309,9 +309,11 @@
     }
 }
 
+.header__on-mobile {
+  display: none;
+}
 
 /* Reponsive riêng cho màn hình width=600px */
-
 @media only screen and (width: 600px) {
     #header .right-header {
         display: none;
@@ -319,4 +321,26 @@
     ul#navbar {
         justify-content: center;
     }
+}
+
+@media (max-width: 739px) {
+  .header__on-mobile.show {
+    display: block;
+  }
+}
+
+/* Header on mobile */
+.header__on-mobile {
+  position: fixed;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background-color: var(--primary-color);
+  z-index: 111;
+}
+
+.header__on-mobile li a {
+  color: #fff !important;
+  display: block;
+  padding: 8px 12px;
 }
