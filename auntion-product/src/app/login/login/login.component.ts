@@ -85,6 +85,7 @@ export class LoginComponent implements OnInit {
       }
     });
   }
+
   // swal('Login Failed!', 'Your Account has block!', 'error');
   // } else {
   //   swal('Login Failed!', 'Your Account has block!', 'error');
@@ -109,7 +110,21 @@ export class LoginComponent implements OnInit {
 
 
   showPsw() {
-    this.show = !this.show;
+    const passField = document.querySelector('#passIn');
+    const showBtn = document.querySelector('#icon ');
+    // @ts-ignore
+    // tslint:disable-next-line:only-arrow-functions
+    if (passField.type === 'password'){
+      // @ts-ignore
+      passField.type = 'text';
+      showBtn.classList.remove('fa-eye-slash');
+      showBtn.classList.add('fa-eye');
+    }else{
+      // @ts-ignore
+      passField.type = 'password';
+      showBtn.classList.remove('fa-eye');
+      showBtn.classList.add('fa-eye-slash');
+    }
   }
 
 

@@ -30,13 +30,15 @@ export class ChangePasswordComponent implements OnInit {
     const password = this.changePasswordForm.value.password;
     this.homeService.changePassword(password, this.token).subscribe(data => {
       this.message = data;
-      Swal.fire(
-        'Change password successfully!',
-        '',
-        'success'
-      );
+      if (this.message === 'Change password successfully') {
+        this.message = null;
+        Swal.fire(
+          'Change password successfully!',
+          '',
+          'success'
+        );
+      }
     });
-    console.log(this.message);
   }
 
 }
