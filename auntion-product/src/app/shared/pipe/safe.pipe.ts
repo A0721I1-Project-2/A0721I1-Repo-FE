@@ -5,13 +5,13 @@ import { DomSanitizer, SafeHtml, SafeResourceUrl } from "@angular/platform-brows
     name: 'safe'
 })
 export class SafePipe implements PipeTransform {
-    
+
     constructor(
         private _sanitizer: DomSanitizer
     ) {}
 
     transform(value: any, arg: string): SafeResourceUrl | SafeHtml {
-        
+
         if (arg === 'resourceUrl') {
             return this._sanitizer.bypassSecurityTrustResourceUrl(value);
         }

@@ -32,4 +32,8 @@ export class TransactionService {
   delete(id: any) {
     return this.http.patch(API_URL + 'delete/' + id , {});
   }
+
+  // deleteAfter30Days() {
+  //   return this.http.patch(API_URL, {});
+  // }
 }

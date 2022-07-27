@@ -2,163 +2,169 @@
   <div class="header__admin">
     <app-header-admin></app-header-admin>
   </div>
-  <div class="content__admin-container" style="margin-top: 57px">
-    <div class="row">
-      <div class="d-none-m-b col-md-2 p-r-0" style="margin-right: -65px">
-        <app-navbar-admin></app-navbar-admin>
-      </div>
+  <div class="content__admin-container container-fluid" style="margin-top: 57px">
+    <div class="content__admin-container">
+      <div class="row">
+        <div class="d-block-m-b col-xl-2 col-md-2 col-lg-2 p-r-0">
+          <app-navbar-admin></app-navbar-admin>
+        </div>
 
-      <div class="col-12 col-md-10 p-l-0">
-        <!-- Đây là component để chính -->
-        <div class="content" style="padding-inline: 100px;">
-          <h1>Transaction Management</h1>
-          <div>
-            <div class="responsive-search">
-              <form [formGroup]="searchTransaction" (ngSubmit)="search()">
-                <div class="search-top" style="padding-bottom: 15px">
-                  <input type="text" class="form-control" placeholder="Seller" name="search"
-                         formControlName="nameSeller">
-                  <input type="text" class="form-control" placeholder="Buyer" formControlName="nameBuyer">
-                  <input type="text" class="form-control" placeholder="Product Name" formControlName="nameProduct">
-                  <select class="custom-select" formControlName="status">
-                    <option [selected]="Status" disabled>Status</option>
-                    <option value="true">Success</option>
-                    <option value="false">Failed</option>
-                  </select>
-                  <button class="btn btn-top" id="btn">
-                    Search
-                  </button>
-                </div>
-              </form>
-              <form [formGroup]="searchTransaction" (ngSubmit)="searchDate()">
-                <div class="search-bot" style="padding-bottom: 15px">
-                  <input class="form-control" type="text" placeholder="Starting Date" formControlName="startDate"
-                         onfocus="(this.type='date')"
-                         onblur="(this.type='text')">
-                  <input class="form-control" type="text" placeholder="Ending Date" formControlName="endDate"
-                         onfocus="(this.type='date')"
-                         onblur="(this.type='text')">
-                  <button class="btn btn-bot">
-                    Search
-                  </button>
-                </div>
-              </form>
-            </div>
-            <div class="table-responsive">
-              <table class="table table table-striped" style="margin-top: 1rem;">
-                <thead>
-                <tr class="title">
-                  <th scope="col">#</th>
-                  <th scope="col">Transaction ID</th>
-                  <th scope="col">Successful Bidding Time</th>
-                  <th scope="col">Seller</th>
-                  <th scope="col">Buyer</th>
-                  <th scope="col">Product Name</th>
-                  <th scope="col">Initial Bid Price/USD</th>
-                  <th scope="col">Final Bid Price/USD</th>
-                  <th scope="col">Service Fee/USD</th>
-                  <th scope="col">Status</th>
-                  <th scope="col">Selected</th>
-                </tr>
-                </thead>
-                <tbody *ngFor="let invoiceDetails of invoiceDetail index as i">
-                <tr>
-                  <th scope="row">{{i + 1}}</th>
-                  <td>{{invoiceDetails.invoice.idInvoice}}</td>
-                  <td>{{invoiceDetails.product.endDate}}</td>
-                  <td>{{invoiceDetails.invoice.member.nameMember}}</td>
-                  <td>{{invoiceDetails.invoice.payment.fullNameReceiver}}</td>
-                  <td>
-                    {{invoiceDetails.product.nameProduct}}
-                  </td>
-                  <td>{{invoiceDetails.product.initialPrice}}</td>
-                  <td>{{invoiceDetails.product.finalPrice}}</td>
-                  <td>{{invoiceDetails.invoice.payment.feeService}}</td>
-                  <td *ngIf="invoiceDetails.invoice.idStatusInvoice == true">Success</td>
-                  <td *ngIf="invoiceDetails.invoice.idStatusInvoice == false">Failed</td>
-                  <td>
-                    <input data-target="#idCheckbox" type="checkbox"
-                           [value]="invoiceDetails.invoice.idInvoice"
-                           [checked]="invoiceDetails.invoice.select" (change)="onChangeDelete($event)">
-                  </td>
-                </tr>
-                </tbody>
-              </table>
-            </div>
-            <!-- Modal Delete -->
-            <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                 aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Delete Transaction</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
+        <div class="col-xl-10 col-md-10 col-lg-10 col-sm-12 col-12 p-l-0">
+          <!-- Đây là component để chính -->
+          <div class="content" style="padding-inline: 100px;margin-top: 57px; margin-left: 50px">
+            <h1>Transaction Management</h1>
+            <div>
+              <div class="responsive-search">
+                <form [formGroup]="searchTransaction" (ngSubmit)="search()">
+                  <div class="search-top" style="padding-bottom: 15px">
+                    <input type="text" class="form-control" placeholder="Seller" name="search"
+                           formControlName="nameSeller">
+                    <input type="text" class="form-control" placeholder="Buyer" formControlName="nameBuyer">
+                    <input type="text" class="form-control" placeholder="Product Name" formControlName="nameProduct">
+                    <select class="custom-select" formControlName="status">
+                      <option [selected]="Status" disabled>Status</option>
+                      <option value="true">Success</option>
+                      <option value="false">Failed</option>
+                    </select>
+                    <button class="btn btn-top" id="btn">
+                      Search
                     </button>
                   </div>
-                  <div class="modal-body text-danger" *ngFor="let i of listIdInvoice">
-                    Do you want to delete this transaction with ID: {{i}} ?
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn" data-dismiss="modal" (click)="deleteInvoice()">
-                      Delete
+                </form>
+                <form id="loadTotal" [formGroup]="searchTransaction" (ngSubmit)="searchDate()">
+                  <div class="search-bot" style="padding-bottom: 15px">
+                    <input class="form-control" type="text" placeholder="Starting Date" formControlName="startDate"
+                           onfocus="(this.type='date')"
+                           onblur="(this.type='text')">
+                    <input class="form-control" type="text" placeholder="Ending Date" formControlName="endDate"
+                           onfocus="(this.type='date')"
+                           onblur="(this.type='text')">
+                    <button class="btn btn-bot" (click)="showTotal()">
+                      Search
                     </button>
+                  </div>
+                </form>
+              </div>
+              <h3 *ngIf="searchNotFound == true; else elseBlock" style="display: flex; justify-content: center">Not
+                Found!</h3>
+              <ng-template #elseBlock>
+                <div class="table-responsive">
+                  <table class="table table table-striped" style="margin-top: 1rem;">
+                    <thead>
+                    <tr class="title">
+                      <th scope="col">#</th>
+                      <th scope="col">Transaction ID</th>
+                      <th scope="col">Successful Bidding Time</th>
+                      <th scope="col">Seller</th>
+                      <th scope="col">Buyer</th>
+                      <th scope="col">Product Name</th>
+                      <th scope="col">Initial Bid Price/USD</th>
+                      <th scope="col">Final Bid Price/USD</th>
+                      <th scope="col">Service Fee/USD</th>
+                      <th scope="col">Status</th>
+                      <th scope="col">Selected</th>
+                    </tr>
+                    </thead>
+                    <tbody *ngFor="let invoiceDetails of invoiceDetail index as i">
+                    <tr>
+                      <th scope="row">{{i + 1}}</th>
+                      <td>{{invoiceDetails.invoice.idInvoice}}</td>
+                      <td>{{invoiceDetails.product.endDate}}</td>
+                      <td>{{invoiceDetails.invoice.member.nameMember}}</td>
+                      <td>{{invoiceDetails.invoice.payment.fullNameReceiver}}</td>
+                      <td>
+                        {{invoiceDetails.product.nameProduct}}
+                      </td>
+                      <td>{{invoiceDetails.product.initialPrice}}</td>
+                      <td>{{invoiceDetails.product.finalPrice}}</td>
+                      <td>{{invoiceDetails.invoice.payment.feeService}}</td>
+                      <td *ngIf="invoiceDetails.invoice.idStatusInvoice == true">Success</td>
+                      <td *ngIf="invoiceDetails.invoice.idStatusInvoice == false">Failed</td>
+                      <td>
+                        <input data-target="#idCheckbox" type="checkbox"
+                               [value]="invoiceDetails.invoice.idInvoice"
+                               [checked]="invoiceDetails.invoice.select" (change)="onChangeDelete($event)">
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </ng-template>
+              <!-- Modal Delete -->
+              <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                   aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Delete Transaction</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body text-danger" *ngFor="let i of listIdInvoice">
+                      Do you want to delete this transaction with ID: {{i}} ?
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn" data-dismiss="modal" (click)="deleteInvoice()">
+                        Delete
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <button class="btn" data-toggle="modal" id="idCheckbox" data-target="#deleteModal"
-                    style="border-radius: 5px!important; margin: 5px 0 0 0">Delete
-            </button>
-            <div class="total-revenue">
-              <h3 class="text" id="total">Total Revenue: {{total}} USD</h3>
-            </div>
+              <button class="btn" data-toggle="modal" id="idCheckbox" data-target="#deleteModal"
+                      style="border-radius: 5px!important; margin: 5px 0 0 0">Delete
+              </button>
+              <div class="total-revenue">
+                <h3 class="text" id="total">Total Revenue: {{total}} USD</h3>
+              </div>
 
-            <!--        Pagination-->
-            <div class="clearfix" style="float: right">
-              <nav aria-label="...">
-                <ul class="pagination">
-                  <div *ngIf="pageNumber > 0; then enablePrevious else disablePrevious"></div>
-                  <ng-template #enablePrevious>
-                    <li class="page-item">
-                      <span class="page-link" (click)="previousPage()">Prev</span>
-                    </li>
-                  </ng-template>
-                  <ng-template #disablePrevious>
-                    <li class="page-item disabled">
-                      <span class="page-link">Prev</span>
-                    </li>
-                  </ng-template>
-
-                  <div *ngFor="let page of totalPage; index as i">
-                    <div *ngIf="pageNumber == i; then isCurrentPage else notCurrentPage"></div>
-                    <ng-template #isCurrentPage>
-                      <li class="page-item active">
-                        <span class="page-link" (click)="changePageNumber(i)">{{i + 1}}</span>
-                      </li>
-                    </ng-template>
-                    <ng-template #notCurrentPage>
+              <!--        Pagination-->
+              <div class="clearfix" style="float: right">
+                <nav aria-label="...">
+                  <ul class="pagination">
+                    <div *ngIf="pageNumber > 0; then enablePrevious else disablePrevious"></div>
+                    <ng-template #enablePrevious>
                       <li class="page-item">
-                        <span class="page-link" (click)="changePageNumber(i)">{{i + 1}}</span>
+                        <span class="page-link" (click)="previousPage()">Prev</span>
                       </li>
                     </ng-template>
-                  </div>
+                    <ng-template #disablePrevious>
+                      <li class="page-item disabled">
+                        <span class="page-link">Prev</span>
+                      </li>
+                    </ng-template>
 
-                  <div
-                    *ngIf="pageNumber < totalPage.length - 1; then enableNext else disableNext"></div>
-                  <ng-template #enableNext>
-                    <li class="page-item">
-                      <span class="page-link" (click)="nextPage()">Next</span>
-                    </li>
-                  </ng-template>
-                  <ng-template #disableNext>
-                    <li class="page-item disabled">
-                      <span class="page-link">Next</span>
-                    </li>
-                  </ng-template>
-                </ul>
-              </nav>
+                    <div *ngFor="let page of totalPage; index as i">
+                      <div *ngIf="pageNumber == i; then isCurrentPage else notCurrentPage"></div>
+                      <ng-template #isCurrentPage>
+                        <li class="page-item active">
+                          <span class="page-link" (click)="changePageNumber(i)">{{i + 1}}</span>
+                        </li>
+                      </ng-template>
+                      <ng-template #notCurrentPage>
+                        <li class="page-item">
+                          <span class="page-link" (click)="changePageNumber(i)">{{i + 1}}</span>
+                        </li>
+                      </ng-template>
+                    </div>
+
+                    <div
+                      *ngIf="pageNumber < totalPage.length - 1; then enableNext else disableNext"></div>
+                    <ng-template #enableNext>
+                      <li class="page-item">
+                        <span class="page-link" (click)="nextPage()">Next</span>
+                      </li>
+                    </ng-template>
+                    <ng-template #disableNext>
+                      <li class="page-item disabled">
+                        <span class="page-link">Next</span>
+                      </li>
+                    </ng-template>
+                  </ul>
+                </nav>
+              </div>
             </div>
           </div>
         </div>
