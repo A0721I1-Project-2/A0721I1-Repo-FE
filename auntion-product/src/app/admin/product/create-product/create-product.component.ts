@@ -3,10 +3,13 @@ import {FormBuilder, FormGroup, ValidatorFn, Validators, ValidationErrors, FormC
 import {MemberService} from 'src/app/member/service/member.service';
 import {TypeProductModel} from 'src/app/type-product/models/type-product.model';
 import {TypeProductService} from 'src/app/type-product/services/type-product.service';
-import {ProductFileModel} from '../../../product/models/product-file.model';
 import {ProductService} from '../service/product.service';
 import {Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
+import {ProductFileModel} from '../../../product/models/product-file.model';
+import Swal from 'sweetalert2';
+
+
 
 
 @Component({
@@ -47,22 +50,7 @@ export class CreateProductComponent implements OnInit {
     hideFooterHp.style.display = 'none';
   }
 
-  // private initForm(): void {
-  //   this.formGroup = this.fb.group({
-  //     codeProduct: [null, [Validators.required]],
-  //     nameProduct: [null, [Validators.required]],
-  //     idPoster: [null, [Validators.required]],
-  //     posterInformation: [null, [Validators.required]],
-  //     typeProduct: [null, [Validators.required]],
-  //     initialPrice: [null, [Validators.required]],
-  //     moneyAuction: [null, [Validators.required]],
-  //     startDate: [null, [Validators.required]],
-  //     endDate: [null, [Validators.required]],
-  //     productDescription: [null, [Validators.required]],
-  //     approvalStatus: [2],
-  //     biddingStatus: [2],
-  //     cart: [1],
-  //   });
+
 
   private initForm(): void {
     this.formGroup = this.fb.group({
@@ -71,22 +59,16 @@ export class CreateProductComponent implements OnInit {
       idPoster: [null, [Validators.required]],
       typeProduct: [null, [Validators.required]],
       initialPrice: [null, [Validators.required]],
-      incrementPrice: [],
+      incrementPrice: [null, [Validators.required]],
       startDate: [null, [Validators.required]],
       endDate: [null, [Validators.required]],
       productDescription: [null, [Validators.required]],
-      approvalStatus: [2],
-      biddingStatus: [2],
-      cart: [1],
+
     });
 
     this.getControl.startDate.setValidators([Validators.required, this.customvValidateStartDate()]);
     this.getControl.endDate.setValidators([Validators.required, this.customvValidateEnDate()]);
 
-    // this.getControl.idPoster.valueChanges.subscribe(x => {
-    //     this.formGroup.disable();
-    //     this.getControl.idPoster.enable();
-    // })
   }
 
   public check(): void {
@@ -94,7 +76,11 @@ export class CreateProductComponent implements OnInit {
       this.formGroup.enable();
       this.poster = res;
     }, error => {
-      alert('ID Poster does not exist');
+      Swal.fire({
+       icon: 'error',
+        title:'Warning',
+        text: 'ID Poster does not exist'
+      });
       this.formGroup.disable();
       this.getControl.idPoster.enable();
     });
@@ -139,6 +125,7 @@ export class CreateProductComponent implements OnInit {
       for (const i in form.controls) {
         const value = form.controls[i].value;
 
+
         if (typeof value === 'string') {
           if (Boolean(value)) {
             form.controls[i].setValue(form.controls[i].value.trim());
@@ -159,8 +146,14 @@ export class CreateProductComponent implements OnInit {
       return;
     }
 
-    const i = confirm('Are you sure?');
-    if (!i) {
+    Swal.fire({
+        // position:'middle',
+        icon:'success',
+        title:'New product have been saved',
+        showConfirmButton:false,
+        timer:5000
+      })
+    if (false) {
       return;
     }
 
@@ -178,7 +171,7 @@ export class CreateProductComponent implements OnInit {
     this.productService.create(formData).subscribe(res => {
       this.onChangeIdPost();
       this.toastrService.success('Add New Product is completed');
-      this.router.navigate(['/product/list']);
+      this.router.navigate(['/admin/product/list']);
     }, error => {
       this.toastrService.error(error?.error);
     });
@@ -203,7 +196,8 @@ export class CreateProductComponent implements OnInit {
       const url = URL.createObjectURL(file);
       this.files.push({
         base64: url,
-        file: file,
+        file,
+
       });
     });
 

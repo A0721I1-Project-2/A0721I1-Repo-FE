@@ -29,7 +29,7 @@
               <i style="color: red">*</i>
             </label>
             <div class="col-sm-7">
-              <input type="text" class="form-control" formControlName="nameProduct" placeholder="spoon">
+              <input type="text" class="form-control" formControlName="nameProduct" placeholder="spoon" maxlength="60">
               <div
                 *ngIf="(getControl.nameProduct.dirty || getControl.nameProduct.touched) && getControl.nameProduct.invalid">
                 <div *ngIf="getControl.nameProduct.errors.required" style="color: red;">
@@ -53,24 +53,6 @@
                 class='bx bx-loader-alt'></i></button>
             </div>
           </div>
-
-
-          <!--          <div class="form-group row">-->
-          <!--            <label class="col-sm-3 col-form-label" style="padding: 10px 20px 10px 40px;">Poster Information:-->
-          <!--              <i style="color: red">*</i>-->
-          <!--            </label>-->
-          <!--            <div class="col-sm-7">-->
-          <!--              <textarea type="textarea" class="form-control" rows="4" placeholder="refugees"-->
-          <!--                        formControlName="posterInformation"></textarea>-->
-          <!--              <div-->
-          <!--                *ngIf="(getControl.posterInformation.dirty || getControl.posterInformation.touched) && getControl.posterInformation.invalid">-->
-          <!--                <div *ngIf="getControl.posterInformation.errors.required" style="color: red;">-->
-          <!--                  Not Empty-->
-          <!--                </div>-->
-          <!--              </div>-->
-          <!--            </div>-->
-          <!--          </div>-->
-
           <!--        <div class="form-group row">-->
           <!--          <label class="col-sm-3 col-form-label" style="padding: 10px 20px 10px 40px;">Poster Information:-->
           <!--            <i style="color: red">*</i>-->
@@ -84,7 +66,6 @@
           <!--            </div>-->
           <!--          </div>-->
           <!--        </div>-->
-
           <div class="form-group row">
             <label class="col-sm-3 col-form-label" style="padding: 10px 20px 10px 40px;">Category:
               <i style="color: red">*</i>
@@ -104,7 +85,7 @@
           </div>
 
           <div class="form-group row">
-            <label class="col-sm-3 col-form-label" style="padding: 10px 20px 10px 40px;">Begin Price: <i
+            <label class="col-sm-3 col-form-label" style="padding: 10px 20px 10px 40px;">InitialPrice: <i
               style="color: red">*</i></label>
             <div class="col-sm-7 start-price">
               <input type="text" class="form-control" placeholder="5.000" formControlName="initialPrice">
@@ -118,42 +99,43 @@
           </div>
 
           <div class="form-group row">
-            <label class="col-sm-3 col-form-label" style="padding: 10px 20px 10px 40px;">Money For Once Auction: <i
+            <label class="col-sm-3 col-form-label" style="padding: 10px 20px 10px 40px;">Increment Price: <i
               style="color: red">*</i></label>
             <div class="col-sm-7 price-step">
-              <input type="number" class="form-control" value="100.000" formControlName="moneyAuction">
+              <input type="number" class="form-control" value="100.000" formControlName="incrementPrice">
               <div
-                *ngIf="(getControl.moneyAuction.dirty || getControl.moneyAuction.touched) && getControl.moneyAuction.invalid">
-                <div *ngIf="getControl.moneyAuction.errors.required" style="color: red;">
+                *ngIf="(getControl.incrementPrice.dirty || getControl.incrementPrice.touched) && getControl.incrementPrice.invalid">
+                <div *ngIf="getControl.incrementPrice.errors.required" style="color: red;">
                   Not Empty
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="form-group row">
-            <label class="col-sm-3 col-form-label" style="padding: 10px 20px 10px 40px;">Picture: <i
-              style="color: red">*</i></label>
-            <div class="col-sm-7">
-              <!-- <img src="https://bizweb.dktcdn.net/thumb/grande/100/175/988/products/282789462-777732206735388-9068094231811191086-n.jpg?v=1655720157000"
-                  style="width: 205px; height: 205px">
-              <img src="https://bizweb.dktcdn.net/thumb/grande/100/175/988/products/at120-40-ou.jpg?v=1654055106000"
-                  style="width: 205px; height: 205px">
-              <img src="https://bizweb.dktcdn.net/thumb/grande/100/175/988/products/chiron-baguette-cr7-3-copy-2.jpg?v=1653893197000"
-                  style="width: 205px; height: 205px"> -->
-              <div class="image-container d-flex" style="gap: 10px; overflow-y: auto;">
-                <img
-                  style="width: 100px; height: 100px; cursor: pointer"
-                  *ngFor="let file of files; index as i" [src]="file.base64 | safe:'resourceUrl'"
-                  title="click to remove this image"
-                  (click)="onDeleteImage(i)"
-                />
-              </div>
-              <br/>
-              <label for="file" class="btn-upload">Upload image</label>
-              <input id="file" style="display: none;" type="file" multiple="true" (change)="onUploadFile($event)">
+
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label" style="padding: 10px 20px 10px 40px;">Picture: <i
+            style="color: red">*</i></label>
+          <div class="col-sm-7">
+            <!-- <img src="https://bizweb.dktcdn.net/thumb/grande/100/175/988/products/282789462-777732206735388-9068094231811191086-n.jpg?v=1655720157000"
+                style="width: 205px; height: 205px">
+            <img src="https://bizweb.dktcdn.net/thumb/grande/100/175/988/products/at120-40-ou.jpg?v=1654055106000"
+                style="width: 205px; height: 205px">
+            <img src="https://bizweb.dktcdn.net/thumb/grande/100/175/988/products/chiron-baguette-cr7-3-copy-2.jpg?v=1653893197000"
+                style="width: 205px; height: 205px"> -->
+            <div class="image-container d-flex" style="gap: 10px; overflow-y: auto;">
+              <img
+                style="width: 100px; height: 100px; cursor: pointer"
+                *ngFor="let file of files; index as i" [src]="file.base64 | safe:'resourceUrl'"
+                title="click to remove this image"
+                (click)="onDeleteImage(i)"
+              />
             </div>
+            <br />
+            <label for="file" class="btn-upload">Upload image</label>
+            <input id="file" style="display: none;" type="file" multiple="true" (change)="onUploadFile($event)">
           </div>
+        </div>
 
           <div class="form-group row">
             <label class="col-sm-3 col-form-label" style="padding: 10px 20px 10px 40px;">Start Time:
@@ -168,28 +150,27 @@
                   Not Empty
                 </div>
 
-                <div *ngIf="getControl.startDate.errors.invalid">
+                <div *ngIf="getControl.startDate.errors.invalid" style="color: red">
                   Start date must be smaller than End date
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="form-group row">
-            <label class="col-sm-3 col-form-label" style="padding: 10px 20px 10px 40px;">End Time:
-              <i style="color: red">*</i>
-            </label>
-            <div class="col-sm-7">
-              <input type="datetime-local" step="1" formaction="MM-dd-yyyy-HH-mm" class="form-control"
-                     formControlName="endDate">
-              <div *ngIf="(getControl.endDate.dirty || getControl.endDate.touched) && getControl.endDate.invalid">
-                <div *ngIf="getControl.endDate.errors.required" style="color: red;">
-                  Not Empty
-                </div>
 
-                <div *ngIf="getControl.endDate.errors.invalid">
-                  End date must be bigger than Start date
-                </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label" style="padding: 10px 20px 10px 40px;">End Time:
+            <i style="color: red">*</i>
+          </label>
+          <div class="col-sm-7">
+            <input type="datetime-local" step="1"  class="form-control" formControlName="endDate">
+            <div *ngIf="(getControl.endDate.dirty || getControl.endDate.touched) && getControl.endDate.invalid">
+              <div *ngIf="getControl.endDate.errors.required" style="color: red;">
+                Not Empty
+              </div>
+
+              <div *ngIf="getControl.endDate.errors.invalid" style="color: red;">
+                End date must be bigger than Start date
               </div>
             </div>
           </div>
@@ -223,6 +204,7 @@
               <a class="form__group_button_cancel text-white" [routerLink]="'/product/list'">Cancel</a>
             </div>
           </div>
+        </div>
         </fieldset>
       </form>
     </div>
