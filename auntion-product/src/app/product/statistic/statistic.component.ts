@@ -63,7 +63,7 @@ import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-statistic',
-  // templateUrl: './statistic.component.html',
+  templateUrl: './statistic.component.html',
   styleUrls: ['./statistic.component.css'],
 })
 
