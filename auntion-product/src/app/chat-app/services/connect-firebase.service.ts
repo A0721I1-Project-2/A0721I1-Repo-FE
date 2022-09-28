@@ -2,6 +2,8 @@ import {Injectable} from '@angular/core';
 import {AngularFireDatabase, AngularFireList} from '@angular/fire/database';
 import {Observable} from 'rxjs';
 import {ApiService} from "./api.service";
+import {ChatService} from "./chat.service";
+import {time} from "html2canvas/dist/types/css/types/time";
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +30,7 @@ export class ConnectFirebaseService {
   /* Set status message */
   setStatusMsg(userId: any, status: boolean, quantity: number, msgNew: string) {
     const path = `statusMsg/${userId}`;
+    const timeStamp = this.chatService.getTimeStamp();
 
     if (status) {
       quantity += 1;
@@ -44,7 +47,8 @@ export class ConnectFirebaseService {
         statusMsg: status,
         nameMember: member,
         messageNew: msgNew,
-        quantity: quantity
+        quantity: quantity ,
+        time: timeStamp
       };
 
       this.db.object(path).update(dataStatus).catch(error => console.log(error));
@@ -83,6 +87,7 @@ export class ConnectFirebaseService {
       .catch(error => console.log(error));
   }
 
-  constructor(private db: AngularFireDatabase, private apiService: ApiService) {
+  constructor(private db: AngularFireDatabase, private apiService: ApiService
+  ,private chatService: ChatService) {
   }
 }

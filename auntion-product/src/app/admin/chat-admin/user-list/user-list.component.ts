@@ -17,7 +17,6 @@ export class UserListComponent implements OnInit {
 
   /* Get status msg */
   statusUsersMsg: any[] = [];
-  count = 1;
 
   constructor(private apiService: ApiService, private connectFirebaseService: ConnectFirebaseService) {
   }
